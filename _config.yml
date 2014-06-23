@@ -6,15 +6,15 @@ pygments:         true
 permalink:        pretty
 
 # Setup
-title:            Poole
-tagline:          The Jekyll Butler
-url:              http://getpoole.com
-paginate:         1
+title:            isinn
+tagline:          A Blog by Ian Sinnott
+url:              http://blog.iansinnott.com
+paginate:         8
 baseurl:          /
 author:
-  name:           Mark Otto
-  url:            https://twitter.com/mdo
-  email:          markdotto@gmail.com
+  name:           Ian Sinnott
+  url:            http://iansinnott.com
+  email:          ian@iansinnott.com
 
 # Custom vars
 version:          1.0.0

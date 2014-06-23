@@ -1,1 +1,9 @@
-@import "main"
+// Base styling provided by Poole
+@import "poole";
+@import "syntax";
+
+// Capser styling, taken from: https://github.com/jmromer/casper/blob/master/sass/base/_general.scss
+// @import "casper";
+
+// Base custom styling
+@import "main";

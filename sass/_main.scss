@@ -1,0 +1,52 @@
+body {
+  height: 100%;
+  max-height: 100%;
+  font-family: $font;
+  font-size: 20px;
+  line-height: 1.6em;
+  color: #3A4145;
+}
+
+::-moz-selection {
+  color: #222;
+  background: #D6EDFF;
+  text-shadow: none;
+}
+
+::selection {
+  color: #222;
+  background: #D6EDFF;
+  text-shadow: none;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+  line-height: 1;
+  margin-top: 0;
+  font-family: $header-font;
+}
+
+a {
+  color: #4a4a4a;
+  transition: color ease 0.3s;
+}
+
+a:hover {
+  color: #57A3E8;
+}
+
+h1 a, h2 a, h3 a,
+h4 a, h5 a, h6 a {
+  color: #50585D;
+}
+
+
+p, ul, ol {
+  margin: 1.6em 0;
+}
+
+ol ol, ul ul,
+ul ol, ol ul {
+  margin: 0.4em 0;
+}
