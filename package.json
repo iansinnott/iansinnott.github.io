@@ -12,5 +12,11 @@
     "gulp-util": "^2.2.17",
     "shelljs": "^0.3.0",
     "tiny-lr": "0.0.7"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "moment": "^2.7.0",
+    "shelljs": "^0.3.0",
+    "yargs": "^1.2.6"
   }
 }
