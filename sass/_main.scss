@@ -32,7 +32,8 @@ h4, h5, h6 {
 
 a {
   color: #4a4a4a;
-  transition: all ease 0.3s;
+  transition: color ease 0.3s;
+  transition: background-color ease 0.3s;
 }
 
 .post a {
