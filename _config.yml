@@ -8,15 +8,15 @@ permalink:        pretty
 # Setup
 title:            isinn
 tagline:          A Blog by Ian Sinnott
-url:              http://blog.iansinnott.com
+url:              http://iansinnott.github.io
 paginate:         8
-baseurl:          /
+baseurl:          http://iansinnott.github.io
 author:
   name:           Ian Sinnott
   url:            http://iansinnott.com
   email:          ian@iansinnott.com
 
 # Custom vars
-version:          1.0.0
+version:          0.1.0
 github:
-  repo:           https://github.com/poole/poole
+  repo:           https://github.com/iansinnott/iansinnott.github.io
