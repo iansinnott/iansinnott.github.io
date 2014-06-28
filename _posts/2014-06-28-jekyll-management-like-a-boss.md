@@ -13,7 +13,10 @@ Yesterday I wrote a script to help myself blog more often. This is what it looks
 * Edit a post: `post edit [partial post title]`
 * Publish to this blog: `post publish`
 
+
 I really like [Jekyll][jek], but having to manually create files with the Jekyll filename format (`YYYY-MM-DD-post-title`) is a bit of a hassle. Clearly you could just do this by hand, but if you're like me and want to automate all the minutia in your life, then that's not going to cut it.
+
+<!--more-->
 
 The other reason I decided to write a script for managing Jekyll was _friction_. Blogging can be fun, but sometimes it's hard to get myself to actually start writing posts. In the past, that was largely because my post-writing workflow looked something like this:
 

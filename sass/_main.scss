@@ -1,10 +1,13 @@
+$blue: #57A3E8;
+$black: #3A4145;
+
 body {
   height: 100%;
   max-height: 100%;
   font-family: $font;
   font-size: 20px;
   line-height: 1.6em;
-  color: #3A4145;
+  color: $black;
 }
 
 ::-moz-selection {
@@ -29,7 +32,27 @@ h4, h5, h6 {
 
 a {
   color: #4a4a4a;
-  transition: color ease 0.3s;
+  transition: all ease 0.3s;
+}
+
+.post a {
+  text-decoration: underline;
+}
+.post-title a {
+  text-decoration: none;
+  &:hover { text-decoration: underline }
+}
+
+a.more {
+  text-decoration: none;
+  background: lighten($blue, 30%);
+  color: lighten($black, 30%);
+  padding: 10px;
+  border-radius: 5px;
+  &:hover {
+    color: white;
+    background: $blue;
+  }
 }
 
 a:hover {

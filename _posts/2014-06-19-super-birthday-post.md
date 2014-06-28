@@ -11,8 +11,6 @@ We're going to use [Gulp.js][gulp] to automate most of what's lame about creatin
 
 First you need to go grab the boilerplate [Poole][poole] code so that we are all on the same page.
 
-<!--more-->
-
 [gulp]: http://gulpjs.com/
 [grunt]: http://gruntjs.com/
 [poole]: http://getpoole.com/
@@ -20,6 +18,8 @@ First you need to go grab the boilerplate [Poole][poole] code so that we are all
 ### Sass
 
 Jekyll templating is a pain compared to general web development and it shouldn't be. Let's get gulp set up to automate the usual crap for us. I'm using SCSS, but you could do the same thing with plain CSS, Less or Stylus just as easily. Here is the is a gulpfile to get get you set up:
+
+<!--more-->
 
 {% gist iansinnott/a9175e41f521a56eae52 %}
 
