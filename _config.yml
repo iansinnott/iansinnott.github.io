@@ -9,8 +9,8 @@ permalink:        pretty
 title:            isinn
 tagline:          A Blog by Ian Sinnott
 url:              http://iansinnott.github.io
-paginate:         8
-baseurl:          http://iansinnott.github.io
+paginate:         5
+baseurl:          /
 author:
   name:           Ian Sinnott
   url:            http://iansinnott.com
