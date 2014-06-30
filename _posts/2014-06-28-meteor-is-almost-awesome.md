@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Meteor is (Almost) Awesome
+comments: true
 ---
 
 ### Almost Perfect, But With Room For Improvement
