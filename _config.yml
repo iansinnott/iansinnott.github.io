@@ -3,7 +3,7 @@ markdown:         redcarpet
 highlighter:      pygments
 
 # Permalinks
-permalink:        /:categories/:title/
+permalink:        /:title/
 
 # Setup
 title:            Ian Sinnott
