@@ -211,12 +211,12 @@ sudo nano /private/etc/apache2/users/Ian.conf
 Make sure the file looks like this:
 
 ```
-&lt;Directory "/Users/your_user_name/Sites/"&gt;
+<Directory "/Users/your_user_name/Sites/">
 Options Indexes MultiViews FollowSymLinks
 AllowOverride All AuthConfig
 Order allow,deny
 Allow from all
-&lt;/Directory&gt;
+</Directory>
 ```
 
 Save and close that file. Then restart Apache (remember the command?).

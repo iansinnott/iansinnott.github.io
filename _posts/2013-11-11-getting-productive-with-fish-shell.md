@@ -24,9 +24,9 @@ That recommendation led me on an all-day adventure learning Z shell customizatio
 
 The point being, there was recently an announcement on Hacker News that someone had started a [similar project][5] for this new shell called Fish. As soon as I saw that, a big chunk of my time for the day went out the window. I knew if I started looking into the code and the various customizations I would lose many hours of the day, but I couldn't resist. I LOVE improving my workflow.
 
-## One shell to rule them all
-
 <!--more-->
+
+## One shell to rule them all
 
 Like most developers I spend a lot of time in the Terminal, and it can be a pain. Fish shell actually offers code-completion in the terminal as you type. This is a step up from Z shell which would offer decent tab completion but would not print out suggestions for you as you type. What's not great about Z shell is that much like bash customizing it can be a real pain. Fish on the other hand simplifies customization by making everything a function, and making functions easily definable. Here's an example of one I use often with Git:
 
