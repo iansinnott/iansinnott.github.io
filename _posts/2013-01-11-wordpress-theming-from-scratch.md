@@ -1,8 +1,6 @@
 ---
 title: WordPress Theming From Scratch
-author: Ian
 layout: post
-permalink: /blog/wordpress-theming-from-scratch/
 dsq_thread_id:
   - 1029462779
   - 1029462779
@@ -18,6 +16,6 @@ I was in the same boat initially, child-theming and theme-editing my way to earl
 
 Of course you will want to use JavaScript plugins and other premade assets as you would normally, but by starting from scratch you will teach yourself some very essential WP basics like registering/enqueing scripts and customizing the loop.
 
-So if you're looking to get some good hands on practice with WP just open up a new folder on your dev server and get started. If you're not the type to craft all site assets by hand then just google free website PSD templates. Find a template you like and then theme it up. PSD templates are great because they often come pre-sliced so you get to spend most of the time in the code editor and in the browser.
+So if you're looking to get some good hands on practice with WP just open up a new folder on your dev server and get started. If you're not the type to craft all site assets by hand then just Google free website PSD templates. Find a template you like and then theme it up. PSD templates are great because they often come pre-sliced so you get to spend most of the time in the code editor and in the browser.
 
 Happy coding.

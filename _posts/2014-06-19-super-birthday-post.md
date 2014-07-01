@@ -5,7 +5,7 @@ title: Jekyll Theming Like a Boss With Gulp
 
 ## Building your own Jekyll theme quickly and efficiently
 
-Basically I was fed up with how inneficient coding Jekyll themes was, especially with Octopress, so I decided there must be a better way. These are my findings.
+Basically I was fed up with how inefficient coding Jekyll themes was, especially with Octopress, so I decided there must be a better way. These are my findings.
 
 We're going to use [Gulp.js][gulp] to automate most of what's lame about creating themes for Jekyll. Gulp is just a task runner, so if you have another your more familiar with (i.e. [Grunt][grunt]) that would work too.
 
@@ -17,7 +17,7 @@ First you need to go grab the boilerplate [Poole][poole] code so that we are all
 
 ### Sass
 
-Jekyll templating is a pain compared to general web development and it shouldn't be. Let's get gulp set up to automate the usual crap for us. I'm using SCSS, but you could do the same thing with plain CSS, Less or Stylus just as easily. Here is the is a gulpfile to get get you set up:
+Jekyll tempting is a pain compared to general web development and it shouldn't be. Let's get gulp set up to automate the usual crap for us. I'm using SCSS, but you could do the same thing with plain CSS, Less or Stylus just as easily. Here is the is a gulpfile to get get you set up:
 
 <!--more-->
 
@@ -27,7 +27,7 @@ The important task here is the 'sass' task. That task will compile any sass in t
 
 * `public/css`: This is where you would normally save any CSS you wanted included in your project. These files would be copied into `_site/public/css` whenever you run `jekyll build`.
 
-* `_site/public/css`: This is where your generated site lives. Normally you would never manually change any files in here, but by saving CSS to this directory on compile we can take advantage of CSS injections in the browser immmediately, without having to run `jekyll build` to have the files copied over. Basically we are doing exactly what `jekyll build` would do, but only for our CSS so that the entire site doesn't have to be built every time we change one style.
+* `_site/public/css`: This is where your generated site lives. Normally you would never manually change any files in here, but by saving CSS to this directory on compile we can take advantage of CSS injections in the browser immediately, without having to run `jekyll build` to have the files copied over. Basically we are doing exactly what `jekyll build` would do, but only for our CSS so that the entire site doesn't have to be built every time we change one style.
 
 The key to this setup is the `watch` task, which will compile are Sass files into CSS and inject the changes into the browser using live reload. This is an immense improvement over changing Sass files, manually running `jekyll build` and then doing a full page refresh in the browser. As an added bonus, we can also have gulp automatically rebuild the site whenever any of our Markdown or html files change. First I set up gulp with [gulp-shell][gshell] so that it could run `jekyll build` for me:
 

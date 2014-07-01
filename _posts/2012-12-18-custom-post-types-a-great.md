@@ -1,8 +1,6 @@
 ---
 title: 'Custom Post Types: A Great Article'
-author: Ian
 layout: post
-permalink: /blog/custom-post-types-a-great/
 dsq_thread_id:
   - 979369744
   - 979369744

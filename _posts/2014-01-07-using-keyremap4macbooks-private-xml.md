@@ -1,15 +1,15 @@
 ---
-title: 'Using KeyRemap4MacBook's private.xml'
+title: "Using KeyRemap4MacBook's private.xml"
 author: Ian
 layout: post
+comments: true
 dsq_thread_id:
   - 2096904275
 categories:
-  - development
   - tech
 ---
 
-Using the KeyRemap4MacBook private.xml mappings can be a bit opaque, so I&#8217;m writing this as a reference to myself and anyone else that needs to delve deep into customizing KeyRemap4MacBook (KRMB) by using the private.xml config file. Here are the more important rules:
+Using the KeyRemap4MacBook private.xml mappings can be a bit opaque, so I'm writing this as a reference to myself and anyone else that needs to delve deep into customizing KeyRemap4MacBook (KRMB) by using the private.xml config file. Here are the more important rules:
 
 ### Basic private.xml layout
 
@@ -23,10 +23,11 @@ This is an xml file you can start with.
 </root>
 ```
 
+Note that `<list>` is an optional tag, but I think it's nice for organization within KRMB. Leave it out if you want.
 
-Note that `<list>` is an optional tag, but I think it&#8217;s nice for organization within KRMB. Leave it out if you want.
+The second basic piece is the `<item>` tag. These represent the checkboxes you can turn on and off from within KRMB. They can contain multiple mappings or `<autogen>` tags. Just remember that everything you put into one single `<item>` will be activated or deactivated together. Here's what they look like:
 
-The second basic piece is the `<item>` tag. These represent the checkboxes you can turn on and off from within KRMB. They can contain multiple mappings or `<autogen>` tags. Just remember that everything you put into one single `<item>` will be activated or deactivated together. Here&#8217;s what they look like:
+<!--more-->
 
 ```
 <item>
@@ -69,13 +70,13 @@ Key to key mappings always take two `KeyCode`s. The first is the key you would l
 
 That particular mapping may seem useless now, but these sorts of mappings, i.e. disabling a key by mapping it to nothing, are actually very important. After you come up with new mappings for various keys you should disable their former mappings in this way so that you are forced to retrain your muscle memory.
 
-**Note 1:** KRMB doesn&#8217;t give you key codes for anything that would normally take a SHIFT to type, so to access anything that needs a shift modifier you just specify it as above. `BRACKET_RIGHT` represents `[`, so the combination of `BRACKET_RIGHT` and `SHIFT_L` is equal to `{`.
+**Note 1:** KRMB doesn't give you key codes for anything that would normally take a SHIFT to type, so to access anything that needs a shift modifier you just specify it as above. `BRACKET_RIGHT` represents `[`, so the combination of `BRACKET_RIGHT` and `SHIFT_L` is equal to `{`.
 
-**Note 2:** I&#8217;ve only disabled mappings of left shift, because I would never hold right shift while pressing a bracket if I wanted to type a curly brace. However, if do hold right shift and type a bracket a curly brace will be typed. Right Shift and Left Shift are completely separate keys so the above mapping only affects what I told it to: `SHIFT_L`.
+**Note 2:** I've only disabled mappings of left shift, because I would never hold right shift while pressing a bracket if I wanted to type a curly brace. However, if do hold right shift and type a bracket a curly brace will be typed. Right Shift and Left Shift are completely separate keys so the above mapping only affects what I told it to: `SHIFT_L`.
 
 ### KeyOverlaidModifier
 
-This is the real meat of KRMB and was the real eye-opener for me. This let&#8217;s us map separate keys to a certain keys &#8216;hold&#8217; state as well as a single &#8216;tap&#8217;. Here&#8217;s the syntax:
+This is the real meat of KRMB and was the real eye-opener for me. This let's us map separate keys to a certain keys &#8216;hold' state as well as a single &#8216;tap'. Here's the syntax:
 
 ```
 --KeyOverlaidModifier--
@@ -84,13 +85,13 @@ KeyCode::<key to fire when held continuously>,
 KeyCode::<key to fire when pressed and released quickly>
 ```
 
-For example, the Shift keys are essential when typing, but we never tap them once once quickly. They are always held down as modifiers for other keys. This means each Shift key&#8217;s &#8216;tap&#8217; state is essentially wasted. We can utilize this and remap anything we want to that tap, all while preserving Shifts most essential functionality.
+For example, the Shift keys are essential when typing, but we never tap them once once quickly. They are always held down as modifiers for other keys. This means each Shift key's &#8216;tap' state is essentially wasted. We can utilize this and remap anything we want to that tap, all while preserving Shifts most essential functionality.
 
-What you would want to map to Shift is up to you. Steve Losh recommends mapping `(` and `)` to left and right Shift respectively. I totally agree that parentheses are vital when programming and should be easily accessible, but since I&#8217;ve already reversed my numbers and symbols it&#8217;s actually quite easy for me to hit `(` and `)` where they are. I also like being able to type them both in one quick rolling motion, since many function calls don&#8217;t take arguments and look like this: `someFunction()`.
+What you would want to map to Shift is up to you. Steve Losh recommends mapping `(` and `)` to left and right Shift respectively. I totally agree that parentheses are vital when programming and should be easily accessible, but since I've already reversed my numbers and symbols it's actually quite easy for me to hit `(` and `)` where they are. I also like being able to type them both in one quick rolling motion, since many function calls don't take arguments and look like this: `someFunction()`.
 
 So instead of parentheses, I decided to map `{` and `}`. When writing function definitions or conditional statements these symbols are prevalent in many languages, but they are also very useful outside of coding. On Mac OSX, `Command + {` and `Command + }` are assigned to switching tabs in most apps (Sublime, Terminal, Chrome, etc). So now I can hold Command and hit either left or right shift to navigate my tabs in Chrome (of which there are about 40 at any given time).
 
-So here&#8217;s what that mapping looks like:
+So here's what that mapping looks like:
 
 ```
 <autogen>
@@ -112,9 +113,9 @@ And now you see why I remapped my `{` and `}` keys to nothing earlier in the pos
 
 ### ModifierFlag::NONE
 
-One last thing to note about KRMB mappings is the `ModifierFlag::NONE` flag, which let&#8217;s you keep certain mappings from interfering with others. I think of it a bit like non-recursive mappings in Vim. It means I could map a new key to `,` (not sure why you would, but bear with me), but if you hit `Command + ,` it would still open preferences in most applications.
+One last thing to note about KRMB mappings is the `ModifierFlag::NONE` flag, which let's you keep certain mappings from interfering with others. I think of it a bit like non-recursive mappings in Vim. It means I could map a new key to `,` (not sure why you would, but bear with me), but if you hit `Command + ,` it would still open preferences in most applications.
 
-The example I&#8217;m using here isn&#8217;t going to make sense unless you have read [Steve Losh&#8217;s post][1] about creating a Hyper key, but here it is anyway:
+The example I'm using here isn't going to make sense unless you have read [Steve Losh's post][1] about creating a Hyper key, but here it is anyway:
 
 ```
 <item>
@@ -169,7 +170,7 @@ You probably have different preferences and needs than me when it comes to how y
 
 ### Update 4/28/14
 
-I realized when I first wrote this I didn&#8217;t link to my own private.xml file for anyone to look at. Here&#8217;s the link:
+I realized when I first wrote this I didn't link to my own private.xml file for anyone to look at. Here's the link:
 
 * [Private.xml](https://github.com/iansinnott/dotfiles/blob/master/dotfiles/KeyRemap4MacBook/private.xml)
 
