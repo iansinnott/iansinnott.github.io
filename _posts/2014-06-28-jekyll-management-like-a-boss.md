@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Jekyll Management Like a Boss
+comments: true
 ---
 
 ## Blogging Without Friction

@@ -1,8 +1,7 @@
 ---
-title: 'WordPress Development Server &#8211; Full Set Up Guide'
-author: Ian
+title: "WordPress Development Server - Full Set Up Guide"
 layout: post
-permalink: /blog/wordpress-development-server-full-set-up-guide/
+comments: true
 dsq_thread_id:
   - 1337579457
   - 1337579457

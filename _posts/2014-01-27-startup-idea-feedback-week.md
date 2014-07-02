@@ -1,8 +1,7 @@
 ---
 title: From Startup Idea to (In)validation in a Week
-author: Ian
 layout: post
-permalink: /blog/startup-idea-feedback-week/
+comments: true
 dsq_thread_id:
   - 2180211560
 categories:

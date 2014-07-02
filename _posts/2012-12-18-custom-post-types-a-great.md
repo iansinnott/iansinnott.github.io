@@ -1,6 +1,7 @@
 ---
 title: 'Custom Post Types: A Great Article'
 layout: post
+comments: true
 dsq_thread_id:
   - 979369744
   - 979369744

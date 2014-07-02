@@ -1,6 +1,7 @@
 ---
 title: JavaScript Everywhere
 layout: post
+comments: true
 dsq_thread_id:
   - 2026793732
 categories:

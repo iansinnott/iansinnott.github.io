@@ -1,6 +1,7 @@
 ---
 title: Becoming A Developer Is A Process
 layout: post
+comments: true
 dsq_thread_id:
   - 1279910611
   - 1279910611

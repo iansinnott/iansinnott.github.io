@@ -1,6 +1,7 @@
 ---
 title: 'Learn Vim & Code Like a Boss'
 layout: post
+comments: true
 dsq_thread_id:
   - 1585683628
 categories:

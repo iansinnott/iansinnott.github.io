@@ -1,6 +1,7 @@
 ---
 title: "Vim: It's Awesome"
 layout: post
+comments: true
 dsq_thread_id:
   - 2349626206
 categories:

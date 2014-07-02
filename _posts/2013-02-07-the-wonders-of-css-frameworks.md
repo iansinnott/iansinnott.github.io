@@ -1,6 +1,7 @@
 ---
 title: The Wonders of CSS Frameworks
 layout: post
+comments: true
 dsq_thread_id:
   - 1070486878
   - 1070486878

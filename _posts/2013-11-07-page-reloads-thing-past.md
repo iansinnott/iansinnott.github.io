@@ -1,6 +1,7 @@
 ---
 title: Page reloads are a thing of the past
 layout: post
+comments: true
 dsq_thread_id:
   - 1944906311
 categories:

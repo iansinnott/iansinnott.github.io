@@ -1,6 +1,7 @@
 ---
 title: WordPress Needs Better Automation
 layout: post
+comments: true
 dsq_thread_id:
   - 2086620445
 categories:

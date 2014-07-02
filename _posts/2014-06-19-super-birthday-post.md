@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Jekyll Theming Like a Boss With Gulp
+comments: true
 ---
 
 ## Building your own Jekyll theme quickly and efficiently

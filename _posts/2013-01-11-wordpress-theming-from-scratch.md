@@ -1,6 +1,7 @@
 ---
 title: WordPress Theming From Scratch
 layout: post
+comments: true
 dsq_thread_id:
   - 1029462779
   - 1029462779

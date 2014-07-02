@@ -1,6 +1,7 @@
 ---
 title: Portfolio Update + Future Site Update
 layout: post
+comments: true
 dsq_thread_id:
   - 1287075657
   - 1287075657

@@ -1,6 +1,7 @@
 ---
 title: Victory! The realization of a goal.
 layout: post
+comments: true
 dsq_thread_id:
   - 1097117115
   - 1097117115

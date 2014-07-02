@@ -1,6 +1,7 @@
 ---
 title: 'Integrating Alfred &#038; Keyboard Maestro'
 layout: post
+comments: true
 dsq_thread_id:
   - 1965006338
 categories:

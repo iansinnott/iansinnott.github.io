@@ -1,6 +1,7 @@
 ---
 title: The WP_Post Object
 layout: post
+comments: true
 dsq_thread_id:
   - 1402742612
 categories:

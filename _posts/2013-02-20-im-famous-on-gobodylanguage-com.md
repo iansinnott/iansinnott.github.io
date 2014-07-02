@@ -1,6 +1,7 @@
 ---
 title: I'm famous on GoBodyLanguage.com!
 layout: post
+comments: true
 dsq_thread_id:
   - 1094012098
   - 1094012098

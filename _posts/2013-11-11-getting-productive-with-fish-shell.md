@@ -1,6 +1,7 @@
 ---
 title: Getting Productive With Fish Shell
 layout: post
+comments: true
 dsq_thread_id:
   - 1953644511
 categories:
