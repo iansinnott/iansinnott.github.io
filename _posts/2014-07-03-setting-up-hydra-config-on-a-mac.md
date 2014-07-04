@@ -10,6 +10,8 @@ _This post is about moving one step closer to a mouse-less workflow, where any c
 
 I discovered [Hydra][hy] through Hacker News earlier today, and it's almost everything I could wish for in a window management tool. My new setup allows me to manage windows somewhat like you see in the image bellow:
 
+<!--more-->
+
 [hy]: https://github.com/sdegutis/hydra
 
 ![Keyboard Window Management]({{ site.url }}/public/images/hydra.gif)
