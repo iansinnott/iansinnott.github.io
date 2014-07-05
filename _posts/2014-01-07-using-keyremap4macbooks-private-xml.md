@@ -1,5 +1,5 @@
 ---
-title: "Using KeyRemap4MacBook's private.xml"
+title: "Using Key Remap 4 MacBook's Private.xml"
 author: Ian
 layout: post
 comments: true

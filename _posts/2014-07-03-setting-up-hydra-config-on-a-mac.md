@@ -16,6 +16,8 @@ I discovered [Hydra][hy] through Hacker News earlier today, and it's almost ever
 
 If you interested, [here's the source][source] to make Hydra work like you see in that image. But if you're like me, you will probably want to customize everything, so here's a quick tutorial on how to do that.
 
+[source]: https://github.com/sdegutis/dotfiles/blob/osx/home/.hydra/init.lua#L43-L50
+
 <!--more-->
 
 ## init.lua
