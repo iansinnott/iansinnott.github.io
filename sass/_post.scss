@@ -1,0 +1,31 @@
+.post {
+
+  // Titles
+  h1 {
+    line-height: 1.2;
+  }
+
+  h2 {
+    line-height: 1.2;
+  }
+
+  ul {
+    padding-left: 1rem;
+  }
+
+  ol, p, ul {
+    margin: 1.3rem 0;
+    @include for(tablet) {
+      margin: 1.6rem 0;
+    }
+  }
+
+  p, li {
+    line-height: 1.3;
+    font-size: 1.1rem;
+    @include for(tablet) {
+      line-height: 1.5;
+      font-size: 1.1rem;
+    }
+  }
+}

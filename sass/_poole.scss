@@ -1,43 +1,39 @@
-/*
- *                        ___
- *                       /\_ \
- *  _____     ___     ___\//\ \      __
- * /\ '__`\  / __`\  / __`\\ \ \   /'__`\
- * \ \ \_\ \/\ \_\ \/\ \_\ \\_\ \_/\  __/
- *  \ \ ,__/\ \____/\ \____//\____\ \____\
- *   \ \ \/  \/___/  \/___/ \/____/\/____/
- *    \ \_\
- *     \/_/
- *
- * Designed, built, and released under MIT license by @mdo. Learn more at
- * https://github.com/poole/poole.
- */
+//                        ___
+//                       /\_ \
+//  _____     ___     ___\//\ \      __
+// /\ '__`\  / __`\  / __`\\ \ \   /'__`\
+// \ \ \_\ \/\ \_\ \/\ \_\ \\_\ \_/\  __/
+//  \ \ ,__/\ \____/\ \____//\____\ \____\
+//   \ \ \/  \/___/  \/___/ \/____/\/____/
+//    \ \_\
+//     \/_/
+//
+// Designed, built, and released under MIT license by @mdo. Learn more at
+// https://github.com/poole/poole.
 
 
-/*
- * Contents
- *
- * Body resets
- * Custom type
- * Messages
- * Container
- * Masthead
- * Posts and pages
- * Pagination
- * Reverse layout
- * Themes
- */
+// -- Contents
+//
+// Body resets
+// Custom type
+// Messages
+// Container
+// Masthead
+// Posts and pages
+// Pagination
+// Reverse layout
+// Themes
 
 
-/*
- * Body resets
- *
- * Update the foundational and global aspects of the page.
- */
+// -- Body resets
+//
+// Update the foundational and global aspects of the page.
 
 $font: 'Droid Serif', serif ;
 $header-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $code-font: Menlo, Monaco, "Courier New", monospace;
+
+$base-font-size: 16px;
 
 * { box-sizing: border-box; }
 
@@ -49,7 +45,7 @@ body {
 
 html {
   font-family: $font;
-  font-size: 16px;
+  font-size: $base-font-size;
   line-height: 1.5;
 }
 
@@ -66,7 +62,7 @@ body {
       -ms-text-size-adjust: 100%;
 }
 
-/* No `:visited` state is required by default (browsers will use `a`) */
+// No `:visited` state is required by default (browsers will use `a`)
 a {
   color: #268bd2;
   text-decoration: none;
@@ -74,13 +70,13 @@ a {
 a strong {
   color: inherit;
 }
-/* `:focus` is linked to `:hover` for basic accessibility */
+// `:focus` is linked to `:hover` for basic accessibility
 a:hover,
 a:focus {
   text-decoration: underline;
 }
 
-/* Headings */
+// Headings
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   font-weight: bold;
@@ -253,11 +249,9 @@ tbody tr:nth-child(odd) th {
 }
 
 
-/*
- * Custom type
- *
- * Extend paragraphs with `.lead` for larger introductory text.
- */
+// Custom type
+//
+// Extend paragraphs with `.lead` for larger introductory text.
 
 .lead {
   font-size: 1.25rem;
@@ -265,12 +259,10 @@ tbody tr:nth-child(odd) th {
 }
 
 
-/*
- * Messages
- *
- * Show alert messages to users. You may add it to single elements like a `<p>`,
- * or to a parent if there are multiple elements to show.
- */
+// Messages
+//
+// Show alert messages to users. You may add it to single elements like a `<p>`,
+// or to a parent if there are multiple elements to show.
 
 .message {
   margin-bottom: 1rem;
@@ -280,11 +272,9 @@ tbody tr:nth-child(odd) th {
 }
 
 
-/*
- * Container
- *
- * Center the page content.
- */
+// Container
+//
+// Center the page content.
 
 .container {
   max-width: 38rem;
@@ -295,11 +285,9 @@ tbody tr:nth-child(odd) th {
 }
 
 
-/*
- * Masthead
- *
- * Super small header above the content for site name and short description.
- */
+// Masthead
+//
+// Super small header above the content for site name and short description.
 
 .masthead {
   padding-top:    1rem;
@@ -322,19 +310,17 @@ tbody tr:nth-child(odd) th {
 }
 
 
-/*
- * Posts and pages
- *
- * Each post is wrapped in `.post` and is used on default and post layouts. Each
- * page is wrapped in `.page` and is only used on the page layout.
- */
+// Posts and pages
+//
+// Each post is wrapped in `.post` and is used on default and post layouts. Each
+// page is wrapped in `.page` and is only used on the page layout.
 
 .page,
 .post {
   margin-bottom: 4em;
 }
 
-/* Blog post or page title */
+// Blog post or page title
 .page-title,
 .post-title,
 .post-title a {
@@ -345,7 +331,7 @@ tbody tr:nth-child(odd) th {
   margin-top: 0;
 }
 
-/* Meta data line below post title */
+// Meta data line below post title
 .post-date {
   display: block;
   margin-top: -.5rem;
@@ -379,12 +365,10 @@ tbody tr:nth-child(odd) th {
 }
 
 
-/*
- * Pagination
- *
- * Super lightweight (HTML-wise) blog pagination. `span`s are provide for when
- * there are no more previous or next posts to show.
- */
+// Pagination
+//
+// Super lightweight (HTML-wise) blog pagination. `span`s are provide for when
+// there are no more previous or next posts to show.
 
 .pagination {
   overflow: hidden; /* clearfix */
