@@ -29,3 +29,136 @@
     }
   }
 }
+
+// -- ---- ---- ---- ---- ---- ---- ---- ----
+// About
+// -- ---- ---- ---- ---- ---- ---- ---- ----
+.about {
+  $border-color: darken(#f0f0f0, 10%);
+  border-top: 1px solid $border-color;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  border-bottom: 1px dashed $border-color;
+  padding-bottom: 1.6rem;
+
+  @include for(tablet) {
+    margin-bottom: 3.2rem;
+  }
+
+  .overlap-top {
+    margin-top: -11px;
+    margin-bottom: 20px;
+    text-align: center;
+    span {
+      border-radius: 2px;
+      color: darken($border-color, 20%);
+      font-family: $header-font;
+      font-weight: 300;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      display: inline-block;
+      background: white;
+      padding: 0px 15px;
+      border: 1px solid $border-color;
+    }
+  }
+
+  .about-me {
+    @include clearfix;
+    text-align: center;
+  }
+
+  .inner, img {
+    display: inline-block;
+  }
+
+  img {
+    border-radius: 50%;
+    vertical-align: top;
+    clear: both;
+  }
+
+  .inner {
+    clear: both;
+
+    .contact {
+      @extend %cta;
+      @include for(tablet) {
+        vertical-align: top;
+        display: inline-block;
+        i {
+          margin-top: -3px; // Adjust for font size difference
+          margin-left: 8px;
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    @include for(tablet) {
+      width: 75%;
+      text-align: left;
+      margin-left: 1.6rem;
+    }
+  }
+
+  .social {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      display: inline-block;
+      text-align: left;
+      margin-left: 1.6rem;
+      &:first-child { margin-left: 0px;}
+      a {
+      }
+      i {
+        border-radius: 50%;
+        background: white;
+        display: inline-block;
+        font-size: 1.8rem;
+        vertical-align: middle;
+        border: 1px solid $border-color;
+        padding: 8px;
+        transition: background-color 0.2s ease-out;
+      }
+      i.fa-github {
+        padding: 8px 10px;
+      }
+      a:hover {
+        i.fa-twitter {
+          color: white;
+          border-color: #00B0ED;
+          background: #00B0ED;
+        }
+        i.fa-github {
+          color: white;
+          border-color: #4183c4;
+          background: #4183c4;
+        }
+      }
+    }
+
+    // Larger screens
+    @include for(tablet) {
+      float: right;
+      margin-top: -72px;
+      p, ul {
+        display: inline-block;
+        text-align: right;
+      }
+      li {
+        margin-left: 1rem;
+        &:first-child { margin-left: 1rem; }
+      }
+    }
+  }
+}

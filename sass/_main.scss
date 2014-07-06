@@ -20,6 +20,14 @@ $mobile-break: 400px;
   }
 }
 
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
 // -- ---- ---- ---- ---- ---- ---- ---- ----
 // General Styles
 // -- ---- ---- ---- ---- ---- ---- ---- ----
@@ -67,7 +75,7 @@ a {
   &:hover { text-decoration: underline }
 }
 
-a.more {
+%cta {
   text-decoration: none;
   background: lighten($blue, 30%);
   color: lighten($black, 30%);
@@ -76,13 +84,17 @@ a.more {
   display: block;
   width: auto;
   text-align: center;
-  @include for(tablet) {
-    display: inline-block;
-    text-align: left;
-  }
   &:hover {
     color: white;
     background: $blue;
+  }
+}
+
+a.more {
+  @extend %cta;
+  @include for(tablet) {
+    display: inline-block;
+    text-align: left;
   }
 }
 
@@ -110,3 +122,5 @@ ul ol, ol ul {
     color: silver;
   }
 }
+
+

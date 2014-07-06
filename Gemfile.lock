@@ -16,6 +16,8 @@ GEM
       highline (~> 1.6.11)
     fast-stemmer (1.0.2)
     ffi (1.9.3)
+    font-awesome-sass (4.1.0)
+      sass (~> 3.2)
     gemoji (1.5.0)
     github-pages (19)
       RedCloth (= 4.2.9)
@@ -82,6 +84,7 @@ GEM
     rdiscount (2.1.7)
     redcarpet (2.3.0)
     safe_yaml (1.0.3)
+    sass (3.3.9)
     thread_safe (0.3.4)
     toml (0.1.1)
       parslet (~> 1.5.0)
@@ -93,4 +96,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  font-awesome-sass
   github-pages
