@@ -7,7 +7,7 @@ permalink:        /:title/
 
 # Setup
 title:            Ian Sinnott
-tagline:          I make websites, I travel, and sometimes I write about it.
+tagline:          "I make web apps, I travel. <br /> Sometimes I write about it."
 masthead:         default.png
 url:              http://blog.iansinnott.com
 paginate:         8
