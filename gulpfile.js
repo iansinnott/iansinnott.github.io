@@ -83,11 +83,11 @@ gulp.task('watch', function() {
     gulp.watch('sass/**/*.scss', ['sass']);
 
     // For now I'm just using `jekyll serve --watch` from terminal
-    // gulp.watch([
-    //   '_includes/**/*.html',
-    //   '_layouts/**/*.html',
-    //   '_posts/**/*'
-    // ], ['build']);
+    gulp.watch([
+      '_includes/**/*.html',
+      '_layouts/**/*.html',
+      '_posts/**/*'
+    ], ['build']);
 
   });
 });
