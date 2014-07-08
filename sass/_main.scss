@@ -129,10 +129,15 @@ ul ol, ol ul {
 
 %container {
   max-width: 38rem;
+  min-width: 320px;
   padding-left: 1rem;
   padding-right: 1rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+.container {
+  @extend %container;
 }
 
 svg { display: none; }
@@ -141,6 +146,7 @@ svg { display: none; }
 // Masthead
 // -- ---- ---- ---- ---- ---- ---- ---- ----
 #masthead {
+  min-width: 320px;
   background: transparent;
   $text-shadow: 0 1px 3px rgba(0,0,0,0.15);
   padding: 1.6rem 1rem;
@@ -150,8 +156,9 @@ svg { display: none; }
   overflow: hidden;
 
   .masthead-bg {
-    // background-size: cover;
-    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     position: absolute;
     display: block;
     left: -5px;
@@ -160,15 +167,8 @@ svg { display: none; }
     bottom: -5px;
     z-index: 4;
     box-shadow: inset 0 0 1em black;
-  }
-
-  .menu {
-    z-index: 5;
-    position: absolute;
-    left: 1.6rem;
-    top: 1.6rem;
-    ul {
-      list-style: none;
+    @include for(tablet) {
+      background-attachment: fixed;
     }
   }
 
@@ -200,6 +200,110 @@ svg { display: none; }
     text-shadow: $text-shadow;
     font-family: $font;
     font-weight: 400;
+  }
+
+}
+
+// This holds everything that is visible by default. Slides left to make room
+// for the menu when necessary.
+section#wrap {
+  transition: left 0.3s ease-out;
+  position: relative;
+  left: 0;
+}
+
+// -- ---- ---- ---- ---- ---- ---- ---- ----
+// Mobile Nav Menu
+// -- ---- ---- ---- ---- ---- ---- ---- ----
+
+// THe hamburger
+#super-toggle {
+  display: block;
+  position: absolute !important;
+  top: 0;
+  right: 1.6rem;
+  width: 30px;
+  span {
+    display: block;
+    height: 5px;
+    background: white;
+    margin-top: 5px;
+    box-shadow: 1px 0 1px black;
+    border-radius: 2px;
+    &:first-child { margin-top: 0px;}
+  }
+}
+
+// The nav. Hidden by default.
+#super-nav {
+  $gray: #525762;
+  $gray-hover: #575C68;
+  $off-white: #D6DBE0;
+  $text-shadow: 0 1px 0px black;
+
+  background: $gray;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: -280px;
+  z-index: 6;
+  width: 280px;
+  transition: right 0.3s ease-out; // Animate the menu when shown
+  &:after {
+    content: '';
+    background: transparent;
+    width: 1px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1px;
+    box-shadow: 2px 0px 2px darken($gray, 20%);
+  }
+
+  .menu {
+    z-index: 5;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    a {
+      position: relative;
+      transition: none;
+      font-family: $header-font;
+      font-weight: 300;
+      color: $off-white;
+      padding: 15px 25px;
+      display: block;
+      text-shadow: $text-shadow;
+      border-top: 1px solid lighten($gray, 10%);
+      border-bottom: 1px solid darken($gray, 10%);
+      i {
+        margin-right: .8rem;
+      }
+      &:hover, &:active {
+        border-top: none;
+        padding-top: 16px;
+        background: $gray-hover;
+        color: white;
+        box-shadow: inset 0 0px 2px darken($gray, 10%);
+      }
+    }
+    li:first-child a:before, li:last-child a:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: -2px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: darken($gray, 10%);
+    }
+    li:last-child a:after {
+      top: auto;
+      bottom: -2px;
+      background: lighten($gray, 10%);
+    }
   }
 
 }

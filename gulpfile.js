@@ -4,6 +4,7 @@ var gulp         = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss    = require('gulp-minify-css'),
     rename       = require('gulp-rename'),
+    uglify       = require('gulp-uglify'),
     livereload   = require('gulp-livereload'),
     lr           = require('tiny-lr'),
     server       = lr();
@@ -29,6 +30,15 @@ gulp.task('sass', function() {
     .pipe(rename('style.min.css'))
     .pipe(gulp.dest('public/css'))
     .pipe(gulp.dest('_site/public/css'))
+    .pipe(livereload(server));
+});
+
+gulp.task('scripts', function() {
+  return gulp.src('public/js/main.js')
+    .pipe(uglify())
+    .pipe(rename('main.min.js'))
+    .pipe(gulp.dest('public/js'))
+    .pipe(gulp.dest('_site/public/js'))
     .pipe(livereload(server));
 });
 
@@ -82,7 +92,8 @@ gulp.task('watch', function() {
 
     gulp.watch('sass/**/*.scss', ['sass']);
 
-    // For now I'm just using `jekyll serve --watch` from terminal
+    gulp.watch('public/js/main.js', ['scripts']);
+
     gulp.watch([
       '_includes/**/*.html',
       '_layouts/**/*.html',
