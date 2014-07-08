@@ -19,6 +19,10 @@ author:
 
 excerpt_separator: <!--more-->
 
+# Add Emoji support (only works on GitHub pages)
+gems:
+  - jemoji
+
 # Custom vars
 version:          0.1.0
 github:
