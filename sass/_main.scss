@@ -262,7 +262,7 @@ ul ol, ol ul {
 // This holds everything that is visible by default. Slides left to make room
 // for the menu when necessary.
 section#wrap {
-  transition: left 0.3s ease-out;
+  transition: left 0.2s ease-out;
   position: relative;
   left: 0;
 }
@@ -289,11 +289,12 @@ section#wrap {
   }
 }
 
+$gray: #525762;
+$gray-hover: #575C68;
+$off-white: #D6DBE0;
+
 // The nav. Hidden by default.
 #super-nav {
-  $gray: #525762;
-  $gray-hover: #575C68;
-  $off-white: #D6DBE0;
   $text-shadow: 0 1px 0px black;
   $width: 200px;
 
@@ -304,7 +305,7 @@ section#wrap {
   right: -$width;
   z-index: 6;
   width: $width;
-  transition: right 0.3s ease-out; // Animate the menu when shown
+  transition: right 0.2s ease-out; // Animate the menu when shown
   &:after {
     content: '';
     background: transparent;
@@ -362,4 +363,28 @@ section#wrap {
     }
   }
 
+}
+
+
+// -- ---- ---- ---- ---- ---- ---- ---- ----
+// Sort of Easter Egg Face in menu
+// -- ---- ---- ---- ---- ---- ---- ---- ----
+.easter {
+  margin-top: 1.6rem;
+  text-align: center;
+  img {
+    display: block;
+    border-radius: 50%;
+    border: 3px solid $off-white;
+    margin: 0 auto;
+    margin-bottom: .8rem;
+  }
+  a {
+    color: $off-white;
+    text-align: center;
+
+    // Disabling this until I have something to link to
+    cursor: default;
+    pointer-events: none;
+  }
 }
