@@ -19,6 +19,8 @@ author:
 
 excerpt_separator: <!--more-->
 
+image_dir: "/public/images/"
+
 # Add Emoji support (only works on GitHub pages)
 gems:
   - jemoji
@@ -27,3 +29,6 @@ gems:
 version:          0.1.0
 github:
   repo:           https://github.com/iansinnott/iansinnott.github.io
+
+# Excerpt length in words.
+excerpt_length: 100

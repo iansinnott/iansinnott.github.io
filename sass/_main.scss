@@ -20,6 +20,11 @@ $mobile-break: 400px;
   }
 }
 
+// Apply styles for all widths above $width
+@mixin at-least($width) {
+  @media only screen and (min-width: #{$width}px) { @content }
+}
+
 @mixin clearfix {
   &:after {
     content: "";
@@ -96,6 +101,7 @@ a {
 
 a.more {
   @extend %cta;
+  margin-top: 1.6rem;
   @include for(tablet) {
     display: inline-block;
     text-align: left;
@@ -140,8 +146,6 @@ ul ol, ol ul {
   @extend %container;
 }
 
-svg { display: none; }
-
 // -- ---- ---- ---- ---- ---- ---- ---- ----
 // Masthead
 // -- ---- ---- ---- ---- ---- ---- ---- ----
@@ -178,7 +182,7 @@ svg { display: none; }
   }
 
   // Avatar
-  img {
+  img.avatar {
     border-radius: 50%;
     border: 3px solid white;
     box-shadow: 0 1px 1px rgba(0,0,0,0.3);
@@ -202,6 +206,43 @@ svg { display: none; }
     font-weight: 400;
   }
 
+  // The header on individual posts, not the index page.
+  .masthead-title-small {
+    font-size: inherit;
+    text-align: left;
+    margin: 0;
+    a {
+      position: relative;
+      line-height: 1;
+      text-shadow: none;
+      font-size: 30px;
+      padding-left: 70px;
+      color: transparent; // Hide the text, not the image
+      @include at-least(400) {
+        color: $black;
+      }
+    }
+    img.avatar-small {
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: -5px;
+      margin: 0;
+      margin-right: .8rem;
+      width: 50px;
+      box-shadow: 0 0px 1px rgba(0,0,0,.8);
+    }
+  }
+
+}
+
+#masthead.post-head {
+  #super-toggle {
+    span {
+      background: $black;
+      box-shadow: none;
+    }
+  }
 }
 
 // This holds everything that is visible by default. Slides left to make room
@@ -222,12 +263,12 @@ section#wrap {
   position: absolute !important;
   top: 0;
   right: 1.6rem;
-  width: 30px;
+  width: 40px;
   span {
     display: block;
-    height: 5px;
+    height: 6px;
     background: white;
-    margin-top: 5px;
+    margin-top: 7px;
     box-shadow: 1px 0 1px black;
     border-radius: 2px;
     &:first-child { margin-top: 0px;}
@@ -240,14 +281,15 @@ section#wrap {
   $gray-hover: #575C68;
   $off-white: #D6DBE0;
   $text-shadow: 0 1px 0px black;
+  $width: 200px;
 
   background: $gray;
   position: fixed;
   top: 0;
   bottom: 0;
-  right: -280px;
+  right: -$width;
   z-index: 6;
-  width: 280px;
+  width: $width;
   transition: right 0.3s ease-out; // Animate the menu when shown
   &:after {
     content: '';

@@ -11,6 +11,8 @@ categories:
 
 I'm from California. I grew up in tiny town called Point Arena, about four hours north of the Bay Area. Despite this, I never actually spent any significant time in San Francisco, so I was very excited to have the chance to live here for a month, especially after spending two years abroad. Better yet, the day I landed was my birthday :+1:
 
+<!--more-->
+
 ### The Vibe is right...
 
 As soon as I had spend 24 hours in the city, I could see myself living here. I like to walk and take public transportation, so I don't generally speak very highly of American cities. SF has that. Nightlife that's not strictly limited to weekends is also a plus, and that also seems to be a thing here. But what I have thus far enjoyed most about this city, is the mentality.

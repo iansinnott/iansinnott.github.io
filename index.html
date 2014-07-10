@@ -12,7 +12,7 @@ title: Home
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {{ post.excerpt }}
+    <div class='post-excerpt'> {{ post.content | truncatewords: site.excerpt_length }} </div>
 
     <a href="{{ post.url }}" class="btn more">Read <i class='fa fa-caret-right'></i></a>
 
