@@ -217,9 +217,17 @@ ul ol, ol ul {
       text-shadow: none;
       font-size: 30px;
       padding-left: 70px;
-      color: transparent; // Hide the text, not the image
+      color: $black;
+      span {
+        display: none;
+        pointer-events: none;
+      }
       @include at-least(400) {
-        color: $black;
+        cursor: pointer;
+        span {
+          pointer-events: auto;
+          display: inline-block;
+        }
       }
     }
     img.avatar-small {
