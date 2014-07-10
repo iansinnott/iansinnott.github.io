@@ -65,6 +65,12 @@ h4, h5, h6 {
   font-family: $header-font;
 }
 
+// Allowing side scrolling an small browsers. Don't wrap.
+pre {
+  white-space: nowrap;
+  overflow: auto;
+}
+
 a {
   color: #4a4a4a;
   transition: color 0.3s ease;
