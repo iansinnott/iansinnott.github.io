@@ -65,8 +65,6 @@
     e.preventDefault();
     e.stopPropagation();
 
-    console.log('Menu open: ' + menuOpen()); // debug
-
     if (menuOpen()) {
       menu.style.right = '-200px';
       wrap.style.left = '0px';
