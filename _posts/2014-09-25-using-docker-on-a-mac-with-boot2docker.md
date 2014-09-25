@@ -33,4 +33,4 @@ This may all be very simple for anyone familiar with networking, but it took me 
 
 Although not entirely related, I wrote a gist to automatically export boot2docker's IP address into an environment variable whenever it is set:
 
-{% gist iansinnott/0a0c212260386bdbfafb }
+{% gist iansinnott/0a0c212260386bdbfafb %}
