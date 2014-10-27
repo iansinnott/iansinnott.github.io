@@ -83,7 +83,7 @@ gulp.task('list', function() {
   });
 });
 
-gulp.task('build', function build() { sh.exec('jekyll build'); });
+gulp.task('build', function build() { sh.exec('bundle exec jekyll build'); });
 
 gulp.task('watch', function() {
   server.listen(35729, function(err) {
