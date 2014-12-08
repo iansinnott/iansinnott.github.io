@@ -25,9 +25,11 @@ layout: default
       <li><a href="https://github.com/iansinnott"><i class='fa fa-github'></i></a></li>
     </ul>
   </div>
+
 </div>
 
-{% if page.comments %}
+{% if jekyll.environment == 'production' %}
+  <!-- Load Disqus -->
   <div id="comments">
     <div id="disqus_thread"></div>
     <script type="text/javascript">
@@ -44,4 +46,7 @@ layout: default
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   </div>
+{% else %}
+  <!--  More on Jekyll Conditionals here: https://github.com/jekyll/jekyll/issues/1219  -->
+  <h3>No comments shown in {{ jekyll.environment }} mode.</h3>
 {% endif %}
