@@ -3,11 +3,11 @@ layout: post
 title: "Teaching My Brother To Code"
 ---
 
-I just returned to the US after a few months in Asia, and my goal for the month of December is to teach my brother how to code. One month, that's how much time I have to get him up to speed. Sound crazy? It might be, but that depends on the concrete goal. "Learn to code" is far to abstract.
+I just returned to the US after a few months in Asia, and my goal for the month of December is to teach my brother how to code. One month, that's how much time I have to get him up to speed. Sound crazy? It might be, but that depends on the concrete goal. "Learn to code" is far too abstract.
 
 ## The Goal
 
-In one months time I intend to get my brother up to speed with front-end development. But "up to speed" does not mean he will be writing the next front-end framework in just one month. My goal is more along the lines of quickly smashing through the usual barriers people face when they want to learn code. These usually include things like:
+In one month's time I intend to get my brother up to speed with front-end development. But "up to speed" does not mean he will be writing the next front-end framework in just one month. My goal is more along the lines of quickly smashing through the usual barriers people face when they want to learn code. These usually include things like:
 
 * All sorts of mental barriers ("It's too hard.", "I'm starting too late?", "Where do I start?")
 * Frustration
