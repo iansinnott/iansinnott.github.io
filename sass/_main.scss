@@ -170,6 +170,7 @@ ul ol, ol ul {
   overflow: hidden;
 
   .masthead-bg {
+    background-image: url(/public/images/banner-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -203,6 +204,14 @@ ul ol, ol ul {
   h2, h3, a {
     color: white;
     margin: 1.6rem 0;
+  }
+
+  .tagline {
+    line-height: 1.5;
+    margin-bottom: 200px;
+    @include for(mobile) {
+      margin-bottom: 30px;
+    }
   }
 
   h2 {
