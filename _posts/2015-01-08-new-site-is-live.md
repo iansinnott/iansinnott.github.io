@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "new site is live"
+title: "New Site Is Live"
 comments: true
 ---
 
