@@ -36,6 +36,12 @@
     }
   }
 
+  li {
+    ol, p, ul {
+      margin: 0;
+    }
+  }   
+
   p, li {
     line-height: 1.3;
     font-size: 1.1rem;
