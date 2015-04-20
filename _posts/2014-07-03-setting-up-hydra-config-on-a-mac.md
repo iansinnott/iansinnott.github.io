@@ -4,13 +4,16 @@ title: "Setting Up Hydra Config on A Mac"
 comments: true
 ---
 
+**Update:** The Hydra project referenced in this post no longer exists. It's been succeeded by [Mjolnir][mj], a project by the initial creator of Hydra. So whenever you see me reference "Hydra" I'm now actually referencing [Mjolnir][mj].
+
 ## I Set Up Hydra to Minimize my Dependence on a Mouse
 
 _This post is about moving one step closer to a mouse-less workflow, where any command can be accomplished trivially from the keyboard._
 
 I discovered [Hydra][hy] through Hacker News earlier today, and it's almost everything I could wish for in a window management tool. My new setup allows me to manage windows somewhat like you see in the image bellow:
 
-[hy]: https://github.com/sdegutis/hydra
+[hy]: https://github.com/sdegutis/mjolnir
+[mj]: https://github.com/sdegutis/mjolnir
 
 ![Keyboard Window Management]({{ site.url }}/public/images/hydra.gif)
 
