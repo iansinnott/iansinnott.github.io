@@ -35,7 +35,7 @@ So, let's be honest: if you you're already a Mac power user, you probably have f
 
 To integrate the two, download the workflow I made for this purpose.
 
-<a class="btn single-post-btn" href="http://iansinnott.com/wp-content/uploads/2013/11/KeyboardMaestro.alfredworkflow-2.zip">Download</a>
+<a class="btn single-post-btn" href="https://github.com/iansinnott/alfred-maestro/raw/master/AlfredMaestro.alfredworkflow">Download</a>
 
 You can also [download the source][4] from GitHub if you feel so inclined. Once you have the `KeyboardMaestro.alfredworkflow` file just double click it to install it in Alfred. Done!
 
@@ -86,3 +86,5 @@ Keyboard Maestro and Alfred make an amazing combination. If you don't have them 
  [5]: http://www.keyboardmaestro.com/documentation/6/calculations.html
  [6]: http://www.keyboardmaestro.com/main/macro-library
  [7]: https://github.com/iansinnott/keyboard-maestro-alfred/issues
+
+ [workflow]: https://github.com/iansinnott/alfred-maestro/raw/master/AlfredMaestro.alfredworkflow
