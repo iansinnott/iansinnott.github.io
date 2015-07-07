@@ -79,7 +79,7 @@ The other reason to use these two programs together is the Active community behi
 
 ### Conclusion
 
-Keyboard Maestro and Alfred make an amazing combination. If you don't have them already, get them now! I myself have ~~just started using it~~ been using it for **well over a year**. I have a ton more functionality planned with this app that I haven't gotten around to implementing (system-wide Vim bindings anyone?). Moreover, as I mentioned before, the developer Peter Lewis is very accessible. When I first showed him how my workflow was inherently limited by KM itself, he added the necessary functionality and shipped it a few days later with KM 6.3! That's amazing.
+Keyboard Maestro and Alfred make an amazing combination. If you don't have them already, get them now! I myself have <del>just started using it</del> been using it for **well over a year**. I have a ton more functionality planned with this app that I haven't gotten around to implementing (system-wide Vim bindings anyone?). Moreover, as I mentioned before, the developer Peter Lewis is very accessible. When I first showed him how my workflow was inherently limited by KM itself, he added the necessary functionality and shipped it a few days later with KM 6.3! That's amazing.
 
 **One last note:** If you have any issues with this plugin head over to the [issues section of my GitHub repo][7] and let me know. And if you you find it useful, [starring the repo][repo] on GitHub is a great way to say thanks. Have fun :sunglasses:
 
