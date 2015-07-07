@@ -1,5 +1,5 @@
 ---
-title: 'Integrating Alfred &#038; Keyboard Maestro'
+title: "Integrating Alfred With Keyboard Maestro"
 layout: post
 comments: true
 dsq_thread_id:
@@ -14,6 +14,14 @@ tags:
   - macro
   - productivity
 ---
+
+**Update 7/6/2015:** I've now been using this Alfred workflow for over a year and I still use it _every single day_. It's become vital to my workflow and I highly recommend it to anyone trying to boost their productivity.
+
+However, other parts of my workflow have evolved quite a bit (such as window management). If you're interested in a full post on the subject [drop me a line][contact] or leave a comment at the bottom. 
+
+Now back to the original article.
+
+[contact]: http://iansinnott.com/contact
 
 ## One step closer to a mouse-less workflow
 
@@ -35,7 +43,7 @@ So, let's be honest: if you you're already a Mac power user, you probably have f
 
 To integrate the two, download the workflow I made for this purpose.
 
-<a class="btn single-post-btn" href="https://github.com/iansinnott/alfred-maestro/raw/master/AlfredMaestro.alfredworkflow">Download</a>
+<a class="btn btn-download" href="https://github.com/iansinnott/alfred-maestro/raw/master/AlfredMaestro.alfredworkflow">Download</a>
 
 You can also [download the source][4] from GitHub if you feel so inclined. Once you have the `KeyboardMaestro.alfredworkflow` file just double click it to install it in Alfred. Done!
 
@@ -43,31 +51,27 @@ You can also [download the source][4] from GitHub if you feel so inclined. Once 
 
 Now, as long as you actually have KM installed you can type `km` in the Alfred prompt and then the name of a macro. Here's a simple example; I really don't like continually typing out my email, so I made a macro for it:
 
-<img src="http://iansinnott.com/wp-content/uploads/2013/11/email.png" alt="email macro" width="460" height="395" class="alignnone size-full wp-image-360" />
+![Email Macro](http://dropsinn.s3.amazonaws.com/email-macro.png)
 
 Notice that I don't even have to assign a trigger to it. This is somewhat of a new feature in KM 6.3, and the reason you must have that version or above. This is a great feature as it leaves room for macros that really deserve their own hotkey and doesn't clutter your mind with unnecessary information. Just type `km` into Alfred and then start typing the title of the macro:
 
-<img src="http://iansinnott.com/wp-content/uploads/2013/11/Screenshot_11_14_13_4_38_PM.png" alt="alfred example" width="650" height="179" class="alignnone size-full wp-image-362" />
+![Email macro example](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.15.08%20PM.png)
 
 If I hit enter my email address will be pasted into whatever text I'm editing. This is great for filling forms online. Another one that is use all the time in this same way is date insertion. I always have to think for a second about what the date is. Luckily KM comes to the rescue:
 
-<img src="http://iansinnott.com/wp-content/uploads/2013/11/date.png" alt="date macro" width="460" height="474" class="alignnone size-full wp-image-359" />
+![Date macro](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.18.19%20PM.png)
 
-Notice that this one does have a trigger assigned. That's because I made this macro before KM 6.3 was released, and still had to assign a trigger to it for it to show up in Alfred. Now if I type `km date` and hit enter, the date will be inserted in the mm/dd/yyyy format. Of course I could also use the trigger I assigned, `date` (that's the word date followed by two spaces).
+Now if I start typing `km date:` and hit enter, the date will be inserted in the mm/dd/yyyy format:
+
+![Date macro example](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.19.00%20PM.png)
 
 This example also shows two good examples of the power of KM. First, you get set values, like `%NumberDate%` that you can pass in. Second, when you want/need to, you can also assign triggers that are fully independent of Alfred and this workflow.
 
-OK, one last example to show off a bit more functionality. This one is key if you really want to keep your hands off the mouse while working. Check out the following macro:
-
-<img src="http://iansinnott.com/wp-content/uploads/2013/11/upper-left.png" alt="move window macro" width="460" height="492" class="alignnone size-full wp-image-363" />
-
-Now *that's* a macro, and also one that KM will create for you if you dig around in the actions menu. What this does is moves the active application window to the upper left quadrant of the screen and resizes it appropriately. I find I do this a lot with finder windows, so being able to do it from the keyboard is great. This also shows more of the deep functionality that's present in KM.
-
-To start making your own crazy macros, you should hit the KM docs. I'll point you specifically to the [calculations section][5], where you can dive into some of the more obscure functionality (like the `SCREEN` function in the example above). Then from there you can check out the other sections about more general functionality.
+To start making your own crazy macros, you should hit the KM docs. I'll point you specifically to the [calculations section][5], where you can dive into some of the more obscure functionality (like the `SCREEN` function for manipulating application screens. Then from there you can check out the other sections about more general functionality.
 
 **One Last Note:** KM is fully capable of triggering macros by name all on it's own. See?
 
-<img src="http://iansinnott.com/wp-content/uploads/2013/11/km-trigger.png" alt="trigger macros " width="460" height="162" class="alignnone size-full wp-image-361" />
+![Keyboard Maestro macro by name](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.12.29%20PM.png)
 
 So if you're not an Alfred user, there is a remote possibility that you can get by with just KM. In fact, if you really wanted to you could probably replicate most of Alfred's functionality entirely with KM, but why bother?
 
@@ -75,9 +79,9 @@ The other reason to use these two programs together is the Active community behi
 
 ### Conclusion
 
-Keyboard Maestro and Alfred make an amazing combination. If you don't have them already, get them now! I myself have just started using it but can already see the benefits. I have a ton more functionality planned with this app that I haven't gotten around to implementing (system-wide Vim bindings anyone?). Moreover, as I mentioned before, the developer Peter Lewis is very accessible. When I first showed him how my workflow was inherently limited by KM itself, he added the necessary functionality and shipped it a few days later with KM 6.3! That's amazing.
+Keyboard Maestro and Alfred make an amazing combination. If you don't have them already, get them now! I myself have ~~just started using it~~ been using it for **well over a year**. I have a ton more functionality planned with this app that I haven't gotten around to implementing (system-wide Vim bindings anyone?). Moreover, as I mentioned before, the developer Peter Lewis is very accessible. When I first showed him how my workflow was inherently limited by KM itself, he added the necessary functionality and shipped it a few days later with KM 6.3! That's amazing.
 
-**One last note:** When testing the plugin I was using PHP 5.5.5, which is newer than the standard install on new Macs. If you have any issues with the plugin, Head over to the [issues section of my GitHub repo][7] and let me know. Later.
+**One last note:** If you have any issues with this plugin head over to the [issues section of my GitHub repo][7] and let me know. And if you you find it useful, [starring the repo][repo] on GitHub is a great way to say thanks. Have fun :sunglasses:
 
  [1]: http://www.keyboardmaestro.com/main/
  [2]: http://www.stairways.com/main/
@@ -86,5 +90,7 @@ Keyboard Maestro and Alfred make an amazing combination. If you don't have them 
  [5]: http://www.keyboardmaestro.com/documentation/6/calculations.html
  [6]: http://www.keyboardmaestro.com/main/macro-library
  [7]: https://github.com/iansinnott/keyboard-maestro-alfred/issues
+
+ [repo]: https://github.com/iansinnott/keyboard-maestro-alfred
 
  [workflow]: https://github.com/iansinnott/alfred-maestro/raw/master/AlfredMaestro.alfredworkflow
