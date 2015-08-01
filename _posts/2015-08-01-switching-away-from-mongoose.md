@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "switching away from mongoose"
+title: "Switching Away From Mongoose"
 comments: true
 ---
 
