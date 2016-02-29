@@ -6,6 +6,8 @@ comments: true
 
 Who wants to be a speaker? This guy! :raised_hands:
 
+![Ian Speaking at Real World React Meetup](https://dropsinn.s3.amazonaws.com/rwr-ian-1.jpg "Ian Speaking at Real World React Meetup")
+
 Last Sunday was a significant event for me: I put on a [React][] workshop ([link here][workshop]) to teach beginners how to get started with React. It was a full day event and it was a great learning experience for myself and hopefully for the students as well.
 
 ## Giving back to the community
@@ -15,6 +17,8 @@ The community surrounding React has done a lot for me. It's only been a year sin
 I learned React and the surrounding ecosystem on my own and I know how daunting it can be. As a community we love to toss around terms like ES6, Babel, Webpack, Flux, Redux, etc. as if it's all expected knowledge for the field. And while you probably should know what all these things are after being part of the community for a while it can be very daunting when it's all new.
 
 So in creating this workshop I wanted to utilize all the knowledge I've accumulated over the past year while learning React to help speed the process for others. React has been a game changing technology for many – including myself – and I know it can be for others as well. They just need to know where to start.
+
+![Ian Working with student at Real World React Meetup](https://dropsinn.s3.amazonaws.com/rwr-ian-working-with-student.jpg)
 
 ## So much fun
 
@@ -32,7 +36,7 @@ Yup, presentations go more smoothly if you've rehearsed them beforehand. Who kne
 
 ### Keep it concise
 
-One of my "lectures" lasted a full 50 minutes. I was targeting 20 minutes and wildly overshot that, so clearly there are some wins to be had by reducing the content or splitting lectures into multiple parts. People's attentions pans are limited and as speakers we need to respect that.
+One of my "lectures" lasted a full 50 minutes. I was targeting 20 minutes and wildly overshot that, so clearly there are some wins to be had by reducing the content or splitting lectures into multiple parts. People's attentions spans are limited and as speakers we need to respect that.
 
 ### No blank slates
 
@@ -58,7 +62,7 @@ To that last point, I will be speaking at my first conference in a week about [b
 
 With all the current hype over React and React Native it really feels like React is eating the world. I will leave you with this image from React Conf 2016 which just wrapped up earlier this week. I think it really sums up the current sentiment in the community.
 
-![React Fervor](http://dropsinn.s3.amazonaws.com/react-fervor.jpg "React Fervor")
+![React Fervor](https://dropsinn.s3.amazonaws.com/react-fervor.jpg "React Fervor")
 
 [talk]: http://fitc.ca/presentation/building-static-sites-with-react/
 [React]: https://facebook.github.io/react/
