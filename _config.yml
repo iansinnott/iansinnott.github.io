@@ -14,7 +14,7 @@ paginate:         8
 baseurl:          /
 author:
   name:           Ian Sinnott
-  url:            http://iansinnott.com
+  url:            https://www.iansinnott.com
   email:          ian@iansinnott.com
 
 excerpt_separator: <!--more-->
