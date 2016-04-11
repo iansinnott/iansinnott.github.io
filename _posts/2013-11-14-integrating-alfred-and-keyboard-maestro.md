@@ -17,11 +17,11 @@ tags:
 
 **Update 7/6/2015:** I've now been using this Alfred workflow for over a year and I still use it _every single day_. It's become vital to my workflow and I highly recommend it to anyone trying to boost their productivity.
 
-However, other parts of my workflow have evolved quite a bit (such as window management). If you're interested in a full post on the subject [drop me a line][contact] or leave a comment at the bottom. 
+However, other parts of my workflow have evolved quite a bit (such as window management). If you're interested in a full post on the subject [drop me a line on twitter][twitter] or leave a comment at the bottom. 
 
 Now back to the original article.
 
-[contact]: http://iansinnott.com/contact
+[twitter]: https://twitter.com/ian_989/
 
 ## One step closer to a mouse-less workflow
 
