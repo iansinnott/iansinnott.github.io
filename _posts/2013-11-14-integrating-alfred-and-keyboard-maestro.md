@@ -21,7 +21,7 @@ However, other parts of my workflow have evolved quite a bit (such as window man
 
 Now back to the original article.
 
-[twitter]: https://twitter.com/ian_989/
+[twitter]: https://twitter.com/ian_sinn/
 
 ## One step closer to a mouse-less workflow
 
