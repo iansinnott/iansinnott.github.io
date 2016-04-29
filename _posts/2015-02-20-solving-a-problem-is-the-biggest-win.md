@@ -26,7 +26,7 @@ But as satisfying as solving one's own problems can be, the biggest win in my mi
 
 This realization really solidified in my mind a number of months ago as I was combing through [my GitHub profile][gh] to clean out old repositories I no longer use. It was when I first saw [one of my repos][am] getting starred by other people :grinning:.
 
-![Alfred Maestro Repo](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-02-20%20at%202.42.24%20PM.png)
+![Alfred Maestro Repo](https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-02-20%20at%202.42.24%20PM.png)
 
 **_Other people_ were using something I created**, and apparently they liked it. The level of satisfaction I got from that project remains very high to this day.
 

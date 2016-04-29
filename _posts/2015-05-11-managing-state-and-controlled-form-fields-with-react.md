@@ -31,9 +31,9 @@ React.createClass({
 });
 ```
 
-The value of this `<input>` element will stubbornly refuse to change no matter what the user does. This is generally a terrible user experience, so React will actually warn you that your input cannot be modified: 
+The value of this `<input>` element will stubbornly refuse to change no matter what the user does. This is generally a terrible user experience, so React will actually warn you that your input cannot be modified:
 
-![React warning message](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-05-11%20at%2011.12.36%20PM.png)
+![React warning message](https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-05-11%20at%2011.12.36%20PM.png)
 
 If you're new-ish to React you might not know why you would want to do this. The answer is _state_. React puts a big emphasis on explicitly keeping your components state in the `state` property. So in order to create a form input that responds to user input you will need to use two-way data binding. Meaning the `value` of the `<input>` element will flow from your component into the DOM, but also from the DOM into your component. In other words, they will be kept in sync.
 
@@ -95,7 +95,7 @@ React.createClass({
 });
 ```
 
-As you can see we replaced the `value` prop with `valueLink`. If you haven't heard of `valueLink` I'll explain it in a sec. 
+As you can see we replaced the `value` prop with `valueLink`. If you haven't heard of `valueLink` I'll explain it in a sec.
 
 The `LinkedStateMixin` saves us a good deal of typing, and especially when you have a large number of form fields that need to be tied to component state. The issue is that it's not very flexible. Essentially it just binds the value of an input field to `this.state`. But what if you are building a _stateless_ form component that gets all it's values from props? Or, more interestingly, what if you are using Flux and don't want to set state directly but rather call an action that updates a store?
 

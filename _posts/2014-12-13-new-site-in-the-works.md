@@ -6,7 +6,7 @@ comments: true
 
 One of my personal projects recently has been completely redesigning my website. Well, I'm excited to say it's coming along quite nicely. Here is a preview of the new look:
 
-![New website mockup](http://dropsinn.s3.amazonaws.com/website-mockup-banner-min.jpg)
+![New website mockup](https://dropsinn.s3.amazonaws.com/website-mockup-banner-min.jpg)
 
 If you have any feedback I'd love to hear it. Feel free to comment bellow.
 

@@ -34,7 +34,7 @@ their team was friendly and helpful. That was all we needed. Now we're running
 Neo4j in production and it's the backing data-store on top of our visualization
 product, Constellation:
 
-![Constellation Demo](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.42.03%20AM.png)
+![Constellation Demo](https://dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.42.03%20AM.png)
 
 On top of that, I also got a chance to do an interview with the Neo4j which is
 now live on their blog: http://neo4j.com/blog/ian-sinnott-software-engineer-trustar/

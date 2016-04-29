@@ -17,7 +17,7 @@ tags:
 
 **Update 7/6/2015:** I've now been using this Alfred workflow for over a year and I still use it _every single day_. It's become vital to my workflow and I highly recommend it to anyone trying to boost their productivity.
 
-However, other parts of my workflow have evolved quite a bit (such as window management). If you're interested in a full post on the subject [drop me a line on twitter][twitter] or leave a comment at the bottom. 
+However, other parts of my workflow have evolved quite a bit (such as window management). If you're interested in a full post on the subject [drop me a line on twitter][twitter] or leave a comment at the bottom.
 
 Now back to the original article.
 
@@ -51,19 +51,19 @@ You can also [download the source][4] from GitHub if you feel so inclined. Once 
 
 Now, as long as you actually have KM installed you can type `km` in the Alfred prompt and then the name of a macro. Here's a simple example; I really don't like continually typing out my email, so I made a macro for it:
 
-![Email Macro](http://dropsinn.s3.amazonaws.com/email-macro.png)
+![Email Macro](https://dropsinn.s3.amazonaws.com/email-macro.png)
 
 Notice that I don't even have to assign a trigger to it. This is somewhat of a new feature in KM 6.3, and the reason you must have that version or above. This is a great feature as it leaves room for macros that really deserve their own hotkey and doesn't clutter your mind with unnecessary information. Just type `km` into Alfred and then start typing the title of the macro:
 
-![Email macro example](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.15.08%20PM.png)
+![Email macro example](https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.15.08%20PM.png)
 
 If I hit enter my email address will be pasted into whatever text I'm editing. This is great for filling forms online. Another one that is use all the time in this same way is date insertion. I always have to think for a second about what the date is. Luckily KM comes to the rescue:
 
-![Date macro](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.18.19%20PM.png)
+![Date macro](https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.18.19%20PM.png)
 
 Now if I start typing `km date:` and hit enter, the date will be inserted in the mm/dd/yyyy format:
 
-![Date macro example](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.19.00%20PM.png)
+![Date macro example](https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.19.00%20PM.png)
 
 This example also shows two good examples of the power of KM. First, you get set values, like `%NumberDate%` that you can pass in. Second, when you want/need to, you can also assign triggers that are fully independent of Alfred and this workflow.
 
@@ -71,7 +71,7 @@ To start making your own crazy macros, you should hit the KM docs. I'll point yo
 
 **One Last Note:** KM is fully capable of triggering macros by name all on it's own. See?
 
-![Keyboard Maestro macro by name](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.12.29%20PM.png)
+![Keyboard Maestro macro by name](https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.12.29%20PM.png)
 
 So if you're not an Alfred user, there is a remote possibility that you can get by with just KM. In fact, if you really wanted to you could probably replicate most of Alfred's functionality entirely with KM, but why bother?
 

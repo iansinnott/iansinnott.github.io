@@ -6,11 +6,11 @@ comments: true
 
 A few weeks ago I moved [my website][] over to HTTPS.
 
-![iansinnott.com using https](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.08.19%20AM.png)
+![iansinnott.com using https](//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.08.19%20AM.png)
 
 Then, yesterday I moved my [blog][] over to HTTPS.
 
-![blog.iansinnott.com running on https](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.07.41%20AM.png)
+![blog.iansinnott.com running on https](//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.07.41%20AM.png)
 
 This now means that my two primary web properties are both using SSL, and one of
 them was completely free to set up.
@@ -27,7 +27,7 @@ However, LetsEncrypt is not what I'm talking about today. I just discovered some
 
 It turns out if you use [CloudFlare][] for DNS on your domain you can also get SSL completely for free.
 
-![CloudFlare Free Cert](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2012.43.40%20PM.png)
+![CloudFlare Free Cert](//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2012.43.40%20PM.png)
 
 The setup is pretty simple as well. CloudFlare has the excellent feature that they will scan your domain and migrate most of the DNS settings for you. So all I ended up having to do to get blog.iansinnott.com running over HTTPS was to move my DNS to CloudFlare. The DNS propagation took overnight, but the time I had to personally spend was less than 30 minutes.
 
