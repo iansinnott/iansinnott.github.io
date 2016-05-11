@@ -18,7 +18,7 @@ Even if the first page of a google search didn't answer my questions, I figured 
 
 [Extract Text Webpack Plugin]:https://github.com/webpack/extract-text-webpack-plugin
 
-I figured that such a high profile plugin was likely to be well tested and I was right. The plugin has a whole [sweet of tests][extract tests] which you can check out and use as a reference for writing your own. Nice :boom:
+I figured that such a high profile plugin is likely to be well tested and it is. The plugin has a whole [sweet of tests][extract tests] which you can check out and use as a reference for writing your own. Nice :boom:
 
 ## Writing the tests
 
@@ -61,11 +61,11 @@ test.cb('Compiles routes nested at one level', t => {
 });
 ```
 
-This is a pretty simple test. Given the routes defined in [`routes.js`][routes] the plugin should generate three HTML files: `index.html`, `about.html` and `404.html`. This test simply runs Webpack and checks the output to make sure those three files were generated. It doesn't check the contents of those files or check that they were written to disk, but this tests already gives me infinitely more code coverage than I had before.
+This is a pretty simple test. Given the routes defined in [`routes.js`][routes], the plugin should generate three HTML files: `index.html`, `about.html` and `404.html`. This test simply runs Webpack and checks the output to make sure those three files were generated. It doesn't check the contents of those files or check that they were written to disk, but this test already gives me infinitely more code coverage than I had before.
 
 Of course it should be noted that I had to create a whole new directory and give it its own `package.json` and `node_modules` in order to get this test to run, but it works.
 
-Also, looking at the Extract Plugin tests it looks like it may not be necessary to do a full `npm instal` for the subdirectory in order to run Webpack.
+Also, looking at the Extract Plugin tests it looks like it may not be necessary to do a full `npm instal` for the subdirectory in order to run Webpack. In the future I may optimize the tests by looking more closely at how the tests are being run in the Extract Plugin.
 
 ## Running your tests on a CI server
 
@@ -73,7 +73,9 @@ Now that you know how to write tests for a Webpack plugin you will also probably
 
 The key point to note is that you need to run `npm install` in whatever directory you're using for your tests. This will vary depending on your CI provider so I'll just show you the command I run and link you to my `circle.yml`.
 
-Install node modules in `example/` directory using a subshell:
+Install node modules in the `example/` directory using a [subshell][]:
+
+[subshell]: http://www.tldp.org/LDP/abs/html/subshells.html
 
 ```
 (cd example; npm install)
@@ -83,9 +85,11 @@ You can see my full [`circle.yml` here][circle].
 
 ## Conclusions
 
-It wasn't as hard as I thought it would be to run tests on a Webpack plugin. That being said I didn't find this documented anywhere and google proved particularly useless since it turn up a ton of results related to Webpack plugin that run tests on your web app for you... Not what I was looking for.
+It wasn't as hard as I thought it would be to run tests on a Webpack plugin. That being said I didn't find this documented anywhere and google proved particularly useless since it turned up a ton of results related to Webpack plugins that run tests on your web app for you... I was looking for ways to run tests on Webpack plugins _themselves_, so this is not what I was looking for.
 
-So hopefully this helps you out. Feel free to [star my plugin repository][static] if you liked this write up, or leave me a comment if anything wasn't clear.
+Hopefully this helps you out. Webpack plugins are crucial pieces of many build processes out there, so it's important that we know how to test them.
+
+Feel free to [star my plugin repository][static] if you liked this write up, or leave me a comment if anything wasn't clear.
 
 Cheers :beers:
 
@@ -96,4 +100,5 @@ Cheers :beers:
 [extract tests]:https://github.com/webpack/extract-text-webpack-plugin/tree/master/test
 [circle]:https://github.com/iansinnott/react-static-webpack-plugin/blob/master/circle.yml#L9
 [Circle CI]:https://circleci.com/
+[Ava]:https://github.com/sindresorhus/ava
 
