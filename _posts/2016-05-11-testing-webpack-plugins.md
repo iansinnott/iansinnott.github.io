@@ -12,9 +12,6 @@ I scoured the internet (skimmed the first page of a google search) for resources
 
 I recently built my own Webpack plugin for generating static sites from React Router routes. You can check it out [here if interested][static]. Anyway, I was getting somewhat annoyed that I hadn't yet tested the plugin. I had seen some regressions as I added support for more features and it was no fun to have to resolve those issues when I really just anted to generate awesome static sites using React and Webpack.
 
-[static]:https://github.com/iansinnott/react-static-webpack-plugin
-[Webpack Plugin]: https://github.com/webpack/docs/wiki/how-to-write-a-plugin
-
 ## Where to turn...
 
 Even if the first page of a google search didn't answer my questions, I figured someone somewhere must have needed to test their Webpack plugins in the past, and I was right! My first move was to think about what popular Webpack plugins I was aware of. The first one that came to mind was the venerable [Extract Text Webpack Plugin][]. Little did I know, it was written by the same guy who wrote Webpack.
@@ -70,10 +67,6 @@ Of course it should be noted that I had to create a whole new directory and give
 
 Also, looking at the Extract Plugin tests it looks like it may not be necessary to do a full `npm instal` for the subdirectory in order to run Webpack.
 
-[routes]: https://github.com/iansinnott/react-static-webpack-plugin/blob/master/example/src/routes.js
-[Node API]:https://webpack.github.io/docs/node.js-api.html
-[extract tests]:https://github.com/webpack/extract-text-webpack-plugin/tree/master/test
-
 ## Running your tests on a CI server
 
 Now that you know how to write tests for a Webpack plugin you will also probably want to run them automatically whenever you push. Personally I use [Circle CI][] for this, but I'm sure Travis or any other modern CI service would work fine.
@@ -88,13 +81,19 @@ Install node modules in `example/` directory using a subshell:
 
 You can see my full [`circle.yml` here][circle].
 
-[circle]:https://github.com/iansinnott/react-static-webpack-plugin/blob/master/circle.yml#L9
-[Circle CI]:https://circleci.com/
-
 ## Conclusions
 
 It wasn't as hard as I thought it would be to run tests on a Webpack plugin. That being said I didn't find this documented anywhere and google proved particularly useless since it turn up a ton of results related to Webpack plugin that run tests on your web app for you... Not what I was looking for.
 
-So hopefully this helps you out. Feel free to star my plugin repository if you liked this write up, or leave me a comment if anything wasn't clear.
+So hopefully this helps you out. Feel free to [star my plugin repository][static] if you liked this write up, or leave me a comment if anything wasn't clear.
 
 Cheers :beers:
+
+[static]:https://github.com/iansinnott/react-static-webpack-plugin
+[Webpack Plugin]: https://github.com/webpack/docs/wiki/how-to-write-a-plugin
+[routes]: https://github.com/iansinnott/react-static-webpack-plugin/blob/master/example/src/routes.js
+[Node API]:https://webpack.github.io/docs/node.js-api.html
+[extract tests]:https://github.com/webpack/extract-text-webpack-plugin/tree/master/test
+[circle]:https://github.com/iansinnott/react-static-webpack-plugin/blob/master/circle.yml#L9
+[Circle CI]:https://circleci.com/
+
