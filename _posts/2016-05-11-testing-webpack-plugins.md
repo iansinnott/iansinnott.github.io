@@ -18,7 +18,7 @@ Even if the first page of a google search didn't answer my questions, I figured 
 
 [Extract Text Webpack Plugin]:https://github.com/webpack/extract-text-webpack-plugin
 
-I figured that such a high profile plugin is likely to be well tested and it is. The plugin has a whole [sweet of tests][extract tests] which you can check out and use as a reference for writing your own. Nice :boom:
+I figured that such a high profile plugin is likely to be well tested and it is. The plugin has a whole [suite of tests][extract tests] which you can check out and use as a reference for writing your own. Nice :boom:
 
 ## Writing the tests
 
