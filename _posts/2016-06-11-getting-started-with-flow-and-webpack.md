@@ -10,7 +10,14 @@ comments: true
 
 ### Flow
 
-[Flow][] is like ESLint on steroids. It is a static type checker for JavaScript. It let's you add types to any existing JS code. Why would you want to do this? The short answer is because JS :heart: runtime errors, but runtime errors make your users sad. The more helpful answer is that Flow will analyze your codebase and catch bugs that may otherwise go unnoticed until you're app is already deployed to production. There is an entire site dedicated to explaining Flow, so I will let you check that out for more detailed information: http://flowtype.org/
+[Flow][] is like ESLint on steroids. It is a static type checker for JavaScript.
+It let's you add types to any existing JS code. Why would you want to do this?
+The short answer is because JS :heart: runtime errors, but runtime errors make
+your users sad. The more helpful answer is that Flow will analyze your codebase
+and catch bugs that may otherwise go unnoticed until you're app is already
+deployed to production. There is an entire site dedicated to explaining Flow, so
+I will let you check that out for more detailed information:
+<http://flowtype.org/>
 
 However, what may not be immediately obvious from the Flow site is the reason why it's so appealing for existing projects, which is that you can _iterate_ to full Flow coverage with minimal overhead.
 
@@ -28,7 +35,9 @@ In this post I'm going to show you how you can get set up using Webpack with Flo
 
 **The short version:** `brew install flow`
 
-**The longer version:** The above may not work for you, depending on your system. If it doesn't, check out the set up docs on the Flow website: https://flowtype.org/docs/getting-started.html
+**The longer version:** The above may not work for you, depending on your
+system. If it doesn't, check out the set up docs on the Flow website:
+<https://flowtype.org/docs/getting-started.html>
 
 ### Setting Up Webpack and Babel
 
@@ -131,7 +140,11 @@ src/components/App.js:3
                    ^^^^^^^^^^^ ./App.css. Required module not found
 ```
 
-To solve this issue, we need to tell Flow to that for CSS files it should actually look for type definitions somewhere else. I'll describe how to do this briefly here, but there is also a good section on the Flow website that describes how to accomplish this: https://flowtype.org/docs/modules.html#css-modules-with-webpack
+To solve this issue, we need to tell Flow to that for CSS files it should
+actually look for type definitions somewhere else. I'll describe how to do this
+briefly here, but there is also a good section on the Flow website that
+describes how to accomplish this:
+<https://flowtype.org/docs/modules.html#css-modules-with-webpack>
 
 Create a new directory named `flow` and a new file within that directory: `flow/CSSModule.js.flow`. Now add the following to `CSSModule.js.flow`:
 
@@ -274,7 +287,7 @@ class Counter extends React.Component {
 ```
 
 If you're not familiar with this syntax check out this blog post on the Babel
-website: https://babeljs.io/blog/2015/06/07/react-on-es6-plus
+website: <https://babeljs.io/blog/2015/06/07/react-on-es6-plus>
 
 **NOTE:** At the time of this writing Flow requires semicolons after property
 initializers in order to type check effectively, even though Babel does not
