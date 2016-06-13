@@ -10,14 +10,7 @@ comments: true
 
 ### Flow
 
-[Flow][] is like ESLint on steroids. It is a static type checker for JavaScript.
-It let's you add types to any existing JS code. Why would you want to do this?
-The short answer is because JS :heart: runtime errors, but runtime errors make
-your users sad. The more helpful answer is that Flow will analyze your codebase
-and catch bugs that may otherwise go unnoticed until you're app is already
-deployed to production. There is an entire site dedicated to explaining Flow, so
-I will let you check that out for more detailed information:
-<http://flowtype.org/>
+[Flow][] is like ESLint on steroids. It is a static type checker for JavaScript. It let's you add types to any existing JS code. **Why would you want to do this?**  The short answer is because JS :heart: runtime errors, but runtime errors make your users sad. The more helpful answer is that Flow will analyze your codebase and catch bugs that may otherwise go unnoticed until you're app is already deployed to production. There is an entire site dedicated to explaining Flow, so I will let you check that out for more detailed information: <http://flowtype.org/>
 
 However, what may not be immediately obvious from the Flow site is the reason why it's so appealing for existing projects, which is that you can _iterate_ to full Flow coverage with minimal overhead.
 
@@ -35,9 +28,7 @@ In this post I'm going to show you how you can get set up using Webpack with Flo
 
 **The short version:** `brew install flow`
 
-**The longer version:** The above may not work for you, depending on your
-system. If it doesn't, check out the set up docs on the Flow website:
-<https://flowtype.org/docs/getting-started.html>
+**The longer version:** The above may not work for you, depending on your system. If it doesn't, check out the set up docs on the Flow website: <https://flowtype.org/docs/getting-started.html>
 
 ### Setting Up Webpack and Babel
 
@@ -80,7 +71,7 @@ However, the downside is that when you first set up Flow you might see something
 
 ![Flow Errors](http://dropsinn.s3.amazonaws.com/Screen_Shot_2016-06-11_at_5_50_55_PM.png)
 
-In this example Flow is detecting type errors in the `fbjs` module, which is required by React. Getting passed this issue is simple enough, simply add a new ignore line to `.flowconfig`. I have no idea how regex works in OCaml, but luckily there's no need. The Flow docs provide plenty of examples to show us how to ignore a certain directory. The syntax is `.*/path/to/dir/.*`. So to ignore everything under `node_modules/fbjs` you can update your `.flowconfig` as follows:
+In this example Flow is detecting type errors in the `fbjs` module, which is required by React. Getting past this issue is simple enough, simply add a new ignore line to `.flowconfig`. I have no idea how regex works in OCaml, but luckily there's no need. The Flow docs provide plenty of examples to show us how to ignore a certain directory. The syntax is `.*/path/to/dir/.*`. So to ignore everything under `node_modules/fbjs` you can update your `.flowconfig` as follows:
 
 
 ```ocaml
@@ -140,11 +131,7 @@ src/components/App.js:3
                    ^^^^^^^^^^^ ./App.css. Required module not found
 ```
 
-To solve this issue, we need to tell Flow to that for CSS files it should
-actually look for type definitions somewhere else. I'll describe how to do this
-briefly here, but there is also a good section on the Flow website that
-describes how to accomplish this:
-<https://flowtype.org/docs/modules.html#css-modules-with-webpack>
+To solve this issue, we need to tell Flow to that for CSS files it should actually look for type definitions somewhere else. I'll describe how to do this briefly here, but there is also a good section on the Flow website that describes how to accomplish this: <https://flowtype.org/docs/modules.html#css-modules-with-webpack>
 
 Create a new directory named `flow` and a new file within that directory: `flow/CSSModule.js.flow`. Now add the following to `CSSModule.js.flow`:
 
@@ -261,7 +248,7 @@ class Counter extends React.Component {
   };
 
   state = {
-    count: 0,
+    count: this.props.initialCount,
   };
 
   increment = () => {
@@ -323,23 +310,15 @@ esproposal.class_instance_fields=enable
 
 ### Ignore Single Lines in Flow
 
-The last Flow trick I'll show you today is how to tell Flow to ignore single
-lines in your code. Just like with ESLint, it can be useful to be able to
-ignore just one line in a file. There are usually two reasons you would want
-to do this:
+The last Flow trick I'll show you today is how to tell Flow to ignore single lines in your code. Just like with ESLint, it can be useful to be able to ignore just one line in a file. There are usually two reasons you would want to do this:
 
 1. The code in question needs to be refactored to be properly typed but it
 would take too much time or effort to do it now
 2. Flow does not yet support some feature or has a bug
 
-The first point is pretty obvious, but the second may come as a surprise. Flow
-is very advanced and very useful _today_ but it is not without its own bugs or
-missing features, so there may be times when you need to tell Flow to ignore a
-line for reason number two.
+The first point is pretty obvious, but the second may come as a surprise. Flow is very advanced and very useful _today_ but it is not without its own bugs or missing features, so there may be times when you need to tell Flow to ignore a line for reason number two.
 
-The way to ignore single lines is by using the `supress_comment` option within
-your `.flowconfig`. Let's define two ignore patterns so that we can
-differentiate between the two types of reasons to ignore listed above:
+The way to ignore single lines is by using the `supress_comment` option within your `.flowconfig`. Let's define two ignore patterns so that we can differentiate between the two types of reasons to ignore listed above:
 
 ```
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
