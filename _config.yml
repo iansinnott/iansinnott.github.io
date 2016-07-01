@@ -24,6 +24,7 @@ image_dir: "/public/images/"
 # Add Emoji support (only works on GitHub pages)
 gems:
   - jemoji
+  - jekyll-feed
 
 # Custom vars
 version:          0.1.0
