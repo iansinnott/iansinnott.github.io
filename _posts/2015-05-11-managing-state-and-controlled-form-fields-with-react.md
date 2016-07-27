@@ -37,9 +37,9 @@ The value of this `<input>` element will stubbornly refuse to change no matter w
 
 If you're new-ish to React you might not know why you would want to do this. The answer is _state_. React puts a big emphasis on explicitly keeping your components state in the `state` property. So in order to create a form input that responds to user input you will need to use two-way data binding. Meaning the `value` of the `<input>` element will flow from your component into the DOM, but also from the DOM into your component. In other words, they will be kept in sync.
 
-## Manual Two-way data binding
+## Manual two-way data binding
 
-The most common way to accomplish two-way data binding in React is to be explicit. This is by design, and it's a good practice for smaller forms. Here's how an example:
+The most common way to accomplish two-way data binding in React is to be explicit. This is by design, and it's a good practice for smaller forms. Here's an example:
 
 ```js
 React.createClass({
@@ -68,13 +68,13 @@ If that's not quite clear, I highly recommend taking a look at the [Forms guide 
 
 [forms]: https://facebook.github.io/react/docs/forms.html
 
-The code above is explicit and not overly complicated, which is great for maintainabillty. There are virtually no downsides to this approach when dealing with a small form that only contains a few inputs. Issues only begin to crop up when you have many inputs that all need to update state.
+The code above is explicit and not overly complicated, which is great for maintainability. There are virtually no downsides to this approach when dealing with a small form that only contains a few inputs. Issues only begin to crop up when you have many inputs that all need to update state.
 
 That's why we have...
 
 ## The LinkedStateMixin
 
-React comes with a handy mixin to help you achieve two-way data-binding very quickly. Use the LinkedStateMixin to save yourself soem hassle when wiring up large forms to stay in sync with component state:
+React comes with a handy mixin to help you achieve two-way data-binding very quickly. Use the LinkedStateMixin to save yourself some hassle when wiring up large forms to stay in sync with component state:
 
 ```js
 // Make sure to require react with addons
@@ -97,13 +97,13 @@ React.createClass({
 
 As you can see we replaced the `value` prop with `valueLink`. If you haven't heard of `valueLink` I'll explain it in a sec.
 
-The `LinkedStateMixin` saves us a good deal of typing, and especially when you have a large number of form fields that need to be tied to component state. The issue is that it's not very flexible. Essentially it just binds the value of an input field to `this.state`. But what if you are building a _stateless_ form component that gets all it's values from props? Or, more interestingly, what if you are using Flux and don't want to set state directly but rather call an action that updates a store?
+The `LinkedStateMixin` saves us a good deal of typing, and especially when you have a large number of form fields that need to be tied to component state. The issue is that it's not very flexible. Essentially it just binds the value of an input field to `this.state`. But what if you are building a _stateless_ form component that gets all its values from props? Or, more interestingly, what if you are using Flux and don't want to set state directly but rather call an action that updates a store?
 
 This is what `valueLink` is great for.
 
 ## What exactly is `valueLink`?
 
-The `valueLink` prop is a fairly under-documented feature of form inputs in React that simplifies the onChange / setState pattern described at the beginning of this post. It's a shortcut for telling an input where to get its `value` prop from and what function to call when an `onChange` event is fired. In it's most simple form the `valueLink` prop points to a plain old JS object with two distinct props:
+The `valueLink` prop is a fairly under-documented feature of form inputs in React that simplifies the onChange / setState pattern described at the beginning of this post. It's a shortcut for telling an input where to get its `value` prop from and what function to call when an `onChange` event is fired. In its most simple form the `valueLink` prop points to a plain old JS object with two distinct props:
 
 * `value`: The value of the input at any given time
 * `requestChange`: The function to call whenever `onChange` is fired on the input. `requestChange` will be called with the update value of the input, so there's no need to access the value using an event object as you might do if you were using the actual `onChange` event.
@@ -242,6 +242,6 @@ React.createClass({
 
 Now whenever you check the checkbox `AppActions.doSomething` will be called with a `key` of `'booleanValue'` and a `newValue` of either `true` or `false` depending on whether or not it is checked.
 
-Then in `AppActions` you would do whatever you want with the data and most likely dispatch it to all stores so they could update their state accordingly. `AppStore` would get the dispatch and update it's internal representation of state
+Then in `AppActions` you would do whatever you want with the data and most likely dispatch it to all stores so they could update their state accordingly. `AppStore` would get the dispatch and update its internal representation of state.
 
 Hope all this helps as you build forms with React.
