@@ -4,7 +4,7 @@ title: "Managing state and controlled form fields with React"
 comments: true
 ---
 
-**UPDATE:** As of React v15 `valueLink` and `checkedLink` are officially deprecated. I heavily advocate the use of both of these APIs in this article. If you want to see my thoughts on the deprecation see [this comment below](#comment-2692300179). For the official deprecation see [the docs article here](https://facebook.github.io/react/docs/two-way-binding-helpers.html).
+**UPDATE (2016-07-28):** As of React v15 `valueLink` and `checkedLink` are officially deprecated. I heavily advocate the use of both of these APIs in this article. If you want to see my thoughts on the deprecation see [this comment below](#comment-2692300179). For the official deprecation see [the docs article here](https://facebook.github.io/react/docs/two-way-binding-helpers.html).
 
 ---
 
