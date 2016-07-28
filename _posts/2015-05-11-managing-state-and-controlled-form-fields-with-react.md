@@ -6,6 +6,8 @@ comments: true
 
 **UPDATE:** As of React v15 `valueLink` and `checkedLink` are officially deprecated. I heavily advocate the use of both of these APIs in this article. If you want to see my thoughts on the deprecation see [this comment below](#comment-2692300179). For the official deprecation see [the docs article here](https://facebook.github.io/react/docs/two-way-binding-helpers.html).
 
+---
+
 With React, you basically get two different ways to deal with forms:
 
 * Standard input elements that can be modified by the user
