@@ -24,8 +24,6 @@ In this post I'm going to show you how you can get set up using Webpack with Flo
 
 ## Getting Set Up
 
-### Installing
-
 ```
 npm install -g flow-bin
 ```
