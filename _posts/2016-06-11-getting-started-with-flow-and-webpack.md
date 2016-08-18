@@ -26,9 +26,11 @@ In this post I'm going to show you how you can get set up using Webpack with Flo
 
 ### Installing
 
-**The short version:** `brew install flow`
+```
+npm install -g flow-bin
+```
 
-**The longer version:** The above may not work for you, depending on your system. If it doesn't, check out the set up docs on the Flow website: <https://flowtype.org/docs/getting-started.html>
+That should be all you need to get the `flow` binary installed on your CLI.
 
 ### Setting Up Webpack and Babel
 
