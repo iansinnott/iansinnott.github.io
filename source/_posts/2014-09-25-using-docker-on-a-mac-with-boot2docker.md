@@ -1,5 +1,8 @@
 ---
 title: Using Docker on a Mac with Boot2Docker
+tags:
+  - ops
+  - docker
 ---
 
 **UPDATE 2016-11-12:**  This post is no longer relevant now that [Docker for Mac][].

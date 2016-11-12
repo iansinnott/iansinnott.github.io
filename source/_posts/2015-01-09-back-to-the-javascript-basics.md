@@ -1,5 +1,7 @@
 ---
 title: Back to the JavaScript Basics
+tags:
+  - javascript
 ---
 
 Today I was interviewed for a developer position at a San Francisco startup and I was caught off guard when I was asked to create a simple implementation of "inheritance" in JS. Inheritance is in quotes because, well, this is JS we're talking about. There is no real inheritance in the classical sense, but we can certainly make it work. The interview question went something like this:

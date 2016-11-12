@@ -1,5 +1,7 @@
 ---
 title: "Going fully HTTPS (SSL) fo' free"
+tags:
+  - security
 ---
 
 A few weeks ago I moved [my website][] over to HTTPS.

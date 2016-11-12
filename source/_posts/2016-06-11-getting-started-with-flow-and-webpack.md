@@ -1,5 +1,9 @@
 ---
 title: Getting Started with Flow and Webpack
+tags:
+  - javascript
+  - flow
+  - webpack
 ---
 
 **TL;DR:** This post will show you how to get set up with [Flow][] and [Webpack][] as quickly as possible so that you can benefit from some degree of type safety in your JS code!

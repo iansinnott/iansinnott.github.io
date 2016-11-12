@@ -1,5 +1,7 @@
 ---
 title: Teaching My Brother To Code
+tags:
+  - teaching
 ---
 
 I just returned to the US after a few months in Asia, and my goal for the month of December is to teach my brother how to code. One month, that's how much time I have to get him up to speed. Sound crazy? It might be, but that depends on the concrete goal. "Learn to code" is far too abstract.

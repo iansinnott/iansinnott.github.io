@@ -1,5 +1,7 @@
 ---
 title: How I Nearly Gave Up Coffee
+tags:
+  - personal
 ---
 
 _Drink coffee you don't like, and drink it black..._

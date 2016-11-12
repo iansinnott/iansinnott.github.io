@@ -1,5 +1,9 @@
 ---
 title: In search of the ultimate tooling workflow
+tags:
+  - javascript
+  - webpack
+  - css
 ---
 
 Lately I've been exploring the various options out there for front-end tooling. I'm about to start a greenfield project next week and I figure I might as well do it right. The goal is not to look back in two months and wish I had implemented a better workflow. The tooling can always change, but in practice it usually doesn't so it's best to get it right the first time.

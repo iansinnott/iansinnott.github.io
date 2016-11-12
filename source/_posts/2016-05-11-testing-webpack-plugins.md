@@ -1,5 +1,8 @@
 ---
 title: Testing Webpack Plugins
+tags:
+  - javascript
+  - webpack
 ---
 
 _**TL;DR:** I'm going to show you how to test Webpack plugins. I'll even show you how to integrate with a CI server :smile:. The trick is to use the Webpack [Node API][]_.

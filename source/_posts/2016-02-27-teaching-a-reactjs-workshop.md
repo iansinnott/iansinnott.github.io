@@ -1,5 +1,8 @@
 ---
 title: Teaching a React.js Workshop
+tags:
+  - javascript
+  - react
 ---
 
 Who wants to be a speaker? This guy! :raised_hands:

@@ -1,5 +1,9 @@
 ---
 title: Dokku, Mongo & Node.js
+tags:
+  - ops
+  - node
+  - docker
 ---
 
 _TL;DR: If you run into trouble using Mongo with Dokku for a Node.js app, re-image your server and start from scratch._
