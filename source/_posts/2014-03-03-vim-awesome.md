@@ -1,5 +1,5 @@
 ---
-title: Vim: It's Awesome
+title: "Vim: It's Awesome"
 dsq_thread_id:
   - 2349626206
 tags:
