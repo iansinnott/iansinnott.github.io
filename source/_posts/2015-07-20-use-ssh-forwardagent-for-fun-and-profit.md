@@ -1,5 +1,5 @@
 ---
-title: "Use SSH ForwardAgent for fun and profit"
+title: Use SSH ForwardAgent for fun and profit
 ---
 
 Yesterday I discovered something amazing. With just _one line_ of code you can bypass the annoyance of not being able to access private web services (i.e. GitHub) while SSHed into a machine. The method is called SSH agent forwarding and it's changed my deployment workflow.

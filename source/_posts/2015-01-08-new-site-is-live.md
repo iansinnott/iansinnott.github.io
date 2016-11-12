@@ -1,5 +1,5 @@
 ---
-title: "New Site Is Live"
+title: New Site Is Live
 ---
 
 Yup, the new site is up and running! It's been a bit of a long time coming, but my new website is finally live online. If you're interested you can check it out at my home page here: [iansinnott.com](http://iansinnott.com).

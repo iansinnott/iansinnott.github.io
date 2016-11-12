@@ -2,7 +2,7 @@
 title: JavaScript Everywhere
 dsq_thread_id:
   - 2026793732
-categories:
+tags:
   - development
   - tech
   - web

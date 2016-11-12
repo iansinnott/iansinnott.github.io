@@ -1,9 +1,9 @@
 ---
-title: "WordPress Development Server - Full Set Up Guide"
+title: WordPress Development Server - Full Set Up Guide
 dsq_thread_id:
   - 1337579457
   - 1337579457
-categories:
+tags:
   - web
   - wordpress
 ---

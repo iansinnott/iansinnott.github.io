@@ -2,10 +2,8 @@
 title: The WP_Post Object
 dsq_thread_id:
   - 1402742612
-categories:
-  - web
-  - wordpress
 tags:
+  - web
   - php
   - theme development
   - wordpress

@@ -1,5 +1,5 @@
 ---
-title: "Switching Away From Mongoose"
+title: Switching Away From Mongoose
 ---
 
 I've been using MongoDB as my primary database for some time now. That means all new projects I created were running Mongo, and Mongoose was my ORM of choice. Mongoose has worked well for my in the past and even _still_ does, but I can feel that it's time for a switch.

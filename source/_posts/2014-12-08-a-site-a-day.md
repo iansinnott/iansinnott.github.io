@@ -1,5 +1,5 @@
 ---
-title: "A Site a Day"
+title: A Site a Day
 ---
 
 Yesterday I wrote about [teaching my brother to code][last]. Today I thought I'd elucidate the strategy I'm using to teach him.

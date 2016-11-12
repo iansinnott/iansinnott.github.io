@@ -1,5 +1,5 @@
 ---
-title: "New Site in the Works"
+title: New Site in the Works
 ---
 
 One of my personal projects recently has been completely redesigning my website. Well, I'm excited to say it's coming along quite nicely. Here is a preview of the new look:

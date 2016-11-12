@@ -1,5 +1,5 @@
 ---
-title: "A New Direction"
+title: A New Direction
 ---
 
 For the past few years I've been living in Taiwan running my own freelance business. It's been an amazing, transformative experience and I've had a great time doing it. Entering 2015, I was planning to continue growing my business into the foreseeable future, but after a recent revelation I feel it's time for a change.

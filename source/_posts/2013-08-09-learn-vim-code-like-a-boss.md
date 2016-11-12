@@ -1,11 +1,10 @@
 ---
-title: 'Learn Vim & Code Like a Boss'
+title: Learn Vim & Code Like a Boss
 dsq_thread_id:
   - 1585683628
-categories:
+tags:
   - tech
   - web
-tags:
   - code
   - productivity
   - vim

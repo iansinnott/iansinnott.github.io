@@ -1,5 +1,5 @@
 ---
-title: "Using Emoji in Excerpts on GitHub Pages"
+title: Using Emoji in Excerpts on GitHub Pages
 ---
 
 ## Here's how to get GitHub emoji working in post excerpts

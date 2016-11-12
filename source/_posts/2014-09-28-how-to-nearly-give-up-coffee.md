@@ -1,5 +1,5 @@
 ---
-title: "How I Nearly Gave Up Coffee"
+title: How I Nearly Gave Up Coffee
 ---
 
 _Drink coffee you don't like, and drink it black..._

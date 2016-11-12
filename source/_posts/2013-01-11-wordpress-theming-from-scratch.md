@@ -3,8 +3,8 @@ title: WordPress Theming From Scratch
 dsq_thread_id:
   - 1029462779
   - 1029462779
-categories:
-  - Uncategorized
+tags:
+  - css
 ---
 
 When I first started my exploration of WP I did so one small step at a time. When I look back on those initial stages of learning I think about how much quicker the process could have been if I had just dove in and conquered obstacles as they arose.

@@ -1,11 +1,10 @@
 ---
-title: "Express Basics"
-categories:
-- tutorial
+title: Express Basics
 tags:
-- javascript
-- express
-- middleware
+  - tutorial
+  - javascript
+  - express
+  - middleware
 ---
 
 _A quick guide to using Express, and the basics of Express middleware_

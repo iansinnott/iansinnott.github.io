@@ -1,5 +1,5 @@
 ---
-title: "Solving problems is the biggest win"
+title: Solving problems is the biggest win
 ---
 
 As I ramp up my job search, I've recently become more introspective about why I like programming. It's not uncommon during an initial phone screen to be asked some variation of the following “soft” interview question:

@@ -1,5 +1,5 @@
 ---
-title: "Running a Meteor App on Dokku"
+title: Running a Meteor App on Dokku
 ---
 
 This is a quick overview of how to get a Meteor app set up on Dokku. It's actually not difficult, but it doesn't seem to have been well documented anywhere yet. Let's get started.

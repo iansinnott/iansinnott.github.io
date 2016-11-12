@@ -1,9 +1,8 @@
 ---
-title: "Vim: It's Awesome"
-layout: post
+title: Vim: It's Awesome
 dsq_thread_id:
   - 2349626206
-categories:
+tags:
   - development
   - tech
   - web

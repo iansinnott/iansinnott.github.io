@@ -3,7 +3,7 @@ title: Victory! The realization of a goal.
 dsq_thread_id:
   - 1097117115
   - 1097117115
-categories:
+tags:
   - goals
 ---
 

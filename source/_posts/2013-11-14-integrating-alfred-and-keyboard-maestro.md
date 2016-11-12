@@ -1,14 +1,11 @@
 ---
-title: "Integrating Alfred With Keyboard Maestro"
-layout: post
-comments: true
+title: Integrating Alfred With Keyboard Maestro
 dsq_thread_id:
   - 1965006338
-categories:
+tags:
   - download
   - free
   - tech
-tags:
   - alfred
   - keyboard maestro
   - macro

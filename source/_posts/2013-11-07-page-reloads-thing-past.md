@@ -2,10 +2,9 @@
 title: Page reloads are a thing of the past
 dsq_thread_id:
   - 1944906311
-categories:
+tags:
   - tech
   - web
-tags:
   - ghost
   - javascript
 ---

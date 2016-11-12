@@ -1,8 +1,6 @@
 ---
-layout: post
-title: "A Month In San Francisco"
-comments: true
-categories:
+title: A Month In San Francisco
+tags:
   - life
   - travel
 ---

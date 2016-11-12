@@ -1,5 +1,5 @@
 ---
-title: "Time Machine to the Rescue"
+title: Time Machine to the Rescue
 ---
 
 A couple weeks ago I made the decision to reinstall OSX and start anew, washing away over a years worth of accumulated files. It took about two hours to get most things reinstalled and running again, and after the fact I was very happy with the results. My computer is now fresh again, the downloads folder doesn't have 1000 items in it and I have over 100GB of free space (up from ~5GB before)! All in all a very quick and painless experience... until this week.

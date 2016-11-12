@@ -1,5 +1,5 @@
 ---
-title: "Programmer, Maker or Both?"
+title: Programmer, Maker or Both?
 ---
 
 > I just want my stuff to work and not break. Programming is not my passion. Making stuff is my passion.

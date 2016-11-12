@@ -2,10 +2,9 @@
 title: Getting Productive With Fish Shell
 dsq_thread_id:
   - 1953644511
-categories:
+tags:
   - tech
   - web
-tags:
   - bash
   - fish shell
   - productivity

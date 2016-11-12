@@ -1,5 +1,5 @@
 ---
-title: "Use RedCarpet to Render Markdown"
+title: Use RedCarpet to Render Markdown
 ---
 
 Most of the markdown I write ends up on GitHub, so when I preview my markdown I on my computer I like it to look _exactly_ like it will once I push it live to some repository. I also like to use the excellent [Marked][marked] app to preview my markdown. Unfortunately, even though Marked claims to support [Github Flavored Markdown][gfm] (GFM) it leaves some features out. I'm not going to blame Marked for the incomplete implementation of GFM, they outsource the processing to [Discount][discount], so it's probably not their fault. But certain features of GFM, like nested lists, are really useful so I decided to switch to [RedCarpet][rc], since that is the Gem GitHub itself uses to parse READMEs.

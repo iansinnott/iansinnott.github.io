@@ -1,5 +1,5 @@
 ---
-title: "Useful Bash Commands For Web Developers"
+title: Useful Bash Commands For Web Developers
 ---
 
 I recently found myself tutoring a friend in the ways of the command line and thought I'd write a quick post about it. Being comfortable with bash (or some other shell) isnt necessarily a prerequisite for web development, but it certainly makes the process smoother and more enjoyable. For anyone just starting to learn the command line, here are a few useful tips:

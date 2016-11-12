@@ -3,7 +3,7 @@ title: Becoming A Developer Is A Process
 dsq_thread_id:
   - 1279910611
   - 1279910611
-categories:
+tags:
   - tech
   - web
 ---

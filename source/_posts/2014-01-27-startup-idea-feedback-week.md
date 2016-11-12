@@ -2,7 +2,7 @@
 title: From Startup Idea to (In)validation in a Week
 dsq_thread_id:
   - 2180211560
-categories:
+tags:
   - development
   - goals
   - tech

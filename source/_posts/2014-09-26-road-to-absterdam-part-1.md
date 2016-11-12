@@ -1,5 +1,5 @@
 ---
-title: "Road to Absterdam Part 1"
+title: Road to Absterdam Part 1
 ---
 
 My diet choices have been generally unhealthy for the past year, but lately I've decided I want abs. As such I asked [my buddy Ravi][ravi] for nutrition advice, and came up with the following daily macros:

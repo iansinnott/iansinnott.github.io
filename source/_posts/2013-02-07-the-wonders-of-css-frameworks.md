@@ -3,6 +3,8 @@ title: The Wonders of CSS Frameworks
 dsq_thread_id:
   - 1070486878
   - 1070486878
+tags:
+  - css
 ---
 
 Today was my first dive into CSS frameworks. Creating layout from scratch is perfectly doable but also perfectly tedious. I have yet to meet a developer who enjoys that aspect of it. We like the stages where we get to build shiny things on a site. So here is what I got into today:

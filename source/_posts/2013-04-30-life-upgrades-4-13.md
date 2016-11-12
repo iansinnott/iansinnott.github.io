@@ -1,11 +1,11 @@
 ---
-title: 'Life Upgrades &#038; Reasons To Write More'
+title: Life Upgrades & Reasons To Write More
 layout: post
 published: false
 dsq_thread_id:
   - 1248210906
   - 1248210906
-categories:
+tags:
   - chinese
   - life
   - tech

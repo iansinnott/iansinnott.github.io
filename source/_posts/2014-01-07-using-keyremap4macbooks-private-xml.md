@@ -1,8 +1,8 @@
 ---
-title: "Using Key Remap 4 MacBook's Private.xml"
+title: Using Key Remap 4 MacBook's Private.xml
 dsq_thread_id:
   - 2096904275
-categories:
+tags:
   - tech
 ---
 

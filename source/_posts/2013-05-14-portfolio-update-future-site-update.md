@@ -3,7 +3,7 @@ title: Portfolio Update + Future Site Update
 dsq_thread_id:
   - 1287075657
   - 1287075657
-categories:
+tags:
   - site update
   - theme
   - web

@@ -1,5 +1,5 @@
 ---
-title: "Using Dokku As A Personal Heroku"
+title: Using Dokku As A Personal Heroku
 ---
 
 ## Dokku For The Win

@@ -2,8 +2,6 @@
 title: WordPress Needs Better Automation
 dsq_thread_id:
   - 2086620445
-categories:
-  - Uncategorized
 ---
 
 It's occurred to me time and time again that I don't write as much as I should. In fact I think I even wrote up a short post about that some time back. Anyway, another thing that's been on my mind lately is the friction that comes from small tasks that keeps us (or at least me) from completing larger tasks.
