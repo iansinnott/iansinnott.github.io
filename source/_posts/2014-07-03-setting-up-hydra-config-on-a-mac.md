@@ -1,6 +1,10 @@
 ---
-title: "Setting Up Hydra Config on A Mac"
+title: Setting Up Hydra Config on A Mac
 ---
+
+**Update 2016-11-12:** I no longer use either Hydra or Mjolnir. Currently my go to app for window management is [Phoenix][].
+
+[Phoenix]: https://github.com/kasper/phoenix
 
 **Update:** The Hydra project referenced in this post no longer exists. It's been succeeded by [Mjolnir][mj], a project by the initial creator of Hydra. So whenever you see me reference "Hydra" I'm now actually referencing [Mjolnir][mj].
 
