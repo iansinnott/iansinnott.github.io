@@ -85,4 +85,11 @@ Also, JavaScript. I write it all the time so it makes sense to use it for my blo
 
 Lastly, a good friend of mine recently told me he uses Hexo for his blog. Personal recommendations go a long way.
 
-## Conclusion
+## Outcome
+
+So far I've been quite happy. Things I like:
+
+* Drafts
+* CLI for creating content
+* Simple, multi-language support
+* Powered by JavaScript
