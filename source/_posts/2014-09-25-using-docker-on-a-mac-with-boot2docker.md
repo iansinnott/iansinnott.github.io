@@ -1,6 +1,10 @@
 ---
-title: "Using Docker on a Mac with Boot2Docker"
+title: Using Docker on a Mac with Boot2Docker
 ---
+
+**UPDATE 2016-11-12:**  This post is no longer relevant now that [Docker for Mac][].
+
+[Docker for Mac]: https://www.docker.com/products/docker#/mac
 
 ## One thing to remember
 
