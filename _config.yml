@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Ian Sinnott
 subtitle:
-description:
-author: John Doe
+description: I make web apps, I travel and Sometimes I write about it.
+author: Ian Sinnott
 language:
 timezone:
 
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: parlance
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
