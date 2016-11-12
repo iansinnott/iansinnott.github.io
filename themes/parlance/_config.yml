@@ -10,7 +10,6 @@ excerpt_link: Read More
 # Sidebar
 sidebar: right
 widgets:
-- category
 - tag
 - tagcloud
 - archive
