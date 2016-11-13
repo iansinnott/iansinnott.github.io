@@ -79,6 +79,33 @@ new_post_name: :year-:month-:day-:title.md # File name used to identify posts
 
 Now restart the Hexo server and you should see all your content :sunglasses:
 
+## Gripes
+
+Hexo is not without its shortcomings. I'll outline those here, but take this with a grain of salt because I just started using Hexo yesterday so it may be that my gripes are due to lack of understanding rather than actual problems with the framework.
+
+### Not simple to create standalone pages
+
+Hexo is highly content focused, meaning when you create a new "page" you are actually just creating a new Markdown file with some content. In my experience the "content first" approach is perfectly suited to blog posts, but not necessarily to pages which are often unique in layout.
+
+For example, I wanted to create a `/tags` page. This is simple enough using the Hexo API in a layout file:
+
+```erb
+<% site.tags.each((tag) => { %>
+  <a class='tag' href='<%= url_for(tag.path) %>'>
+    <%= tag.name %>
+  </a>
+<% }) %>
+```
+
+But I wanted to be able to do this on one single page. I.e. instead of writing markdown I wanted to write the above code and output all my tags. This didn't work, so I ended up creating a workaround where my `tags.md` file does nothing more than specify the layout I want to render.
+
+```
+---
+title: Tags
+layout: tags
+---
+```
+
 ## Why
 
 I've been meaning to redo my blog for a while. Jekyll does it's job quite well, but I never liked liquid templates and my existing blog has needed some work for quote some time. For example, code snippets when rendered in post excerpts sometimes caused unclosed `<pre>` tags, which would really mess up rendering for the whole index page.
