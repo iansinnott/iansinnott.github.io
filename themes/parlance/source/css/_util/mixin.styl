@@ -29,3 +29,17 @@ avoid-column-break()
   page-break-inside: avoid // for firefox
   overflow: hidden // fix for firefox
   break-inside: avoid-column
+
+// -----------------------------------------------------------------------------
+// Custom below here...
+// -----------------------------------------------------------------------------
+
+transition(prop = transform, duration = 0.8s, easing = cubic-bezier(0, 0, 0.25, 1))
+  transition prop duration easing
+
+reset-button()
+  appearance none
+  outline none
+  background transparent
+  border none
+

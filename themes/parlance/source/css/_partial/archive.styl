@@ -57,26 +57,34 @@
   text-align: center
   color: color-grey
   overflow: hidden
+  @media mq-mobile
+    margin: (block-margin / 2) auto
+
   a, span
     display block
     padding: 10px 20px
     line-height: 30px
+
   a
     color: color-grey
     text-decoration: none
     &:hover
       background: color-grey
       color: #fff
+
   .prev
   .next
     flex 1 100%
+
   .page-number
     flex-grow 0
     flex-shrink 0
     @media mq-mobile
       display: none
+
   .current
     color: color-default
     font-weight: bold
+
   .space
     color: color-border

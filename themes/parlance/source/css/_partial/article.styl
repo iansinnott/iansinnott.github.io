@@ -3,10 +3,6 @@
   @media mq-mobile
     margin: (block-margin / 2) 0
 
-.article-inner
-  @extend $block
-  overflow: hidden
-
 .article-meta
   clearfix()
 
@@ -127,21 +123,6 @@
       height: 100%
       margin-top: 0
 
-.article-more-link a
-  display: inline-block
-  line-height: 1em
-  padding: 6px 15px
-  border-radius: 15px
-  background: color-background
-  color: color-grey
-  text-shadow: 0 1px #fff
-  text-decoration: none
-  &:hover
-    background: color-link
-    color: #fff
-    text-decoration: none
-    text-shadow: 0 1px darken(color-link, 20%)
-
 .article-footer
   clearfix()
   font-size: 0.85em
@@ -154,6 +135,34 @@
     text-decoration: none
     &:hover
       color: color-default
+
+.article-inner
+  @extend $block
+  overflow: hidden
+  &:hover
+    .article-more-link
+      background: color-link
+      color: #fff
+      text-decoration: none
+      text-shadow: 0 1px darken(color-link, 20%)
+
+.article-more-link
+  transition(all, 0.4s)
+  display block
+  line-height: 1em
+  padding: 6px 15px
+  border-radius: 15px
+  background: color-background
+  color: color-grey
+  text-shadow: 0 1px #fff
+  text-decoration: none
+  margin-top line-height
+  margin-bottom line-height
+  text-align center
+  &:hover
+    transform scale(1.1)
+  @media mq-normal
+    max-width 100px
 
 .article-tag-list-item
   float: left
