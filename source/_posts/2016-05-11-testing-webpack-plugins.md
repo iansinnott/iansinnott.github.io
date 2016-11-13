@@ -15,6 +15,8 @@ I recently built my own Webpack plugin for generating static sites from React Ro
 
 ## Where to turn...
 
+<!-- more -->
+
 Even if the first page of a google search didn't answer my questions, I figured someone somewhere must have needed to test their Webpack plugins in the past, and I was right! My first move was to think about what popular Webpack plugins I was aware of. The first one that came to mind was the venerable [Extract Text Webpack Plugin][]. Little did I know, it was written by the same guy who wrote Webpack.
 
 [Extract Text Webpack Plugin]:https://github.com/webpack/extract-text-webpack-plugin

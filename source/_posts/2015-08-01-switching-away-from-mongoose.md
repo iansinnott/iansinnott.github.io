@@ -30,6 +30,8 @@ api.get('/models', (req, res, next) => {
 });
 ```
 
+<!-- more -->
+
 The above code will break, throwing an error because an Mpromise Promise has no `catch` method. There's even an [open issue about this][issue] from _last year_. That's probably already a dealbreaker, but we can get around this by patching Mpromise ourself:
 
 ```js

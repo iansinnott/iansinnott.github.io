@@ -14,6 +14,8 @@ tags:
 
 [Flow][] is like ESLint on steroids. It is a static type checker for JavaScript. It let's you add types to any existing JS code. **Why would you want to do this?**  The short answer is because JS :heart: runtime errors, but runtime errors make your users sad. The more helpful answer is that Flow will analyze your codebase and catch bugs that may otherwise go unnoticed until you're app is already deployed to production. There is an entire site dedicated to explaining Flow, so I will let you check that out for more detailed information: <http://flowtype.org/>
 
+<!-- more -->
+
 However, what may not be immediately obvious from the Flow site is the reason why it's so appealing for existing projects, which is that you can _iterate_ to full Flow coverage with minimal overhead.
 
 That means you can keep on hitting all your existing dev milestones while adding Flow type coverage to your code in parallel. Flow is also designed to work with [Babel][], so if you're already using Babel in your toolchain you'll be pleasantly surprised at how easy it is to set Flow up.

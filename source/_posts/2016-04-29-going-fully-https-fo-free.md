@@ -12,8 +12,9 @@ Then, yesterday I moved my [blog][] over to HTTPS.
 
 ![blog.iansinnott.com running on https](//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.07.41%20AM.png)
 
-This now means that my two primary web properties are both using SSL, and one of
-them was completely free to set up.
+This now means that my two primary web properties are both using SSL, and one of them was completely free to set up.
+
+<!-- more -->
 
 ## Free SSL with LetsEncrypt
 

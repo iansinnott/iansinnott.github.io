@@ -15,6 +15,8 @@ Last Sunday was a significant event for me: I put on a [React][] workshop ([link
 
 The community surrounding React has done a lot for me. It's only been a year since I started using this technology, but it's played a tremendous role in my personal development as a programmer. As such, I really wanted to start contributing back to this amazing community that has helped nurture my own development.
 
+<!-- more -->
+
 I learned React and the surrounding ecosystem on my own and I know how daunting it can be. As a community we love to toss around terms like ES6, Babel, Webpack, Flux, Redux, etc. as if it's all expected knowledge for the field. And while you probably should know what all these things are after being part of the community for a while it can be very daunting when it's all new.
 
 So in creating this workshop I wanted to utilize all the knowledge I've accumulated over the past year while learning React to help speed the process for others. React has been a game changing technology for many – including myself – and I know it can be for others as well. They just need to know where to start.

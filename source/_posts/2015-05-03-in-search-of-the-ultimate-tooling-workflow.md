@@ -23,6 +23,8 @@ Webpack is amazing. I never thought [Browserify][browserify] would be replaced i
 
 Webpack let's you truly componentize your applications by letting you keep _everything_ organized in a single directory. For example, if you wanted to componentize your website's header you could put the HTML, CSS, JS and all associated images in the same directory. No more fumbling with paths in you're image `src` attribute.
 
+<!-- more -->
+
 ### Hot Module Replacement
 
 Requiring everything is great, but another revelation was Hot Module Replacement (HRM). The concept is pretty simple if you've ever used LiveReload—Your browser refreshes every time you change a file. Webpack gives you HMR, which takes the concept of live reload to the next level. Basically the HTML in your browser will change without reloading the browser window.
@@ -61,3 +63,4 @@ This new workflow has really made me more productive. Writing single page apps n
 [babel]: https://babeljs.io/
 [hmr]: https://github.com/webpack/docs/wiki/hot-module-replacement-with-webpack
 [browserify]: http://browserify.org/
+[stylus]: http://stylus-lang.com/

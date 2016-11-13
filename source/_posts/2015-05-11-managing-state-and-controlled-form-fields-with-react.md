@@ -28,6 +28,8 @@ The value of that `<input>` element can be edited by the user in a browser, just
 
 The other type of input—a "Controlled" input—looks almost the same, but has a `value` property:
 
+<!-- more -->
+
 ```js
 React.createClass({
   render (

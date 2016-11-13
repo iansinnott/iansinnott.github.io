@@ -23,6 +23,8 @@ Now move all the non-git files in the directory into `jekyll.bak`. Initially I j
 find . -maxdepth 1 -mindepth 1 ! -name '.git' ! -name 'jekyll.bak' -exec mv '{}' ./jekyll.bak/ \;
 ```
 
+<!-- more -->
+
 We keep the `.git/` dir around so that we can cleanly iterate towards a Hexo blog from our Jekyll blog while maintaining all previous version control history. However, the `hexo init` command actually removed `.git/` on my system so we need to move it too, but only temporarily:
 
 ```bash
