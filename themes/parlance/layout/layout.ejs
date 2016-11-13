@@ -42,8 +42,9 @@
       <div class="outer">
         <section id="main"><%- body %></section>
       </div>
-      <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
     </div>
+
+    <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
 
     <%/* Discuss */%>
     <% if (config.disqus_shortname) { %>

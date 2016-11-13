@@ -23,6 +23,7 @@ body
   font font-size font-sans
   -webkit-text-size-adjust 100%
   min-width 300px
+  min-height 100%
 
 .outer
   clearfix()
@@ -46,16 +47,12 @@ body
 
 #container
   position relative
-
-.mobile-nav-on
-  overflow hidden
+  display flex
+  flex-direction column
 
 #wrap
-  height 100%
+  flex 1 0 auto
   width calc(100% - 60px)
-  position absolute
-  top 0
-  left 0
   transition 0.2s ease-out
   z-index 1
   background color-background
