@@ -106,6 +106,18 @@ layout: tags
 ---
 ```
 
+This may seem minor, but I would have liked to be able to simply put the above EJS code into my "page" file and had it render.
+
+## Development Takeaway
+
+Only one really: If you want to create custom pages then create a new layout file with the desired name (say `about.ejs`) and then specify that layout file in the post/page markdown file:
+
+```
+---
+layout: about
+---
+```
+
 ## Why
 
 I've been meaning to redo my blog for a while. Jekyll does it's job quite well, but I never liked liquid templates and my existing blog has needed some work for quote some time. For example, code snippets when rendered in post excerpts sometimes caused unclosed `<pre>` tags, which would really mess up rendering for the whole index page.
