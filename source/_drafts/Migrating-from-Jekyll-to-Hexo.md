@@ -108,15 +108,33 @@ layout: tags
 
 This may seem minor, but I would have liked to be able to simply put the above EJS code into my "page" file and had it render.
 
-## Development Takeaway
+### Not simple to create helper functions
 
-Only one really: If you want to create custom pages then create a new layout file with the desired name (say `about.ejs`) and then specify that layout file in the post/page markdown file:
+More than once I found myself wanting to refactor some view logic out of the EJS templates and into an external helper function. As of now it's still unclear to me how to do this. I ended up writing all my code inline in the EJS files but this is not pretty.
+
+### Documentation
+
+This is a tough one since Hexo actually has quite a bit of documentation online. However, I found it didn't readily cover the things I really cared about. Namely, in-depth guides to creating themes.
+
+For example, things like:
+
+* How to loop through various content types (posts, tags, categories, etc)
+* How to sort, filter, etc, those content types
+* What methods and properties are available on all the Hexo objects
+
+I ended up discovering these things through trial and error or viewing other peoples themes. This is fine, but it seems that it could be greatly improved to limit the time it takes someone new to the framework to get comfortable with it.
+
+## Development Takeaways
+
+Regarding layouts and templating: If you want to create custom pages then create a new layout file with the desired name (say `about.ejs`) and then specify that layout file in the post/page markdown file:
 
 ```
 ---
 layout: about
 ---
 ```
+
+Regarding helper functions: I didn't find a good way to add helpers yet but I haven't yet read through all the docs. Who knows, maybe there is an elegant solution.
 
 ## Why
 
