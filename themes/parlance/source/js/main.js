@@ -19,12 +19,6 @@
       var targetEl = $(el.dataset.target)[0];
       targetEl.classList.remove('open');
     },
-
-    toggleNav: function(e) {
-      var el = e.currentTarget;
-      var targetEl = $(el.dataset.target)[0];
-      targetEl.classList.toggle('open');
-    },
   };
 
   // Attach all event handlers.
