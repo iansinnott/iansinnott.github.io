@@ -1,12 +1,19 @@
-<h1>Tag Archive!</h1>
-<% page.posts.each(post => { %>
-  <%- partial('article', { post, index }) %>
+<% var last; %>
+<% page.posts.sort('date', 'desc').each(function(post, i){ %>
+  <% var year = post.date.year(); %>
+  <% if (last != year){ %>
+    <% if (last != null){ %>
+      </div></section>
+    <% } %>
+    <% last = year; %>
+    <section class="archives-wrap">
+      <div class="archive-year-wrap">
+        <a href="<%- url_for(config.archive_dir + '/' + year) %>" class="archive-year"><%= year %></a>
+      </div>
+      <div class="archives">
+  <% } %>
+  <%- partial('archive-post', {post: post, even: i % 2 == 0}) %>
 <% }) %>
-<% if (page.total > 1){ %>
-<nav id="page-nav">
-  <%- paginator({
-    prev_text: `&laquo; ${__('prev')}`,
-    next_text: `${__('next')} &raquo;`
-  }) %>
-</nav>
+<% if (page.posts.length){ %>
+  </div></section>
 <% } %>
