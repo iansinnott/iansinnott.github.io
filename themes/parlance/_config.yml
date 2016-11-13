@@ -8,12 +8,11 @@ rss: /atom.xml
 excerpt_link: Read More
 
 # Sidebar
-sidebar: right
+sidebar: bottom
 widgets:
+- recent_posts
 - tag
 - tagcloud
-- archive
-- recent_posts
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:

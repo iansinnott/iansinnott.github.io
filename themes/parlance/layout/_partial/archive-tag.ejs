@@ -1,0 +1,12 @@
+<h1>Tag Archive!</h1>
+<% page.posts.each(post => { %>
+  <%- partial('article', { post, index }) %>
+<% }) %>
+<% if (page.total > 1){ %>
+<nav id="page-nav">
+  <%- paginator({
+    prev_text: `&laquo; ${__('prev')}`,
+    next_text: `${__('next')} &raquo;`
+  }) %>
+</nav>
+<% } %>
