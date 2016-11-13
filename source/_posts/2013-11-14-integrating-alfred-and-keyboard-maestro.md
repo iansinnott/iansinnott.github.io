@@ -3,12 +3,7 @@ title: Integrating Alfred With Keyboard Maestro
 dsq_thread_id:
   - 1965006338
 tags:
-  - download
-  - free
   - tech
-  - alfred
-  - keyboard maestro
-  - macro
   - productivity
 ---
 
