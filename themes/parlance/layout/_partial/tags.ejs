@@ -1,0 +1,7 @@
+<section class='tag-archive'>
+  <% site.tags.each((tag) => { %>
+    <a class='tag' href='<%= url_for(tag.path) %>'>
+      <%= tag.name %>
+    </a>
+  <% }) %>
+</section>
