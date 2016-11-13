@@ -1,28 +1,49 @@
-<header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="<%- url_for() %>" id="logo"><%= config.title %></a>
-      </h1>
-      <% if (theme.subtitle){ %>
-        <h2 id="subtitle-wrap">
-          <a href="<%- url_for() %>" id="subtitle"><%= theme.subtitle %></a>
-        </h2>
-      <% } %>
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        <% for (var i in theme.menu){ %>
-          <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
-        <% } %>
-      </nav>
-      <nav id="sub-nav">
-        <% if (theme.rss){ %>
-          <a id="nav-rss-link" class="nav-icon" href="<%- theme.rss %>" title="<%= __('rss_feed') %>"></a>
-        <% } %>
-      </nav>
-    </div>
+<header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='<%- url_for('/') %>'>Home</a>
+    <a class='main-nav-link' href='<%- url_for('/archives') %>'>Archive</a>
+    <a class='main-nav-link' href='<%- url_for('/tags') %>'>Tags</a>
+  </nav>
+  <div class='nav-menu'
+        data-event-handler='mouseenter:openNav,mouseleave:closeNav'
+        data-target='.hidden-nav'>
+    <nav class='hidden-nav'>
+      <button
+        class='toggle'>
+        More
+      </button>
+      <a href='<%- url_for('/') %>'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='<%- url_for('/archives') %>'>
+        <i class="fa fa-file-archive-o"></i>
+        Archive
+      </a>
+      <a href='<%- url_for('/tags') %>'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/" class='tooltip' data-tooltip='blog'>
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='http://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Oh Hai</h3>
+      </div>
+    </nav>
   </div>
 </header>

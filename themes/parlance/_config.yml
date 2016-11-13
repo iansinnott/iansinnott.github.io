@@ -1,8 +1,4 @@
 # Header
-menu:
-  Home: /
-  Archives: /archives
-  Tags: /tags
 rss: /atom.xml
 
 # Content
