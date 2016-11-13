@@ -44,8 +44,6 @@
       <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
     </div>
 
-    <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
-
     <%/* Discuss */%>
     <% if (config.disqus_shortname) { %>
     <script>
@@ -63,7 +61,7 @@
     </script>
     <% } %>
 
-    <%- js('js/temp.js') %>
+    <%- js('js/main.js') %>
   </div>
 </body>
 </html>
