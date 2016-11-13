@@ -5,6 +5,7 @@
   justify-content space-between
 
   .tag
+    position relative
     width (93 / 3)%
     display block
     padding 10px
@@ -19,7 +20,25 @@
     &:hover
       background darken(white, 2%)
       padding-left 15px
+      .count
+        background darken(#999aa8, 20%)
+        transform translateY(-50%) scale(1.05)
     @media mq-tablet
       width (96 / 2)%
     @media mq-mobile
       width 100%
+
+  .count
+    transition(all, 0.2s)
+    position absolute
+    top 50%
+    right 10px
+    background #999aa8
+    font-weight bold
+    color white
+    padding 4px
+    min-width 25px
+    height 25px
+    text-align center
+    transform translateY(-50%)
+    border-radius 25px
