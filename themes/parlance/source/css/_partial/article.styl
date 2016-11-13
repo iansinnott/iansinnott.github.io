@@ -1,5 +1,7 @@
 .article
   margin: block-margin 0
+  @media mq-mobile
+    margin: (block-margin / 2) 0
 
 .article-inner
   @extend $block
@@ -27,6 +29,8 @@
 
 .article-header
   padding: article-padding article-padding 0
+  @media mq-mobile
+    padding: article-padding (article-padding / 2) 0
 
 .article-title
   text-decoration: none
@@ -43,6 +47,8 @@
   clearfix()
   color: color-default
   padding: 0 article-padding
+  @media mq-mobile
+    padding: 0 (article-padding / 2)
   p, table
     line-height: line-height
     margin: line-height 0

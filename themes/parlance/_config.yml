@@ -4,13 +4,6 @@ rss: /atom.xml
 # Content
 excerpt_link: Read More
 
-# Sidebar
-sidebar: bottom
-widgets:
-- recent_posts
-- tag
-- tagcloud
-
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:
 # - category

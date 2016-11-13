@@ -46,7 +46,9 @@
   display: block
 
 #page-nav
-  clearfix()
+  display flex
+  justify-content space-between
+  align-items center
   margin: block-margin auto
   background: #fff
   box-shadow: 1px 2px 3px #ddd
@@ -56,9 +58,9 @@
   color: color-grey
   overflow: hidden
   a, span
+    display block
     padding: 10px 20px
-    line-height: 1
-    height: 2ex
+    line-height: 30px
   a
     color: color-grey
     text-decoration: none
@@ -66,11 +68,11 @@
       background: color-grey
       color: #fff
   .prev
-    float: left
   .next
-    float: right
+    flex 1 100%
   .page-number
-    display: inline-block
+    flex-grow 0
+    flex-shrink 0
     @media mq-mobile
       display: none
   .current

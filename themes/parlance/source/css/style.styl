@@ -29,6 +29,8 @@ body
   max-width (column-width + gutter-width) * columns + gutter-width
   margin 0 auto
   padding 0 gutter-width
+  @media mq-mobile
+    padding 0 (gutter-width / 2)
 
 .inner
   column(columns)
@@ -63,16 +65,6 @@ body
   .mobile-nav-on &
     left mobile-nav-width
 
-if sidebar and sidebar isnt bottom
-  #main
-    @media mq-normal
-      column(main-column)
-
-if sidebar is left
-  @media mq-normal
-    #main
-      float right
-
 @import "_extend"
 @import "_partial/header"
 @import "_partial/article"
@@ -84,5 +76,3 @@ if sidebar is left
 @import "_partial/tag"
 @import "_partial/dev"
 
-if sidebar
-  @import "_partial/sidebar"
