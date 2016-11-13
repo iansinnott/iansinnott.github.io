@@ -1,5 +1,6 @@
 black = #2d2d2d
-_t = 0.8s cubic-bezier(0, 0, 0.25, 1)
+transition(prop = transform, duration = 0.8s, easing = cubic-bezier(0, 0, 0.25, 1))
+  transition prop duration easing
 
 reset-button()
   appearance none
@@ -38,40 +39,57 @@ reset-button()
       line-height 50px
 
   .toggle
+    reset-button()
+    display none
+    align-items center
     position absolute
     top 0
     left 0
-    padding-right 30px
     padding-top 10px
     padding-bottom 10px
-    font-size 32px
+    font-size 24px
     text-transform uppercase
-    transform translateX(-100%)
+    transform translateX(-99%)
     color black
-    reset-button()
-    &:after
-      content ''
-      position absolute
-      top 50%
-      right 0
-      transform translateY(-50%)
-      border-right 20px solid @color
-      border-top 20px solid transparent
-      border-bottom 20px solid transparent
+    @media mq-mobile
+      display flex
 
+  .text
+    margin-right 10px
+
+  .burger
+    width 34px
+    height @width
+    padding 5px
+    background black
+    display flex
+    flex-direction column
+    justify-content space-around
+    border-radius 5px 0 0 5px
+    cursor pointer
+    span
+      display block
+      width 100%
+      height 3px
+      border-radius 5px
+      background darken(white, 40%)
 
   .hidden-nav
+    transition()
     position fixed
     right 0
     top 0
     bottom 0
     background #2d2d2d
-    transform translateX(100%)
-    transition transform _t
-    width 50%
-    max-width 300px
+    width 200px
+    transform translateX((@width * .7))
+    @media mq-mobile
+      transform translateX(100%)
     &.open
       transform translateX(0)
+
+      .face
+        opacity 1
 
     hr
       border none
@@ -79,8 +97,9 @@ reset-button()
 
     a
       display block
-      text-align center
+      text-align left
       padding 15px 0
+      padding-left 70px
       color #cbcbcb
       position relative
       text-decoration none
@@ -94,10 +113,12 @@ reset-button()
       i
         position absolute
         top 50%
-        left 10%
+        left 25px
         transform translateY(-50%)
 
   .face
+    transition(opacity)
+    opacity 0
     position absolute
     bottom 20px
     left 50%

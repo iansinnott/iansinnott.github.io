@@ -22,6 +22,7 @@
   };
 
   // Attach all event handlers.
+
   var elements = $('[data-event-handler]');
 
   elements.forEach(function(el) {
@@ -31,6 +32,7 @@
       var handlerName = _ref[1];
       var handler = handlers[handlerName];
 
+      // Avoid silent handler undefined issues
       if (!handler) {
         console.warn('Tried to assign undefined "' + handlerName + '" handler to "' + event + '" event.');
       }
