@@ -1,16 +1,17 @@
 <header id='header' class='outer'>
   <nav class='left-nav'>
-    <a class='main-nav-link' href='<%- url_for('/') %>'>Home</a>
-    <a class='main-nav-link' href='<%- url_for('/archives') %>'>Archive</a>
-    <a class='main-nav-link' href='<%- url_for('/tags') %>'>Tags</a>
+    <a class='main-nav-link' href='<%- url_for('/') %>'>
+      <img src='http://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
   </nav>
   <div class='nav-menu'
-        data-event-handler='mouseenter:openNav,mouseleave:closeNav'
-        data-target='.hidden-nav'>
+    data-event-handler='mouseenter:openNav,mouseleave:closeNav'
+    data-target='.hidden-nav'>
     <nav class='hidden-nav'>
       <button
         class='toggle'>
-        More
+        Menu
       </button>
       <a href='<%- url_for('/') %>'>
         <i class="fa fa-home"></i>
