@@ -20,17 +20,10 @@
       targetEl.classList.remove('open');
     },
 
-    closeShareMenu: function(e) {
+    selectAll: function(e) {
       var el = e.currentTarget;
-      var targetEl = $(el.dataset.target)[0];
-      targetEl.classList.remove('open');
+      el.setSelectionRange(0, el.value.length);
     },
-
-    toggleShareMenu: function(e) {
-      var el = e.currentTarget;
-      var targetEl = $(el.dataset.target)[0];
-      targetEl.classList.toggle('open');
-    }
   };
 
   // Attach all event handlers.

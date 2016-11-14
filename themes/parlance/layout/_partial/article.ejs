@@ -31,14 +31,14 @@
       <% } %>
     </div>
     <footer class="article-footer">
-      <div class='share-menu'>
-        <button
-          data-event-handler='click:toggleShareMenu'
-          data-target=".share-links"
-          class="article-share-link share-toggle">
+      <div
+        data-event-handler='mouseenter:openNav,mouseleave:closeNav'
+        data-target=".share-box.index-<%= post._id %>"
+        class='share-menu'>
+        <button class="article-share-link share-toggle">
           <%= __('share') %>
         </button>
-        <div class='share-box'>
+        <div class='share-box index-<%= post._id %>'>
           <input
             type='text'
             class='article-share-input'
