@@ -19,6 +19,18 @@
       var targetEl = $(el.dataset.target)[0];
       targetEl.classList.remove('open');
     },
+
+    closeShareMenu: function(e) {
+      var el = e.currentTarget;
+      var targetEl = $(el.dataset.target)[0];
+      targetEl.classList.remove('open');
+    },
+
+    toggleShareMenu: function(e) {
+      var el = e.currentTarget;
+      var targetEl = $(el.dataset.target)[0];
+      targetEl.classList.toggle('open');
+    }
   };
 
   // Attach all event handlers.
@@ -34,7 +46,7 @@
 
       // Avoid silent handler undefined issues
       if (!handler) {
-        console.warn('Tried to assign undefined "' + handlerName + '" handler to "' + event + '" event.');
+        console.warn('Tried to assign undefined "' + handlerName + '" handler to "' + event + '" event.', el);
       }
 
       el.addEventListener(event, handler);

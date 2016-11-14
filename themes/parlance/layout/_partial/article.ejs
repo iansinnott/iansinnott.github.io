@@ -31,7 +31,44 @@
       <% } %>
     </div>
     <footer class="article-footer">
-      <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
+      <div class='share-menu'>
+        <button
+          data-event-handler='click:toggleShareMenu'
+          data-target=".share-links"
+          class="article-share-link share-toggle">
+          <%= __('share') %>
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            data-event-handler='focus:selectAll'
+            value='<%= post.permalink %>' />
+          <nav class='share-links'>
+            <a
+              data-event-handler='click:shareTo'
+              data-platform="twitter"
+              data-permalink="<%- post.permalink %>"
+              data-id="<%= post._id %>"
+              class="share-link share-twitter">
+            </a>
+            <a
+              data-event-handler='click:shareTo'
+              data-platform="facebook"
+              data-permalink="<%- post.permalink %>"
+              data-id="<%= post._id %>"
+              class="share-link share-facebook">
+            </a>
+            <a
+              data-event-handler='click:shareTo'
+              data-platform="google"
+              data-permalink="<%- post.permalink %>"
+              data-id="<%= post._id %>"
+              class="share-link share-google">
+            </a>
+          </nav>
+        </div>
+      </div>
       <% if (post.comments && config.disqus_shortname){ %>
         <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
       <% } %>
