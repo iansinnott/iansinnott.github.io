@@ -9,14 +9,12 @@
   // using context.
   var handlers = {
     openNav: function(e) {
-      var el = e.currentTarget;
-      var targetEl = $(el.dataset.target)[0];
+      var targetEl = $(e.currentTarget.dataset.target)[0];
       targetEl.classList.add('open');
     },
 
     closeNav: function(e) {
-      var el = e.currentTarget;
-      var targetEl = $(el.dataset.target)[0];
+      var targetEl = $(e.currentTarget.dataset.target)[0];
       targetEl.classList.remove('open');
     },
 
@@ -25,8 +23,6 @@
       el.setSelectionRange(0, el.value.length);
     },
   };
-
-  // Attach all event handlers.
 
   var elements = $('[data-event-handler]');
 

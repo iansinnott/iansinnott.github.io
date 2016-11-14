@@ -45,27 +45,19 @@
             data-event-handler='focus:selectAll'
             value='<%= post.permalink %>' />
           <nav class='share-links'>
+            <% var encodedPermalink = encodeURIComponent(post.permalink) %>
             <a
-              data-event-handler='click:shareTo'
-              data-platform="twitter"
-              data-permalink="<%- post.permalink %>"
-              data-id="<%= post._id %>"
-              class="share-link share-twitter">
-            </a>
+              href='https://twitter.com/intent/tweet?url=<%- encodedPermalink %>'
+              target='_blank'
+              class="share-link share-twitter"></a>
             <a
-              data-event-handler='click:shareTo'
-              data-platform="facebook"
-              data-permalink="<%- post.permalink %>"
-              data-id="<%= post._id %>"
-              class="share-link share-facebook">
-            </a>
+              href='https://www.facebook.com/sharer.php?u=<%- encodedPermalink %>'
+              target='_blank'
+              class="share-link share-facebook"></a>
             <a
-              data-event-handler='click:shareTo'
-              data-platform="google"
-              data-permalink="<%- post.permalink %>"
-              data-id="<%= post._id %>"
-              class="share-link share-google">
-            </a>
+              href='https://plus.google.com/share?url=<%- encodedPermalink %>'
+              target='_blank'
+              class="share-link share-google"></a>
           </nav>
         </div>
       </div>
