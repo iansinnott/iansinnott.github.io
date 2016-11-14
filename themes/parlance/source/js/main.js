@@ -1,3 +1,11 @@
+/**
+ * NOTE: This script is not being used. Initially I had set it up to provide my
+ * own mini event handling framework, however it turned out that almost all the
+ * JS uses cases I had could actually be handled in CSS with :hover. All that
+ * was left was auto-selecting the input of the share menu whne a user focuses
+ * it, and since it's such a short function I simply inlined it in the `onfocus`
+ * event handler.
+ */
 (function() {
   var $ = function(selector) {
     return [].slice.call(document.querySelectorAll(selector));

@@ -41,7 +41,7 @@
           <input
             type='text'
             class='article-share-input'
-            data-event-handler='focus:selectAll'
+            onfocus='this.setSelectionRange(0, this.value.length);'
             value='<%= post.permalink %>' />
           <nav class='share-links'>
             <% var encodedPermalink = encodeURIComponent(post.permalink) %>
