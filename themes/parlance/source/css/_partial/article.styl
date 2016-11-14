@@ -149,7 +149,7 @@
         background: darken(color-link, 20%)
 
 .article-more-link
-  transition(all, 0.4s)
+  tween('all', 0.4s)
   display block
   line-height: 1em
   padding: 6px 15px
@@ -201,17 +201,19 @@
     padding-right: 6px
 
 .share-box
-  // display none
+  tween('opacity', 0.2s)
+  opacity 0
+  pointer-events none
   background: white
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2)
-  display block
   border-radius: 3px
   position absolute
   top 100%
   right 0
   z-index: 2
   &.open
-    display block
+    opacity 1
+    pointer-events all
 
 .share-links
   display flex

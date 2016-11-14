@@ -33,9 +33,17 @@ avoid-column-break()
 // -----------------------------------------------------------------------------
 // Custom below here...
 // -----------------------------------------------------------------------------
+cubic = cubic-bezier(0, 0, 0.25, 1)
 
-transition(prop = transform, duration = 0.8s, easing = cubic-bezier(0, 0, 0.25, 1))
-  transition prop duration easing
+// Hexo uses an old version of sylus, ugh
+// tween(props = transform, duration = 0.8s, easing = cubic)
+//   t = ()
+//   for p in props
+//     push(t, join(' ', p duration easing))
+//   transition unquote(join(', ', t))
+
+tween(prop = 'transform', duration = 0.8s, easing = cubic)
+  transition unquote(join(' ', prop duration easing))
 
 reset-button()
   appearance none
