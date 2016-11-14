@@ -1,5 +1,4 @@
 (function() {
-  // Helpers
   var $ = function(selector) {
     return [].slice.call(document.querySelectorAll(selector));
   };
@@ -8,16 +7,6 @@
   // element that captured the event, but I chose to use current target to avoid
   // using context.
   var handlers = {
-    openNav: function(e) {
-      var targetEl = $(e.currentTarget.dataset.target)[0];
-      targetEl.classList.add('open');
-    },
-
-    closeNav: function(e) {
-      var targetEl = $(e.currentTarget.dataset.target)[0];
-      targetEl.classList.remove('open');
-    },
-
     selectAll: function(e) {
       var el = e.currentTarget;
       el.setSelectionRange(0, el.value.length);

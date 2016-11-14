@@ -74,11 +74,11 @@ menu-bg = color-footer-background
     background menu-bg
     width 200px
     transform translateX((@width * .7))
-    z-index 3
+    z-index 4
     @media mq-mobile
       transform translateX(100%)
       position absolute
-    &.open
+    &:hover
       transform translateX(0)
 
       .face
