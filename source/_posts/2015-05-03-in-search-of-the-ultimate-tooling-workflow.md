@@ -55,7 +55,7 @@ Stylus is great. It's the most compact CSS syntax I've come across and it's writ
 
 ## Conclusion: Increased productivity
 
-This new workflow has really made me more productive. Writing single page apps now takes a fraction of the time it used to take. This is admittedly due in large part to [React][react] being an excellent library for productivity, but whatever. Still counts :beers:.
+This new workflow has really made me more productive. Writing single page apps now takes a fraction of the time it used to take. This is admittedly due in large part to [React][react] being an excellent library for productivity, but whatever. Still counts 🍻.
 
 [webpack]: http://webpack.github.io/
 [react]: https://facebook.github.io/react/

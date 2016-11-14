@@ -42,4 +42,4 @@ Then in `index.html`:
 {{ "{{ post.content | truncatewords: site.excerpt_length "}}}}
 ```
 
-This is the approach I took because it feels cleaner to me, but use whatever works for you. That's all, hope this helps :sunglasses:
+This is the approach I took because it feels cleaner to me, but use whatever works for you. That's all, hope this helps 😎

@@ -12,7 +12,7 @@ tags:
 
 ### Flow
 
-[Flow][] is like ESLint on steroids. It is a static type checker for JavaScript. It let's you add types to any existing JS code. **Why would you want to do this?**  The short answer is because JS :heart: runtime errors, but runtime errors make your users sad. The more helpful answer is that Flow will analyze your codebase and catch bugs that may otherwise go unnoticed until you're app is already deployed to production. There is an entire site dedicated to explaining Flow, so I will let you check that out for more detailed information: <http://flowtype.org/>
+[Flow][] is like ESLint on steroids. It is a static type checker for JavaScript. It let's you add types to any existing JS code. **Why would you want to do this?**  The short answer is because JS ❤️ runtime errors, but runtime errors make your users sad. The more helpful answer is that Flow will analyze your codebase and catch bugs that may otherwise go unnoticed until you're app is already deployed to production. There is an entire site dedicated to explaining Flow, so I will let you check that out for more detailed information: <http://flowtype.org/>
 
 <!-- more -->
 
@@ -225,7 +225,7 @@ class App extends React.Component {
 render(<App />, document.getElementById('root'));
 ```
 
-Pretty slick, right? :sunglasses:
+Pretty slick, right? 😎
 
 **NOTE:** You will need to have the proper module loaders set up with Webpack
 for this to even work in the first place

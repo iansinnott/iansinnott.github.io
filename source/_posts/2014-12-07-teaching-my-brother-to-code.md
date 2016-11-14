@@ -32,7 +32,7 @@ Each have their own challenges.
 
 #### HTML
 
-HTML is busywork. It's not particularly difficult to understand or implement, the number of tags and attributes are all quite limited and there's no logic to consider. That being said, it's just not interesting. In fact, writing HTML is intensely boring, especially once you know what you're doing. (That's why I moved to Jade :smile:.)
+HTML is busywork. It's not particularly difficult to understand or implement, the number of tags and attributes are all quite limited and there's no logic to consider. That being said, it's just not interesting. In fact, writing HTML is intensely boring, especially once you know what you're doing. (That's why I moved to Jade 😄.)
 
 #### CSS
 

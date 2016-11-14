@@ -20,7 +20,7 @@ Once you've added the custom processor you should get a little nondescript butto
 
 ![Custom processor button in Marked](http://dropsinn.s3.amazonaws.com/Screen_Shot_2015-01-26_at_2_27_38_PM.jpg)
 
-If you click that button you should now get markdown rendered through your custom processor! Nice :sunglasses:
+If you click that button you should now get markdown rendered through your custom processor! Nice 😎
 
 Hope that helps anyone who ran into the same problem I did.
 

@@ -18,7 +18,7 @@ This now means that my two primary web properties are both using SSL, and one of
 
 ## Free SSL with LetsEncrypt
 
-If you want SSL on your site for free there's a new certificate authority called [LetsEncrypt] which is completely free! :clap: This is excellent news, and definitely an option for you, especially if you're managing your own server.
+If you want SSL on your site for free there's a new certificate authority called [LetsEncrypt] which is completely free! 👏 This is excellent news, and definitely an option for you, especially if you're managing your own server.
 
 My main site, iansinnott.com, actually uses LetsEncrypt under the hood through [Netlify][], but it's not exactly free because I do pay [Netlify][] to host my site every month.
 

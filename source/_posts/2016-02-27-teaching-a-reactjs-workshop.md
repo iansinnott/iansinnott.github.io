@@ -5,7 +5,7 @@ tags:
   - react
 ---
 
-Who wants to be a speaker? This guy! :raised_hands:
+Who wants to be a speaker? This guy! 🙌
 
 ![Ian Speaking at Real World React Meetup](https://dropsinn.s3.amazonaws.com/rwr-ian-1.jpg "Ian Speaking at Real World React Meetup")
 
@@ -35,7 +35,7 @@ The workshop went well, but it certainly wasn't perfect. There are quite a few t
 
 ### Rehearse
 
-Yup, presentations go more smoothly if you've rehearsed them beforehand. Who knew? :sweat_smile: The presentations still went quite well considering I didn't have time to rehearse, but they could have been smoother.
+Yup, presentations go more smoothly if you've rehearsed them beforehand. Who knew? 😅 The presentations still went quite well considering I didn't have time to rehearse, but they could have been smoother.
 
 ### Keep it concise
 

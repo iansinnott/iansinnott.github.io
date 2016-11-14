@@ -32,7 +32,7 @@ The VM's Host only interface IP address is: 192.168.55.555
 
 Putting that into the browser will along with the correct port will give you `192.168.55.555:49154` and you will be able to access your web app as expected.
 
-This may all be very simple for anyone familiar with networking, but it took me a good amount of time to figure this out with no error message. I guess you should just run Docker on Linux :wink:
+This may all be very simple for anyone familiar with networking, but it took me a good amount of time to figure this out with no error message. I guess you should just run Docker on Linux 😉
 
 [bd]: http://boot2docker.io/
 

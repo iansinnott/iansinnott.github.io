@@ -77,7 +77,7 @@ Second, update your Hexo settings to recognize Jekyll-style post filenames. In `
 new_post_name: :year-:month-:day-:title.md # File name used to identify posts
 ```
 
-Now restart the Hexo server and you should see all your content :sunglasses:
+Now restart the Hexo server and you should see all your content 😎
 
 ## Gripes
 

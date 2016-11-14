@@ -5,7 +5,7 @@ tags:
   - webpack
 ---
 
-_**TL;DR:** I'm going to show you how to test Webpack plugins. I'll even show you how to integrate with a CI server :smile:. The trick is to use the Webpack [Node API][]_.
+_**TL;DR:** I'm going to show you how to test Webpack plugins. I'll even show you how to integrate with a CI server 😄. The trick is to use the Webpack [Node API][]_.
 
 Ever built a [Webpack Plugin][]? Ever wondered how to test that awesome plugin you just built? If so, this article is for you.
 
@@ -21,7 +21,7 @@ Even if the first page of a google search didn't answer my questions, I figured 
 
 [Extract Text Webpack Plugin]:https://github.com/webpack/extract-text-webpack-plugin
 
-I figured that such a high profile plugin is likely to be well tested and it is. The plugin has a whole [suite of tests][extract tests] which you can check out and use as a reference for writing your own. Nice :boom:
+I figured that such a high profile plugin is likely to be well tested and it is. The plugin has a whole [suite of tests][extract tests] which you can check out and use as a reference for writing your own. Nice 💥
 
 ## Writing the tests
 
@@ -94,7 +94,7 @@ Hopefully this helps you out. Webpack plugins are crucial pieces of many build p
 
 Feel free to [star my plugin repository][static] if you liked this write up, or leave me a comment if anything wasn't clear.
 
-Cheers :beers:
+Cheers 🍻
 
 [static]:https://github.com/iansinnott/react-static-webpack-plugin
 [Webpack Plugin]: https://github.com/webpack/docs/wiki/how-to-write-a-plugin

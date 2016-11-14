@@ -8,7 +8,7 @@ My diet choices have been generally unhealthy for the past year, but lately I've
 - Carbs: 45g
 - Fats: 90g
 
-This is a very minimal diet as it comes out to ~1800 calories. The point being, I would put my body at a caloric deficit every day and lose weight. Simple :sunglasses:
+This is a very minimal diet as it comes out to ~1800 calories. The point being, I would put my body at a caloric deficit every day and lose weight. Simple 😎
 
 ### So much protein
 
@@ -42,7 +42,7 @@ So with everything tallied up I was getting about 300g of protein _every single 
 
 ### Revising
 
-So my takeaway from all this is that you should always be sure to know what your eating before you put it in your mouth. All that extra protein meant that I wasn't hitting my caloric goals and probably had a caloric surplus most days during the past week. Oh well, lesson learned. From now on I'm going to cut back on the chicken and bring my macros more inline with where they need to be in order to get abs. :poultry_leg: + :leaves: = :muscle:
+So my takeaway from all this is that you should always be sure to know what your eating before you put it in your mouth. All that extra protein meant that I wasn't hitting my caloric goals and probably had a caloric surplus most days during the past week. Oh well, lesson learned. From now on I'm going to cut back on the chicken and bring my macros more inline with where they need to be in order to get abs. 🍗 + 🍃 = 💪
 
 [ravi]: http://physiquegeek.wordpress.com/
 
