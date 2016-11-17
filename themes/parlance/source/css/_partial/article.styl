@@ -179,7 +179,12 @@
     content: "#"
 
 .article-comment-link
+  tween('transform', 0.2s)
   float: right
+  color: color-link
+  text-decoration none
+  &:hover
+    transform scale(1.1)
   &:before
     content: "\f075"
     font-family: font-icon

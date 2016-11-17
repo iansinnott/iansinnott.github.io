@@ -58,7 +58,7 @@
           </nav>
         </div>
       </div>
-      <% if (post.comments && env.env === 'production'){ %>
+      <% if (post.comments) { %>
         <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
       <% } %>
       <%- partial('post/tag') %>
