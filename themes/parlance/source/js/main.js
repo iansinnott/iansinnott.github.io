@@ -15,9 +15,23 @@
   // element that captured the event, but I chose to use current target to avoid
   // using context.
   var handlers = {
-    selectAll: function(e) {
-      var el = e.currentTarget;
-      el.setSelectionRange(0, el.value.length);
+    show: function(e) {
+      var target = $(e.currentTarget.dataset.target)[0];
+      !!target && target.classList.add('open');
+    },
+
+    toggle: function(e) {
+      var target = $(e.currentTarget.dataset.target)[0];
+      !!target && target.classList.toggle('open');
+    },
+
+    hide: function(e) {
+      var target = $(e.currentTarget.dataset.target)[0];
+      !!target && target.classList.remove('open');
+    },
+
+    preventDefault: function(e) {
+      e.preventDefault();
     },
   };
 

@@ -1,5 +1,14 @@
 black = #2d2d2d
 menu-bg = color-footer-background
+hover-state()
+  &:hover
+    transform translateX(0)
+
+    .face
+      opacity 0.6
+      &:hover
+        opacity 1
+
 #header
   height 60px
 
@@ -32,7 +41,7 @@ menu-bg = color-footer-background
 
   .toggle
     reset-button()
-    display none
+    display flex
     align-items center
     position absolute
     top 0
@@ -42,8 +51,11 @@ menu-bg = color-footer-background
     text-transform uppercase
     transform translateX(-99%)
     color black
+    pointer-events none
+    opacity 0
     @media mq-mobile
-      display flex
+      opacity 1
+      pointer-events all
 
   .text
     margin-right 10px
@@ -79,13 +91,9 @@ menu-bg = color-footer-background
       transform translateX(100%)
       position absolute
     @media mq-not-mobile
-      &:hover
-        transform translateX(0)
-
-        .face
-          opacity 0.6
-          &:hover
-            opacity 1
+      hover-state()
+    &.open
+      hover-state()
 
     hr
       border none

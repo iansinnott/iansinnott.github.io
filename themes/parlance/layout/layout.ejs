@@ -36,7 +36,10 @@
   <%- partial('_partial/google-analytics') %>
 </head>
 <body>
-  <div id="container">
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
     <div id="wrap">
       <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
       <div class="outer">

@@ -8,6 +8,8 @@
   <div class='nav-menu'>
     <nav class='hidden-nav'>
       <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
         class='toggle'>
         <div class='burger'>
           <span></span>
@@ -30,7 +32,7 @@
 
       <hr />
 
-      <a href="https://www.iansinnott.com/" class='tooltip' data-tooltip='blog'>
+      <a href="https://www.iansinnott.com/">
         <i class="fa fa-flag"></i>
         Site
       </a>
