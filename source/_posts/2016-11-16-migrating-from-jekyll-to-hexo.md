@@ -3,7 +3,9 @@ title: Migrating from Jekyll to Hexo
 tags:
   - blog
   - javascript
+date: 2016-11-16 20:55:30
 ---
+
 
 **TL;DR:** I migrated my blog from Jekyll to Hexo. This is everything you need to know to do the same.
 
