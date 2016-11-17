@@ -71,4 +71,5 @@ theme: parlance
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
+  repo: git@github.com:iansinnott/iansinnott.github.io.git
   branch: master
