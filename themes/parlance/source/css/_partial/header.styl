@@ -78,13 +78,14 @@ menu-bg = color-footer-background
     @media mq-mobile
       transform translateX(100%)
       position absolute
-    &:hover
-      transform translateX(0)
+    @media mq-not-mobile
+      &:hover
+        transform translateX(0)
 
-      .face
-        opacity 0.6
-        &:hover
-          opacity 1
+        .face
+          opacity 0.6
+          &:hover
+            opacity 1
 
     hr
       border none
