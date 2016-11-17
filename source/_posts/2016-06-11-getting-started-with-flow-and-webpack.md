@@ -73,7 +73,7 @@ If you see a bunch of errors after just setting up Flow that is because Flow typ
 
 However, the downside is that when you first set up Flow you might see something like this:
 
-![Flow Errors](http://dropsinn.s3.amazonaws.com/Screen_Shot_2016-06-11_at_5_50_55_PM.png)
+![Flow Errors](https://dropsinn.s3.amazonaws.com/Screen_Shot_2016-06-11_at_5_50_55_PM.png)
 
 In this example Flow is detecting type errors in the `fbjs` module, which is required by React. Getting past this issue is simple enough, simply add a new ignore line to `.flowconfig`. I have no idea how regex works in OCaml, but luckily there's no need. The Flow docs provide plenty of examples to show us how to ignore a certain directory. The syntax is `.*/path/to/dir/.*`. So to ignore everything under `node_modules/fbjs` you can update your `.flowconfig` as follows:
 

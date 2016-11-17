@@ -57,7 +57,7 @@ hexo server
 
 Now let's get all your blog posts migrated over to the new system. When running the server you should see the Hello World post as your first post on the homepage. You will also see the default Hexo theme. Here's what that looks like:
 
-![Default hexo blog](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202016-11-12%20at%203.09.34%20PM.png)
+![Default hexo blog](https://dropsinn.s3.amazonaws.com/Screen%20Shot%202016-11-12%20at%203.09.34%20PM.png)
 
 That "Hello World" post is the only post in your blog. Hexo keeps all your posts at `source/_posts`. Let's remove the default post.
 

@@ -12,13 +12,13 @@ sudo gem install redcarpet
 
 In the "Advanced" section of Marked's preferences you can find the custom processor section:
 
-![Custom Marked Processor](http://dropsinn.s3.amazonaws.com/Screen_Shot_2015-01-26_at_2_26_54_PM.jpg)
+![Custom Marked Processor](https://dropsinn.s3.amazonaws.com/Screen_Shot_2015-01-26_at_2_26_54_PM.jpg)
 
 **Note:** You _might_ have to click the "Update Permissions" button since Marked may not have read access to wherever you're `redcarpet` executable is located.
 
 Once you've added the custom processor you should get a little nondescript button near the lower right-hand side of your Marked windows:
 
-![Custom processor button in Marked](http://dropsinn.s3.amazonaws.com/Screen_Shot_2015-01-26_at_2_27_38_PM.jpg)
+![Custom processor button in Marked](https://dropsinn.s3.amazonaws.com/Screen_Shot_2015-01-26_at_2_27_38_PM.jpg)
 
 If you click that button you should now get markdown rendered through your custom processor! Nice 😎
 
