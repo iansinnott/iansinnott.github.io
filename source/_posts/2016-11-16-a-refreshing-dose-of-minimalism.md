@@ -12,7 +12,7 @@ Once I was satisfied with the event handling logic I had set up I sat back and r
 
 It occurred to me that I could actually use the `:hover` state to accomplish all of my open/close menu interactions. Done! A few more lines eliminated. But I still had the `focus` event handler I was using to select all text in a text box whenever a user put their cursor inside it. I don't think CSS can do that... so I did end up using JS for this. I took it out of my script file and in-lined it on the input directly.
 
-That was the last event I was handling so now I scrapped my whole JS file with its event logic. Wow! No external JS file. How hovel... 😕.
+That was the last event I was handling so now I scrapped my whole JS file with its event logic. Wow! No external JS file. How novel... 😕.
 
 All in all here is the extent of the JS I wrote for the site:
 
