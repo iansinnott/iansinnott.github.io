@@ -50,9 +50,9 @@
     <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
 
     <%/* Discuss */%>
-    <% if (config.disqus_shortname) { %>
+    <% if (env.env === 'production') { %>
     <script>
-      var disqus_shortname = '<%= config.disqus_shortname %>';
+      var disqus_shortname = 'iansinnott';
       <% if (page.permalink){ %>
       var disqus_url = '<%= page.permalink %>';
       <% } %>
