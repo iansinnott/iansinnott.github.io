@@ -2,7 +2,9 @@
 title: A refreshing dose of minimalism
 tags:
   - javascript
+date: 2016-11-16 21:00:43
 ---
+
 
 Today I finished rebuilding my blog using Hexo (see last blog post for details). It's a blog, so I knew I wouldn't need too much JS. I started with a blank file and started coding.
 
