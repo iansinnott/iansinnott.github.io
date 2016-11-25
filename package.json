@@ -6,9 +6,10 @@
     "version": "3.2.2"
   },
   "scripts": {
+    "clean": "hexo clean",
     "start": "hexo server --draft",
     "build": "cross-env NODE_ENV=production hexo g",
-    "deploy": "npm run build && hexo deploy"
+    "deploy": "npm run clean && npm run build && hexo deploy"
   },
   "dependencies": {
     "hexo": "^3.2.2",
