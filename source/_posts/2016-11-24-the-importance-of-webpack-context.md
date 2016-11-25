@@ -30,7 +30,7 @@ After looking at the [Webpack docs][] it quickly became apparent what was happen
 `context` in the `webpack.config.js`
 
 > The base directory (absolute path!) for resolving the entry option. If output.pathinfo is set, the included pathinfo is shortened to this directory.
-> _Default: process.cwd()_
+> _**Default:** process.cwd()_
 
 [Webpack docs]: https://webpack.github.io/docs/configuration.html#context
 
