@@ -12,7 +12,7 @@ tags:
 
 [Gatsby 1.0][Gatsby] was just recently published and I got excited. I've been excited about static sites for _a while_, especially in combination with React. I've [spoken publicly about building static sites with React](https://www.youtube.com/watch?v=_1k2HEPH6fY) and two of my top repositories on GitHub are just for building static sites with React...
 
-![Blurred Repos](http://dropsinn.s3.amazonaws.com/blurred-repos.png)
+![Blurred Repos](https://dropsinn.s3.amazonaws.com/blurred-repos.png)
 
 So I was pretty pumped to see Gatsby hit 1.0. And so far it has not disappointed.
 
@@ -20,7 +20,7 @@ So I was pretty pumped to see Gatsby hit 1.0. And so far it has not disappointed
 
 OK, enough context! Let's migrate something. I chose to start by migrating [my personal site](https://www.iansinnott.com) since it's already built with React and is literally 1 page. Here it is—the entire site:
 
-![Home page screenshot](http://dropsinn.s3.amazonaws.com/www.iansinnott.com-screenshot-2017-07-09.png)
+![Home page screenshot](https://dropsinn.s3.amazonaws.com/www.iansinnott.com-screenshot-2017-07-09.png)
 
 ### Adding Gatsby to an exiting project
 
@@ -52,7 +52,7 @@ This will start a local server. Point your browser to whatever local port it giv
 
 However, when I loaded up the dev server in the browser I was greeted by this hot error 😐 (note, this may well not happen for you):
 
-![Gatsby dev server build error](http://dropsinn.s3.amazonaws.com/Screen%20Shot%202017-07-08%20at%2012.07.49%20PM.png)
+![Gatsby dev server build error](https://dropsinn.s3.amazonaws.com/Screen%20Shot%202017-07-08%20at%2012.07.49%20PM.png)
 
 If you _do_ see something like that not to worry. It's an issue with conflicting versions of react-proxy probably resulting from differing versions of react-hot-loader. You can check this with `npm ls react-proxy`. Anyway, blow away your `node_modules` folder and install from scratch. Also check your `package.json` dependencies to make sure you aren't depending on any hot loading packages. In fact, now would be a good time to remove almost all your devDependencies from package.json. Gatsby is an entire build pipeline that will take care of most things for you, so consider critically every one of your dev dependencies. After manually pruning mine looked like this:
 
