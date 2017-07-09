@@ -1,0 +1,293 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Migrating to GatsbyJS Part 1 | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Abstract: Migrating a static site to Gatsby is pretty simple. I’ll walk through how I did it and the pitfalls along the way.
+Gatsby 1.0 was just recently published and I got excited. I’ve been excited">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Migrating to GatsbyJS Part 1">
+<meta property="og:url" content="https://blog.iansinnott.com/migrating-to-gatsbyjs-part-1/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="Abstract: Migrating a static site to Gatsby is pretty simple. I’ll walk through how I did it and the pitfalls along the way.
+Gatsby 1.0 was just recently published and I got excited. I’ve been excited">
+<meta property="og:image" content="http://dropsinn.s3.amazonaws.com/blurred-repos.png">
+<meta property="og:image" content="http://dropsinn.s3.amazonaws.com/www.iansinnott.com-screenshot-2017-07-09.png">
+<meta property="og:image" content="http://dropsinn.s3.amazonaws.com/Screen%20Shot%202017-07-08%20at%2012.07.49%20PM.png">
+<meta property="og:updated_time" content="2017-07-09T19:28:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Migrating to GatsbyJS Part 1">
+<meta name="twitter:description" content="Abstract: Migrating a static site to Gatsby is pretty simple. I’ll walk through how I did it and the pitfalls along the way.
+Gatsby 1.0 was just recently published and I got excited. I’ve been excited">
+<meta name="twitter:image" content="http://dropsinn.s3.amazonaws.com/blurred-repos.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-migrating-to-gatsbyjs-part-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/migrating-to-gatsbyjs-part-1/" class="article-date">
+  <time datetime="2017-07-09T17:44:59.000Z" itemprop="datePublished">2017-07-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Migrating to GatsbyJS Part 1
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Abstract:</strong> Migrating a static site to <a href="https://www.gatsbyjs.org/" target="_blank" rel="external">Gatsby</a> is pretty simple. I’ll walk through how I did it and the pitfalls along the way.</p>
+<p><a href="https://www.gatsbyjs.org/" target="_blank" rel="external">Gatsby 1.0</a> was just recently published and I got excited. I’ve been excited about static sites for <em>a while</em>, especially in combination with React. I’ve <a href="https://www.youtube.com/watch?v=_1k2HEPH6fY" target="_blank" rel="external">spoken publicly about building static sites with React</a> and two of my top repositories on GitHub are just for building static sites with React…</p>
+<p><img src="http://dropsinn.s3.amazonaws.com/blurred-repos.png" alt="Blurred Repos"></p>
+<p>So I was pretty pumped to see Gatsby hit 1.0. And so far it has not disappointed.</p>
+<h2 id="Migrating-to-Gatsby-1-0"><a href="#Migrating-to-Gatsby-1-0" class="headerlink" title="Migrating to Gatsby 1.0"></a>Migrating to Gatsby 1.0</h2><p>OK, enough context! Let’s migrate something. I chose to start by migrating <a href="https://www.iansinnott.com" target="_blank" rel="external">my personal site</a> since it’s already built with React and is literally 1 page. Here it is—the entire site:</p>
+<p><img src="http://dropsinn.s3.amazonaws.com/www.iansinnott.com-screenshot-2017-07-09.png" alt="Home page screenshot"></p>
+<h3 id="Adding-Gatsby-to-an-exiting-project"><a href="#Adding-Gatsby-to-an-exiting-project" class="headerlink" title="Adding Gatsby to an exiting project"></a>Adding Gatsby to an exiting project</h3><p>Step 1 is to <strong>install Gatsby</strong>. I’m also adding <code>gatsby-link</code> and the react helmet plugin because I knew I would need them:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">yarn add gatsby gatsby-link gatsby-plugin-react-helmet</div></pre></td></tr></table></figure>
+<p><strong>Create a <code>gatsby-config.js</code> file</strong> in the project root and drop the following into it:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// gatsby-config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">siteMetadata</span>: &#123;</div><div class="line">    <span class="attr">title</span>: <span class="string">`Gatsby Default Starter`</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [<span class="string">`gatsby-plugin-react-helmet`</span>],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Run Gatsby</strong> to make sure everything is working.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">gatsby develop</div></pre></td></tr></table></figure>
+<p>This will start a local server. Point your browser to whatever local port it gives you and try it out. You should see a Gatsby 404 page. This is because it expects your source code to be in the <code>src/</code> directory. In my project all my source is in my <code>client/</code> directory so Gatsby has nothing to find.</p>
+<p>However, when I loaded up the dev server in the browser I was greeted by this hot error 😐 (note, this may well not happen for you):</p>
+<p><img src="http://dropsinn.s3.amazonaws.com/Screen%20Shot%202017-07-08%20at%2012.07.49%20PM.png" alt="Gatsby dev server build error"></p>
+<p>If you <em>do</em> see something like that not to worry. It’s an issue with conflicting versions of react-proxy probably resulting from differing versions of react-hot-loader. You can check this with <code>npm ls react-proxy</code>. Anyway, blow away your <code>node_modules</code> folder and install from scratch. Also check your <code>package.json</code> dependencies to make sure you aren’t depending on any hot loading packages. In fact, now would be a good time to remove almost all your devDependencies from package.json. Gatsby is an entire build pipeline that will take care of most things for you, so consider critically every one of your dev dependencies. After manually pruning mine looked like this:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&quot;devDependencies&quot;: &#123;</div><div class="line">  &quot;babel-eslint&quot;: &quot;^7.2.3&quot;,</div><div class="line">  &quot;eslint&quot;: &quot;^4.1.1&quot;,</div><div class="line">  &quot;eslint-config-zen&quot;: &quot;^3.0.0&quot;,</div><div class="line">  &quot;eslint-plugin-flowtype&quot;: &quot;^2.34.1&quot;,</div><div class="line">  &quot;eslint-plugin-react&quot;: &quot;^7.1.0&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>Yup, all loaders and plugins are gone. Gatsby isn’t even in this list because it’s a full-blown dependency, not just a devDependency.</p>
+<p>So, once you’ve cleared out your old dev dependencies do a fresh install. Then restart the dev server:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">yarn upgrade</div><div class="line">gatsby develop</div></pre></td></tr></table></figure>
+<p>You should see the correct 404 page in your browser.</p>
+<h3 id="Moving-source-code-around"><a href="#Moving-source-code-around" class="headerlink" title="Moving source code around"></a>Moving source code around</h3><p>Here is the structure of my source code before and after the migration. I’m putting them together here for easy comparison, but I will walk through all of what changed.</p>
+<p><strong>Before:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.</div><div class="line">├── client</div><div class="line">│   ├── components</div><div class="line">│   │   ├── App.js</div><div class="line">│   │   ├── App.styl</div><div class="line">│   │   ├── face.png</div><div class="line">│   │   └── favicon.ico</div><div class="line">│   ├── lib</div><div class="line">│   │   └── vars.styl</div><div class="line">│   ├── index.js</div><div class="line">│   └── routes.js</div><div class="line">├── package.json</div><div class="line">├── template.js</div><div class="line">├── webpack.config.dev.js</div><div class="line">└── webpack.config.prod.js</div></pre></td></tr></table></figure>
+<p><strong>After:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.</div><div class="line">├── src</div><div class="line">│   ├── components</div><div class="line">│   │   ├── App.styl</div><div class="line">│   │   ├── face.png</div><div class="line">│   │   └── favicon.ico</div><div class="line">│   ├── layouts</div><div class="line">│   │   └── index.js</div><div class="line">│   ├── lib</div><div class="line">│   │   └── vars.styl</div><div class="line">│   ├── pages</div><div class="line">│   │   ├── 404.js</div><div class="line">│   │   └── index.js</div><div class="line">│   └── html.js</div><div class="line">├── gatsby-config.js</div><div class="line">└── package.json</div></pre></td></tr></table></figure>
+<p>Let’s start with the quick wins:</p>
+<ul>
+<li>We no longer need webpack config so remove them:<br><code>rm webpack.*</code></li>
+<li>Gatsby expects everything under the <code>src</code> directory so let’s make that happen<br><code>mv client src</code></li>
+<li>Create <code>layouts</code> and <code>pages</code> directories under <code>src</code><br><code>mkdir -p src/layouts</code><br><code>mkdir -p src/pages</code></li>
+</ul>
+<p>Now let’s talk about those directories:</p>
+<ul>
+<li><code>src/layouts/</code>: Is where you put wrapper components. Markup that will generally “go around” your individual pages. This usually means headers and footers.</li>
+<li><code>src/pages/</code>: This is the meat of a Gatsby site. It’s where the content goes. The rule of thumb is that you should construct your <code>src/pages</code> directory to build your URLs.</li>
+</ul>
+<p>For my purposes I had one layout and one index page. Of course I also wanted a 404 page so I created all three. This meant a bit of refactoring since I had everything together in <code>App.js</code>.</p>
+<p>I’m migrating from React Router so let’s take a quick look at my route config:</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> routes = (</div><div class="line">  &lt;Route path=‘/' component=&#123;App&#125;&gt;</div><div class="line">    &lt;IndexRoute component=&#123;Home&#125; /&gt;</div><div class="line">    &lt;Route path='*' component=&#123;NotFound&#125; /&gt;</div><div class="line">  &lt;/Route&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>Pretty simple right? When migrating over to Gatsby these components had a direct mapping to files in the new structure:</p>
+<ul>
+<li><code>App</code> -&gt; <code>layouts/index.js</code></li>
+<li><code>Home</code> -&gt; <code>pages/index.js</code></li>
+<li><code>NotFound</code> -&gt; <code>pages/404.js</code></li>
+</ul>
+<p>Migrating your components will be specific to your project so I’ll just point you to the minimal gatsby example which includes all the relevant files: <a href="https://github.com/gatsbyjs/gatsby/tree/v1.0.8/examples/no-plugins" target="_blank" rel="external">examples/no-plugins</a>.</p>
+<h2 id="CSS-and-Stylus-support"><a href="#CSS-and-Stylus-support" class="headerlink" title="CSS and Stylus support"></a>CSS and Stylus support</h2><p>Up until this point I had commented out all my CSS and <a href="http://stylus-lang.com/" target="_blank" rel="external">Stylus</a> imports since I figured they might cause issues. In the case of CSs this fear was unfounded. Gatsby does a great job of handling CSS imports right out of the box.</p>
+<p>However I was using <a href="http://stylus-lang.com/" target="_blank" rel="external">Stylus</a> along with <a href="https://github.com/webpack-contrib/css-loader#modules" target="_blank" rel="external">CSS Modules</a> which is a bit more complicated. Turns out there was actually <em>zero support</em> for Stylus with Gatsby, <strong>but</strong> Gatsby is highly extensible so…</p>
+<p>Time to write a plugin. I’ll skip over most of the details here since you view the source code of the plugin I wrote directly. But a neat feature of Gatsby is that you create a <code>plugins/</code> directory in your own project and extend Gatsby right there. This is a really nice developer experience and it makes it easy to write a plugin that can then be contributed back to the Gatsby community later.</p>
+<p>So, after all the changes above and creating the stylus plugin my project looked like this:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.</div><div class="line">├── plugins</div><div class="line">│   └── gatsby-plugin-stylus</div><div class="line">│       ├── gatsby-node.js</div><div class="line">│       └── package.json</div><div class="line">├── src</div><div class="line">│   ├── components</div><div class="line">│   │   ├── App.styl</div><div class="line">│   │   ├── face.png</div><div class="line">│   │   └── favicon.ico</div><div class="line">│   ├── layouts</div><div class="line">│   │   └── index.js</div><div class="line">│   ├── lib</div><div class="line">│   │   └── vars.styl</div><div class="line">│   ├── pages</div><div class="line">│   │   ├── 404.js</div><div class="line">│   │   └── index.js</div><div class="line">│   └── html.js</div><div class="line">├── gatsby-config.js</div><div class="line">├── package.json</div><div class="line">└── yarn.lock</div></pre></td></tr></table></figure>
+<p>And it worked 🎉.</p>
+<p>As for the stylus plugin, there’s currently <a href="https://github.com/gatsbyjs/gatsby/pull/1437" target="_blank" rel="external">a pull request</a> to get it merged in. Once it’s merged you can use stylus by just installing the plugin:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">yarn install gatsby-plugin-stylus</div></pre></td></tr></table></figure>
+<h2 id="Final-Polish"><a href="#Final-Polish" class="headerlink" title="Final Polish"></a>Final Polish</h2><p>After getting everything working properly the last step was to add a few things I had neglected while refactoring:</p>
+<p><strong>Analytics:</strong> I’ve been using Google Analytics on my site all along so I needed to get that working I just needed to add the <code>gatsby-plugin-google-analytics</code> plugin.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  resolve: &apos;gatsby-plugin-google-analytics&apos;,</div><div class="line">  options: &#123;</div><div class="line">    trackingId: &apos;UA-&lt;MY_TRACKING_ID&gt;&apos;,</div><div class="line">  &#125;,</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p><strong>Titles and meta tags</strong></p>
+<p><a href="https://github.com/nfl/react-helmet/" target="_blank" rel="external">react-helmet</a> is great for this and Gatsby recognizes it. Just add the <code>gatsby-plugin-react-helmet</code> and your good to go. See the react-helmet docs for how to actually use it.</p>
+<p><strong>Final <code>gatsby-config.js</code>:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// Gatsby</div><div class="line">module.exports = &#123;</div><div class="line">  siteMetadata: &#123;</div><div class="line">    title: &apos;Ian Sinnott&apos;,</div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    &apos;gatsby-plugin-react-helmet&apos;,</div><div class="line">    &#123;</div><div class="line">      resolve: &apos;gatsby-plugin-stylus&apos;,</div><div class="line">      options: &#123;</div><div class="line">        modules: true,</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      resolve: &apos;gatsby-plugin-google-analytics&apos;,</div><div class="line">      options: &#123;</div><div class="line">        trackingId: &apos;UA-&lt;MY_TRACKING_ID&gt;&apos;,</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>That’s all. If you have an questions you can leave a commend or <a href="https://twitter.com/ian_sinn" target="_blank" rel="external">find me on twitter</a>.</p>
+<hr>
+<p>P.S. You may have noticed that this was a super simple site (one page!) and that this is “Part 1”. I plan to migrate this blog you’re reading right now to Gatsby and do a Part 2 write up about that. It will be a much more real-world use case of Gatsby and will use the awesome GraphQL infrastructure Gatsby gives you 😋</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/migrating-to-gatsbyjs-part-1/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-to-gatsbyjs-part-1%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-to-gatsbyjs-part-1%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-to-gatsbyjs-part-1%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/migrating-to-gatsbyjs-part-1/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gatsby/">gatsby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/migration/">migration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/the-importance-of-webpack-context/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">The importance of Webpack context</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/migrating-to-gatsbyjs-part-1/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Time Machine to the Rescue | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A couple weeks ago I made the decision to reinstall OSX and start anew, washing away over a years worth of accumulated files. It took about two hours to get most things reinstalled and running again,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Time Machine to the Rescue">
+<meta property="og:url" content="https://blog.iansinnott.com/time-machine-to-the-rescue/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="A couple weeks ago I made the decision to reinstall OSX and start anew, washing away over a years worth of accumulated files. It took about two hours to get most things reinstalled and running again,">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Time Machine to the Rescue">
+<meta name="twitter:description" content="A couple weeks ago I made the decision to reinstall OSX and start anew, washing away over a years worth of accumulated files. It took about two hours to get most things reinstalled and running again,">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-time-machine-to-the-rescue" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/time-machine-to-the-rescue/" class="article-date">
+  <time datetime="2014-10-03T07:00:00.000Z" itemprop="datePublished">2014-10-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Time Machine to the Rescue
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A couple weeks ago I made the decision to reinstall OSX and start anew, washing away over a years worth of accumulated files. It took about two hours to get most things reinstalled and running again, and after the fact I was very happy with the results. My computer is now fresh again, the downloads folder doesn’t have 1000 items in it and I have over 100GB of free space (up from ~5GB before)! All in all a very quick and painless experience… until this week.</p>
+<h2 id="Know-what-to-migrate"><a href="#Know-what-to-migrate" class="headerlink" title="Know what to migrate"></a>Know what to migrate</h2><p>It’s tough to keep track of everything on your system that’s vital to your day-to-day workflow. The toughest are the things that aren’t needed day-to-day, but which become vital the second you try do something that depends on them. In my case this was building an android app for distribution.</p>
+<p>To distribute an app on the Google Play Store you need to create a Java Keystore to sign your app with. This file is monumentally important if you’re an app developer, because without it you cannot update your app. This week I had to update an app on Google Play and figured out how important that file was.</p>
+<h2 id="Time-Machine-to-the-rescue"><a href="#Time-Machine-to-the-rescue" class="headerlink" title="Time Machine to the rescue"></a>Time Machine to the rescue</h2><p>Luckily, I did make sure to back up my entire system before reinstalling OSX, so I knew I must have my Java Keystore saved somewhere. I just had to find it. This was actually surprisingly fast as I had initially stored it under a folder named <code>keystore</code>. Simple enough. I hit restore in Time Machine and done, it was on my system.</p>
+<p>Excellent, now I just need to sign my Android APK and I would be good to go. This particular project is built with Cordova, so the easiest way I’ve found to do this is to specify an <code>ant.properties</code> file under <code>platforms/android</code>. There’s a great, concise <a href="http://ilee.co.uk/Sign-Releases-with-Cordova-Android/" target="_blank" rel="external">article on this with full instructions</a>.</p>
+<p>Great, now to just run the command…</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ cordova build android --release</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">-release-prompt-for-password:</div><div class="line">    [input] Please enter keystore password</div></pre></td></tr></table></figure>
+<p>… shit. Did not remember my keystore required a password.</p>
+<p>At point I ended up trying a few common passwords all of which failed, but I did ultimately figure it out. I wrote a quick Ruby script to run through a list of about 20 potential passwords and one of them did turn out to be the right one. So in the end not a terrible experience, just a strong reminder that backing up everything is always a good idea, and backing up the keys to your apps is paramount.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/time-machine-to-the-rescue/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Ftime-machine-to-the-rescue%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Ftime-machine-to-the-rescue%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Ftime-machine-to-the-rescue%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/time-machine-to-the-rescue/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/running-a-meteor-app-on-dokku/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Running a Meteor App on Dokku
+        
+      </div>
+    </a>
+  
+  
+    <a href="/business/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Business</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/time-machine-to-the-rescue/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

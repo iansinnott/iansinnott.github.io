@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vim: It&#39;s Awesome | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="I’ve done a few posts on Vim before, but I realize how little I really knew about Vim as I wrote those posts. Lately I’ve taken the time to actually learn quite a bit of Vimscript, enough to finally s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim: It's Awesome">
+<meta property="og:url" content="https://blog.iansinnott.com/vim-awesome/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="I’ve done a few posts on Vim before, but I realize how little I really knew about Vim as I wrote those posts. Lately I’ve taken the time to actually learn quite a bit of Vimscript, enough to finally s">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim: It's Awesome">
+<meta name="twitter:description" content="I’ve done a few posts on Vim before, but I realize how little I really knew about Vim as I wrote those posts. Lately I’ve taken the time to actually learn quite a bit of Vimscript, enough to finally s">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-vim-awesome" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/vim-awesome/" class="article-date">
+  <time datetime="2014-03-03T08:00:00.000Z" itemprop="datePublished">2014-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vim: It&#39;s Awesome
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’ve done a few posts on Vim before, but I realize how little I really knew about Vim as I wrote those posts. Lately I’ve taken the time to actually learn quite a bit of Vimscript, enough to finally start opening up the true power of Vim. I can customize <em>anything I want</em> and create all sorts of new behavior in the editor. But it’s really true what many people have said over and over again&#8230;</p>
+<h2 id="There’s-a-learning-curve"><a href="#There’s-a-learning-curve" class="headerlink" title="There’s a learning curve"></a>There’s a learning curve</h2><p>I would say at the very least it’s taken six months to get proficient in Vim. It could certainly be done in less time, but if you’re actively working on client projects you will find it hard to open up an editor you don’t yet know and be really productive.</p>
+<a id="more"></a>
+<h3 id="Modal-editing-is-easy"><a href="#Modal-editing-is-easy" class="headerlink" title="Modal editing is easy"></a>Modal editing is easy</h3><blockquote>
+<p>I’ve heard learning the default mappings is sheer pain!</p>
+</blockquote>
+<p>Learning how to use the well-known <code>hjkl</code> keys for navigating around the document is surprisingly easy to learn. It just takes a bit of muscle memory, so by disabling your mouse and directional keys anyone could pick this up fairly quickly. I think it took me about two weeks of on-and-off practice, because again, if there’s real work that needs to get done it’s not practical to spend 90% of your time learning to navigate the document and only 10% actually coding.</p>
+<blockquote>
+<p>I’ve used Vim a bit, and became fairly comfortable with simple motions, but it’s still slow! Why does anyone like this&#8230;</p>
+</blockquote>
+<p>So if the mappings are actually easy to learn, what’s the catch?</p>
+<h3 id="Vimscript"><a href="#Vimscript" class="headerlink" title="Vimscript"></a>Vimscript</h3><p>Modal editing is indeed the foundation of Vim’s amazing usability, but the true core of it’s appeal to so many programmers is it’s customizability. That’s where Vimscript comes in. If you really want to make your editor do your work for you then you’ll need to learn at least a bit of Vimscript. <a href="http://stevelosh.com/" target="_blank" rel="external">Steve Losh</a> has written an amazing (and free) <a href="http://learnvimscriptthehardway.stevelosh.com/" target="_blank" rel="external">book on Vimscript</a>.</p>
+<h2 id="Being-Super-Productive"><a href="#Being-Super-Productive" class="headerlink" title="Being Super Productive"></a>Being Super Productive</h2><p>So what does Vimscript allow you to do? <strong>Anything</strong>. At least anything I’ve had a need to do. Here are a few examples:</p>
+<ul>
+<li>Type <code>,!</code> to put <code>!important</code> at the end of a css declaration.</li>
+<li>Type <code>,{</code> to go to the closing brace of the current function or block</li>
+<li>Type <code>,;</code> to add a semicolon to the end of the current line</li>
+</ul>
+<p>These sorts of mappings are all in addition to <em>super</em> useful functionality that comes either from core Vim or from plugins. An example is the epic <a href="https://github.com/tpope/vim-surround" target="_blank" rel="external">Surround</a> plugin by Tim Pope. That let’s you do things like this:</p>
+<ul>
+<li>Type <code>ci&#39;</code> to delete everything within two single quotes (<code>&#39;</code>) and start typing. This is super useful for change CSS classes, where there are often more than one space-separated classes that need to be changed.</li>
+</ul>
+<h3 id="Ongoing-benefits"><a href="#Ongoing-benefits" class="headerlink" title="Ongoing benefits"></a>Ongoing benefits</h3><p>The beauty of knowing enough Vimscript to create all the functionality I want is that I no longer have to wish my editor had a certain feature. The instant I realize something could be improved all I have to do is open up a new window and write a bit of code. This level of customization is truly necessary for most developers, and I myself could never go back to using a standard editor now that I have all this custom functionality at my fingertips.</p>
+<p>GitHub recently released a <a href="http://atom.io" target="_blank" rel="external">new text editor called Atom</a> that aims to be the best of both worlds. In their own blog post, they even point out the existing polarized nature of text editors: Either they are easy to use, and provide great functionality out of the box (TextMate, Sublime, most IDEs, etc.), or they provide very little of standard text editor functionality out of the box, but are extremely customizable (I.e. Vim and Emacs). I haven’t used that new editor yet, but I certainly hope they can achieve their goal. It would be nice to be able to script my editor with JavaScript instead of Vimscript&#8230;</p>
+<p>But as it currently stands, there really isn’t much in the middle. As a friend of mine recently said, if you’re using Vim or Emacs you get a lot of customizability but:</p>
+<blockquote>
+<p>You bacically have to write your own editor.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/vim-awesome/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fvim-awesome%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fvim-awesome%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fvim-awesome%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/vim-awesome/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/development/">development</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tech/">tech</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/super-birthday-post/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Jekyll Theming Like a Boss With Gulp
+        
+      </div>
+    </a>
+  
+  
+    <a href="/startup-idea-feedback-week/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">From Startup Idea to (In)validation in a Week</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/vim-awesome/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

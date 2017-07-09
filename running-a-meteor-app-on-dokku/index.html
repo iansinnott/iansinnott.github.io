@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Running a Meteor App on Dokku | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This is a quick overview of how to get a Meteor app set up on Dokku. It’s actually not difficult, but it doesn’t seem to have been well documented anywhere yet. Let’s get started.
+What you needObvious">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Running a Meteor App on Dokku">
+<meta property="og:url" content="https://blog.iansinnott.com/running-a-meteor-app-on-dokku/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="This is a quick overview of how to get a Meteor app set up on Dokku. It’s actually not difficult, but it doesn’t seem to have been well documented anywhere yet. Let’s get started.
+What you needObvious">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Running a Meteor App on Dokku">
+<meta name="twitter:description" content="This is a quick overview of how to get a Meteor app set up on Dokku. It’s actually not difficult, but it doesn’t seem to have been well documented anywhere yet. Let’s get started.
+What you needObvious">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-running-a-meteor-app-on-dokku" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/running-a-meteor-app-on-dokku/" class="article-date">
+  <time datetime="2014-11-22T08:00:00.000Z" itemprop="datePublished">2014-11-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Running a Meteor App on Dokku
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This is a quick overview of how to get a Meteor app set up on Dokku. It’s actually not difficult, but it doesn’t seem to have been well documented anywhere yet. Let’s get started.</p>
+<h2 id="What-you-need"><a href="#What-you-need" class="headerlink" title="What you need"></a>What you need</h2><p>Obviously, you will need a server running Dokku. I used the Digital Ocean Dokku droplet, which uses the following versions:</p>
+<ul>
+<li>Ubuntu 14.04</li>
+<li>Docker 1.1.2</li>
+<li>Dokku 0.2.3</li>
+</ul>
+<p>If you have a different setup your results may vary, but I’m guessing this guide will generally work for you as long as you have Dokku v0.2.3 setup.</p>
+<p>You also need a meteor app. If you are reading this just out of curiosity and don’t have an app feel free to use one of the example apps. You can generate them easily through the CLI. Example:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ meteor create --example todos</div></pre></td></tr></table></figure>
+<h2 id="Dokku-Configuration"><a href="#Dokku-Configuration" class="headerlink" title="Dokku Configuration"></a>Dokku Configuration</h2><p>First of all, the default buildpack that Dokku will use if it detects a Meteor app is the <a href="https://github.com/oortcloud/heroku-buildpack-meteorite" target="_blank" rel="external">Heroku Buildpack</a>, which is not yet compatible with Meteor 1.0 and still uses Meteorite. That’s no good, so you will need to specify a custom buildpack for Dokku. The buildpack I’ve used successfully with Meteor 1.0 is <a href="https://github.com/AdmitHub/meteor-buildpack-horse" target="_blank" rel="external">Meteor Buildpack Horse</a>. As of this writing (11/22/14) the documentation still doesn’t reflect that it’s compatible with 1.0, but it’s worked so far so don’t worry about that.</p>
+<p>To specify a custom buildpack, just create a file in your project root named <code>.env</code> and within that file export the buildpack URL like so:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">export BUILDPACK_URL=&apos;https://github.com/AdmitHub/meteor-buildpack-horse.git&apos;</div></pre></td></tr></table></figure>
+<p>Make sure you <code>git add</code> your new <code>.env</code> file with and commit it.</p>
+<h2 id="Adding-Mongo"><a href="#Adding-Mongo" class="headerlink" title="Adding Mongo"></a>Adding Mongo</h2><p>Now you need to add the <a href="https://github.com/jeffutter/dokku-mongodb-plugin" target="_blank" rel="external">Dokku MongoDB Plugin</a> to Dokku. Make sure you’ve SSHed into your server, then run the following commands:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git clone https://github.com/jeffutter/dokku-mongodb-plugin.git /var/lib/dokku/plugins/mongodb</div><div class="line">$ dokku plugins-install</div></pre></td></tr></table></figure>
+<p>This may take a few minutes since it will need to install <code>mongodb-server</code> on the remote machine, unless you’ve already installed Mongo in which case it should be quick. Once it’s done, start Mongo and link it to your app:</p>
+<p><strong>Note:</strong> In the following snippet replace <code>&lt;app&gt;</code> with the name of your application, assuming you’ve already pushed it to Dokku. If not, push your app up first and then run these commands. Your app name is what you specify in the git remote URL that points to Dokku. It looks like <code>dokku@yoursite.com:&lt;app&gt;</code>.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ mongodb:start</div><div class="line">$ mongodb:create &lt;app&gt;</div></pre></td></tr></table></figure>
+<h2 id="Final-Configuration"><a href="#Final-Configuration" class="headerlink" title="Final Configuration"></a>Final Configuration</h2><p>If you haven’t yet, deploy your app to Dokku. It will most likely crash (i.e. You get an Nginx error when you hit your URL), but that’s fine as it is still missing one last piece.</p>
+<p>The final step is to set the <code>ROOT_URL</code> environment variable in your app container. You need to have pushed your app at least once for the app container to exist. Replace <code>&lt;url&gt;</code> with the URL you intend to use for your app. If you haven’t yet purchased a domain name, you can set this variable to your IP address and it should still run just fine. Don’t forget the leading <code>http://</code> (ex: <code>http://example.com</code> or <code>http://0.0.0.0</code>):</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ dokku config:set &lt;app&gt; ROOT_URL=&lt;url&gt;</div></pre></td></tr></table></figure>
+<p>Setting the environment variable will trigger Dokku to restart your app. Once it does you should be able to view the app at the URL you provided in<code>&lt;url&gt;</code>.</p>
+<h2 id="Success"><a href="#Success" class="headerlink" title="Success!"></a>Success!</h2><p>That’s it. Hopefully this helps as you deploy your meteor apps quickly using Dokku. If you want to create another meteor app you will just need to run through the above steps again, with the exception of adding the MongoDB plugin.</p>
+<h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>If you had trouble with anything above there are a couple ways you can troubleshoot Dokku and it’s containers:</p>
+<ol>
+<li>Inspect the apps logs. This is likely the most useful troubleshooting technique, and will likely reveal the problem. Run <code>dokku logs &lt;app&gt;</code>.</li>
+<li>If the logs don’t reveal the issue, put Dokku into debug mode and re-deploy. To do this you need to create a new Dokku config file at <code>/home/dokku/dokkurc</code>. Add a single line to the file: <code>export DOKKU_TRACE=1</code>. Now when you deploy, Dokku will send back <em>a lot</em> more information.</li>
+</ol>
+<h2 id="Useful-Resources"><a href="#Useful-Resources" class="headerlink" title="Useful Resources"></a>Useful Resources</h2><ul>
+<li><a href="https://github.com/jeffutter/dokku-mongodb-plugin" target="_blank" rel="external">MongoDB Dokku Plugin</a></li>
+<li><a href="https://github.com/AdmitHub/meteor-buildpack-horse" target="_blank" rel="external">Meteor Buildpack Horse</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-meteor-js-application-on-ubuntu-14-04-with-nginx" target="_blank" rel="external">How To Deploy a Meteor.js Application on Ubuntu 14.04 with Nginx</a></li>
+</ul>
+<p>That last link is <em>not</em> specific to Dokku or even Docker, but it gives good insight into what is required to set up a production Meteor server.</p>
+<p>Feel free to leave comments if you still have questions.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/running-a-meteor-app-on-dokku/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Frunning-a-meteor-app-on-dokku%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Frunning-a-meteor-app-on-dokku%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Frunning-a-meteor-app-on-dokku%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/running-a-meteor-app-on-dokku/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/meteor/">meteor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ops/">ops</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/teaching-my-brother-to-code/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Teaching My Brother To Code
+        
+      </div>
+    </a>
+  
+  
+    <a href="/time-machine-to-the-rescue/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Time Machine to the Rescue</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/running-a-meteor-app-on-dokku/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

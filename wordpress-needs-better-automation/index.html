@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>WordPress Needs Better Automation | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="It’s occurred to me time and time again that I don’t write as much as I should. In fact I think I even wrote up a short post about that some time back. Anyway, another thing that’s been on my mind lat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WordPress Needs Better Automation">
+<meta property="og:url" content="https://blog.iansinnott.com/wordpress-needs-better-automation/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="It’s occurred to me time and time again that I don’t write as much as I should. In fact I think I even wrote up a short post about that some time back. Anyway, another thing that’s been on my mind lat">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WordPress Needs Better Automation">
+<meta name="twitter:description" content="It’s occurred to me time and time again that I don’t write as much as I should. In fact I think I even wrote up a short post about that some time back. Anyway, another thing that’s been on my mind lat">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-wordpress-needs-better-automation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/wordpress-needs-better-automation/" class="article-date">
+  <time datetime="2014-01-02T08:00:00.000Z" itemprop="datePublished">2014-01-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      WordPress Needs Better Automation
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>It’s occurred to me time and time again that I don’t write as much as I should. In fact I think I even wrote up a short post about that some time back. Anyway, another thing that’s been on my mind lately is the friction that comes from small tasks that keeps us (or at least me) from completing larger tasks.</p>
+<p>In the case of WordPress, there is far too much friction associated with creating new posts on a regular basis. As a programmer, I have come to despise most interfaces that require me to carry out repetitive tasks myself when they could be easily automated. I’m talking about things like:</p>
+<ul>
+<li>Open browser, head to my site login page</li>
+<li>Ideally I’m already logged in, but more likely I need to login again</li>
+<li>Spend a few seconds remembering my password</li>
+<li>In the WP dashboard, click on New &gt; Post</li>
+<li>Copy and paste the title from the blog post I just finished</li>
+<li>Copy and paste the content as Markdown into the WP editor</li>
+<li>Hit publish</li>
+</ul>
+<a id="more"></a>
+<p>That’s the basic procedure when it comes to creating a new post, at least for me. The issue is that most of this is really repetitive and shouldn’t require my attention. Ideally I could type a command in Terminal, something like:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">wp post awesome-blog-post.md</div></pre></td></tr></table></figure>
+<p>Then it would just shoot of to my server and post for me. If I could do this I would write more. I know for a fact that this automation friction is keeping me from posting more on my blog.</p>
+<p>Using a terminal command would mean I could just store my blog’s URL, my username and my password in a local configuration file and everything would work, every time. Another massive time-saver would be not having to wait for page loads as I navigate the WP admin.</p>
+<p>So I’ve concluded <strong>WordPress needs better automation</strong>.</p>
+<h2 id="There-are-better-ways-8230"><a href="#There-are-better-ways-8230" class="headerlink" title="There are better ways&#8230;"></a>There are better ways&#8230;</h2><p>I’m aware that there are much better platforms for blogging out there, or at least more suitable for a programmer’s workflow (definitely <a href="http://jekyllrb.com/" target="_blank" rel="external">jekyll</a>, maybe <a href="https://ghost.org/" target="_blank" rel="external">Ghost</a> as well). In fact I plan to change my blog setup next time I do a site redesign. But that’s a relatively large project to undertake in say, 20 minutes. So I haven’t made the switch yet.</p>
+<h2 id="An-opportunity"><a href="#An-opportunity" class="headerlink" title="An opportunity"></a>An opportunity</h2><p>So in the end I’ve also come to the conclusion that this would be something very useful to build myself. Since I recently started using Ruby this could be a good opportunity to make something useful from scratch with the language. Still, the same reason I haven’t switched blogging platforms hasn’t changed: where does one find the time&#8230;?</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/wordpress-needs-better-automation/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fwordpress-needs-better-automation%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fwordpress-needs-better-automation%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fwordpress-needs-better-automation%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/wordpress-needs-better-automation/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/using-keyremap4macbooks-private-xml/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Using Key Remap 4 MacBook&#39;s Private.xml
+        
+      </div>
+    </a>
+  
+  
+    <a href="/javascript-everywhere/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript Everywhere</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/wordpress-needs-better-automation/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

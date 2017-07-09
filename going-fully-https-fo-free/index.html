@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Going fully HTTPS (SSL) fo&#39; free | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A few weeks ago I moved my website over to HTTPS.
+
+Then, yesterday I moved my blog over to HTTPS.
+
+This now means that my two primary web properties are both using SSL, and one of them was completely">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Going fully HTTPS (SSL) fo' free">
+<meta property="og:url" content="https://blog.iansinnott.com/going-fully-https-fo-free/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="A few weeks ago I moved my website over to HTTPS.
+
+Then, yesterday I moved my blog over to HTTPS.
+
+This now means that my two primary web properties are both using SSL, and one of them was completely">
+<meta property="og:image" content="https://blog.iansinnott.com//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.08.19%20AM.png">
+<meta property="og:image" content="https://blog.iansinnott.com//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.07.41%20AM.png">
+<meta property="og:image" content="https://blog.iansinnott.com//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2012.43.40%20PM.png">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Going fully HTTPS (SSL) fo' free">
+<meta name="twitter:description" content="A few weeks ago I moved my website over to HTTPS.
+
+Then, yesterday I moved my blog over to HTTPS.
+
+This now means that my two primary web properties are both using SSL, and one of them was completely">
+<meta name="twitter:image" content="https://blog.iansinnott.com//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.08.19%20AM.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-going-fully-https-fo-free" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/going-fully-https-fo-free/" class="article-date">
+  <time datetime="2016-04-29T07:00:00.000Z" itemprop="datePublished">2016-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Going fully HTTPS (SSL) fo&#39; free
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A few weeks ago I moved <a href="https://www.iansinnott.com" target="_blank" rel="external">my website</a> over to HTTPS.</p>
+<p><img src="//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.08.19%20AM.png" alt="iansinnott.com using https"></p>
+<p>Then, yesterday I moved my <a href="https://blog.iansinnott.com">blog</a> over to HTTPS.</p>
+<p><img src="//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.07.41%20AM.png" alt="blog.iansinnott.com running on https"></p>
+<p>This now means that my two primary web properties are both using SSL, and one of them was completely free to set up.</p>
+<a id="more"></a>
+<h2 id="Free-SSL-with-LetsEncrypt"><a href="#Free-SSL-with-LetsEncrypt" class="headerlink" title="Free SSL with LetsEncrypt"></a>Free SSL with LetsEncrypt</h2><p>If you want SSL on your site for free there’s a new certificate authority called <a href="https://letsencrypt.org/" target="_blank" rel="external">LetsEncrypt</a> which is completely free! 👏 This is excellent news, and definitely an option for you, especially if you’re managing your own server.</p>
+<p>My main site, iansinnott.com, actually uses LetsEncrypt under the hood through <a href="https://www.netlify.com/" target="_blank" rel="external">Netlify</a>, but it’s not exactly free because I do pay <a href="https://www.netlify.com/" target="_blank" rel="external">Netlify</a> to host my site every month.</p>
+<p>However, LetsEncrypt is not what I’m talking about today. I just discovered something super cool which is currently letting my host my blog, a <a href="https://pages.github.com/" target="_blank" rel="external">GitHub Pages</a> site, using SSL.</p>
+<h2 id="All-the-SSL-fo’-free-using-CloudFlare"><a href="#All-the-SSL-fo’-free-using-CloudFlare" class="headerlink" title="All the SSL fo’ free using CloudFlare"></a>All the SSL fo’ free using CloudFlare</h2><p>It turns out if you use <a href="https://www.cloudflare.com/" target="_blank" rel="external">CloudFlare</a> for DNS on your domain you can also get SSL completely for free.</p>
+<p><img src="//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2012.43.40%20PM.png" alt="CloudFlare Free Cert"></p>
+<p>The setup is pretty simple as well. CloudFlare has the excellent feature that they will scan your domain and migrate most of the DNS settings for you. So all I ended up having to do to get blog.iansinnott.com running over HTTPS was to move my DNS to CloudFlare. The DNS propagation took overnight, but the time I had to personally spend was less than 30 minutes.</p>
+<p>Again, this is completely free, which is why I’m happy to write about CloudFlare and give them what amounts to free advertising. I’m guessing they make their money with enterprise clients as opposed to individuals. Either way, I’ve found this to be an excellent free service and I’m happy to now have my GitHub Pages site running over SSL for free.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/going-fully-https-fo-free/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fgoing-fully-https-fo-free%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fgoing-fully-https-fo-free%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fgoing-fully-https-fo-free%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/going-fully-https-fo-free/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/">security</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/testing-webpack-plugins/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Testing Webpack Plugins
+        
+      </div>
+    </a>
+  
+  
+    <a href="/the-importance-of-community/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">The Importance of Community</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/going-fully-https-fo-free/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

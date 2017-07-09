@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Dokku, Mongo &amp; Node.js | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TL;DR: If you run into trouble using Mongo with Dokku for a Node.js app, re-image your server and start from scratch.
+Today was my first adventure into setting up a full-fledged, database-driven appli">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dokku, Mongo & Node.js">
+<meta property="og:url" content="https://blog.iansinnott.com/dokku-mongo-node/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="TL;DR: If you run into trouble using Mongo with Dokku for a Node.js app, re-image your server and start from scratch.
+Today was my first adventure into setting up a full-fledged, database-driven appli">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dokku, Mongo & Node.js">
+<meta name="twitter:description" content="TL;DR: If you run into trouble using Mongo with Dokku for a Node.js app, re-image your server and start from scratch.
+Today was my first adventure into setting up a full-fledged, database-driven appli">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-dokku-mongo-node" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/dokku-mongo-node/" class="article-date">
+  <time datetime="2014-08-22T07:00:00.000Z" itemprop="datePublished">2014-08-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dokku, Mongo &amp; Node.js
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>TL;DR: If you run into trouble using Mongo with Dokku for a Node.js app, re-image your server and start from scratch.</em></p>
+<p>Today was my first adventure into setting up a full-fledged, database-driven application with Dokku. I built the app with Node.js so I chose Mongo as the database. Local setup was easy, I already had Mongo installed. Setting up the production server also seemed easy at first until it just didn’t work. Here’s I troubleshot it:</p>
+<h2 id="Nginx-Error"><a href="#Nginx-Error" class="headerlink" title="Nginx Error"></a>Nginx Error</h2><p>The first problem I ran into was an Nginx error page. I forgot the status code, but it essentially meant there was no app running. Strange, since the app was running fine on my local system. Since my application was set to log to stdout I wasn’t able to see any information about what was causing the app to error out, so I decided to do a quick deploy to Heroku and see what was amiss.</p>
+<p><strong>Sidenote</strong>: I <em>really</em> like Heroku. If it wasn’t so much more expensive than a Digital Ocean droplet I would probably use them for every project.</p>
+<h3 id="Troubleshooting-on-Heroku"><a href="#Troubleshooting-on-Heroku" class="headerlink" title="Troubleshooting on Heroku"></a>Troubleshooting on Heroku</h3><p>Heroku has a great <code>heroku logs</code> command that shows everything an application logged while it was running. As soon as I saw the output I had a face-palm moment: I hadn’t saved all my dependencies to <code>package.js</code>, so I was getting simple “module not found” errors. That was embarrassing, but at least it’s a quick fix.</p>
+<p>After cleaning up my <code>package.json</code> file I deployed again and got a database error. Nothing unusual there, I hadn’t added a Mongo database to Heroku. This was to be expected, so I decided to deploy straight back to my own droplet.</p>
+<h2 id="Was-Dokku-Broken"><a href="#Was-Dokku-Broken" class="headerlink" title="Was Dokku Broken?"></a>Was Dokku Broken?</h2><p>After redeploying I was still getting the same Nginx error telling me that there was no app running. When I ran <code>docker ps</code> I saw that was true: Only the MongoDB container was running. Lame.</p>
+<p>At this point I didn’t know what to try. I’m still not super familiar with Docker/Dokku for deployment, so I used the good old fashioned method of just resetting everything.</p>
+<p>I had saved a droplet image on DO right after installing Node but before setting up Dokku with my SSH key, so I just restored to that image. Then I:</p>
+<ul>
+<li>Setup my SSH key as usual, not using virtual host naming b/c I still haven’t transfered the clients main site.</li>
+<li>Installed the Dokku Mongo plugin and the domains plugin</li>
+<li>Created a Mongo container using the plugin: <code>dokku mongodb:create &lt;app&gt;</code></li>
+<li>Created the actual Dokku app from my local server: <code>git remote add dokku dokku@&lt;ip&gt;:&lt;app&gt;</code></li>
+<li>Deployed: <code>git push dokku master</code></li>
+</ul>
+<p>Then everything worked fine. Running <code>docker ps</code> now shows two running containers: one for the app and one for Mongo.</p>
+<h2 id="So-in-conclusion"><a href="#So-in-conclusion" class="headerlink" title="So.. in conclusion"></a>So.. in conclusion</h2><p>I don’t know what went wrong initially, but resetting everything worked like a charm. So when in doubt, just restore to a stable image and start from scratch. And make sure to make snapshots of your droplet whenever you feel it is in a reusable state. Boosh!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/dokku-mongo-node/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fdokku-mongo-node%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fdokku-mongo-node%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fdokku-mongo-node%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/dokku-mongo-node/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ops/">ops</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/engineer-maker-or-both/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Programmer, Maker or Both?
+        
+      </div>
+    </a>
+  
+  
+    <a href="/useful-bash-commands-for-web-developers/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Useful Bash Commands For Web Developers</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/dokku-mongo-node/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

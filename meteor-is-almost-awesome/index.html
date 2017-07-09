@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Meteor is (Almost) Awesome | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Almost Perfect, But With Room For ImprovementHave you ever built a real-time web app? Well I hadn’t, not before meteor anyway. This framework makes it insanely easy to build apps that update in real-t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Meteor is (Almost) Awesome">
+<meta property="og:url" content="https://blog.iansinnott.com/meteor-is-almost-awesome/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="Almost Perfect, But With Room For ImprovementHave you ever built a real-time web app? Well I hadn’t, not before meteor anyway. This framework makes it insanely easy to build apps that update in real-t">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Meteor is (Almost) Awesome">
+<meta name="twitter:description" content="Almost Perfect, But With Room For ImprovementHave you ever built a real-time web app? Well I hadn’t, not before meteor anyway. This framework makes it insanely easy to build apps that update in real-t">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-meteor-is-almost-awesome" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/meteor-is-almost-awesome/" class="article-date">
+  <time datetime="2014-06-28T07:00:00.000Z" itemprop="datePublished">2014-06-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Meteor is (Almost) Awesome
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Almost-Perfect-But-With-Room-For-Improvement"><a href="#Almost-Perfect-But-With-Room-For-Improvement" class="headerlink" title="Almost Perfect, But With Room For Improvement"></a>Almost Perfect, But With Room For Improvement</h3><p>Have you ever built a real-time web app? Well I hadn’t, not before meteor anyway. This framework makes it insanely easy to build apps that update in real-time across an unlimited number of screens, so I love it. Meteor is <em>so good</em> in fact, that it was very easy to overlook what I would otherwise consider to be deal breakers like:</p>
+<ul>
+<li>Full blown app rebuilds, including file compilation, concatenation and minification <em>every time you save a file</em>.</li>
+<li>No official testing solution</li>
+<li>No official package manager</li>
+</ul>
+<p>One of the first things you will read or be told when starting a meteor project, is to install <a href="http://oortcloud.github.io/meteorite/" target="_blank" rel="external">Meteorite</a> as a package manager, so the last bullet point is probably pretty clear to anyone who’s used Meteor. However, the other two pain points might be less obvious when just starting with the framework.</p>
+<p>That first one is a really big deal for anyone who likes to iterate on their design using CSS in a browser, and likes to see realtime changes to the web page. These days it’s fairly easy to accomplish this using [Grunt][grunt] or [Gulp][gulp] in combination with [Livereload][lr]. But if you have a large Meteor app, you might have to wait ten seconds (or more!) for your app to reload entirely, even if you just changed a margin or added a 1px border. This is ridiculous.</p>
+<p>Testing has also been an issue with Meteor. There have been a few decent contenders:</p>
+<a id="more"></a>
+<ul>
+<li><a href="http://arunoda.github.io/laika/" target="_blank" rel="external">Laika</a></li>
+<li><a href="http://rtd.xolv.io/" target="_blank" rel="external">RTD</a></li>
+<li><a href="https://github.com/mad-eye/meteor-mocha-web/" target="_blank" rel="external">Mocha Web</a></li>
+</ul>
+<p>For the most part, these are all viable solutions and they are certainly all written by very smart and accomplished members of the community. However, they all fall short in one way or another:</p>
+<ul>
+<li>Laika is slow to run, and not great for integration testing with a browser (well, PhantomJS).</li>
+<li>RTD enforces a strict file structure, which is at odds with Meteor’s philosophy of letting you put code anywhere and having it work.</li>
+<li>Mocha web is fine in my opinion (I’m currently using it for a project) but it’s <em>just</em> mocha essentially. It works, but it doesn’t take advantage of Meteor’s reactivity.</li>
+</ul>
+<h2 id="A-Solution"><a href="#A-Solution" class="headerlink" title="A Solution"></a>A Solution</h2><p>Both of these issues are pretty bad in my book, but luckily Meteor has an excellent community and a core team that is more than willing to collaborate with this awesome community. I had the chance to attend an excellent <a href="http://www.meetup.com/Meteor-SFBay/" target="_blank" rel="external">Meteor devshop</a> at Meteor HQ in San Francisco this week, and I my faith in and excitement for Meteor were both restored.</p>
+<h3 id="Long-app-rebuilds"><a href="#Long-app-rebuilds" class="headerlink" title="Long app rebuilds"></a>Long app rebuilds</h3><p>One of the summer interns at Meteor gave a lightning talk at the event and talked about support for smart reloads coming in v0.9.0. The feature works today, but hasn’t shipped yet. Basically it’s exactly what you expect: Change a CSS file and the updated code will be injected into the browser. It still took a visible amount of time to update the page using simple CSS, whereas a setup using Gulp plus <a href="https://www.npmjs.org/package/gulp-sass" target="_blank" rel="external">gulp-sass</a> is nearly instantaneous, so there is clearly still some work to be done there. But I’m still super excited for the feature, as it demonstrates that the Meteor team is taking heed of what numerous developers have been complaining about on GitHub and on the mailing list.</p>
+<h3 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h3><p>All the test-related pain points I mentioned above should be disappearing very soon with the emergence of <a href="https://github.com/xolvio/velocity" target="_blank" rel="external">Velocity</a>. This project is sort of like a framework for testing frameworks. It allows various frameworks to work with meteor, and here’s the kicker: They work <em>reactively</em>. This means you get real-time feedback as to whether or not your tests are passing as you write them. Or if your into the TDD approach write the test first, then watch them turn green in real time as you write your code. Cool right?</p>
+<p>The best thing about this project is you can use it today. Just be aware that there <em>will</em> be bugs (as of this writing), but once the framework matures a bit it will be a new and better way to test.</p>
+<p>Velocity will also become the official testing framework of Meteor, and will most likely eventually be rolled into Meteor itself and distributed along side it.</p>
+<p>What’s more, Velocity is being developed by the same guys behind all the current testing solutions I mentioned above, so hopefully going forward there will be much less fragmentation in Meteor testing, and we can all just write our tests and move on to the actual functionality. This is something I can’t wait to see.</p>
+<h3 id="Package-Management"><a href="#Package-Management" class="headerlink" title="Package Management"></a>Package Management</h3><p>The last pain point I mentioned was packages, and Meteor is also planning on tackling this by v1.0. Meteorite is slated to be rolled into Meteor itself and will become fully integrated.</p>
+<h2 id="Just-the-beginning"><a href="#Just-the-beginning" class="headerlink" title="Just the beginning"></a>Just the beginning</h2><p>The feeling as a Meteor developer must be somewhat like being a Rails dev back in 2007, or whenever it was just picking up and really becoming an amazing platform for creative applications. Going to that Meteor devshop renewed my faith in Meteor as the immediate future of web development. It still won’t be the right call for every project (read blog), but it’s a tremendously useful tool for building what used to be difficult, time-intensive projects. I can’t wait to see where it is in a few months.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/meteor-is-almost-awesome/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fmeteor-is-almost-awesome%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fmeteor-is-almost-awesome%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fmeteor-is-almost-awesome%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/meteor-is-almost-awesome/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/jekyll-management-like-a-boss/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Jekyll Management Like a Boss
+        
+      </div>
+    </a>
+  
+  
+    <a href="/super-birthday-post/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Jekyll Theming Like a Boss With Gulp</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/meteor-is-almost-awesome/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Integrating Alfred With Keyboard Maestro | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Update 7/6/2015: I’ve now been using this Alfred workflow for over a year and I still use it every single day. It’s become vital to my workflow and I highly recommend it to anyone trying to boost thei">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Integrating Alfred With Keyboard Maestro">
+<meta property="og:url" content="https://blog.iansinnott.com/integrating-alfred-and-keyboard-maestro/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="Update 7/6/2015: I’ve now been using this Alfred workflow for over a year and I still use it every single day. It’s become vital to my workflow and I highly recommend it to anyone trying to boost thei">
+<meta property="og:image" content="https://dropsinn.s3.amazonaws.com/email-macro.png">
+<meta property="og:image" content="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.15.08%20PM.png">
+<meta property="og:image" content="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.18.19%20PM.png">
+<meta property="og:image" content="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.19.00%20PM.png">
+<meta property="og:image" content="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.12.29%20PM.png">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Integrating Alfred With Keyboard Maestro">
+<meta name="twitter:description" content="Update 7/6/2015: I’ve now been using this Alfred workflow for over a year and I still use it every single day. It’s become vital to my workflow and I highly recommend it to anyone trying to boost thei">
+<meta name="twitter:image" content="https://dropsinn.s3.amazonaws.com/email-macro.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-integrating-alfred-and-keyboard-maestro" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/integrating-alfred-and-keyboard-maestro/" class="article-date">
+  <time datetime="2013-11-14T08:00:00.000Z" itemprop="datePublished">2013-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Integrating Alfred With Keyboard Maestro
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Update 7/6/2015:</strong> I’ve now been using this Alfred workflow for over a year and I still use it <em>every single day</em>. It’s become vital to my workflow and I highly recommend it to anyone trying to boost their productivity.</p>
+<p>However, other parts of my workflow have evolved quite a bit (such as window management). If you’re interested in a full post on the subject <a href="https://twitter.com/ian_sinn/" target="_blank" rel="external">drop me a line on twitter</a> or leave a comment at the bottom.</p>
+<p>Now back to the original article.</p>
+<h2 id="One-step-closer-to-a-mouse-less-workflow"><a href="#One-step-closer-to-a-mouse-less-workflow" class="headerlink" title="One step closer to a mouse-less workflow"></a>One step closer to a mouse-less workflow</h2><p>I’m going to show you how to integrate Alfred with the excellent Keyboard Maestro. Why? Because I have a vendetta against my mouse and I’m constantly finding new ways to remove it from my workflow entirely. To this end, the discovery of <a href="http://www.keyboardmaestro.com/main/" target="_blank" rel="external">Keyboard Maestro</a> by <a href="http://www.stairways.com/main/" target="_blank" rel="external">Stairways Software</a> was a big win.</p>
+<h3 id="Keyboard-Maestro-KM"><a href="#Keyboard-Maestro-KM" class="headerlink" title="Keyboard Maestro (KM)"></a>Keyboard Maestro (KM)</h3><p>Super quick introduction: KM makes it easy to assign almost any Mac action to an easy-to-use trigger. It’s a great piece of software and is backed by a friendly and accessible developer, Peter Lewis. Seriously, go check it out right now if you haven’t yet. It’s free to try.</p>
+<h3 id="Combine-amp-Conquer"><a href="#Combine-amp-Conquer" class="headerlink" title="Combine &amp; Conquer"></a>Combine &amp; Conquer</h3><p>So, let’s be honest: if you you’re already a Mac power user, you probably have far too many hotkeys rattling around in your brain already. This is especially true if your a developer. KM is an excellent piece of software out of box, but adding more hotkeys to the list of things you must remember might not be the ideal solution. But if we could just name our macros in a memorable way and then call them up at will based on that name we could do amazing things.</p>
+<a id="more"></a>
+<p><strong>Enter <a href="http://www.alfredapp.com/" target="_blank" rel="external">Alfred</a></strong>. By combining the functionality of Alfred with the system control of KM you can make your Mac do pretty much anything, <em>very quickly</em>.</p>
+<h3 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h3><p>To integrate the two, download the workflow I made for this purpose.</p>
+<p><a class="btn btn-download" href="https://github.com/iansinnott/alfred-maestro/raw/master/AlfredMaestro.alfredworkflow" target="_blank" rel="external">Download</a></p>
+<p>You can also <a href="https://github.com/iansinnott/keyboard-maestro-alfred" target="_blank" rel="external">download the source</a> from GitHub if you feel so inclined. Once you have the <code>KeyboardMaestro.alfredworkflow</code> file just double click it to install it in Alfred. Done!</p>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><p>Now, as long as you actually have KM installed you can type <code>km</code> in the Alfred prompt and then the name of a macro. Here’s a simple example; I really don’t like continually typing out my email, so I made a macro for it:</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/email-macro.png" alt="Email Macro"></p>
+<p>Notice that I don’t even have to assign a trigger to it. This is somewhat of a new feature in KM 6.3, and the reason you must have that version or above. This is a great feature as it leaves room for macros that really deserve their own hotkey and doesn’t clutter your mind with unnecessary information. Just type <code>km</code> into Alfred and then start typing the title of the macro:</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.15.08%20PM.png" alt="Email macro example"></p>
+<p>If I hit enter my email address will be pasted into whatever text I’m editing. This is great for filling forms online. Another one that is use all the time in this same way is date insertion. I always have to think for a second about what the date is. Luckily KM comes to the rescue:</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.18.19%20PM.png" alt="Date macro"></p>
+<p>Now if I start typing <code>km date:</code> and hit enter, the date will be inserted in the mm/dd/yyyy format:</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.19.00%20PM.png" alt="Date macro example"></p>
+<p>This example also shows two good examples of the power of KM. First, you get set values, like <code>%NumberDate%</code> that you can pass in. Second, when you want/need to, you can also assign triggers that are fully independent of Alfred and this workflow.</p>
+<p>To start making your own crazy macros, you should hit the KM docs. I’ll point you specifically to the <a href="http://www.keyboardmaestro.com/documentation/6/calculations.html" target="_blank" rel="external">calculations section</a>, where you can dive into some of the more obscure functionality (like the <code>SCREEN</code> function for manipulating application screens. Then from there you can check out the other sections about more general functionality.</p>
+<p><strong>One Last Note:</strong> KM is fully capable of triggering macros by name all on it’s own. See?</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-07-06%20at%209.12.29%20PM.png" alt="Keyboard Maestro macro by name"></p>
+<p>So if you’re not an Alfred user, there is a remote possibility that you can get by with just KM. In fact, if you really wanted to you could probably replicate most of Alfred’s functionality entirely with KM, but why bother?</p>
+<p>The other reason to use these two programs together is the Active community behind Alfred. This community means you can usually find a workflow to help with whatever your looking to accomplish. Community involvement however is much more limited with KM. This is surprising, considering the built in &#8216;Export macro’ functionality. KM does have an <a href="http://www.keyboardmaestro.com/main/macro-library" target="_blank" rel="external">existing macro library</a>, but I’m not sure how many users know about it. That said, this certainly isn’t a deal breaker. It’s not difficult to make macros in KM, and there <em>is</em> an active community that I think would be happy to contribute macros if there was a well-known, central location at which to share them.</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>Keyboard Maestro and Alfred make an amazing combination. If you don’t have them already, get them now! I myself have <del>just started using it</del> been using it for <strong>well over a year</strong>. I have a ton more functionality planned with this app that I haven’t gotten around to implementing (system-wide Vim bindings anyone?). Moreover, as I mentioned before, the developer Peter Lewis is very accessible. When I first showed him how my workflow was inherently limited by KM itself, he added the necessary functionality and shipped it a few days later with KM 6.3! That’s amazing.</p>
+<p><strong>One last note:</strong> If you have any issues with this plugin head over to the <a href="https://github.com/iansinnott/keyboard-maestro-alfred/issues" target="_blank" rel="external">issues section of my GitHub repo</a> and let me know. And if you you find it useful, <a href="https://github.com/iansinnott/keyboard-maestro-alfred" target="_blank" rel="external">starring the repo</a> on GitHub is a great way to say thanks. Have fun 😎</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/integrating-alfred-and-keyboard-maestro/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fintegrating-alfred-and-keyboard-maestro%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fintegrating-alfred-and-keyboard-maestro%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fintegrating-alfred-and-keyboard-maestro%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/integrating-alfred-and-keyboard-maestro/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/productivity/">productivity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tech/">tech</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/javascript-everywhere/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript Everywhere
+        
+      </div>
+    </a>
+  
+  
+    <a href="/getting-productive-with-fish-shell/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Getting Productive With Fish Shell</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/integrating-alfred-and-keyboard-maestro/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

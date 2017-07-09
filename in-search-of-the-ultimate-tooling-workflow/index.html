@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>In search of the ultimate tooling workflow | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Lately I’ve been exploring the various options out there for front-end tooling. I’m about to start a greenfield project next week and I figure I might as well do it right. The goal is not to look back">
+<meta property="og:type" content="article">
+<meta property="og:title" content="In search of the ultimate tooling workflow">
+<meta property="og:url" content="https://blog.iansinnott.com/in-search-of-the-ultimate-tooling-workflow/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="Lately I’ve been exploring the various options out there for front-end tooling. I’m about to start a greenfield project next week and I figure I might as well do it right. The goal is not to look back">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="In search of the ultimate tooling workflow">
+<meta name="twitter:description" content="Lately I’ve been exploring the various options out there for front-end tooling. I’m about to start a greenfield project next week and I figure I might as well do it right. The goal is not to look back">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-in-search-of-the-ultimate-tooling-workflow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/in-search-of-the-ultimate-tooling-workflow/" class="article-date">
+  <time datetime="2015-05-03T07:00:00.000Z" itemprop="datePublished">2015-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      In search of the ultimate tooling workflow
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Lately I’ve been exploring the various options out there for front-end tooling. I’m about to start a greenfield project next week and I figure I might as well do it right. The goal is not to look back in two months and wish I had implemented a better workflow. The tooling can always change, but in practice it usually doesn’t so it’s best to get it right the first time.</p>
+<p>In short, here’s what I’ve decided on:</p>
+<ul>
+<li><a href="http://webpack.github.io/" target="_blank" rel="external">Webpack</a> w/ <a href="https://github.com/webpack/docs/wiki/hot-module-replacement-with-webpack" target="_blank" rel="external">Hot Module Replacement</a> enabled</li>
+<li><a href="https://babeljs.io/" target="_blank" rel="external">Babel</a> (ES6 compilation)</li>
+<li><a href="http://gulpjs.com/" target="_blank" rel="external">Gulp</a></li>
+<li><a href="http://stylus-lang.com/" target="_blank" rel="external">Stylus</a></li>
+</ul>
+<h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p>Webpack is amazing. I never thought <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a> would be replaced in my workflow, but it has been. Webpack essentially does everything Browserify did and more. It let’s you require <em>anything</em>, including images, Markdown files, fonts and probably anything else you would need in a website.</p>
+<h3 id="So-what"><a href="#So-what" class="headerlink" title="So what?"></a>So what?</h3><p>Webpack let’s you truly componentize your applications by letting you keep <em>everything</em> organized in a single directory. For example, if you wanted to componentize your website’s header you could put the HTML, CSS, JS and all associated images in the same directory. No more fumbling with paths in you’re image <code>src</code> attribute.</p>
+<a id="more"></a>
+<h3 id="Hot-Module-Replacement"><a href="#Hot-Module-Replacement" class="headerlink" title="Hot Module Replacement"></a>Hot Module Replacement</h3><p>Requiring everything is great, but another revelation was Hot Module Replacement (HRM). The concept is pretty simple if you’ve ever used LiveReload—Your browser refreshes every time you change a file. Webpack gives you HMR, which takes the concept of live reload to the next level. Basically the HTML in your browser will change without reloading the browser window.</p>
+<p><strong>This is a <em>huge</em> win.</strong></p>
+<p>When you’re developing any sort of stateful UI you generally have to make changes, reload the browser and then click around to put the UI back in whatever state you were at before. The classic example is a dropdown menu, that would be hidden whenever you reload the browser.</p>
+<p>With HMR you don’t have to reload anything. You simply change your HTML/CSS and the changes will be reflected live in the browser without having to do a full page reload. <strong>So good!</strong></p>
+<h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h2><p>Babel is a pre-compiler for ES6, which means you can write JavaScript using full ES6 features and functionality. Babel will compile everything down to standard ES5 JavaScript so that you can run it in any browser.</p>
+<p>If you’re using CoffeScript all the new ES6 features probably aren’t that exciting, but the new spec is a big jump for JS as a language.</p>
+<h2 id="Gulp"><a href="#Gulp" class="headerlink" title="Gulp"></a>Gulp</h2><p>Webpack handles <em>almost</em> every step of our build process, but sometimes you need to run arbitrary scripts or automate things at a higher level than webpack might allow. Gulp is great for this.</p>
+<p>In my workflow I use gulp to script webpack and run an API server that the UI will interact with.</p>
+<p>Gulp is also good for setting up a database process running in the background if you’re app is using a persistence layer.</p>
+<h2 id="Stylus"><a href="#Stylus" class="headerlink" title="Stylus"></a>Stylus</h2><p>Stylus is great. It’s the most compact CSS syntax I’ve come across and it’s written entirely in Node. This is probably one of the more contentious points in my build process since everyone seems to have very strong opinions about how to write their styles. But I think anyone who gave Stylus a try would really like it. Just remove all brackets, colons and semicolons from any CSS file and you’re looking at beautiful Stylus syntax.</p>
+<h2 id="Conclusion-Increased-productivity"><a href="#Conclusion-Increased-productivity" class="headerlink" title="Conclusion: Increased productivity"></a>Conclusion: Increased productivity</h2><p>This new workflow has really made me more productive. Writing single page apps now takes a fraction of the time it used to take. This is admittedly due in large part to <a href="https://facebook.github.io/react/" target="_blank" rel="external">React</a> being an excellent library for productivity, but whatever. Still counts 🍻.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/in-search-of-the-ultimate-tooling-workflow/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fin-search-of-the-ultimate-tooling-workflow%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fin-search-of-the-ultimate-tooling-workflow%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fin-search-of-the-ultimate-tooling-workflow%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/in-search-of-the-ultimate-tooling-workflow/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/managing-state-and-controlled-form-fields-with-react/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Managing state and controlled form fields with React
+        
+      </div>
+    </a>
+  
+  
+    <a href="/solving-a-problem-is-the-biggest-win/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Solving problems is the biggest win</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/in-search-of-the-ultimate-tooling-workflow/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

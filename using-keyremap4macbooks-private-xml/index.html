@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Using Key Remap 4 MacBook&#39;s Private.xml | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Using the KeyRemap4MacBook private.xml mappings can be a bit opaque, so I’m writing this as a reference to myself and anyone else that needs to delve deep into customizing KeyRemap4MacBook (KRMB) by u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using Key Remap 4 MacBook's Private.xml">
+<meta property="og:url" content="https://blog.iansinnott.com/using-keyremap4macbooks-private-xml/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="Using the KeyRemap4MacBook private.xml mappings can be a bit opaque, so I’m writing this as a reference to myself and anyone else that needs to delve deep into customizing KeyRemap4MacBook (KRMB) by u">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Using Key Remap 4 MacBook's Private.xml">
+<meta name="twitter:description" content="Using the KeyRemap4MacBook private.xml mappings can be a bit opaque, so I’m writing this as a reference to myself and anyone else that needs to delve deep into customizing KeyRemap4MacBook (KRMB) by u">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-using-keyremap4macbooks-private-xml" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/using-keyremap4macbooks-private-xml/" class="article-date">
+  <time datetime="2014-01-07T08:00:00.000Z" itemprop="datePublished">2014-01-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Using Key Remap 4 MacBook&#39;s Private.xml
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Using the KeyRemap4MacBook private.xml mappings can be a bit opaque, so I’m writing this as a reference to myself and anyone else that needs to delve deep into customizing KeyRemap4MacBook (KRMB) by using the private.xml config file. Here are the more important rules:</p>
+<h3 id="Basic-private-xml-layout"><a href="#Basic-private-xml-layout" class="headerlink" title="Basic private.xml layout"></a>Basic private.xml layout</h3><p>This is an xml file you can start with.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;root&gt;</div><div class="line">  &lt;list&gt;</div><div class="line">    &lt;!-- &lt;item&gt; Tags Go Here --&gt;</div><div class="line">  &lt;/list&gt;</div><div class="line">&lt;/root&gt;</div></pre></td></tr></table></figure>
+<p>Note that <code>&lt;list&gt;</code> is an optional tag, but I think it’s nice for organization within KRMB. Leave it out if you want.</p>
+<p>The second basic piece is the <code>&lt;item&gt;</code> tag. These represent the checkboxes you can turn on and off from within KRMB. They can contain multiple mappings or <code>&lt;autogen&gt;</code> tags. Just remember that everything you put into one single <code>&lt;item&gt;</code> will be activated or deactivated together. Here’s what they look like:</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;item&gt;</div><div class="line">  &lt;name&gt;Item Name&lt;/name&gt;</div><div class="line">  &lt;appendix&gt;Longer, more detailed information about the mapping if necessary.&lt;/appendix&gt;</div><div class="line">  &lt;appendix&gt;You can add more than one appendix tag&lt;/appendix&gt;</div><div class="line">  &lt;identifier&gt;private.unique_name_for_item&lt;/identifier&gt;</div><div class="line"></div><div class="line">  &lt;!-- Put autogen mappings here --&gt;</div><div class="line">&lt;/item&gt;</div></pre></td></tr></table></figure>
+<p>Now on to the actual mappings.</p>
+<h3 id="KeyToKey"><a href="#KeyToKey" class="headerlink" title="KeyToKey"></a>KeyToKey</h3><p>For mapping one key to another, with potential modifier keys:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">--KeyToKey--</div><div class="line">KeyCode::&lt;key we want to affect&gt;, (optional modifier flags)</div><div class="line">KeyCode::&lt;key to fire when pressed&gt;</div></pre></td></tr></table></figure>
+<p>Key to key mappings always take two <code>KeyCode</code>s. The first is the key you would like to remap, the second is they key you would like to remap to. Both can take optional modifier flags. The example bellow remaps the curly braces, <code>{</code> and <code>}</code>, to nothing.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;autogen&gt;</div><div class="line">  --KeyToKey--</div><div class="line">  KeyCode::BRACKET_RIGHT, ModifierFlag::SHIFT_L,</div><div class="line">  KeyCode::VK_NONE</div><div class="line">&lt;/autogen&gt;</div><div class="line">&lt;autogen&gt;</div><div class="line">  --KeyToKey--</div><div class="line">  KeyCode::BRACKET_LEFT, ModifierFlag::SHIFT_L,</div><div class="line">  KeyCode::VK_NONE</div><div class="line">&lt;/autogen&gt;</div></pre></td></tr></table></figure>
+<p>That particular mapping may seem useless now, but these sorts of mappings, i.e. disabling a key by mapping it to nothing, are actually very important. After you come up with new mappings for various keys you should disable their former mappings in this way so that you are forced to retrain your muscle memory.</p>
+<p><strong>Note 1:</strong> KRMB doesn’t give you key codes for anything that would normally take a SHIFT to type, so to access anything that needs a shift modifier you just specify it as above. <code>BRACKET_RIGHT</code> represents <code>[</code>, so the combination of <code>BRACKET_RIGHT</code> and <code>SHIFT_L</code> is equal to <code>{</code>.</p>
+<p><strong>Note 2:</strong> I’ve only disabled mappings of left shift, because I would never hold right shift while pressing a bracket if I wanted to type a curly brace. However, if do hold right shift and type a bracket a curly brace will be typed. Right Shift and Left Shift are completely separate keys so the above mapping only affects what I told it to: <code>SHIFT_L</code>.</p>
+<h3 id="KeyOverlaidModifier"><a href="#KeyOverlaidModifier" class="headerlink" title="KeyOverlaidModifier"></a>KeyOverlaidModifier</h3><p>This is the real meat of KRMB and was the real eye-opener for me. This let’s us map separate keys to a certain keys &#8216;hold’ state as well as a single &#8216;tap’. Here’s the syntax:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">--KeyOverlaidModifier--</div><div class="line">KeyCode::&lt;key we want to affect&gt;,</div><div class="line">KeyCode::&lt;key to fire when held continuously&gt;,</div><div class="line">KeyCode::&lt;key to fire when pressed and released quickly&gt;</div></pre></td></tr></table></figure>
+<p>For example, the Shift keys are essential when typing, but we never tap them once once quickly. They are always held down as modifiers for other keys. This means each Shift key’s &#8216;tap’ state is essentially wasted. We can utilize this and remap anything we want to that tap, all while preserving Shifts most essential functionality.</p>
+<p>What you would want to map to Shift is up to you. Steve Losh recommends mapping <code>(</code> and <code>)</code> to left and right Shift respectively. I totally agree that parentheses are vital when programming and should be easily accessible, but since I’ve already reversed my numbers and symbols it’s actually quite easy for me to hit <code>(</code> and <code>)</code> where they are. I also like being able to type them both in one quick rolling motion, since many function calls don’t take arguments and look like this: <code>someFunction()</code>.</p>
+<p>So instead of parentheses, I decided to map <code>{</code> and <code>}</code>. When writing function definitions or conditional statements these symbols are prevalent in many languages, but they are also very useful outside of coding. On Mac OSX, <code>Command + {</code> and <code>Command + }</code> are assigned to switching tabs in most apps (Sublime, Terminal, Chrome, etc). So now I can hold Command and hit either left or right shift to navigate my tabs in Chrome (of which there are about 40 at any given time).</p>
+<p>So here’s what that mapping looks like:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;autogen&gt;</div><div class="line">  --KeyOverlaidModifier--</div><div class="line">  KeyCode::SHIFT_L, ModifierFlag::SHIFT_L,</div><div class="line">  KeyCode::SHIFT_L,</div><div class="line">  KeyCode::BRACKET_LEFT, ModifierFlag::SHIFT_R</div><div class="line">&lt;/autogen&gt;</div><div class="line">&lt;autogen&gt;</div><div class="line">  --KeyOverlaidModifier--</div><div class="line">  KeyCode::SHIFT_R, ModifierFlag::SHIFT_R,</div><div class="line">  KeyCode::SHIFT_R,</div><div class="line">  KeyCode::BRACKET_RIGHT, ModifierFlag::SHIFT_L</div><div class="line">&lt;/autogen&gt;</div></pre></td></tr></table></figure>
+<p>And now you see why I remapped my <code>{</code> and <code>}</code> keys to nothing earlier in the post: to train myself to use the shift keys instead.</p>
+<h3 id="ModifierFlag-NONE"><a href="#ModifierFlag-NONE" class="headerlink" title="ModifierFlag::NONE"></a>ModifierFlag::NONE</h3><p>One last thing to note about KRMB mappings is the <code>ModifierFlag::NONE</code> flag, which let’s you keep certain mappings from interfering with others. I think of it a bit like non-recursive mappings in Vim. It means I could map a new key to <code>,</code> (not sure why you would, but bear with me), but if you hit <code>Command + ,</code> it would still open preferences in most applications.</p>
+<p>The example I’m using here isn’t going to make sense unless you have read <a href="http://stevelosh.com/blog/2012/10/a-modern-space-cadet/" target="_blank" rel="external">Steve Losh’s post</a> about creating a Hyper key, but here it is anyway:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;item&gt;</div><div class="line">  &lt;name&gt;Backslash to Hyper on hold&lt;/name&gt;</div><div class="line">  &lt;appendix&gt;This makes Backslash function as hyper when held, otherwise pipe is fired. This is useful for app launching with hotkeys.&lt;/appendix&gt;</div><div class="line">  &lt;identifier&gt;private.backslash_to_hyper_on_hold&lt;/identifier&gt;</div><div class="line">  &lt;autogen&gt;</div><div class="line">    --KeyOverlaidModifier--</div><div class="line">    KeyCode::BACKSLASH, ModifierFlag::NONE,</div><div class="line">    KeyCode::COMMAND_L,</div><div class="line">    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L,</div><div class="line">    KeyCode::BACKSLASH, ModifierFlag::SHIFT_L</div><div class="line">  &lt;/autogen&gt;</div><div class="line">&lt;/item&gt;</div><div class="line"></div><div class="line">&lt;item&gt;</div><div class="line">  &lt;name&gt;Swap backslash and pipe&lt;/name&gt;</div><div class="line">  &lt;appendix&gt;This one i&apos;m trying out really, it&apos;s not as if I use either of these all that often, but I think writing OR statements happens more often than manually escaping characters. Still, if I was writing a lot of regex I would likely want the backslash back mapped to a single finger key.&lt;/appendix&gt;</div><div class="line">  &lt;identifier&gt;private.backslash_pipe_swap&lt;/identifier&gt;</div><div class="line">  &lt;autogen&gt;</div><div class="line">    --KeyToKey--</div><div class="line">    KeyCode::BACKSLASH, ModifierFlag::SHIFT_L,</div><div class="line">    KeyCode::BACKSLASH</div><div class="line">  &lt;/autogen&gt;</div><div class="line">  &lt;autogen&gt;</div><div class="line">    --KeyToKey--</div><div class="line">    KeyCode::BACKSLASH, ModifierFlag::SHIFT_R,</div><div class="line">    KeyCode::BACKSLASH</div><div class="line">  &lt;/autogen&gt;</div><div class="line">  &lt;!--</div><div class="line">    This is not needed as the main mapping above takes care of</div><div class="line">    sending pipe instead of backslash.</div><div class="line">  &lt;autogen&gt;</div><div class="line">    --KeyToKey--</div><div class="line">    KeyCode::BACKSLASH,</div><div class="line">    KeyCode::BACKSLASH, ModifierFlag::SHIFT_L</div><div class="line">  &lt;/autogen&gt;</div><div class="line">  --&gt;</div><div class="line">&lt;/item&gt;</div></pre></td></tr></table></figure>
+<p>In that example I use ModifierFlag::NONE to allow me to do both a KeyToKey mapping and a KeyOverlaidModifier on the same single key.</p>
+<h3 id="Go-off-and-learn-more"><a href="#Go-off-and-learn-more" class="headerlink" title="Go off and learn more"></a>Go off and learn more</h3><p>You probably have different preferences and needs than me when it comes to how you interact with your computer, so here are some resources you can use to learn more about customizing your system through KRMB:</p>
+<ul>
+<li><a href="http://stevelosh.com/blog/2012/10/a-modern-space-cadet/" target="_blank" rel="external">http://stevelosh.com/blog/2012/10/a-modern-space-cadet/</a></li>
+<li><a href="https://pqrs.org/macosx/keyremap4macbook/pckeyboardhack.html.en" target="_blank" rel="external">https://pqrs.org/macosx/keyremap4macbook/pckeyboardhack.html.en</a></li>
+<li><a href="https://pqrs.org/macosx/keyremap4macbook/xml.html.en" target="_blank" rel="external">https://pqrs.org/macosx/keyremap4macbook/xml.html.en</a></li>
+</ul>
+<h3 id="Update-4-28-14"><a href="#Update-4-28-14" class="headerlink" title="Update 4/28/14"></a>Update 4/28/14</h3><p>I realized when I first wrote this I didn’t link to my own private.xml file for anyone to look at. Here’s the link:</p>
+<ul>
+<li><a href="https://github.com/iansinnott/dotfiles/blob/master/dotfiles/KeyRemap4MacBook/private.xml" target="_blank" rel="external">Private.xml</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/using-keyremap4macbooks-private-xml/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fusing-keyremap4macbooks-private-xml%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fusing-keyremap4macbooks-private-xml%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fusing-keyremap4macbooks-private-xml%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/using-keyremap4macbooks-private-xml/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tech/">tech</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/startup-idea-feedback-week/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          From Startup Idea to (In)validation in a Week
+        
+      </div>
+    </a>
+  
+  
+    <a href="/wordpress-needs-better-automation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">WordPress Needs Better Automation</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/using-keyremap4macbooks-private-xml/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

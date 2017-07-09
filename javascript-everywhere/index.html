@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript Everywhere | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Over the past week or so I’ve really been diving into JavaScript to get a deeper understanding of the underlying language (not just jQuery). What I’m realizing, and what prompted me to actually write">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript Everywhere">
+<meta property="og:url" content="https://blog.iansinnott.com/javascript-everywhere/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="Over the past week or so I’ve really been diving into JavaScript to get a deeper understanding of the underlying language (not just jQuery). What I’m realizing, and what prompted me to actually write">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript Everywhere">
+<meta name="twitter:description" content="Over the past week or so I’ve really been diving into JavaScript to get a deeper understanding of the underlying language (not just jQuery). What I’m realizing, and what prompted me to actually write">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-javascript-everywhere" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript-everywhere/" class="article-date">
+  <time datetime="2013-12-05T08:00:00.000Z" itemprop="datePublished">2013-12-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript Everywhere
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Over the past week or so I’ve really been diving into JavaScript to get a deeper understanding of the underlying language (not just jQuery). What I’m realizing, and what prompted me to actually write this, is that Node is clean, unfiltered awesomeness.</p>
+<p>I had been contemplating diving into Ruby for a long time. I’m currently actually auditing a course on Ruby. But once I fired up Node most of that motivation to learn a new back-end language went out the window. The thing is, I really enjoy doing stuff in the terminal and writing scripts that will do things for me. <strong>Automation</strong>, as we say. This has prompted me to learn a significant amount of bash scripting (used for Z shell of course), but that has it’s own limitations, and it was never really designed to be good at many of the things I would want to do from the terminal.</p>
+<a id="more"></a>
+<p>PHP works as a scripting language, and it’s already my go-to language for development, but the lack of well known PHP shell scripts made me wary. Whereas Ruby and Python both have a ton of excellent scripts under their belt, PHP just never seems to have caught on outside of server-side scripting. This may be changing, as Composer makes it abundantly clear that one can do awesome things with PHP on the command line, but I still wanted something different.</p>
+<h2 id="Enter-Node-js"><a href="#Enter-Node-js" class="headerlink" title="Enter Node.js"></a>Enter Node.js</h2><p>I won’t go into the specifics of what it is or does, there’s a whole internet out there that will provide that information. Suffice to say, Node let’s you run JavaScript without a browser. For many developers these days, this means running it on a server. In my case however, this means running it in the terminal.</p>
+<h2 id="JavaScript-is-Everywhere-Now"><a href="#JavaScript-is-Everywhere-Now" class="headerlink" title="JavaScript is Everywhere Now"></a>JavaScript is Everywhere Now</h2><p>JavaScript was already making waves before Node, but only as a front-end language that allowed developers to do awesome things in a browser. Still, we then had to send any information back to the server for &#8216;serious’ processing or storing to a database.</p>
+<p>What Node has done, is freed JS from the confines of the browser. By adding allowing it to be used on a server or in a terminal it now has what it needs to truly become ubiquitous. This is all in addition to an emerging trend:</p>
+<h2 id="Compile-Anything-to-JS"><a href="#Compile-Anything-to-JS" class="headerlink" title="Compile Anything to JS"></a>Compile Anything to JS</h2><p>Today we have things like CoffeeScript and TypeScript as well as an array of tools for compiling probably anything you would care to develop with to JS. These include compilers for C#, Java, Python, C/C++, etc.</p>
+<p>It’s crazy, it’s awesome and even if there are now more ways than ever to create JS without actually writing it, it’s still an amazingly exciting time to be a JavaScript developer.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/javascript-everywhere/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fjavascript-everywhere%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fjavascript-everywhere%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fjavascript-everywhere%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/javascript-everywhere/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/development/">development</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tech/">tech</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/wordpress-needs-better-automation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          WordPress Needs Better Automation
+        
+      </div>
+    </a>
+  
+  
+    <a href="/integrating-alfred-and-keyboard-maestro/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Integrating Alfred With Keyboard Maestro</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/javascript-everywhere/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

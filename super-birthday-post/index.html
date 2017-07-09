@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jekyll Theming Like a Boss With Gulp | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Building your own Jekyll theme quickly and efficientlyBasically I was fed up with how inefficient coding Jekyll themes was, especially with Octopress, so I decided there must be a better way. These ar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jekyll Theming Like a Boss With Gulp">
+<meta property="og:url" content="https://blog.iansinnott.com/super-birthday-post/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="Building your own Jekyll theme quickly and efficientlyBasically I was fed up with how inefficient coding Jekyll themes was, especially with Octopress, so I decided there must be a better way. These ar">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jekyll Theming Like a Boss With Gulp">
+<meta name="twitter:description" content="Building your own Jekyll theme quickly and efficientlyBasically I was fed up with how inefficient coding Jekyll themes was, especially with Octopress, so I decided there must be a better way. These ar">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-super-birthday-post" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/super-birthday-post/" class="article-date">
+  <time datetime="2014-06-19T07:00:00.000Z" itemprop="datePublished">2014-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jekyll Theming Like a Boss With Gulp
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Building-your-own-Jekyll-theme-quickly-and-efficiently"><a href="#Building-your-own-Jekyll-theme-quickly-and-efficiently" class="headerlink" title="Building your own Jekyll theme quickly and efficiently"></a>Building your own Jekyll theme quickly and efficiently</h2><p>Basically I was fed up with how inefficient coding Jekyll themes was, especially with Octopress, so I decided there must be a better way. These are my findings.</p>
+<p>We’re going to use <a href="http://gulpjs.com/" target="_blank" rel="external">Gulp.js</a> to automate most of what’s lame about creating themes for Jekyll. Gulp is just a task runner, so if you have another your more familiar with (i.e. <a href="http://gruntjs.com/" target="_blank" rel="external">Grunt</a>) that would work too.</p>
+<p>First you need to go grab the boilerplate <a href="http://getpoole.com/" target="_blank" rel="external">Poole</a> code so that we are all on the same page.</p>
+<h3 id="Sass"><a href="#Sass" class="headerlink" title="Sass"></a>Sass</h3><p>Jekyll tempting is a pain compared to general web development and it shouldn’t be. Let’s get gulp set up to automate the usual crap for us. I’m using SCSS, but you could do the same thing with plain CSS, Less or Stylus just as easily. Here is the is a gulpfile to get get you set up:</p>
+<a id="more"></a>
+<script src="//gist.github.com/iansinnott/a9175e41f521a56eae52.js"></script>
+<p>The important task here is the ‘sass’ task. That task will compile any sass in the <code>sass/</code> directory, save it in two places:</p>
+<ul>
+<li><p><code>public/css</code>: This is where you would normally save any CSS you wanted included in your project. These files would be copied into <code>_site/public/css</code> whenever you run <code>jekyll build</code>.</p>
+</li>
+<li><p><code>_site/public/css</code>: This is where your generated site lives. Normally you would never manually change any files in here, but by saving CSS to this directory on compile we can take advantage of CSS injections in the browser immediately, without having to run <code>jekyll build</code> to have the files copied over. Basically we are doing exactly what <code>jekyll build</code> would do, but only for our CSS so that the entire site doesn’t have to be built every time we change one style.</p>
+</li>
+</ul>
+<p>The key to this setup is the <code>watch</code> task, which will compile are Sass files into CSS and inject the changes into the browser using live reload. This is an immense improvement over changing Sass files, manually running <code>jekyll build</code> and then doing a full page refresh in the browser. As an added bonus, we can also have gulp automatically rebuild the site whenever any of our Markdown or html files change. First I set up gulp with [gulp-shell][gshell] so that it could run <code>jekyll build</code> for me:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">gulp.task(<span class="string">'build'</span>, shell.task([ <span class="string">'jekyll build'</span> ]));</div></pre></td></tr></table></figure>
+<p>Then the following code runs that <code>build</code> task on the project whenever any HTML or Markdown files are changed in our project:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">gulp.watch([</div><div class="line">  <span class="string">'_includes/**/*.html'</span>,</div><div class="line">  <span class="string">'_layouts/**/*.html'</span>,</div><div class="line">  <span class="string">'_posts/**/*'</span></div><div class="line">], [<span class="string">'build'</span>]);</div></pre></td></tr></table></figure>
+<h3 id="Wrap-up"><a href="#Wrap-up" class="headerlink" title="Wrap up"></a>Wrap up</h3><p>That’s pretty much it. Just a way to get jekyll to act like a modern web technology when building templates. If you don’t like waiting for your Sass to compile or your browser to reload, hopefully this helped.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/super-birthday-post/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fsuper-birthday-post%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fsuper-birthday-post%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fsuper-birthday-post%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/super-birthday-post/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/meteor-is-almost-awesome/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Meteor is (Almost) Awesome
+        
+      </div>
+    </a>
+  
+  
+    <a href="/vim-awesome/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vim: It&#39;s Awesome</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/super-birthday-post/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

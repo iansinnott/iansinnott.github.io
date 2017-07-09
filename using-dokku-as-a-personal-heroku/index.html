@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Using Dokku As A Personal Heroku | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Dokku For The WinI might just be in love with Dokku. Why? Here are some things I like as a developer:
+
+Not having to configure servers
+Not having to upload files
+Deploying apps to production (or stagi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using Dokku As A Personal Heroku">
+<meta property="og:url" content="https://blog.iansinnott.com/using-dokku-as-a-personal-heroku/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="Dokku For The WinI might just be in love with Dokku. Why? Here are some things I like as a developer:
+
+Not having to configure servers
+Not having to upload files
+Deploying apps to production (or stagi">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Using Dokku As A Personal Heroku">
+<meta name="twitter:description" content="Dokku For The WinI might just be in love with Dokku. Why? Here are some things I like as a developer:
+
+Not having to configure servers
+Not having to upload files
+Deploying apps to production (or stagi">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-using-dokku-as-a-personal-heroku" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/using-dokku-as-a-personal-heroku/" class="article-date">
+  <time datetime="2014-07-24T07:00:00.000Z" itemprop="datePublished">2014-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Using Dokku As A Personal Heroku
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Dokku-For-The-Win"><a href="#Dokku-For-The-Win" class="headerlink" title="Dokku For The Win"></a>Dokku For The Win</h2><p>I might just be in love with <a href="https://github.com/progrium/dokku" target="_blank" rel="external">Dokku</a>. Why? Here are some things I like as a developer:</p>
+<ul>
+<li>Not having to configure servers</li>
+<li>Not having to upload files</li>
+<li>Deploying apps to production (or staging!) with a few key strokes</li>
+<li>Portability of code</li>
+<li>Extensibility</li>
+</ul>
+<p>With a service like Heroku you get all of this, but with free, open source software like <a href="https://github.com/progrium/dokku" target="_blank" rel="external">Dokku</a> you not only get these great features but you don’t have to pay a premium. It’s completely free, which means if you’re like me and you enjoy using <a href="https://www.digitalocean.com/?refcode=9acd82993bac" target="_blank" rel="external">Digital Ocean’s</a> $5/mo base package you get the most critical features of Heroku for five bucks a month. That’s a deal in my book.</p>
+<p>After a session of coding, here’s what my new deployment process looks like:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">git add .</div><div class="line">git push dokku master</div></pre></td></tr></table></figure>
+<p>It’s <em>that</em> simple.</p>
+<h2 id="Setting-Up"><a href="#Setting-Up" class="headerlink" title="Setting Up"></a>Setting Up</h2><p>I’m not going to go in depth on this because there’s really not that much to say. Here are the steps you would take to get set up with Dokku if you’re using Digital Ocean:</p>
+<ul>
+<li>Crete a new droplet from the standard Dokku image. <a href="https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-dokku-application" target="_blank" rel="external">Here’s a guide</a>.</li>
+<li>Install the <a href="https://github.com/wmluke/dokku-domains-plugin" target="_blank" rel="external">Dokku Domains Plugin</a>. It’s unofficial, but it works great.</li>
+<li>Run <code>dokku domains:set &lt;app-name&gt; www.myawesomeapp.com</code></li>
+<li>Symlink the newly created nginx conf file to the <code>/etc/nginx/sites-enabled/</code> directory.</li>
+<li>Restart nginx: <code>sudo service nginx restart</code></li>
+</ul>
+<p>Step four is what tripped me up initially. I thought I could just run the domains command and everything would work fine, but apparently the script doesn’t link anything up to Nginx, so you must do it yourself.</p>
+<p>The generated conf file will likely be located at <code>/home/dokku/&lt;app-name&gt;/nginx-domains.conf</code>. So all you need to do is symlink that into your Nginx configuration and your good to go:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ln -s /path/to/nginx-domains.conf /path/to/sites-enabled/&lt;app-name&gt;</div></pre></td></tr></table></figure>
+<p>After that, restart your server with the command mentioned above (or whatever works for your system) and you should be good to go. Reload your custom URL in the browser and see it live.</p>
+<p><strong>Note:</strong> This only works if you already have a domain name set up and DNS set up. Just Google this if you need help there, Digital Ocean has some great guides and a surprisingly nice DNS management interface.</p>
+<p>That’s all. Dokku is awesome.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/using-dokku-as-a-personal-heroku/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fusing-dokku-as-a-personal-heroku%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fusing-dokku-as-a-personal-heroku%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fusing-dokku-as-a-personal-heroku%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/using-dokku-as-a-personal-heroku/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/useful-bash-commands-for-web-developers/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Useful Bash Commands For Web Developers
+        
+      </div>
+    </a>
+  
+  
+    <a href="/using-emoji-in-excerpts-on-github-pages/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Using Emoji in Excerpts on GitHub Pages</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/using-dokku-as-a-personal-heroku/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

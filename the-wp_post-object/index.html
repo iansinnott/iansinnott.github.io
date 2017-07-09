@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>The WP_Post Object | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This is a quick reference for myself and anyone else who commonly uses the WP_Post object in WordPress. I find that I often forget exactly what attributes this object has so I finally decided to just">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The WP_Post Object">
+<meta property="og:url" content="https://blog.iansinnott.com/the-wp_post-object/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="This is a quick reference for myself and anyone else who commonly uses the WP_Post object in WordPress. I find that I often forget exactly what attributes this object has so I finally decided to just">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The WP_Post Object">
+<meta name="twitter:description" content="This is a quick reference for myself and anyone else who commonly uses the WP_Post object in WordPress. I find that I often forget exactly what attributes this object has so I finally decided to just">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-the-wp_post-object" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/the-wp_post-object/" class="article-date">
+  <time datetime="2013-06-15T07:00:00.000Z" itemprop="datePublished">2013-06-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      The WP_Post Object
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This is a quick reference for myself and anyone else who commonly uses the WP_Post object in WordPress. I find that I often forget exactly what attributes this object has so I finally decided to just make a post about it and save my future self having to dump the var to remember. Here it is:</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">WP_Post Object</div><div class="line">(</div><div class="line">  [ID] =&gt; 252</div><div class="line">  [post_author] =&gt; 81</div><div class="line">  [post_date] =&gt; 2013-06-13 09:27:19</div><div class="line">  [post\_date\_gmt] =&gt; 2013-06-13 09:27:19</div><div class="line">  [post_content] =&gt;</div><div class="line">  [post_title] =&gt; Mac Mall, 1be/5ba</div><div class="line">  [post_excerpt] =&gt;</div><div class="line">  [post_status] =&gt; publish</div><div class="line">  [comment_status] =&gt; open</div><div class="line">  [ping_status] =&gt; open</div><div class="line">  [post_password] =&gt;</div><div class="line">  [post_name] =&gt; mac-mall-1be5ba</div><div class="line">  [to_ping] =&gt;</div><div class="line">  [pinged] =&gt;</div><div class="line">  [post_modified] =&gt; 2013-06-13 09:27:19</div><div class="line">  [post\_modified\_gmt] =&gt; 2013-06-13 09:27:19</div><div class="line">  [post\_content\_filtered] =&gt;</div><div class="line">  [post_parent] =&gt; 0</div><div class="line">  [guid] =&gt; http://orangefinders.dev/listing/mac-mall-1be5ba/</div><div class="line">  [menu_order] =&gt; 0</div><div class="line">  [post_type] =&gt; listing</div><div class="line">  [post\_mime\_type] =&gt;</div><div class="line">  [comment_count] =&gt; 0</div><div class="line">  [filter] =&gt; raw</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>This is the result of calling <code>print_r()</code> on a <code>WP_Post</code> object. Enjoy.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/the-wp_post-object/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fthe-wp_post-object%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fthe-wp_post-object%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fthe-wp_post-object%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/the-wp_post-object/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/theme-development/">theme development</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wordpress/">wordpress</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wp/">wp</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/learn-vim-code-like-a-boss/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Learn Vim &amp; Code Like a Boss
+        
+      </div>
+    </a>
+  
+  
+    <a href="/wordpress-development-server-full-set-up-guide/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">WordPress Development Server - Full Set Up Guide</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/the-wp_post-object/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

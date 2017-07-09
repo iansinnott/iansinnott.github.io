@@ -1,0 +1,301 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Learn Vim &amp; Code Like a Boss | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Learn Vim and remove the trackpad from your workflowSince your here, you probably alredy want to learn the amazing editing software that is Vim. But if you haven’t yet decided to take the plunge, here">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn Vim & Code Like a Boss">
+<meta property="og:url" content="https://blog.iansinnott.com/learn-vim-code-like-a-boss/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="Learn Vim and remove the trackpad from your workflowSince your here, you probably alredy want to learn the amazing editing software that is Vim. But if you haven’t yet decided to take the plunge, here">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learn Vim & Code Like a Boss">
+<meta name="twitter:description" content="Learn Vim and remove the trackpad from your workflowSince your here, you probably alredy want to learn the amazing editing software that is Vim. But if you haven’t yet decided to take the plunge, here">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-learn-vim-code-like-a-boss" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/learn-vim-code-like-a-boss/" class="article-date">
+  <time datetime="2013-08-09T07:00:00.000Z" itemprop="datePublished">2013-08-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Learn Vim &amp; Code Like a Boss
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Learn-Vim-and-remove-the-trackpad-from-your-workflow"><a href="#Learn-Vim-and-remove-the-trackpad-from-your-workflow" class="headerlink" title="Learn Vim and remove the trackpad from your workflow"></a>Learn Vim and remove the trackpad from your workflow</h2><p>Since your here, you probably alredy want to learn the amazing editing software that is Vim. But if you haven’t yet decided to take the plunge, here are three reasons to start <em>today</em>.</p>
+<ol>
+<li>Code Faster, better and maybe even stronger.</li>
+<li>Code easily on any system.</li>
+<li>Understand the command line (you will need it later)</li>
+</ol>
+<p>This article is also the base for an upcoming article on being insanely productive on a Mac and eliminating the trackpad from your workflow (almost) entirely.</p>
+<blockquote>
+<p>But Ian, isn’t Vim a productivity killer for new users?</p>
+</blockquote>
+<p><strong>No.</strong> Vim only hurts productivity if you are very hardcore about learning the esoteric commands as quickly as possible. People assume learning Vim involves a mandatory dive into the deep end. That’s <em>not true</em>, and I’m going to show you why.</p>
+<h2 id="Quck-setup-Updated"><a href="#Quck-setup-Updated" class="headerlink" title="Quck setup (Updated)"></a>Quck setup (Updated)</h2><ol>
+<li>Download <a href="http://www.sublimetext.com/3" title="sublime text" target="_blank" rel="external">Sublime Text</a></li>
+<li>Either <a href="http://www.sublimetext.com/docs/2/vintage.html" title="Vintage mode" target="_blank" rel="external">enable vintage mode</a> or install the <a href="https://github.com/guillermooo/Vintageous" title="Vintageous on github" target="_blank" rel="external">Vintageous plugin</a></li>
+</ol>
+<a id="more"></a>
+<p>Enabling Vintage mode in Sublime involves a very quick edit to your user preferences file. See the link above for the official instructions. Vintageous is actually better, but I believe it’s only compatible with Sublime Text 3, so to install it you have to manually bring it into your Plugins folder for ST3. The creator gives good instructions on his GitHub page. If you know git already this is super simple to set up.</p>
+<p><strong>Note:</strong> You can of course use the real Vim if you prefer, but having access to a full on text editor makes the transition much easier and keeps you from loosing productivity during the transition. Another option for Mac users is <a href="https://code.google.com/p/macvim/" title="macvim" target="_blank" rel="external">MacVim</a>. I’ve never used it but heard good things.</p>
+<p><strong>Update:</strong> The people over at Square recently published a great Vim starter kit for those who want to get set up very quickly with the real thing. If you’re interested in learning Vim in it’s native environment, check out <a href="https://github.com/square/maximum-awesome" title="Maximum awesome by square" target="_blank">Maximum Awesome</a>.</p>
+<h2 id="Let’s-get-started-with-movement"><a href="#Let’s-get-started-with-movement" class="headerlink" title="Let’s get started with movement"></a>Let’s get started with movement</h2><p>Movement in Vim is accomplished a number of ways. The most simple way is using the keyboard equivalent of the directional keys (I know the directional keys are technically on the keyboard as well, but you will be training yourself not to use them. Just bare with me!).</p>
+<p><strong>Quick Note:</strong> To switch modes between normal and insert mode use the <code>Esc</code> and <code>i</code> keys. I’m just mentioning offhand in case you feel the need to switch modes immediately. I’ll cover modes bellow, just know that you must be in ‘normal’ mode to move with the keys.</p>
+<h3 id="Vim-Directional-Keys"><a href="#Vim-Directional-Keys" class="headerlink" title="Vim Directional Keys"></a>Vim Directional Keys</h3><ul>
+<li><code>h</code>, <code>j</code>, <code>k</code> and <code>l</code> equate to left, up, down and right respectively.</li>
+</ul>
+<p>If you’re following along, try it out. It will feel strange at first.</p>
+<p><strong>Here’s a tip:</strong> Don’t take your fingers of the keys they would usually rest on (<code>jkl;</code>). You may initially think you need four fingers on the four directional keys, but you don’t. You will find that reaching over with the index finger when you need <code>h</code> is not that great a challenge.</p>
+<p>That’s cool right? No? I agree. It’s slow, but you will probably only use <code>h</code> for minute movements of the cursor to the left. You will be surprised how little you actually need it, once you know the rest of the movement keys. Now let’s talk about the faster ways of getting around.</p>
+<h3 id="Words-line-search-and-text-search"><a href="#Words-line-search-and-text-search" class="headerlink" title="Words, line-search and text-search"></a>Words, line-search and text-search</h3><p>To navigate forward or backward word-wise, use these three keys: <code>w</code>, <code>e</code>, <code>b</code>.</p>
+<p>These all have built in mnemonics to help you keep theme straight.</p>
+<ul>
+<li><code>w</code>: Move forward to the start of the next <strong>word</strong>.</li>
+<li><code>e</code>: Move forward to the <strong>end</strong> of the word.</li>
+<li><code>b</code>: Move <strong>backward</strong> one word.</li>
+</ul>
+<p>The capital versions of these, <code>W</code>, <code>E</code>, <code>B</code>, to the same thing but you get bigger chunks of characters with each key press because they use whitespace to differentiate words instead of a set of characters. Don’t worry about that for now, you will figure it out without my help.</p>
+<p>Ready to get crazy? Use <code>f</code> and <code>t</code> to jump to a specific character on the current line. Use <code>;</code> and <code>,</code> to repeat forward and backward.</p>
+<ul>
+<li><code>fA</code>: Moves the cursor to the next <em>capital A</em> (<code>A</code>) in the line.</li>
+<li><code>;</code>: Move to the <em>next</em> occurrence of <code>A</code> if that was your last <code>f</code> command.</li>
+<li><code>,</code>: Move to the <em>previous</em> occurrence of <code>A</code> (I.e. do the same search to the left of the cursor instead of to the right).</li>
+<li><code>t&quot;</code>: Moves to cursor to the character <em>immediately before</em> the next <code>&quot;</code> in the line. <code>;</code> and <code>,</code> work just the same as with <code>f</code>.</li>
+</ul>
+<p><code>F</code> and <code>T</code> function the same but do the initial search to the left of the cursor. Consequently, using <code>;</code> will consider the next occurrence to also be to the left of the current position, while <code>,</code> will be to the right. This can sound confusing on paper, but once you use it it will make sense very quickly.</p>
+<p>The larger implications of these will become more clear later on once we start <strong>deleting</strong> and <strong>changing</strong> text. For now just know that this stuff is important.</p>
+<p>Now the real speed booster: text-search. Use <code>/</code> and <code>?</code> to search for any string within the current open document (buffer). This is <em>case sensitive</em> by default. Don’t worry, you can change that later.</p>
+<ul>
+<li><code>/class</code>: Moves the cursor to the <em>next</em> occurrence of the string <code>class</code>.</li>
+<li><code>?id</code>: Moves to the <em>previous</em> occurrence of the string <code>id</code>.</li>
+</ul>
+<p>If you’ve used Sublime Text before, these commands function much like the built in ‘Incremental Search’ functionality, so you may not be floored by this efficiency. Either way, this is Vim so learn it. Now let’s change some stuff.</p>
+<h2 id="Changing-and-deleting-text"><a href="#Changing-and-deleting-text" class="headerlink" title="Changing and deleting text"></a>Changing and deleting text</h2><p>As you noticed with many of the other keys, Vim likes to give you built in mnemonics where possible. Changing and deleting text are no exceptions to this rule. Use <code>c</code> to ‘change’ text and <code>d</code> to delete.</p>
+<blockquote>
+<p><em>Change</em> text.. ?</p>
+</blockquote>
+<p>Yeah, changing text tells Vim to delete it, and then enter insert mode so you can enter new text. Thus <em>changing</em> the text. You could accomplish the same by deleting the text with a movement + <code>d</code> and then entering insert mode with <code>i</code>. Let’s see some basic examples. I’ll use an <code>*</code> (asterisk) to show you where the is when the command is typed:</p>
+<ul>
+<li><code>This is a *blog</code> : Typing <code>cw</code> will ‘<em>change</em> the <em>word</em>‘.</li>
+</ul>
+<p>Since the cursor is at the beginning of ‘blog’ this would then change the word ‘blog’. So if you first type <code>cw</code> followed by <code>house</code> the new string will look like <code>This is a house</code>.</p>
+<p>The <code>c</code> command really shines in my opinion when you want to change text between two dellimeters. So maybe you have some HTML that looks like:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;div class=&quot;so many damny classes on this div&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>But maybe you decided that many classes is a little rediculous and you consolodated the CSS into a single class called <code>single-class</code>. Now to apply this class, normally we might use the mouse to select everythign inside those double-quotes. Unfortunately, that’s slow. With Vim, we get to use the awesome ‘inner’ command to select everything <em>inside</em> a delimmiter. Here that delimiter is <code>&quot;</code>. So if we type:</p>
+<p><code>ci&quot;</code> followed by <code>single-class</code> get the result we want super quickly:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;div class=&quot;single-class&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Like a boss!</p>
+</blockquote>
+<p>Yup. This generally works great with things like <code>(</code>, <code>)</code>, <code>{</code>, <code>}</code>, <code>&#39;</code>, <code>&quot;</code> and HTML tags. For that last one, the syntax is <code>cit</code>. Think of it as ‘change inner tag’, and commit it to memory. If you code HTML, XML or anything else with tags, <code>cit</code> will become your new best friend.</p>
+<h3 id="Deleting-Text"><a href="#Deleting-Text" class="headerlink" title="Deleting Text"></a>Deleting Text</h3><p>You can often think of the <code>d</code> key the same way you think of <code>c</code>, except you don’t end up in insert mode. Use <code>d</code> when you want to delete a group of text but don’t necessarily want to replace it right away. In the above example of <code>cw</code>, using <code>dw</code> instead would have simply deleted the word. I often find <code>d</code> works wonders when combined with inline-search using <code>t</code> or <code>f</code>. Example:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$var = func(nested_fun($other_var));</div></pre></td></tr></table></figure>
+<p>Given a line like that above, how would you go about deleting everything after the <code>=</code> sign? If you’re coding in a language that uses a fairly unique line-ending character like <code>;</code> then your in luck. With the cursor in normal mode under the <code>=</code>, you can type <code>dt;</code> to plow through that nested function nonsense and make room for something new. Speaking of which, if you wanted to change the assigned value of <code>$var</code> and wanted to save a step, you could use <code>ct;</code>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/learn-vim-code-like-a-boss/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Flearn-vim-code-like-a-boss%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Flearn-vim-code-like-a-boss%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Flearn-vim-code-like-a-boss%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/learn-vim-code-like-a-boss/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/productivity/">productivity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tech/">tech</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/page-reloads-thing-past/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Page reloads are a thing of the past
+        
+      </div>
+    </a>
+  
+  
+    <a href="/the-wp_post-object/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">The WP_Post Object</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/learn-vim-code-like-a-boss/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

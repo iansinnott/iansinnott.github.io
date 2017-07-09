@@ -1,0 +1,1035 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="I make web apps, I travel and Sometimes I write about it.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ian Sinnott">
+<meta property="og:url" content="https://blog.iansinnott.com/page/2/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="I make web apps, I travel and Sometimes I write about it.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ian Sinnott">
+<meta name="twitter:description" content="I make web apps, I travel and Sometimes I write about it.">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  <article id="post-switching-away-from-mongoose" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/switching-away-from-mongoose/" class="article-date">
+  <time datetime="2015-08-01T07:00:00.000Z" itemprop="datePublished">2015-08-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/switching-away-from-mongoose/">Switching Away From Mongoose</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’ve been using MongoDB as my primary database for some time now. That means all new projects I created were running Mongo, and Mongoose was my ORM of choice. Mongoose has worked well for my in the past and even <em>still</em> does, but I can feel that it’s time for a switch.</p>
+<h2 id="Why-the-change"><a href="#Why-the-change" class="headerlink" title="Why the change?"></a>Why the change?</h2><h3 id="Mongo"><a href="#Mongo" class="headerlink" title="Mongo"></a>Mongo</h3><p>The main reason actually isn’t Mongoose, but rather <strong>Mongo</strong>. The data in <em>most</em> applications is probably going to be relational so why would you use a non-relational database? The main reason I liked Mongo initially was that it had a JavaScript API but I’ve come to realize that doesn’t matter that much, and it can even be a hindrance when working with team members that know and love SQL.</p>
+<h3 id="Mpromise"><a href="#Mpromise" class="headerlink" title="Mpromise"></a>Mpromise</h3><p>For anyone who doesn’t know already, Mongoose provides a promise-based API for doing async database operations in addition to the classic callbacks. This API is unfortunately under documented, but it exists none-the-less and the library it uses to implement promises is <a href="https://github.com/aheckmann/mpromise">Mpromise</a>.</p>
+<p>Mpromise seemed fine at first, but it turns out it simply doesn’t adhere to the ES6 Promise spec. The most glaring example of this is that Mpromise does not implement <code>.catch</code>, meaning you can’t do nice pretty error handling at the bottom of your then-stack. Here’s an example using Express to build an API:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Model <span class="keyword">from</span> <span class="string">'../models/Model.js'</span>;</div><div class="line"></div><div class="line"><span class="comment">// GET all the Models</span></div><div class="line">api.get(<span class="string">'/models'</span>, (req, res, next) =&gt; &#123;</div><div class="line">  Model.find(&#123;&#125;)</div><div class="line">    .then(<span class="function"><span class="params">data</span> =&gt;</span> res.send(data))</div><div class="line">    .catch(next);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/switching-away-from-mongoose/#more">Read More</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/switching-away-from-mongoose/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fswitching-away-from-mongoose%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fswitching-away-from-mongoose%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fswitching-away-from-mongoose%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/switching-away-from-mongoose/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-use-ssh-forwardagent-for-fun-and-profit" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/use-ssh-forwardagent-for-fun-and-profit/" class="article-date">
+  <time datetime="2015-07-20T07:00:00.000Z" itemprop="datePublished">2015-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/use-ssh-forwardagent-for-fun-and-profit/">Use SSH ForwardAgent for fun and profit</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Yesterday I discovered something amazing. With just <em>one line</em> of code you can bypass the annoyance of not being able to access private web services (i.e. GitHub) while SSHed into a machine. The method is called SSH agent forwarding and it’s changed my deployment workflow.</p>
+<p>Here’s the quick version. For every <code>Host</code> in your <code>~/.ssh/config</code> file you can add a new line that allows you to use your own <em>local</em> SSH keys even while SSHed into the remote server. Example:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Host myhost</div><div class="line">  HostName X.X.X.X</div><div class="line">  ForwardAgent yes # &lt;-- This line is key</div></pre></td></tr></table></figure>
+<p>See that last line? That is all it takes to turn on agent forwarding whenever you SSH into the server called <code>myhost</code>. Cool right?</p>
+<h3 id="The-workflow"><a href="#The-workflow" class="headerlink" title="The workflow"></a>The workflow</h3><p>So, you might be wondering why this matters. The answer is ease of deployment. For small and even mid-size projects it’s probably not too much to ask to SSH in to the actual server whenever you need to deploy new code. This may not be the best or easiest deployment workflow, but it not difficult and it’s quite simple.</p>
+<p>Furthermore, if your deployment process ever breaks it will not be difficult to troubleshoot because you will understand every step as opposed to using some automated deployment method that makes everything ten times as complex.</p>
+<p>Now that you have ForwardAgent turned on, you can do something like this:</p>
+<ol>
+<li>Change the codebase. Commit changes</li>
+<li><code>git push</code></li>
+<li><code>ssh</code> into production server. <code>cd</code> into app directory</li>
+<li><code>git pull</code></li>
+<li>Restart your app, now with up-to-date code</li>
+</ol>
+<p>I love this workflow, mainly because step 4 is much easier than it was before I discovered <code>ForwardAgent</code>. Since you can easily pull code from any private repo that you have SSH access to you can now use Git as your primary means of deployment.</p>
+<p>Step 5 will depend on your setup and is up to you, but hopefully it’s nothing too onerous. If it is, then I suggest you check out <a href="https://www.docker.com/" target="_blank" rel="external">Docker</a>. It may just make your deployment life a whole lot better.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/use-ssh-forwardagent-for-fun-and-profit/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fuse-ssh-forwardagent-for-fun-and-profit%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fuse-ssh-forwardagent-for-fun-and-profit%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fuse-ssh-forwardagent-for-fun-and-profit%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/use-ssh-forwardagent-for-fun-and-profit/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-managing-state-and-controlled-form-fields-with-react" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/managing-state-and-controlled-form-fields-with-react/" class="article-date">
+  <time datetime="2015-05-11T07:00:00.000Z" itemprop="datePublished">2015-05-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/managing-state-and-controlled-form-fields-with-react/">Managing state and controlled form fields with React</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>UPDATE (2016-07-28):</strong> As of React v15 <code>valueLink</code> and <code>checkedLink</code> are officially deprecated. I heavily advocate the use of both of these APIs in this article. If you want to see my thoughts on the deprecation see <a href="#comment-2692300179">this comment below</a>. For the official deprecation see <a href="https://facebook.github.io/react/docs/two-way-binding-helpers.html">the docs article here</a>.</p>
+<hr>
+<p>With React, you basically get two different ways to deal with forms:</p>
+<ul>
+<li>Standard input elements that can be modified by the user</li>
+<li>“Controlled” input elements that can only be modified programatically</li>
+</ul>
+<p>The first type is pretty straightforward in React, you simply don’t provide a <code>value</code> prop:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">React.createClass(&#123;</div><div class="line">  render (</div><div class="line">    &lt;input type='text' /&gt;</div><div class="line">  );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>The value of that <code>&lt;input&gt;</code> element can be edited by the user in a browser, just like one would expect in a normal we app.</p>
+<p>The other type of input—a “Controlled” input—looks almost the same, but has a <code>value</code> property:</p>
+        
+          <a class="article-more-link" href="/managing-state-and-controlled-form-fields-with-react/#more">Read More</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/managing-state-and-controlled-form-fields-with-react/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fmanaging-state-and-controlled-form-fields-with-react%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fmanaging-state-and-controlled-form-fields-with-react%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fmanaging-state-and-controlled-form-fields-with-react%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/managing-state-and-controlled-form-fields-with-react/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-in-search-of-the-ultimate-tooling-workflow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/in-search-of-the-ultimate-tooling-workflow/" class="article-date">
+  <time datetime="2015-05-03T07:00:00.000Z" itemprop="datePublished">2015-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/in-search-of-the-ultimate-tooling-workflow/">In search of the ultimate tooling workflow</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Lately I’ve been exploring the various options out there for front-end tooling. I’m about to start a greenfield project next week and I figure I might as well do it right. The goal is not to look back in two months and wish I had implemented a better workflow. The tooling can always change, but in practice it usually doesn’t so it’s best to get it right the first time.</p>
+<p>In short, here’s what I’ve decided on:</p>
+<ul>
+<li><a href="http://webpack.github.io/">Webpack</a> w/ <a href="https://github.com/webpack/docs/wiki/hot-module-replacement-with-webpack">Hot Module Replacement</a> enabled</li>
+<li><a href="https://babeljs.io/">Babel</a> (ES6 compilation)</li>
+<li><a href="http://gulpjs.com/">Gulp</a></li>
+<li><a href="http://stylus-lang.com/">Stylus</a></li>
+</ul>
+<h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p>Webpack is amazing. I never thought <a href="http://browserify.org/">Browserify</a> would be replaced in my workflow, but it has been. Webpack essentially does everything Browserify did and more. It let’s you require <em>anything</em>, including images, Markdown files, fonts and probably anything else you would need in a website.</p>
+<h3 id="So-what"><a href="#So-what" class="headerlink" title="So what?"></a>So what?</h3><p>Webpack let’s you truly componentize your applications by letting you keep <em>everything</em> organized in a single directory. For example, if you wanted to componentize your website’s header you could put the HTML, CSS, JS and all associated images in the same directory. No more fumbling with paths in you’re image <code>src</code> attribute.</p>
+        
+          <a class="article-more-link" href="/in-search-of-the-ultimate-tooling-workflow/#more">Read More</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/in-search-of-the-ultimate-tooling-workflow/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fin-search-of-the-ultimate-tooling-workflow%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fin-search-of-the-ultimate-tooling-workflow%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fin-search-of-the-ultimate-tooling-workflow%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/in-search-of-the-ultimate-tooling-workflow/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-solving-a-problem-is-the-biggest-win" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/solving-a-problem-is-the-biggest-win/" class="article-date">
+  <time datetime="2015-02-20T08:00:00.000Z" itemprop="datePublished">2015-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/solving-a-problem-is-the-biggest-win/">Solving problems is the biggest win</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>As I ramp up my job search, I’ve recently become more introspective about why I like programming. It’s not uncommon during an initial phone screen to be asked some variation of the following “soft” interview question:</p>
+<blockquote>
+<p>What are you passionate about?</p>
+</blockquote>
+<p>or…</p>
+<blockquote>
+<p>Why do you like software development?</p>
+</blockquote>
+<p>As simple and possibly over-used as these questions are, they’re still good ones. So am I <em>really</em> passionate about software development? Hell yes. But that’s not the answer to the underlying question of why—why am I passionate about it?</p>
+<p>It’s this line of thinking that has led me to do some introspection recently, and I’ve come to the conclusion that what it really boils down to is <strong>solving problems</strong>.</p>
+<h2 id="Solving-problems-is-the-biggest-win"><a href="#Solving-problems-is-the-biggest-win" class="headerlink" title="Solving problems is the biggest win"></a>Solving problems is the biggest win</h2><p>When you solve a problem for yourself it feels great. Not only that, but you then have one less problem. The satisfaction of solving problems certainly isn’t exclusive to programming, but programming is one of the best tools to solve an extremely wide array of problems, which is why I love it.</p>
+<p>But as satisfying as solving one’s own problems can be, the biggest win in my mind is to …</p>
+<h2 id="Solve-other-people’s-problems"><a href="#Solve-other-people’s-problems" class="headerlink" title="Solve other people’s problems"></a>Solve other people’s problems</h2><p>This realization really solidified in my mind a number of months ago as I was combing through <a href="https://github.com/iansinnott" target="_blank" rel="external">my GitHub profile</a> to clean out old repositories I no longer use. It was when I first saw <a href="https://github.com/iansinnott/alfred-maestro" target="_blank" rel="external">one of my repos</a> getting starred by other people 😀.</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-02-20%20at%202.42.24%20PM.png" alt="Alfred Maestro Repo"></p>
+<p><strong><em>Other people</em> were using something I created</strong>, and apparently they liked it. The level of satisfaction I got from that project remains very high to this day.</p>
+<p>The best part is, solving other people’s problems is not only valuable but it’s also motivating.</p>
+<h2 id="Maintaining-motivation"><a href="#Maintaining-motivation" class="headerlink" title="Maintaining motivation"></a>Maintaining motivation</h2><p>Alfred Maestro (my most-starred repo) is a project I wrote over a year ago, using my least favorite language (PHP) but I’ve still maintained it and responded to any user issues throughout because <em>other people were using it</em>. It’s that motivation that has kept that little project going. That motivation is really powerful.</p>
+<p>In this way solving someone’s problem can become a positive feedback loop: The more positive feedback you get about your project and the way it’s solving problems, the more you’re motivated to continue to solve that problem.</p>
+<p>It’s a beautiful thing.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/solving-a-problem-is-the-biggest-win/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fsolving-a-problem-is-the-biggest-win%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fsolving-a-problem-is-the-biggest-win%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fsolving-a-problem-is-the-biggest-win%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/solving-a-problem-is-the-biggest-win/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/personal/">personal</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-a-new-direction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/a-new-direction/" class="article-date">
+  <time datetime="2015-02-16T08:00:00.000Z" itemprop="datePublished">2015-02-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/a-new-direction/">A New Direction</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>For the past few years I’ve been living in Taiwan running my own freelance business. It’s been an amazing, transformative experience and I’ve had a great time doing it. Entering 2015, I was planning to continue growing my business into the foreseeable future, but after a recent revelation I feel it’s time for a change.</p>
+<p><strong>It’s time to get a <em>real</em> job.</strong></p>
+<p>At my last “job” I was my own boss, I worked my own hours, I traveled often and lived however I wanted. So, why then would I choose to give all that up? The answer is simple, it’s because…</p>
+<p><strong>I’m in my comfort zone.</strong></p>
+<p>I woke up one morning and realized: <strong>I’ve acclimated.</strong> I’m no longer challenged on a daily basis. This was a hard realization to come by, but it’s true. The projects I had been working on might have been fun or interesting but they were ultimately well within my current skill set, which means I had stopped pushing.</p>
+<p><strong>“Never stop pushing.”</strong></p>
+<p>I once heard that quote somewhere and it really resonated with me. I never want to stop improving or stop iterating on my own talents. So I’ve decided to join a startup and find something I’m truly passionate about working on. I want to learn and grow at the same time as I provide value to a company I admire.</p>
+<p>There are a number of companies I’m already very passionate about and likely many others I haven’t heard of yet, so…</p>
+<p><strong>The search is on.</strong></p>
+<p>For the next few months I’ll be staying in San Francisco learning, improving, meeting new people and looking for the right company. I don’t expect it to be easy, but it will be worthwhile.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/a-new-direction/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fa-new-direction%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fa-new-direction%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fa-new-direction%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/a-new-direction/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/personal/">personal</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-express-basics" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/express-basics/" class="article-date">
+  <time datetime="2015-02-02T08:00:00.000Z" itemprop="datePublished">2015-02-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/express-basics/">Express Basics</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>A quick guide to using Express, and the basics of Express middleware</em></p>
+<h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>All source files for this article can be found in the <a href="https://github.com/iansinnott/express-middleware-lecture" target="_blank" rel="external">GitHub Repo: iansinnott/express-middleware-lecture</a>.</p>
+<h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><ol>
+<li>Intro (Simplifying Express)</li>
+<li>What is middleware?</li>
+<li>The relationship between Express and middleware<ul>
+<li>Explanation (it’s just a function)</li>
+<li>Build a simple logger</li>
+</ul>
+</li>
+<li>Important points about middleware<ul>
+<li><strong>MUST</strong> call <code>next()</code></li>
+<li>Order matters</li>
+<li>Middleware can be localized to various routes</li>
+</ul>
+</li>
+<li>Routes are also middleware</li>
+<li>Handling errors<ul>
+<li>404</li>
+<li>Internal server error (500)</li>
+</ul>
+</li>
+<li>Conclusion<ul>
+<li><strong>Express is just a stack of middleware</strong></li>
+<li>Common and useful middleware you will undoubtedly see</li>
+<li>More resources</li>
+</ul>
+</li>
+</ol>
+<h2 id="Simplifying-Express"><a href="#Simplifying-Express" class="headerlink" title="Simplifying Express"></a>Simplifying Express</h2><p>So first things first, rather than starting with everything and figuring out what it all does, let’s start with a base Express configuration and add things as we need them.</p>
+<p>A standard Express app configuration using the <code>express-generator</code> NPM module will produce something like this:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">var</span> favicon = <span class="built_in">require</span>(<span class="string">'serve-favicon'</span>);</div><div class="line"><span class="keyword">var</span> logger = <span class="built_in">require</span>(<span class="string">'morgan'</span>);</div><div class="line"><span class="keyword">var</span> cookieParser = <span class="built_in">require</span>(<span class="string">'cookie-parser'</span>);</div><div class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> routes = <span class="built_in">require</span>(<span class="string">'./routes/index'</span>);</div><div class="line"><span class="keyword">var</span> users = <span class="built_in">require</span>(<span class="string">'./routes/users'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line"><span class="comment">// view engine setup</span></div><div class="line">app.set(<span class="string">'views'</span>, path.join(__dirname, <span class="string">'views'</span>));</div><div class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'jade'</span>);</div><div class="line"></div><div class="line"><span class="comment">// uncomment after placing your favicon in /public</span></div><div class="line"><span class="comment">//app.use(favicon(__dirname + '/public/favicon.ico'));</span></div><div class="line">app.use(logger(<span class="string">'dev'</span>));</div><div class="line">app.use(bodyParser.json());</div><div class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</div><div class="line">app.use(cookieParser());</div><div class="line">app.use(express.static(path.join(__dirname, <span class="string">'public'</span>)));</div><div class="line"></div><div class="line">app.use(<span class="string">'/'</span>, routes);</div><div class="line">app.use(<span class="string">'/users'</span>, users);</div><div class="line"></div><div class="line"><span class="comment">// catch 404 and forward to error handler</span></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> err = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Not Found'</span>);</div><div class="line">  err.status = <span class="number">404</span>;</div><div class="line">  next(err);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// error handlers</span></div><div class="line"><span class="keyword">if</span> (app.get(<span class="string">'env'</span>) === <span class="string">'development'</span>) &#123;</div><div class="line">  app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</div><div class="line">    res.status(err.status || <span class="number">500</span>);</div><div class="line">    res.render(<span class="string">'error'</span>, &#123;</div><div class="line">      <span class="attr">message</span>: err.message,</div><div class="line">      <span class="attr">error</span>: err</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</div><div class="line">  res.status(err.status || <span class="number">500</span>);</div><div class="line">  res.render(<span class="string">'error'</span>, &#123;</div><div class="line">    <span class="attr">message</span>: err.message,</div><div class="line">    <span class="attr">error</span>: &#123;&#125;</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = app;</div></pre></td></tr></table></figure>
+<p>There’s a lot going on there, and for anyone without experience using Express that may look daunting if all we really want is a super simple application.</p>
+<h3 id="Simplify-all-of-the-things"><a href="#Simplify-all-of-the-things" class="headerlink" title="Simplify all of the things!"></a>Simplify all of the things!</h3><p>The above configuration file also makes assumptions about what you will need in your project. This can be useful but it is quite detrimental to learning the ins and outs of Express, because it does too much automatically. Let’s start from a bare-bones Express app and expand as needed. Here’s our configuration file:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">  res.send(<span class="string">"hello express"</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<p>This file will responds to GET requests at <code>/</code>—the root URL. Any other requests will cause an Express error, because there is no request handler for any other route or method.</p>
+<p>If you open your browser and go to <a href="http://localhost:3000" target="_blank" rel="external">localhost:3000</a> you should see the text “hello express”, or you could use CURL:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ curl :3000</div><div class="line">hello express</div></pre></td></tr></table></figure>
+<p>Now that we have a super simple Express app up and running, let’s move on to middleware.</p>
+<h2 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h2><p>Middleware, in the context of Express is just a fancy term for a function that gets run on your server <em>after</em> a request has been received from a client and <em>before</em> a response is sent back. In other words, it’s a function that gets run <strong>in the middle</strong> of the requeset-response cycle.</p>
+<p>So what does that look like in practice? Let’s take a look:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Define your middleware</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">uselessMiddleware</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="comment">// Do some stuff...</span></div><div class="line">  next();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// "Use" your middlware</span></div><div class="line">app.use(uselessMiddleware);</div></pre></td></tr></table></figure>
+<p>The above function (middleware) is in fact useless as implied by its name because it doesn’t do anything at all. It simply calls the next middleware in the middleware stack (more on that below).</p>
+<p>When writing simple middleware, we often use an anonymous function, so let’s refactor the above as so:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="comment">// Do some stuff...</span></div><div class="line">  next();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Now let’s make our middleware do something.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'hey nice middleware'</span>);</div><div class="line">  next();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>This middleware is simply going to log a string to the console. To make sure it’s working, and to see how middleware works, let’s send a request to our server. Use either your browser or CURL from the command line:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ curl :3000</div><div class="line">hello express</div></pre></td></tr></table></figure>
+<p>Regardless of how you made the requeset, if you now look in your terminal you should see that our middleware was indeed run because “hey nice middleware” will have been printed to the command line.</p>
+<h2 id="Express-and-Middleware"><a href="#Express-and-Middleware" class="headerlink" title="Express and Middleware"></a>Express and Middleware</h2><p>The one thing I want you to take away from this lecture is that <strong>an Express app is simply a stack of middleware</strong>. In other words, as the Express website says:</p>
+<blockquote>
+<p>An Express application is essentially a series of middleware calls.</p>
+</blockquote>
+<p>To see how true this is, let’s look at a standard Express route:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.get(<span class="string">'/hello'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">  res.send(<span class="string">'Hello route'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>This is a super simple Express route that will respond to a GET request at <code>/hello</code> with the text string “hello route”.</p>
+<p>But what if we want some bit of code to be run on <em>all</em> requests instead of just GET requests to <code>/hello</code>? For instance, what if we wanted to implement our own logger that would log the method and path of every request to the command line? That’s where middleware comes in.</p>
+<p>When we call <code>app.use</code> we are saying, “Every time a new request comes in run this function.”</p>
+<h3 id="Building-a-simple-logger"><a href="#Building-a-simple-logger" class="headerlink" title="Building a simple logger"></a>Building a simple logger</h3><p>To see this in action let’s built a simple logger that will output strings of the form:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[METHOD] [ROUTE] [DATE]</div></pre></td></tr></table></figure>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">GET / Sun Jan 25 2015 22:27:07 GMT-0800 (PST)</div><div class="line">GET /some-route Sun Jan 25 2015 22:27:07 GMT-0800 (PST)</div><div class="line">POST /contact Sun Jan 25 2015 22:27:07 GMT-0800 (PST)</div></pre></td></tr></table></figure>
+<p>Using express middleware, we can accomplish this pretty easily:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">  <span class="built_in">console</span>.log(req.method + <span class="string">' '</span> + req.url + <span class="string">' '</span> + date);</div><div class="line">  next();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Now in just five lines of code we’ve created a rudimentary logging system.</p>
+<h2 id="Important-points-about-middleware"><a href="#Important-points-about-middleware" class="headerlink" title="Important points about middleware"></a>Important points about middleware</h2><p>Middleware is super flexible and easy to use, but there are still a few important points that need to be noted.</p>
+<h3 id="Always-call-next"><a href="#Always-call-next" class="headerlink" title="Always call next"></a>Always call <code>next</code></h3><p>As you’ve seen in all the middleware examples so far, I make sure to call <code>next</code> at the end of the function. What would happen if we didn’t call next? Try it out. Remove next from our logging middleware above and run the app. Here’s the full source code for <code>app.js</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">  <span class="built_in">console</span>.log(req.method + <span class="string">' '</span> + req.url + <span class="string">' '</span> + date);</div><div class="line">  <span class="comment">// WE DIDN'T CALL `next` HERE!!</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">  res.send(<span class="string">"hello express"</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<p>Run the app, then make a request:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">node app.js</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">curl :3000</div></pre></td></tr></table></figure>
+<p>Now your terminal will just sort of hang and do nothing. You will also see that the logging function was still run, because there will be a log entry in the terminal. This is because your app (<code>app.js</code>) received a request, called the logging middleware, logged the output and then… did nothing. The app is waiting for us to either send a response back to the client or call <code>next</code>. Since we didn’t do either, it just hangs until we hit ctrl-c to stop our server.</p>
+<p>So the point is, always call <code>next</code>, otherwise you’re server will not only not respond but also not give you an error. It will simply do nothing, and leave the browser waiting for a response.</p>
+<h3 id="Order-Matters"><a href="#Order-Matters" class="headerlink" title="Order Matters"></a>Order Matters</h3><p>As the <a href="http://expressjs.com/guide/using-middleware.html" target="_blank" rel="external">documentation says</a>:</p>
+<blockquote>
+<p>Middleware functions are executed sequentially, therefore the order of middleware inclusion is important.</p>
+</blockquote>
+<p>This is nothing overly complex, but it’s important to be aware of. Here’s a quick example, again using our logging middleware from above:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line"><span class="comment">// Route</span></div><div class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">  res.send(<span class="string">"hello express"</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// Logging middleware added after route</span></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">  <span class="built_in">console</span>.log(req.method + <span class="string">' '</span> + req.url + <span class="string">' '</span> + date);</div><div class="line">  next();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<p>As before, run the app and send a request to the root URL at <a href="http://localhost:3000" target="_blank" rel="external">localhost:3000</a>. The request that comes back from the server will have the text “hello express” as expected, but if you look at the console you will notice that our middleware did not run. This is because we added it <em>after</em> our route.</p>
+<p><strong>What happened?</strong></p>
+<p>Even though we added the logging middleware <em>after</em> the route, you might think it should still get run after our route is hit, but that’s not the case. Calling <code>res.send</code> actually ends the request-response cycle, because it sends a response to the client. After the req-res cycle has ended, no more middleware will be called, so our logging middleware never gets executed.</p>
+<h3 id="Middleware-can-be-localized-to-routes"><a href="#Middleware-can-be-localized-to-routes" class="headerlink" title="Middleware can be localized to routes"></a>Middleware can be localized to routes</h3><p>Global middleware is really useful, but sometimes it would be unecessary to run certain middleware for <em>all</em> routes and methods. That’s why Express let’s you pass an optional string as the initial argument to <code>app.use</code>. Imagine we have an admin area on our website at <code>/admin</code>. We want to check to make sure a user is logged in before they access the page. A simple way to accomplish this would be:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.use(<span class="string">'/admin'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (!req.user)</div><div class="line">    res.redirect(<span class="string">'/login'</span>);</div><div class="line">  <span class="keyword">else</span></div><div class="line">    next();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>This example assumes that <code>req.user</code> will be set if the user is already logged in, as is the case when using <a href="http://passportjs.org/" target="_blank" rel="external">Passport JS</a>. If there is no user present on the request then the browser will be redirected to login. If there is a user however then the middleware simply calls next and allows the process to continue as normal.</p>
+<h2 id="Routes-are-just-more-middleware"><a href="#Routes-are-just-more-middleware" class="headerlink" title="Routes are just more middleware"></a>Routes are just more middleware</h2><p>Usually when we talk about Express we talk about routes and middleware as separate, because conceptually they are. A “route” typically means the end of the middleware stack, the last response handler that is called and that decides ultimately how to respond to the request. However, to understand Express it’s important to understand that routes themselves are also “middleware”—simply functions that get called under certain circumstances.</p>
+<p>As an example, take a look at these two completely equivalent “routes”. One is written as you would normally write a route, using <code>app.get</code> while the other is written as middleware, but the effect is exactly the same:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">  res.send(<span class="string">'hello express'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.use(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (req.method === <span class="string">'GET'</span>)</div><div class="line">    res.send(<span class="string">'hello express'</span>);</div><div class="line">  <span class="keyword">else</span></div><div class="line">    next();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Using middlware syntax and manually checking the request method is of course more verbose, and certainly not what you want to do in practice. But it’s important to realize that Express routes and Express middleware ware actually on in the same. This is why, as mentioned in the docs and above…</p>
+<blockquote>
+<p>An Express application is essentially a series of middleware calls.</p>
+</blockquote>
+<h2 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h2><p>Until you are comfortable with Express as a “stack” of middleware that get called in the order they were added, it may not be obvious how errors are normally handled. There is no <code>app.error</code> method. The way errors are handled is again, through middleware:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// The rest of the app...</span></div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.status(<span class="number">404</span>).send(<span class="string">"Oh no, there was an error..."</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>This middleware matches any route and any method, and all it does is send an error message to the browser. If you added this at the top of all your middleware your site would continually send this error message to the client. However, by putting this at the very end of our app configuration we can allow all routes that weren’t matched by previous middleware to effectively fall through and be caught here.</p>
+<p>However, since not every error is a 404, it’s important to allow for other errors with other status codes. To accomplish this, Express recognizes middleware with four arguments instead of three as being an error handler.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</div><div class="line">  res.status(err.status || <span class="number">500</span>);</div><div class="line">  res.send(<span class="string">"Oh no, there was an error..."</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>In the eyes of Express, this middleware is clearly an error handler because it expects four arguments, the first of which is an error object. <strong>Note:</strong> If you don’t manually set a status code 200 will still be the default, which would of course be incorrect for responding with an error. If there is no status set on the <code>err</code> object then we default to the generic 500 status code.</p>
+<p>So, now we have an error handler but if you restart your server and navigate to a URL that we know there’s no router for (ex: “/something”) you will get a standard Express error, <em>NOT</em> the custom error we just created. What happened?</p>
+<p>Since we aren’t using any third party middleware yet, we know every piece of code that’s being executed when a request hits the server. As a result, we can see that at no point is an error generated. This is crucial, because errors in Express are not automatic. JavaScript errors will happily bring down your server, but if you want to handle them with easy you will need to manually call the <code>next</code> function and pass an error argument. That will let Express execute our custom error handling code as scene above. So, to make sure all 404’s do indeed generate an error, we can add a catch-all middleware right above our error handler:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> err = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Page not found!"</span>);</div><div class="line">  err.status = <span class="number">404</span>;</div><div class="line">  next(err); <span class="comment">// Call `next` with an argument</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</div><div class="line">  res.status(err.status || <span class="number">500</span>);</div><div class="line">  res.send(<span class="string">"Oh no, there was an error..."</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Now if we restart our server we will get the result we want: All errors, 404 or otherwise, will be directed to our final error handler and we will get a response containing the string “Oh no, there was an error…”.</p>
+<h3 id="A-quick-note-on-triggering-errors"><a href="#A-quick-note-on-triggering-errors" class="headerlink" title="A quick note on triggering errors"></a>A quick note on triggering errors</h3><p>In the example above we called <code>next</code> with a single <code>Error</code> object as the lone argument. To generate an Express error and jump directly to error handling middleware you need only call <code>next</code> with a truthy argument. For example:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// All of these would trigger error handling middleware</span></div><div class="line">  next(<span class="string">'hey there'</span>);</div><div class="line">  next(<span class="number">40</span>);</div><div class="line">  next(<span class="literal">true</span>);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>The only exception to the above is calling <code>next(&#39;route&#39;)</code>. Calling <code>next</code> with the special string <code>&#39;route&#39;</code> will not cause an error. See <a href="http://expressjs.com/4x/api.html#app.METHOD" target="_blank" rel="external">the docs here for more on this</a>.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>So, once again to reiterate:</p>
+<blockquote>
+<p>An Express application is essentially a series of middleware calls.</p>
+</blockquote>
+<p>If you remember one thing from this lecture remember that, because it will give you a clear understanding of how Express works and more importantly how to extend it to suite your needs.</p>
+<p>That being said, there is currently a plethora of useful middleware in the wild that you will most likely encounter at one point or another if you stick with Express.</p>
+<h3 id="Useful-amp-Common-Middleware"><a href="#Useful-amp-Common-Middleware" class="headerlink" title="Useful &amp; Common Middleware"></a>Useful &amp; Common Middleware</h3><p><strong><a href="https://github.com/expressjs/body-parser" target="_blank" rel="external">Body Parser</a></strong></p>
+<p>This is one you’re almost certain to see in most Express apps, as it’s useful for handling forms as well as AJAX requests.</p>
+<p><strong><a href="https://github.com/expressjs/body-parser" target="_blank" rel="external">Serve Static</a></strong></p>
+<p>This one makes it easy to statically serve a directory. For example, if you have a <code>/public</code> and you would like to put all your static files there (images, css, scripts) then you would want to use the static middleware to field requests for all resources under public. This is so common that the serve-static middleware is actually bundled with Express:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.use(express.static(__dirname + <span class="string">'/public'</span>)));</div></pre></td></tr></table></figure>
+<p><strong><a href="https://github.com/expressjs/morgan" target="_blank" rel="external">Morgan</a></strong></p>
+<p>This is flexible logging software that can be used in development or production. Even though as we saw it’s quite simple to write your own logging software, it’s a better idea to use something standard like Morgan because you can be sure your logs will be well formatted, and it’s also one lest thing for you to test.</p>
+<p>There’s a ton of middleware out there, so whenever you run into a feature that Express doesn’t have but you would like chances are there’s a middleware module for it.</p>
+<h3 id="Resource-Links"><a href="#Resource-Links" class="headerlink" title="Resource Links"></a>Resource Links</h3><ul>
+<li><a href="http://expressjs.com/guide/using-middleware.html" target="_blank" rel="external">Official Express Middleware Guide</a></li>
+<li><a href="http://expressjs.com/api.html#app.use" target="_blank" rel="external">Official app.use API documentation</a></li>
+</ul>
+<h2 id="Outro"><a href="#Outro" class="headerlink" title="Outro"></a>Outro</h2><p>As I mentioned in the intro, this guide and all JS source files can be found in the repo on GitHub: <a href="https://github.com/iansinnott/express-middleware-lecture" target="_blank" rel="external">iansinnott/express-middleware-lecture</a>.</p>
+<p>This write-up was the content of an interview and guest lecture I had at <a href="http://www.makersquare.com/" target="_blank" rel="external">Makersquare</a>, a JavaScript bootcamp in San Francisco. The Markdown file for the presentation I gave <a href="https://github.com/iansinnott/express-middleware-lecture/blob/master/presentation.md" target="_blank" rel="external">can be found here</a>. The presentation was created for use with <a href="http://decksetapp.com/" target="_blank" rel="external">Deckset</a>, a Mac application for creating slideshows with Markdown.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/express-basics/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fexpress-basics%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fexpress-basics%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fexpress-basics%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/express-basics/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/middleware/">middleware</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/">tutorial</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-use-redcarpet-to-render-markdown" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/use-redcarpet-to-render-markdown/" class="article-date">
+  <time datetime="2015-01-26T08:00:00.000Z" itemprop="datePublished">2015-01-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/use-redcarpet-to-render-markdown/">Use RedCarpet to Render Markdown</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Most of the markdown I write ends up on GitHub, so when I preview my markdown I on my computer I like it to look <em>exactly</em> like it will once I push it live to some repository. I also like to use the excellent <a href="http://marked2app.com/" target="_blank" rel="external">Marked</a> app to preview my markdown. Unfortunately, even though Marked claims to support <a href="https://help.github.com/articles/github-flavored-markdown/" target="_blank" rel="external">Github Flavored Markdown</a> (GFM) it leaves some features out. I’m not going to blame Marked for the incomplete implementation of GFM, they outsource the processing to <a href="https://github.com/Orc/discount" target="_blank" rel="external">Discount</a>, so it’s probably not their fault. But certain features of GFM, like nested lists, are really useful so I decided to switch to <a href="https://github.com/vmg/redcarpet" target="_blank" rel="external">RedCarpet</a>, since that is the Gem GitHub itself uses to parse READMEs.</p>
+<p>So, for anyone else who runs into the issue of Marked’s incomplete GFM support, simply install <code>redcarpet</code> and use it as a custom processor:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo gem install redcarpet</div></pre></td></tr></table></figure>
+<p>In the “Advanced” section of Marked’s preferences you can find the custom processor section:</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/Screen_Shot_2015-01-26_at_2_26_54_PM.jpg" alt="Custom Marked Processor"></p>
+<p><strong>Note:</strong> You <em>might</em> have to click the “Update Permissions” button since Marked may not have read access to wherever you’re <code>redcarpet</code> executable is located.</p>
+<p>Once you’ve added the custom processor you should get a little nondescript button near the lower right-hand side of your Marked windows:</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/Screen_Shot_2015-01-26_at_2_27_38_PM.jpg" alt="Custom processor button in Marked"></p>
+<p>If you click that button you should now get markdown rendered through your custom processor! Nice 😎</p>
+<p>Hope that helps anyone who ran into the same problem I did.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/use-redcarpet-to-render-markdown/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fuse-redcarpet-to-render-markdown%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fuse-redcarpet-to-render-markdown%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fuse-redcarpet-to-render-markdown%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/use-redcarpet-to-render-markdown/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-back-to-the-javascript-basics" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/back-to-the-javascript-basics/" class="article-date">
+  <time datetime="2015-01-09T08:00:00.000Z" itemprop="datePublished">2015-01-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/back-to-the-javascript-basics/">Back to the JavaScript Basics</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Today I was interviewed for a developer position at a San Francisco startup and I was caught off guard when I was asked to create a simple implementation of “inheritance” in JS. Inheritance is in quotes because, well, this is JS we’re talking about. There is no real inheritance in the classical sense, but we can certainly make it work. The interview question went something like this:</p>
+<blockquote>
+<p>Create a class Animal with a <code>walk</code> method. Then create a class Dog that inherits from Animal.</p>
+</blockquote>
+<p>Simple enough, right? Here’s what I wrote:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> _ = <span class="built_in">require</span>(<span class="string">'lodash'</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">Animal.prototype.walk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Hey there I'm an Animal walking"</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  Animal.call(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">_.extend(Dog.prototype, Animal.prototype);</div></pre></td></tr></table></figure>
+<p>This is certainly how I would have solved the inheritance problem in any of my projects, but as it turns out this isn’t the best solution in the context of someone evaluating your JS prowess. Firstly, my solution explicitly depends on <a href="https://lodash.com/" target="_blank" rel="external">Lo-Dash</a> (Underscore.js would also work just as well). These days it’s hardly outlandish to assume that a given project would depend on either Lo-Dash or Underscore, so I don’t see anything wrong with this but it still wasn’t optimal in the given setting.</p>
+<p>Then there’s the larger assumption my solution makes, which is that you’re compiling your source through Browserify. Since I now use Browserify religiously on every project it didn’t even occur to me to <em>mention</em> this implicit dependency. If the interviewer wasn’t familiar with Browserify himself he might have thought I was just crazy—requiring modules in a browser 😕. Anyway, the answer they were going for was to use <code>Object.create</code> for defining the prototype of the subclass:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">Animal.prototype.walk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Hey there I'm an Animal walking"</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  Animal.call(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">Dog.prototype = <span class="built_in">Object</span>.create(Animal.prototype);</div><div class="line">Dog.prototype.constructor = Dog;</div></pre></td></tr></table></figure>
+<p>Both solutions accomplish the same thing, but the latter can simply be pasted into a browser console while the former would have to be run through Browserify and have Lo-Dash installed through NPM.</p>
+<h2 id="Back-to-the-basics"><a href="#Back-to-the-basics" class="headerlink" title="Back to the basics"></a>Back to the basics</h2><p>What this brief experience made me realize is that there are still some basic JS methods that I’m not familiar with. Of course now it’s unlikely that I will forget <code>Object.create</code>. This was a very healthy realization, because despite the fact that I am unlikely ever to use <code>Object.create</code> in any project of my own it’s still good to know the ins and outs of the language you write your software in.</p>
+<p>So, now that I’m quite familiar with <code>Object.create</code> I’m still going right back to my complex build process complete with browserify, stylus, jade and numerous Gulp tasks 😏. For anyone interested, my whole build process is implemented in a <a href="https://github.com/iansinnott/slush-express-isinn" target="_blank" rel="external">Slush generator I use for new Node projects</a>. The readme could use some work, but it should give you a gist of how I do my development.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/back-to-the-javascript-basics/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fback-to-the-javascript-basics%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fback-to-the-javascript-basics%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fback-to-the-javascript-basics%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/back-to-the-javascript-basics/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-new-site-is-live" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/new-site-is-live/" class="article-date">
+  <time datetime="2015-01-08T08:00:00.000Z" itemprop="datePublished">2015-01-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/new-site-is-live/">New Site Is Live</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Yup, the new site is up and running! It’s been a bit of a long time coming, but my new website is finally live online. If you’re interested you can check it out at my home page here: <a href="http://iansinnott.com" target="_blank" rel="external">iansinnott.com</a>.</p>
+<h2 id="So-what"><a href="#So-what" class="headerlink" title="So what?"></a>So what?</h2><p>The big reason I’m super excited about this iteration of my home site is that it was designed entirely from scratch. The previous iterations of my site were all influenced heavily by designer friends of mine, but this latest work is my own. So you’ll have to excuse me if I’m a little more excited than usual about launching a new site.</p>
+<h2 id="Note-quite-done"><a href="#Note-quite-done" class="headerlink" title="Note quite done"></a>Note quite done</h2><p>All that being said, there is still work to be done. The new site isn’t entirely consistent with this blog. It’s not a very big deal, but I really like consistency so updating this site to match the new visual style is now on my to-do list. The new site is also thoroughly untested, so if you stumble upon a part of it that seems broken please don’t hesitate to <a href="http://iansinnott.com/contact" target="_blank" rel="external">get in touch</a> and let me know.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/new-site-is-live/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fnew-site-is-live%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fnew-site-is-live%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fnew-site-is-live%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/new-site-is-live/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+<nav id="page-nav">
+  <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+</nav>
+
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

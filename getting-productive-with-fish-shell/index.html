@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Getting Productive With Fish Shell | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Today I took it upon myself to try out the very new and very cool looking Fish Shell. This is the second time I have taken it upon myself to really dive into the customization of my Terminal and after">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Getting Productive With Fish Shell">
+<meta property="og:url" content="https://blog.iansinnott.com/getting-productive-with-fish-shell/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="Today I took it upon myself to try out the very new and very cool looking Fish Shell. This is the second time I have taken it upon myself to really dive into the customization of my Terminal and after">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Getting Productive With Fish Shell">
+<meta name="twitter:description" content="Today I took it upon myself to try out the very new and very cool looking Fish Shell. This is the second time I have taken it upon myself to really dive into the customization of my Terminal and after">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-getting-productive-with-fish-shell" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/getting-productive-with-fish-shell/" class="article-date">
+  <time datetime="2013-11-11T08:00:00.000Z" itemprop="datePublished">2013-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Getting Productive With Fish Shell
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Today I took it upon myself to try out the very new and very cool looking <a href="http://fishshell.com/" target="_blank" rel="external">Fish Shell</a>. This is the second time I have taken it upon myself to really dive into the customization of my Terminal and after the fact I’m left with much the same feeling as the first time: I feel like I didn’t get anything done today.</p>
+<p>This experience made me think a bit about a certain habit I have to get really dive into my workflow and try to find areas that are lacking or could be more efficient. The first time I did this was after watching a great <a href="https://peepcode.com/products/advanced-command-line" target="_blank" rel="external">tutorial by PeepCode</a> on the advanced ways I could use the command line. The whole video was about how to use [Bash], and then at the very end they recommend that those who want more serious customization should check out something called <a href="http://en.wikipedia.org/wiki/Z_shell" target="_blank" rel="external">Z shell</a>.</p>
+<p>That recommendation led me on an all-day adventure learning Z shell customization. The real killer feature of Z shell actually turned out to be the community involvement, and the GitHub users who were putting out easy-to-use plugins for the esoteric shell. The project is called <a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">oh my zsh</a>, and it’s a great place to start for anyone who wants a more usable terminal.</p>
+<p>The point being, there was recently an announcement on Hacker News that someone had started a <a href="https://github.com/bpinto/oh-my-fish" target="_blank" rel="external">similar project</a> for this new shell called Fish. As soon as I saw that, a big chunk of my time for the day went out the window. I knew if I started looking into the code and the various customizations I would lose many hours of the day, but I couldn’t resist. I LOVE improving my workflow.</p>
+<a id="more"></a>
+<h2 id="One-shell-to-rule-them-all"><a href="#One-shell-to-rule-them-all" class="headerlink" title="One shell to rule them all"></a>One shell to rule them all</h2><p>Like most developers I spend a lot of time in the Terminal, and it can be a pain. Fish shell actually offers code-completion in the terminal as you type. This is a step up from Z shell which would offer decent tab completion but would not print out suggestions for you as you type. What’s not great about Z shell is that much like bash customizing it can be a real pain. Fish on the other hand simplifies customization by making everything a function, and making functions easily definable. Here’s an example of one I use often with Git:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">function gg -d &quot;Commit all&quot;</div><div class="line">  git commit -v -a -m &quot;$argv&quot;</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>The first line defines the function <code>gg</code>, and then is passed the optional description option <code>-d</code>. This isn’t really important, but it provides a nice and easy way to add a bit of text to remind yourself what the hell these two letters do. When you type <code>gg</code> into the command line and hit tab this description will pop up next to it. Anyway, the second line is easy, it’s just a git command with a few options passed. The only part that has to do with Fish shell is the <code>$argv</code> variable which is a &#8216;list’ of arguments that you pass. In this case I wrap it in <code>&quot;</code> (double quotes) so that I don’t have to do that myself. The third line just ends the block. Now I can type something like this:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">git add .</div><div class="line">gg Initial Commit</div></pre></td></tr></table></figure>
+<p>And my commit is done without having to type the usual annoying <code>&quot;</code> or <code>-m</code>.</p>
+<p>What’s also great though, is that Fish shell comes with a predefined function called <code>alias</code> that supports the exact same syntax you used in Bash or Z shell. So for all those aliases sitting in your old config file you can just copy them over and be done. Or if you don’t have any incompatible code in your alias file (i.e. bash or zsh functions) that would cause things to break, then just source it using the <code>.</code> syntax. Sidenote: Fish doesn’t seem to support the familiar <code>source</code> keyword, you have to use the shorthand <code>.</code>.</p>
+<h2 id="Caveats"><a href="#Caveats" class="headerlink" title="Caveats"></a>Caveats</h2><p>Two things I’ve noticed so far that I’m not super thrilled about:</p>
+<ul>
+<li>Often have to type <code>cd</code> to change directory</li>
+<li>No official support for Vim-like editing on the command line</li>
+</ul>
+<p>That first one is probably customizable somehow but I just didn’t put time into figuring out how. It’s a feature of Z shell that you can choose to omit <code>cd</code> before typing out a directory name and it will know what you mean.</p>
+<p>The second one isn’t a huge issue either, because Vim integration with the command line doesn’t actually provide any massive boost to productivity or usability. It’s nice, to be sure, but Vim really shines when editing longer documents. When using the command line I don’t make many typos so most of what I’m doing is entering text not editing it.</p>
+<p>The second one isn’t a huge issue either, because Vim integration with the command line doesn’t actually provide any massive boost to productivity or usability. It’s nice to be sure, but</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>So that’s it. My experience so far has been good, and hopefully all the time I spent today customizing this will pay off in future productivity.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/getting-productive-with-fish-shell/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fgetting-productive-with-fish-shell%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fgetting-productive-with-fish-shell%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fgetting-productive-with-fish-shell%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/getting-productive-with-fish-shell/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fish-shell/">fish shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/productivity/">productivity</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tech/">tech</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/terminal/">terminal</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/workflow/">workflow</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zsh/">zsh</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/integrating-alfred-and-keyboard-maestro/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Integrating Alfred With Keyboard Maestro
+        
+      </div>
+    </a>
+  
+  
+    <a href="/page-reloads-thing-past/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Page reloads are a thing of the past</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/getting-productive-with-fish-shell/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,945 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="I make web apps, I travel and Sometimes I write about it.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ian Sinnott">
+<meta property="og:url" content="https://blog.iansinnott.com/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="I make web apps, I travel and Sometimes I write about it.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ian Sinnott">
+<meta name="twitter:description" content="I make web apps, I travel and Sometimes I write about it.">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  <article id="post-migrating-to-gatsbyjs-part-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/migrating-to-gatsbyjs-part-1/" class="article-date">
+  <time datetime="2017-07-09T17:44:59.000Z" itemprop="datePublished">2017-07-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/migrating-to-gatsbyjs-part-1/">Migrating to GatsbyJS Part 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Abstract:</strong> Migrating a static site to <a href="https://www.gatsbyjs.org/" target="_blank" rel="external">Gatsby</a> is pretty simple. I’ll walk through how I did it and the pitfalls along the way.</p>
+<p><a href="https://www.gatsbyjs.org/" target="_blank" rel="external">Gatsby 1.0</a> was just recently published and I got excited. I’ve been excited about static sites for <em>a while</em>, especially in combination with React. I’ve <a href="https://www.youtube.com/watch?v=_1k2HEPH6fY" target="_blank" rel="external">spoken publicly about building static sites with React</a> and two of my top repositories on GitHub are just for building static sites with React…</p>
+<p><img src="http://dropsinn.s3.amazonaws.com/blurred-repos.png" alt="Blurred Repos"></p>
+<p>So I was pretty pumped to see Gatsby hit 1.0. And so far it has not disappointed.</p>
+<h2 id="Migrating-to-Gatsby-1-0"><a href="#Migrating-to-Gatsby-1-0" class="headerlink" title="Migrating to Gatsby 1.0"></a>Migrating to Gatsby 1.0</h2><p>OK, enough context! Let’s migrate something. I chose to start by migrating <a href="https://www.iansinnott.com" target="_blank" rel="external">my personal site</a> since it’s already built with React and is literally 1 page. Here it is—the entire site:</p>
+<p><img src="http://dropsinn.s3.amazonaws.com/www.iansinnott.com-screenshot-2017-07-09.png" alt="Home page screenshot"></p>
+<h3 id="Adding-Gatsby-to-an-exiting-project"><a href="#Adding-Gatsby-to-an-exiting-project" class="headerlink" title="Adding Gatsby to an exiting project"></a>Adding Gatsby to an exiting project</h3><p>Step 1 is to <strong>install Gatsby</strong>. I’m also adding <code>gatsby-link</code> and the react helmet plugin because I knew I would need them:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">yarn add gatsby gatsby-link gatsby-plugin-react-helmet</div></pre></td></tr></table></figure>
+<p><strong>Create a <code>gatsby-config.js</code> file</strong> in the project root and drop the following into it:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// gatsby-config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">siteMetadata</span>: &#123;</div><div class="line">    <span class="attr">title</span>: <span class="string">`Gatsby Default Starter`</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [<span class="string">`gatsby-plugin-react-helmet`</span>],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>Run Gatsby</strong> to make sure everything is working.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">gatsby develop</div></pre></td></tr></table></figure>
+<p>This will start a local server. Point your browser to whatever local port it gives you and try it out. You should see a Gatsby 404 page. This is because it expects your source code to be in the <code>src/</code> directory. In my project all my source is in my <code>client/</code> directory so Gatsby has nothing to find.</p>
+<p>However, when I loaded up the dev server in the browser I was greeted by this hot error 😐 (note, this may well not happen for you):</p>
+<p><img src="http://dropsinn.s3.amazonaws.com/Screen%20Shot%202017-07-08%20at%2012.07.49%20PM.png" alt="Gatsby dev server build error"></p>
+<p>If you <em>do</em> see something like that not to worry. It’s an issue with conflicting versions of react-proxy probably resulting from differing versions of react-hot-loader. You can check this with <code>npm ls react-proxy</code>. Anyway, blow away your <code>node_modules</code> folder and install from scratch. Also check your <code>package.json</code> dependencies to make sure you aren’t depending on any hot loading packages. In fact, now would be a good time to remove almost all your devDependencies from package.json. Gatsby is an entire build pipeline that will take care of most things for you, so consider critically every one of your dev dependencies. After manually pruning mine looked like this:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&quot;devDependencies&quot;: &#123;</div><div class="line">  &quot;babel-eslint&quot;: &quot;^7.2.3&quot;,</div><div class="line">  &quot;eslint&quot;: &quot;^4.1.1&quot;,</div><div class="line">  &quot;eslint-config-zen&quot;: &quot;^3.0.0&quot;,</div><div class="line">  &quot;eslint-plugin-flowtype&quot;: &quot;^2.34.1&quot;,</div><div class="line">  &quot;eslint-plugin-react&quot;: &quot;^7.1.0&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>Yup, all loaders and plugins are gone. Gatsby isn’t even in this list because it’s a full-blown dependency, not just a devDependency.</p>
+<p>So, once you’ve cleared out your old dev dependencies do a fresh install. Then restart the dev server:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">yarn upgrade</div><div class="line">gatsby develop</div></pre></td></tr></table></figure>
+<p>You should see the correct 404 page in your browser.</p>
+<h3 id="Moving-source-code-around"><a href="#Moving-source-code-around" class="headerlink" title="Moving source code around"></a>Moving source code around</h3><p>Here is the structure of my source code before and after the migration. I’m putting them together here for easy comparison, but I will walk through all of what changed.</p>
+<p><strong>Before:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.</div><div class="line">├── client</div><div class="line">│   ├── components</div><div class="line">│   │   ├── App.js</div><div class="line">│   │   ├── App.styl</div><div class="line">│   │   ├── face.png</div><div class="line">│   │   └── favicon.ico</div><div class="line">│   ├── lib</div><div class="line">│   │   └── vars.styl</div><div class="line">│   ├── index.js</div><div class="line">│   └── routes.js</div><div class="line">├── package.json</div><div class="line">├── template.js</div><div class="line">├── webpack.config.dev.js</div><div class="line">└── webpack.config.prod.js</div></pre></td></tr></table></figure>
+<p><strong>After:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.</div><div class="line">├── src</div><div class="line">│   ├── components</div><div class="line">│   │   ├── App.styl</div><div class="line">│   │   ├── face.png</div><div class="line">│   │   └── favicon.ico</div><div class="line">│   ├── layouts</div><div class="line">│   │   └── index.js</div><div class="line">│   ├── lib</div><div class="line">│   │   └── vars.styl</div><div class="line">│   ├── pages</div><div class="line">│   │   ├── 404.js</div><div class="line">│   │   └── index.js</div><div class="line">│   └── html.js</div><div class="line">├── gatsby-config.js</div><div class="line">└── package.json</div></pre></td></tr></table></figure>
+<p>Let’s start with the quick wins:</p>
+<ul>
+<li>We no longer need webpack config so remove them:<br><code>rm webpack.*</code></li>
+<li>Gatsby expects everything under the <code>src</code> directory so let’s make that happen<br><code>mv client src</code></li>
+<li>Create <code>layouts</code> and <code>pages</code> directories under <code>src</code><br><code>mkdir -p src/layouts</code><br><code>mkdir -p src/pages</code></li>
+</ul>
+<p>Now let’s talk about those directories:</p>
+<ul>
+<li><code>src/layouts/</code>: Is where you put wrapper components. Markup that will generally “go around” your individual pages. This usually means headers and footers.</li>
+<li><code>src/pages/</code>: This is the meat of a Gatsby site. It’s where the content goes. The rule of thumb is that you should construct your <code>src/pages</code> directory to build your URLs.</li>
+</ul>
+<p>For my purposes I had one layout and one index page. Of course I also wanted a 404 page so I created all three. This meant a bit of refactoring since I had everything together in <code>App.js</code>.</p>
+<p>I’m migrating from React Router so let’s take a quick look at my route config:</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> routes = (</div><div class="line">  &lt;Route path=‘/' component=&#123;App&#125;&gt;</div><div class="line">    &lt;IndexRoute component=&#123;Home&#125; /&gt;</div><div class="line">    &lt;Route path='*' component=&#123;NotFound&#125; /&gt;</div><div class="line">  &lt;/Route&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>Pretty simple right? When migrating over to Gatsby these components had a direct mapping to files in the new structure:</p>
+<ul>
+<li><code>App</code> -&gt; <code>layouts/index.js</code></li>
+<li><code>Home</code> -&gt; <code>pages/index.js</code></li>
+<li><code>NotFound</code> -&gt; <code>pages/404.js</code></li>
+</ul>
+<p>Migrating your components will be specific to your project so I’ll just point you to the minimal gatsby example which includes all the relevant files: <a href="https://github.com/gatsbyjs/gatsby/tree/v1.0.8/examples/no-plugins" target="_blank" rel="external">examples/no-plugins</a>.</p>
+<h2 id="CSS-and-Stylus-support"><a href="#CSS-and-Stylus-support" class="headerlink" title="CSS and Stylus support"></a>CSS and Stylus support</h2><p>Up until this point I had commented out all my CSS and <a href="http://stylus-lang.com/" target="_blank" rel="external">Stylus</a> imports since I figured they might cause issues. In the case of CSs this fear was unfounded. Gatsby does a great job of handling CSS imports right out of the box.</p>
+<p>However I was using <a href="http://stylus-lang.com/" target="_blank" rel="external">Stylus</a> along with <a href="https://github.com/webpack-contrib/css-loader#modules" target="_blank" rel="external">CSS Modules</a> which is a bit more complicated. Turns out there was actually <em>zero support</em> for Stylus with Gatsby, <strong>but</strong> Gatsby is highly extensible so…</p>
+<p>Time to write a plugin. I’ll skip over most of the details here since you view the source code of the plugin I wrote directly. But a neat feature of Gatsby is that you create a <code>plugins/</code> directory in your own project and extend Gatsby right there. This is a really nice developer experience and it makes it easy to write a plugin that can then be contributed back to the Gatsby community later.</p>
+<p>So, after all the changes above and creating the stylus plugin my project looked like this:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.</div><div class="line">├── plugins</div><div class="line">│   └── gatsby-plugin-stylus</div><div class="line">│       ├── gatsby-node.js</div><div class="line">│       └── package.json</div><div class="line">├── src</div><div class="line">│   ├── components</div><div class="line">│   │   ├── App.styl</div><div class="line">│   │   ├── face.png</div><div class="line">│   │   └── favicon.ico</div><div class="line">│   ├── layouts</div><div class="line">│   │   └── index.js</div><div class="line">│   ├── lib</div><div class="line">│   │   └── vars.styl</div><div class="line">│   ├── pages</div><div class="line">│   │   ├── 404.js</div><div class="line">│   │   └── index.js</div><div class="line">│   └── html.js</div><div class="line">├── gatsby-config.js</div><div class="line">├── package.json</div><div class="line">└── yarn.lock</div></pre></td></tr></table></figure>
+<p>And it worked 🎉.</p>
+<p>As for the stylus plugin, there’s currently <a href="https://github.com/gatsbyjs/gatsby/pull/1437" target="_blank" rel="external">a pull request</a> to get it merged in. Once it’s merged you can use stylus by just installing the plugin:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">yarn install gatsby-plugin-stylus</div></pre></td></tr></table></figure>
+<h2 id="Final-Polish"><a href="#Final-Polish" class="headerlink" title="Final Polish"></a>Final Polish</h2><p>After getting everything working properly the last step was to add a few things I had neglected while refactoring:</p>
+<p><strong>Analytics:</strong> I’ve been using Google Analytics on my site all along so I needed to get that working I just needed to add the <code>gatsby-plugin-google-analytics</code> plugin.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  resolve: &apos;gatsby-plugin-google-analytics&apos;,</div><div class="line">  options: &#123;</div><div class="line">    trackingId: &apos;UA-&lt;MY_TRACKING_ID&gt;&apos;,</div><div class="line">  &#125;,</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p><strong>Titles and meta tags</strong></p>
+<p><a href="https://github.com/nfl/react-helmet/" target="_blank" rel="external">react-helmet</a> is great for this and Gatsby recognizes it. Just add the <code>gatsby-plugin-react-helmet</code> and your good to go. See the react-helmet docs for how to actually use it.</p>
+<p><strong>Final <code>gatsby-config.js</code>:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// Gatsby</div><div class="line">module.exports = &#123;</div><div class="line">  siteMetadata: &#123;</div><div class="line">    title: &apos;Ian Sinnott&apos;,</div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    &apos;gatsby-plugin-react-helmet&apos;,</div><div class="line">    &#123;</div><div class="line">      resolve: &apos;gatsby-plugin-stylus&apos;,</div><div class="line">      options: &#123;</div><div class="line">        modules: true,</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      resolve: &apos;gatsby-plugin-google-analytics&apos;,</div><div class="line">      options: &#123;</div><div class="line">        trackingId: &apos;UA-&lt;MY_TRACKING_ID&gt;&apos;,</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  ],</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>That’s all. If you have an questions you can leave a commend or <a href="https://twitter.com/ian_sinn" target="_blank" rel="external">find me on twitter</a>.</p>
+<hr>
+<p>P.S. You may have noticed that this was a super simple site (one page!) and that this is “Part 1”. I plan to migrate this blog you’re reading right now to Gatsby and do a Part 2 write up about that. It will be a much more real-world use case of Gatsby and will use the awesome GraphQL infrastructure Gatsby gives you 😋</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/migrating-to-gatsbyjs-part-1/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-to-gatsbyjs-part-1%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-to-gatsbyjs-part-1%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-to-gatsbyjs-part-1%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/migrating-to-gatsbyjs-part-1/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gatsby/">gatsby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/migration/">migration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-the-importance-of-webpack-context" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/the-importance-of-webpack-context/" class="article-date">
+  <time datetime="2016-11-25T03:21:05.000Z" itemprop="datePublished">2016-11-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/the-importance-of-webpack-context/">The importance of Webpack context</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Today I ran into an issue testing my <a href="https://github.com/iansinnott/react-static-webpack-plugin" target="_blank" rel="external">react-static-webpack-plugin</a> plugin. I’ve been running webpack builds in subdirectories of the repository and then running test assertions against the output in order to test the project. So far it’s worked great, but after updating my dependencies recently I ran into a nasty error:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Error: Error: Child compilation failed:</div><div class="line">Entry module not found: Error: Cannot resolve &apos;file&apos; or &apos;directory&apos; ./src/routes.js in /path/to/react-static-webpack-plugin:</div><div class="line">Error: Cannot resolve &apos;file&apos; or &apos;directory&apos; ./src/routes.js in /path/to/react-static-webpack-plugin</div></pre></td></tr></table></figure>
+<p>…😖</p>
+<p>Not good. But looking at the output and enabling the debug logger in my build process led me to the ultimate culprit, Webpack’s context.</p>
+<p>Here’s what was happening:</p>
+<ul>
+<li>I was running build commands from the root directory of my project</li>
+<li>The builds I was running needed to be ran in their own subdirectory</li>
+<li>Building directly in the subdirectory worked fine…</li>
+<li>Webpack’s context was getting set to the root directory no matter what</li>
+</ul>
+<p>After looking at the <a href="https://webpack.github.io/docs/configuration.html#context" target="_blank" rel="external">Webpack docs</a> it quickly became apparent what was happening:</p>
+<p><code>context</code> in the <code>webpack.config.js</code></p>
+<blockquote>
+<p>The base directory (absolute path!) for resolving the entry option. If output.pathinfo is set, the included pathinfo is shortened to this directory.<br><em><strong>Default:</strong> process.cwd()</em></p>
+</blockquote>
+<p>I was pretty sure I knew what <code>process.cwd()</code> would return, so I started to have a hunch. Looking at the <a href="https://nodejs.org/api/process.html#process_process_cwd" target="_blank" rel="external">Node docs</a>:</p>
+<blockquote>
+<p>The process.cwd() method returns the current working directory of the Node.js process.</p>
+</blockquote>
+<p>Ah, I see. Turns out that my Webpack builds which ran in subdirectories were actually searching for the entry files in the <em>root</em> directory of the project.</p>
+<p>The fix was swift and effective. I added the following line to my <code>webpack.config.js</code> files:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">context: __dirname</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/the-importance-of-webpack-context/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-webpack-context%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-webpack-context%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-webpack-context%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/the-importance-of-webpack-context/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-today-i-forgot-my-coffee" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/today-i-forgot-my-coffee/" class="article-date">
+  <time datetime="2016-11-17T07:23:54.000Z" itemprop="datePublished">2016-11-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/today-i-forgot-my-coffee/">Today i forgot my coffee</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Today I forgot to drink coffee until 1pm… huh? ☕</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/today-i-forgot-my-coffee/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Ftoday-i-forgot-my-coffee%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Ftoday-i-forgot-my-coffee%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Ftoday-i-forgot-my-coffee%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/today-i-forgot-my-coffee/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/personal/">personal</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-a-refreshing-dose-of-minimalism" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/a-refreshing-dose-of-minimalism/" class="article-date">
+  <time datetime="2016-11-17T05:00:43.000Z" itemprop="datePublished">2016-11-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/a-refreshing-dose-of-minimalism/">A refreshing dose of minimalism</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Today I finished rebuilding my blog using Hexo (see last blog post for details). It’s a blog, so I knew I wouldn’t need too much JS. I started with a blank file and started coding.</p>
+<p>Once I was satisfied with the event handling logic I had set up I sat back and reviewed my work. 44 lines including a few comments and zero dependencies. Not too bad. The web has come a long way. CSS was able to take care of a lot of the interactions and animations. But I still wanted to do better.</p>
+<p>It occurred to me that I could actually use the <code>:hover</code> state to accomplish all of my open/close menu interactions. Done! A few more lines eliminated. But I still had the <code>focus</code> event handler I was using to select all text in a text box whenever a user put their cursor inside it. I don’t think CSS can do that… so I did end up using JS for this. I took it out of my script file and in-lined it on the input directly.</p>
+<p>That was the last event I was handling so now I scrapped my whole JS file with its event logic. Wow! No external JS file. How novel… 😕.</p>
+<p>All in all here is the extent of the JS I wrote for the site:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">this</span>.setSelectionRange(<span class="number">0</span>, <span class="keyword">this</span>.value.length);</div></pre></td></tr></table></figure>
+<hr>
+<p><strong>Aside:</strong> I’m certainly not against large web apps—on the contrary, I love them. But for this particular project I chose to revel in the minimalism of leveraging CSS to handle almost all of my site interactions.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/a-refreshing-dose-of-minimalism/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fa-refreshing-dose-of-minimalism%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fa-refreshing-dose-of-minimalism%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fa-refreshing-dose-of-minimalism%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/a-refreshing-dose-of-minimalism/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-migrating-from-jekyll-to-hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/migrating-from-jekyll-to-hexo/" class="article-date">
+  <time datetime="2016-11-17T04:55:30.000Z" itemprop="datePublished">2016-11-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/migrating-from-jekyll-to-hexo/">Migrating from Jekyll to Hexo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>TL;DR:</strong> I migrated my blog from Jekyll to Hexo. This is everything you need to know to do the same.</p>
+<h2 id="Initializing-Hexo-in-your-existing-Jekyll-project"><a href="#Initializing-Hexo-in-your-existing-Jekyll-project" class="headerlink" title="Initializing Hexo in your existing Jekyll project"></a>Initializing Hexo in your existing Jekyll project</h2><p>Here’s what I did:</p>
+<p>Back up your existing Jekyll blog to a subdirectory so you can wildly make changes with impunity:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">mkdir jekyll.bak</div></pre></td></tr></table></figure>
+<p>Now move all the non-git files in the directory into <code>jekyll.bak</code>. Initially I just did it in finder, but then I got curious about how to do it in bash. So if you want to just run a nifty command here you go:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">find . -maxdepth 1 -mindepth 1 ! -name <span class="string">'.git'</span> ! -name <span class="string">'jekyll.bak'</span> -exec mv <span class="string">'&#123;&#125;'</span> ./jekyll.bak/ \;</div></pre></td></tr></table></figure>
+        
+          <a class="article-more-link" href="/migrating-from-jekyll-to-hexo/#more">Read More</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/migrating-from-jekyll-to-hexo/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-from-jekyll-to-hexo%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-from-jekyll-to-hexo%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-from-jekyll-to-hexo%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/migrating-from-jekyll-to-hexo/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-getting-started-with-flow-and-webpack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/getting-started-with-flow-and-webpack/" class="article-date">
+  <time datetime="2016-06-11T07:00:00.000Z" itemprop="datePublished">2016-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/getting-started-with-flow-and-webpack/">Getting Started with Flow and Webpack</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>TL;DR:</strong> This post will show you how to get set up with <a href="http://flowtype.org/">Flow</a> and <a href="https://webpack.github.io/">Webpack</a> as quickly as possible so that you can benefit from some degree of type safety in your JS code!</p>
+<h2 id="What-are-we-talking-about"><a href="#What-are-we-talking-about" class="headerlink" title="What are we talking about?"></a>What are we talking about?</h2><h3 id="Flow"><a href="#Flow" class="headerlink" title="Flow"></a>Flow</h3><p><a href="http://flowtype.org/">Flow</a> is like ESLint on steroids. It is a static type checker for JavaScript. It let’s you add types to any existing JS code. <strong>Why would you want to do this?</strong>  The short answer is because JS ❤️ runtime errors, but runtime errors make your users sad. The more helpful answer is that Flow will analyze your codebase and catch bugs that may otherwise go unnoticed until you’re app is already deployed to production. There is an entire site dedicated to explaining Flow, so I will let you check that out for more detailed information: <a href="http://flowtype.org/">http://flowtype.org/</a></p>
+        
+          <a class="article-more-link" href="/getting-started-with-flow-and-webpack/#more">Read More</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/getting-started-with-flow-and-webpack/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fgetting-started-with-flow-and-webpack%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fgetting-started-with-flow-and-webpack%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fgetting-started-with-flow-and-webpack%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/getting-started-with-flow-and-webpack/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flow/">flow</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-testing-webpack-plugins" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/testing-webpack-plugins/" class="article-date">
+  <time datetime="2016-05-11T07:00:00.000Z" itemprop="datePublished">2016-05-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/testing-webpack-plugins/">Testing Webpack Plugins</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em><strong>TL;DR:</strong> I’m going to show you how to test Webpack plugins. I’ll even show you how to integrate with a CI server 😄. The trick is to use the Webpack <a href="https://webpack.github.io/docs/node.js-api.html">Node API</a></em>.</p>
+<p>Ever built a <a href="https://github.com/webpack/docs/wiki/how-to-write-a-plugin">Webpack Plugin</a>? Ever wondered how to test that awesome plugin you just built? If so, this article is for you.</p>
+<p>I scoured the internet (skimmed the first page of a google search) for resources on testing Webpack plugins and came up empty, so I decided it was time to take matters into my own hands!</p>
+<p>I recently built my own Webpack plugin for generating static sites from React Router routes. You can check it out <a href="https://github.com/iansinnott/react-static-webpack-plugin">here if interested</a>. Anyway, I was getting somewhat annoyed that I hadn’t yet tested the plugin. I had seen some regressions as I added support for more features and it was no fun to have to resolve those issues when I really just anted to generate awesome static sites using React and Webpack.</p>
+<h2 id="Where-to-turn…"><a href="#Where-to-turn…" class="headerlink" title="Where to turn…"></a>Where to turn…</h2>
+        
+          <a class="article-more-link" href="/testing-webpack-plugins/#more">Read More</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/testing-webpack-plugins/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Ftesting-webpack-plugins%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Ftesting-webpack-plugins%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Ftesting-webpack-plugins%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/testing-webpack-plugins/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-going-fully-https-fo-free" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/going-fully-https-fo-free/" class="article-date">
+  <time datetime="2016-04-29T07:00:00.000Z" itemprop="datePublished">2016-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/going-fully-https-fo-free/">Going fully HTTPS (SSL) fo&#39; free</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A few weeks ago I moved <a href="https://www.iansinnott.com">my website</a> over to HTTPS.</p>
+<p><img src="//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.08.19%20AM.png" alt="iansinnott.com using https"></p>
+<p>Then, yesterday I moved my <a href="https://blog.iansinnott.com">blog</a> over to HTTPS.</p>
+<p><img src="//dropsinn.s3.amazonaws.com/Screen%20Shot%202016-04-29%20at%2011.07.41%20AM.png" alt="blog.iansinnott.com running on https"></p>
+<p>This now means that my two primary web properties are both using SSL, and one of them was completely free to set up.</p>
+        
+          <a class="article-more-link" href="/going-fully-https-fo-free/#more">Read More</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/going-fully-https-fo-free/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fgoing-fully-https-fo-free%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fgoing-fully-https-fo-free%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fgoing-fully-https-fo-free%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/going-fully-https-fo-free/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/">security</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-the-importance-of-community" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/the-importance-of-community/" class="article-date">
+  <time datetime="2016-04-29T07:00:00.000Z" itemprop="datePublished">2016-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/the-importance-of-community/">The Importance of Community</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Specifically, when making technical decisions.</p>
+<p>Community his hugely important any many areas of life, but lately I’ve found that it’s particularly pertinent in making technical decisions.</p>
+<h2 id="An-example"><a href="#An-example" class="headerlink" title="An example"></a>An example</h2><p>Recently at <a href="https://www.trustar.co/">Trustar</a> we started using a <a href="https://en.wikipedia.org/wiki/Graph_database">graph database</a>. We have a lot of interrelated data so the graph model has made conceptual sense for a long time.  So this year when we decided to implement a graph database in production we had a technical decision to make: Which database do we use?</p>
+<p>We’re a small team (currently ~5 engineers) so we definitely don’t have the bandwidth to build our own implementation. That means we need to choose among the existing solutions. There are currently several graph database providers in the wild, and they all seem to do pretty much the same thing. Technically speaking, the usual points they hit in differentiating themselves are ones of how they handle scalability and replication.</p>
+        
+          <a class="article-more-link" href="/the-importance-of-community/#more">Read More</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/the-importance-of-community/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-community%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-community%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-community%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/the-importance-of-community/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  <article id="post-teaching-a-reactjs-workshop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/teaching-a-reactjs-workshop/" class="article-date">
+  <time datetime="2016-02-27T08:00:00.000Z" itemprop="datePublished">2016-02-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/teaching-a-reactjs-workshop/">Teaching a React.js Workshop</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Who wants to be a speaker? This guy! 🙌</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/rwr-ian-1.jpg" alt="Ian Speaking at Real World React Meetup" title="Ian Speaking at Real World React Meetup"></p>
+<p>Last Sunday was a significant event for me: I put on a <a href="https://facebook.github.io/react/">React</a> workshop (<a href="http://www.meetup.com/Real-World-React/events/228169300/">link here</a>) to teach beginners how to get started with React. It was a full day event and it was a great learning experience for myself and hopefully for the students as well.</p>
+<h2 id="Giving-back-to-the-community"><a href="#Giving-back-to-the-community" class="headerlink" title="Giving back to the community"></a>Giving back to the community</h2><p>The community surrounding React has done a lot for me. It’s only been a year since I started using this technology, but it’s played a tremendous role in my personal development as a programmer. As such, I really wanted to start contributing back to this amazing community that has helped nurture my own development.</p>
+        
+          <a class="article-more-link" href="/teaching-a-reactjs-workshop/#more">Read More</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/teaching-a-reactjs-workshop/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fteaching-a-reactjs-workshop%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fteaching-a-reactjs-workshop%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fteaching-a-reactjs-workshop%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/teaching-a-reactjs-workshop/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+<nav id="page-nav">
+  <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+</nav>
+
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

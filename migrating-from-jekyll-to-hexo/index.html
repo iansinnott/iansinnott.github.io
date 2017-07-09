@@ -1,0 +1,292 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Migrating from Jekyll to Hexo | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TL;DR: I migrated my blog from Jekyll to Hexo. This is everything you need to know to do the same.
+Initializing Hexo in your existing Jekyll projectHere’s what I did:
+Back up your existing Jekyll blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Migrating from Jekyll to Hexo">
+<meta property="og:url" content="https://blog.iansinnott.com/migrating-from-jekyll-to-hexo/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="TL;DR: I migrated my blog from Jekyll to Hexo. This is everything you need to know to do the same.
+Initializing Hexo in your existing Jekyll projectHere’s what I did:
+Back up your existing Jekyll blog">
+<meta property="og:image" content="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202016-11-12%20at%203.09.34%20PM.png">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Migrating from Jekyll to Hexo">
+<meta name="twitter:description" content="TL;DR: I migrated my blog from Jekyll to Hexo. This is everything you need to know to do the same.
+Initializing Hexo in your existing Jekyll projectHere’s what I did:
+Back up your existing Jekyll blog">
+<meta name="twitter:image" content="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202016-11-12%20at%203.09.34%20PM.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-migrating-from-jekyll-to-hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/migrating-from-jekyll-to-hexo/" class="article-date">
+  <time datetime="2016-11-17T04:55:30.000Z" itemprop="datePublished">2016-11-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Migrating from Jekyll to Hexo
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>TL;DR:</strong> I migrated my blog from Jekyll to Hexo. This is everything you need to know to do the same.</p>
+<h2 id="Initializing-Hexo-in-your-existing-Jekyll-project"><a href="#Initializing-Hexo-in-your-existing-Jekyll-project" class="headerlink" title="Initializing Hexo in your existing Jekyll project"></a>Initializing Hexo in your existing Jekyll project</h2><p>Here’s what I did:</p>
+<p>Back up your existing Jekyll blog to a subdirectory so you can wildly make changes with impunity:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">mkdir jekyll.bak</div></pre></td></tr></table></figure>
+<p>Now move all the non-git files in the directory into <code>jekyll.bak</code>. Initially I just did it in finder, but then I got curious about how to do it in bash. So if you want to just run a nifty command here you go:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">find . -maxdepth 1 -mindepth 1 ! -name <span class="string">'.git'</span> ! -name <span class="string">'jekyll.bak'</span> -exec mv <span class="string">'&#123;&#125;'</span> ./jekyll.bak/ \;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>We keep the <code>.git/</code> dir around so that we can cleanly iterate towards a Hexo blog from our Jekyll blog while maintaining all previous version control history. However, the <code>hexo init</code> command actually removed <code>.git/</code> on my system so we need to move it too, but only temporarily:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">mv .git .git.bak</div></pre></td></tr></table></figure>
+<p>Now initialize Hexo in your project directory:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">hexo init .</div></pre></td></tr></table></figure>
+<p>This should have left <code>jekyll.bak</code> and <code>.git.bak</code> intact while adding a bunch of new files. Now it’s safe to bring back your Git history and add a commit:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">mv .git.bak .git</div><div class="line">git add .</div><div class="line">git commit -m <span class="string">'Add Hexo boilerplate'</span></div></pre></td></tr></table></figure>
+<p>Now we’ve succesffully initialize Hexo. From here on out everything we do will to customize Hexo to suit our needs.</p>
+<p>To make sure everything is running properly run the dev server:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">hexo server</div></pre></td></tr></table></figure>
+<h2 id="Migrating-Content"><a href="#Migrating-Content" class="headerlink" title="Migrating Content"></a>Migrating Content</h2><p>Now let’s get all your blog posts migrated over to the new system. When running the server you should see the Hello World post as your first post on the homepage. You will also see the default Hexo theme. Here’s what that looks like:</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202016-11-12%20at%203.09.34%20PM.png" alt="Default hexo blog"></p>
+<p>That “Hello World” post is the only post in your blog. Hexo keeps all your posts at <code>source/_posts</code>. Let’s remove the default post.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">rm <span class="built_in">source</span>/_posts/hello-world.md</div></pre></td></tr></table></figure>
+<p>Now, since Hexo and Jekyll are very similar in how they store your posts it’s very straightforward to migrate all your content. First, copy it all over. If you also used <code>jekyll.bak</code> to backup your original blog then you can do this:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">mv jekyll.bak/_posts/* <span class="built_in">source</span>/_posts/</div></pre></td></tr></table></figure>
+<p>Second, update your Hexo settings to recognize Jekyll-style post filenames. In <code>_config.yml</code> edit the line for <code>new_post_name</code>:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><div class="line"><span class="attr">new_post_name:</span> :year-:month-:day-:title.md <span class="comment"># File name used to identify posts</span></div></pre></td></tr></table></figure>
+<p>Now restart the Hexo server and you should see all your content 😎</p>
+<h2 id="Gripes"><a href="#Gripes" class="headerlink" title="Gripes"></a>Gripes</h2><p>Hexo is not without its shortcomings. I’ll outline those here, but take this with a grain of salt because I just started using Hexo yesterday so it may be that my gripes are due to lack of understanding rather than actual problems with the framework.</p>
+<h3 id="Not-simple-to-create-standalone-pages"><a href="#Not-simple-to-create-standalone-pages" class="headerlink" title="Not simple to create standalone pages"></a>Not simple to create standalone pages</h3><p>Hexo is highly content focused, meaning when you create a new “page” you are actually just creating a new Markdown file with some content. In my experience the “content first” approach is perfectly suited to blog posts, but not necessarily to pages which are often unique in layout.</p>
+<p>For example, I wanted to create a <code>/tags</code> page. This is simple enough using the Hexo API in a layout file:</p>
+<figure class="highlight erb"><table><tr><td class="code"><pre><div class="line">&lt;% site.tags.each((tag) =&gt; &#123; %&gt;</div><div class="line">  &lt;a class='tag' href='&lt;%= url_for(tag.path) %&gt;'&gt;</div><div class="line">    &lt;%= tag.name %&gt;</div><div class="line">  &lt;/a&gt;</div><div class="line">&lt;% &#125;) %&gt;</div></pre></td></tr></table></figure>
+<p>But I wanted to be able to do this on one single page. I.e. instead of writing markdown I wanted to write the above code and output all my tags. This didn’t work, so I ended up creating a workaround where my <code>tags.md</code> file does nothing more than specify the layout I want to render.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">---</div><div class="line">title: Tags</div><div class="line">layout: tags</div><div class="line">---</div></pre></td></tr></table></figure>
+<p>This may seem minor, but I would have liked to be able to simply put the above EJS code into my “page” file and had it render.</p>
+<h3 id="Not-simple-to-create-helper-functions"><a href="#Not-simple-to-create-helper-functions" class="headerlink" title="Not simple to create helper functions"></a>Not simple to create helper functions</h3><p>More than once I found myself wanting to refactor some view logic out of the EJS templates and into an external helper function. As of now it’s still unclear to me how to do this. I ended up writing all my code inline in the EJS files but this is not pretty.</p>
+<h3 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h3><p>This is a tough one since Hexo actually has quite a bit of documentation online. However, I found it didn’t readily cover the things I really cared about. Namely, in-depth guides to creating themes.</p>
+<p>For example, things like:</p>
+<ul>
+<li>How to loop through various content types (posts, tags, categories, etc)</li>
+<li>How to sort, filter, etc, those content types</li>
+<li>What methods and properties are available on all the Hexo objects</li>
+</ul>
+<p>I ended up discovering these things through trial and error or viewing other peoples themes. This is fine, but it seems that it could be greatly improved to limit the time it takes someone new to the framework to get comfortable with it.</p>
+<h2 id="Development-Takeaways"><a href="#Development-Takeaways" class="headerlink" title="Development Takeaways"></a>Development Takeaways</h2><p>Regarding layouts and templating: If you want to create custom pages then create a new layout file with the desired name (say <code>about.ejs</code>) and then specify that layout file in the post/page markdown file:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">---</div><div class="line">layout: about</div><div class="line">---</div></pre></td></tr></table></figure>
+<p>Regarding helper functions: I didn’t find a good way to add helpers yet but I haven’t yet read through all the docs. Who knows, maybe there is an elegant solution.</p>
+<h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>I’ve been meaning to redo my blog for a while. Jekyll does it’s job quite well, but I never liked liquid templates and my existing blog has needed some work for quote some time. For example, code snippets when rendered in post excerpts sometimes caused unclosed <code>&lt;pre&gt;</code> tags, which would really mess up rendering for the whole index page.</p>
+<p>Also, JavaScript. I write it all the time so it makes sense to use it for my blog. I also like the emphasis out of the box on Stylus as opposed to Sass or Less.</p>
+<p>Lastly, a good friend of mine recently told me he uses Hexo for his blog. Personal recommendations go a long way.</p>
+<h2 id="Outcome"><a href="#Outcome" class="headerlink" title="Outcome"></a>Outcome</h2><p>So far I’ve been quite happy. Things I like:</p>
+<ul>
+<li>Drafts</li>
+<li>CLI for creating content</li>
+<li>Simple, multi-language support</li>
+<li>Powered by JavaScript</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/migrating-from-jekyll-to-hexo/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-from-jekyll-to-hexo%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-from-jekyll-to-hexo%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fmigrating-from-jekyll-to-hexo%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/migrating-from-jekyll-to-hexo/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/a-refreshing-dose-of-minimalism/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          A refreshing dose of minimalism
+        
+      </div>
+    </a>
+  
+  
+    <a href="/getting-started-with-flow-and-webpack/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Getting Started with Flow and Webpack</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/migrating-from-jekyll-to-hexo/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

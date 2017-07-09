@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Testing Webpack Plugins | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TL;DR: I’m going to show you how to test Webpack plugins. I’ll even show you how to integrate with a CI server 😄. The trick is to use the Webpack Node API.
+Ever built a Webpack Plugin? Ever wondered">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Testing Webpack Plugins">
+<meta property="og:url" content="https://blog.iansinnott.com/testing-webpack-plugins/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="TL;DR: I’m going to show you how to test Webpack plugins. I’ll even show you how to integrate with a CI server 😄. The trick is to use the Webpack Node API.
+Ever built a Webpack Plugin? Ever wondered">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Testing Webpack Plugins">
+<meta name="twitter:description" content="TL;DR: I’m going to show you how to test Webpack plugins. I’ll even show you how to integrate with a CI server 😄. The trick is to use the Webpack Node API.
+Ever built a Webpack Plugin? Ever wondered">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-testing-webpack-plugins" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/testing-webpack-plugins/" class="article-date">
+  <time datetime="2016-05-11T07:00:00.000Z" itemprop="datePublished">2016-05-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Testing Webpack Plugins
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em><strong>TL;DR:</strong> I’m going to show you how to test Webpack plugins. I’ll even show you how to integrate with a CI server 😄. The trick is to use the Webpack <a href="https://webpack.github.io/docs/node.js-api.html" target="_blank" rel="external">Node API</a></em>.</p>
+<p>Ever built a <a href="https://github.com/webpack/docs/wiki/how-to-write-a-plugin" target="_blank" rel="external">Webpack Plugin</a>? Ever wondered how to test that awesome plugin you just built? If so, this article is for you.</p>
+<p>I scoured the internet (skimmed the first page of a google search) for resources on testing Webpack plugins and came up empty, so I decided it was time to take matters into my own hands!</p>
+<p>I recently built my own Webpack plugin for generating static sites from React Router routes. You can check it out <a href="https://github.com/iansinnott/react-static-webpack-plugin" target="_blank" rel="external">here if interested</a>. Anyway, I was getting somewhat annoyed that I hadn’t yet tested the plugin. I had seen some regressions as I added support for more features and it was no fun to have to resolve those issues when I really just anted to generate awesome static sites using React and Webpack.</p>
+<h2 id="Where-to-turn…"><a href="#Where-to-turn…" class="headerlink" title="Where to turn…"></a>Where to turn…</h2><a id="more"></a>
+<p>Even if the first page of a google search didn’t answer my questions, I figured someone somewhere must have needed to test their Webpack plugins in the past, and I was right! My first move was to think about what popular Webpack plugins I was aware of. The first one that came to mind was the venerable <a href="https://github.com/webpack/extract-text-webpack-plugin" target="_blank" rel="external">Extract Text Webpack Plugin</a>. Little did I know, it was written by the same guy who wrote Webpack.</p>
+<p>I figured that such a high profile plugin is likely to be well tested and it is. The plugin has a whole <a href="https://github.com/webpack/extract-text-webpack-plugin/tree/master/test" target="_blank" rel="external">suite of tests</a> which you can check out and use as a reference for writing your own. Nice 💥</p>
+<h2 id="Writing-the-tests"><a href="#Writing-the-tests" class="headerlink" title="Writing the tests"></a>Writing the tests</h2><p>Let’s jump in. To write a tests for a Webpack plugin you will probably want to analyze the output of a build. To do so, you can simply use the <a href="https://webpack.github.io/docs/node.js-api.html" target="_blank" rel="external">Node API</a>. It runs in Node so it probably runs in your favorite test runner. For me this is <a href="https://github.com/sindresorhus/ava" target="_blank" rel="external">Ava</a>, but it’s just Node code so you can use whatever you like.</p>
+<p>The Webpack API let’s you pass in options and a callback to Webpack. The callback will be called with an <code>err</code> object and some <code>stats</code> on how the build went. In short, here’s the <a href="https://github.com/iansinnott/react-static-webpack-plugin/blob/master/example/test.js" target="_blank" rel="external">exact test I use in my plugin</a>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> test <span class="keyword">from</span> <span class="string">'ava'</span>;</div><div class="line"><span class="keyword">import</span> webpack <span class="keyword">from</span> <span class="string">'webpack'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 0. Import the config that uses my plugin</span></div><div class="line"><span class="keyword">import</span> options <span class="keyword">from</span> <span class="string">'./webpack.config.js'</span>;</div><div class="line"></div><div class="line">test.cb(<span class="string">'Compiles routes nested at one level'</span>, t =&gt; &#123;</div><div class="line"></div><div class="line">  <span class="comment">// 1. Run webpack</span></div><div class="line">  webpack(options, <span class="function"><span class="keyword">function</span>(<span class="params">err, stats</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 2. Fail test if there are errors</span></div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">      <span class="keyword">return</span> t.end(err);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stats.hasErrors()) &#123;</div><div class="line">      <span class="keyword">return</span> t.end(stats.toString());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 3. Map asset objects to output filenames</span></div><div class="line">    <span class="keyword">const</span> files = stats.toJson().assets.map(<span class="function"><span class="params">x</span> =&gt;</span> x.name);</div><div class="line"></div><div class="line">    <span class="comment">// 4. Run assertions. Make sure that the three expected</span></div><div class="line">    <span class="comment">//    HTML files were generated</span></div><div class="line">    t.true(files.indexOf(<span class="string">'index.html'</span>) !== <span class="number">-1</span>);</div><div class="line">    t.true(files.indexOf(<span class="string">'about.html'</span>) !== <span class="number">-1</span>);</div><div class="line">    t.true(files.indexOf(<span class="string">'404.html'</span>) !== <span class="number">-1</span>);</div><div class="line"></div><div class="line">    t.end();</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>This is a pretty simple test. Given the routes defined in <a href="https://github.com/iansinnott/react-static-webpack-plugin/blob/master/example/src/routes.js" target="_blank" rel="external"><code>routes.js</code></a>, the plugin should generate three HTML files: <code>index.html</code>, <code>about.html</code> and <code>404.html</code>. This test simply runs Webpack and checks the output to make sure those three files were generated. It doesn’t check the contents of those files or check that they were written to disk, but this test already gives me infinitely more code coverage than I had before.</p>
+<p>Of course it should be noted that I had to create a whole new directory and give it its own <code>package.json</code> and <code>node_modules</code> in order to get this test to run, but it works.</p>
+<p>Also, looking at the Extract Plugin tests it looks like it may not be necessary to do a full <code>npm instal</code> for the subdirectory in order to run Webpack. In the future I may optimize the tests by looking more closely at how the tests are being run in the Extract Plugin.</p>
+<h2 id="Running-your-tests-on-a-CI-server"><a href="#Running-your-tests-on-a-CI-server" class="headerlink" title="Running your tests on a CI server"></a>Running your tests on a CI server</h2><p>Now that you know how to write tests for a Webpack plugin you will also probably want to run them automatically whenever you push. Personally I use <a href="https://circleci.com/" target="_blank" rel="external">Circle CI</a> for this, but I’m sure Travis or any other modern CI service would work fine.</p>
+<p>The key point to note is that you need to run <code>npm install</code> in whatever directory you’re using for your tests. This will vary depending on your CI provider so I’ll just show you the command I run and link you to my <code>circle.yml</code>.</p>
+<p>Install node modules in the <code>example/</code> directory using a <a href="http://www.tldp.org/LDP/abs/html/subshells.html" target="_blank" rel="external">subshell</a>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">(cd example; npm install)</div></pre></td></tr></table></figure>
+<p>You can see my full <a href="https://github.com/iansinnott/react-static-webpack-plugin/blob/master/circle.yml#L9" target="_blank" rel="external"><code>circle.yml</code> here</a>.</p>
+<h2 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h2><p>It wasn’t as hard as I thought it would be to run tests on a Webpack plugin. That being said I didn’t find this documented anywhere and google proved particularly useless since it turned up a ton of results related to Webpack plugins that run tests on your web app for you… I was looking for ways to run tests on Webpack plugins <em>themselves</em>, so this is not what I was looking for.</p>
+<p>Hopefully this helps you out. Webpack plugins are crucial pieces of many build processes out there, so it’s important that we know how to test them.</p>
+<p>Feel free to <a href="https://github.com/iansinnott/react-static-webpack-plugin" target="_blank" rel="external">star my plugin repository</a> if you liked this write up, or leave me a comment if anything wasn’t clear.</p>
+<p>Cheers 🍻</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/testing-webpack-plugins/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Ftesting-webpack-plugins%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Ftesting-webpack-plugins%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Ftesting-webpack-plugins%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/testing-webpack-plugins/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/getting-started-with-flow-and-webpack/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Getting Started with Flow and Webpack
+        
+      </div>
+    </a>
+  
+  
+    <a href="/going-fully-https-fo-free/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Going fully HTTPS (SSL) fo&#39; free</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/testing-webpack-plugins/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

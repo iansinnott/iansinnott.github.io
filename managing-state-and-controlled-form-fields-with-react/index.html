@@ -1,0 +1,279 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Managing state and controlled form fields with React | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="UPDATE (2016-07-28): As of React v15 valueLink and checkedLink are officially deprecated. I heavily advocate the use of both of these APIs in this article. If you want to see my thoughts on the deprec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Managing state and controlled form fields with React">
+<meta property="og:url" content="https://blog.iansinnott.com/managing-state-and-controlled-form-fields-with-react/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="UPDATE (2016-07-28): As of React v15 valueLink and checkedLink are officially deprecated. I heavily advocate the use of both of these APIs in this article. If you want to see my thoughts on the deprec">
+<meta property="og:image" content="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-05-11%20at%2011.12.36%20PM.png">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Managing state and controlled form fields with React">
+<meta name="twitter:description" content="UPDATE (2016-07-28): As of React v15 valueLink and checkedLink are officially deprecated. I heavily advocate the use of both of these APIs in this article. If you want to see my thoughts on the deprec">
+<meta name="twitter:image" content="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-05-11%20at%2011.12.36%20PM.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-managing-state-and-controlled-form-fields-with-react" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/managing-state-and-controlled-form-fields-with-react/" class="article-date">
+  <time datetime="2015-05-11T07:00:00.000Z" itemprop="datePublished">2015-05-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Managing state and controlled form fields with React
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>UPDATE (2016-07-28):</strong> As of React v15 <code>valueLink</code> and <code>checkedLink</code> are officially deprecated. I heavily advocate the use of both of these APIs in this article. If you want to see my thoughts on the deprecation see <a href="#comment-2692300179">this comment below</a>. For the official deprecation see <a href="https://facebook.github.io/react/docs/two-way-binding-helpers.html" target="_blank" rel="external">the docs article here</a>.</p>
+<hr>
+<p>With React, you basically get two different ways to deal with forms:</p>
+<ul>
+<li>Standard input elements that can be modified by the user</li>
+<li>“Controlled” input elements that can only be modified programatically</li>
+</ul>
+<p>The first type is pretty straightforward in React, you simply don’t provide a <code>value</code> prop:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">React.createClass(&#123;</div><div class="line">  render (</div><div class="line">    &lt;input type='text' /&gt;</div><div class="line">  );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>The value of that <code>&lt;input&gt;</code> element can be edited by the user in a browser, just like one would expect in a normal we app.</p>
+<p>The other type of input—a “Controlled” input—looks almost the same, but has a <code>value</code> property:</p>
+<a id="more"></a>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">React.createClass(&#123;</div><div class="line">  render (</div><div class="line">    &lt;input type='text' value="You can't change me!" /&gt;</div><div class="line">  );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>The value of this <code>&lt;input&gt;</code> element will stubbornly refuse to change no matter what the user does. This is generally a terrible user experience, so React will actually warn you that your input cannot be modified:</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-05-11%20at%2011.12.36%20PM.png" alt="React warning message"></p>
+<p>If you’re new-ish to React you might not know why you would want to do this. The answer is <em>state</em>. React puts a big emphasis on explicitly keeping your components state in the <code>state</code> property. So in order to create a form input that responds to user input you will need to use two-way data binding. Meaning the <code>value</code> of the <code>&lt;input&gt;</code> element will flow from your component into the DOM, but also from the DOM into your component. In other words, they will be kept in sync.</p>
+<h2 id="Manual-Two-way-data-binding"><a href="#Manual-Two-way-data-binding" class="headerlink" title="Manual Two-way data binding"></a>Manual Two-way data binding</h2><p>The most common way to accomplish two-way data binding in React is to be explicit. This is by design, and it’s a good practice for smaller forms. Here’s how an example:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">React.createClass(&#123;</div><div class="line">  getInitialState() &#123;</div><div class="line">    <span class="attr">inputValue</span>: <span class="string">''</span></div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;input</div><div class="line">        type='text'</div><div class="line">        value=&#123;this.state.inputValue&#125;</div><div class="line">        onChange=&#123;this.onChange&#125; /&gt;</div><div class="line">    );</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  onChange(e) &#123;</div><div class="line">    this.setState(&#123; inputValue: e.target.value &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Here we’ve bound our input’s change event to the component’s <code>onChange</code> function which will update <code>this.state</code>. Whenever <code>this.state</code> is updated the component will be re-rendered, causing the input value to reflect what the user typed.</p>
+<p>If that’s not quite clear, I highly recommend taking a look at the <a href="https://facebook.github.io/react/docs/forms.html" target="_blank" rel="external">Forms guide on the React website</a>.</p>
+<p>The code above is explicit and not overly complicated, which is great for maintainabillty. There are virtually no downsides to this approach when dealing with a small form that only contains a few inputs. Issues only begin to crop up when you have many inputs that all need to update state.</p>
+<p>That’s why we have…</p>
+<h2 id="The-LinkedStateMixin"><a href="#The-LinkedStateMixin" class="headerlink" title="The LinkedStateMixin"></a>The LinkedStateMixin</h2><p>React comes with a handy mixin to help you achieve two-way data-binding very quickly. Use the LinkedStateMixin to save yourself soem hassle when wiring up large forms to stay in sync with component state:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Make sure to require react with addons</span></div><div class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">'react/addons'</span>);</div><div class="line"></div><div class="line">React.createClass(&#123;</div><div class="line">  <span class="attr">mixins</span>: [React.addons.LinkedStateMixin],</div><div class="line"></div><div class="line">  getInitialState() &#123;</div><div class="line">    <span class="attr">inputValue</span>: <span class="string">''</span></div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;input type='text' valueLink=&#123;this.linkState('inputValue')&#125; /&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>As you can see we replaced the <code>value</code> prop with <code>valueLink</code>. If you haven’t heard of <code>valueLink</code> I’ll explain it in a sec.</p>
+<p>The <code>LinkedStateMixin</code> saves us a good deal of typing, and especially when you have a large number of form fields that need to be tied to component state. The issue is that it’s not very flexible. Essentially it just binds the value of an input field to <code>this.state</code>. But what if you are building a <em>stateless</em> form component that gets all it’s values from props? Or, more interestingly, what if you are using Flux and don’t want to set state directly but rather call an action that updates a store?</p>
+<p>This is what <code>valueLink</code> is great for.</p>
+<h2 id="What-exactly-is-valueLink"><a href="#What-exactly-is-valueLink" class="headerlink" title="What exactly is valueLink?"></a>What exactly is <code>valueLink</code>?</h2><p>The <code>valueLink</code> prop is a fairly under-documented feature of form inputs in React that simplifies the onChange / setState pattern described at the beginning of this post. It’s a shortcut for telling an input where to get its <code>value</code> prop from and what function to call when an <code>onChange</code> event is fired. In it’s most simple form the <code>valueLink</code> prop points to a plain old JS object with two distinct props:</p>
+<ul>
+<li><code>value</code>: The value of the input at any given time</li>
+<li><code>requestChange</code>: The function to call whenever <code>onChange</code> is fired on the input. <code>requestChange</code> will be called with the update value of the input, so there’s no need to access the value using an event object as you might do if you were using the actual <code>onChange</code> event.</li>
+</ul>
+<p>If you’re familiar with React’s PropTypes feature then this expression of <code>valueLink</code> as a <code>propType</code> should make it clear what you’re going for:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">React.createClass(&#123;</div><div class="line">  <span class="attr">propTypes</span>: &#123;</div><div class="line">    <span class="attr">valueLink</span>: React.PropTypes.shape(&#123;</div><div class="line">      <span class="attr">value</span>: React.PropTypes.any.isRequired,</div><div class="line">      <span class="attr">requestChange</span>: React.PropTypes.func.isRequired</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Manually-linking-input-value-to-state-with-valueLink"><a href="#Manually-linking-input-value-to-state-with-valueLink" class="headerlink" title="Manually linking input value to state with valueLink"></a>Manually linking input value to state with <code>valueLink</code></h2><p>Let’s check out an example.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeValueLink</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">value</span>: <span class="keyword">this</span>.state[key],</div><div class="line">    <span class="attr">requestChange</span>: <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</div><div class="line">      newState = &#123;&#125;;</div><div class="line">      newState[key] = newValue;</div><div class="line">      <span class="keyword">this</span>.setState(newState);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">React.createClass(&#123;</div><div class="line">  getInitialState() &#123;</div><div class="line">    <span class="attr">inputValue</span>: <span class="string">''</span></div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;input type='text' valueLink=&#123;makeValueLink('inputValue')&#125; /&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Now you will get the same two-way data binding as you did when using the <code>LinkedStateMixin</code>. What we’ve done here is basically created our own version of the <code>LinkedStateMixin</code> to demonstrate how <code>valueLink</code> works.</p>
+<p>You can use <code>valueLink</code> to bind the <code>value</code> prop of any input to the state of a component. If you instead want to set state on a parent component you can pass a <code>valueLink</code> down as a prop just like you would do with an <code>onChange</code> callback.</p>
+<h4 id="Don’t-forget-about-checkedLink"><a href="#Don’t-forget-about-checkedLink" class="headerlink" title="Don’t forget about checkedLink"></a>Don’t forget about <code>checkedLink</code></h4><p>The other important point to note is that some input types, namely <code>&lt;input type=&#39;radio&#39;&gt;</code> and <code>&lt;input type=&#39;checkbox&#39;&gt;</code> use the <code>checked</code> prop because they represent boolean values. They still use a <code>value</code> prop to determine what value corresponds to the <code>checked</code> prop, but it’s only the <code>checked</code> prop that can be changed by the user.</p>
+<p>React acknowledges this and provides us with the <code>checkedLink</code> prop, which works exactly like <code>valueLink</code> except it binds the <code>checked</code> prop to state instead of the <code>value</code> prop.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeValueLink</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">value</span>: <span class="keyword">this</span>.state[key],</div><div class="line">    <span class="attr">requestChange</span>: <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</div><div class="line">      newState = &#123;&#125;;</div><div class="line">      newState[key] = newValue;</div><div class="line">      <span class="keyword">this</span>.setState(newState);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">React.createClass(&#123;</div><div class="line">  getInitialState() &#123;</div><div class="line">    <span class="attr">booleanValue</span>: <span class="string">''</span></div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;input type='checkbox' checkedLink=&#123;makeValueLink('booleanValue')&#125; /&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Note that when using <code>checkedLink</code> the shape of the object you pass in is still exactly the same, i.e. it needs a <code>value</code> prop and a <code>requestChange</code> prop. This is good because it means we can use our <code>makeValueLink</code> function to bind any type of input to state including checkboxes and radios.</p>
+<h2 id="Putting-it-all-together—Building-a-Flux-form"><a href="#Putting-it-all-together—Building-a-Flux-form" class="headerlink" title="Putting it all together—Building a Flux form"></a>Putting it all together—Building a Flux form</h2><p>The importance of <code>valueLink</code> really shines when you’re using something like Flux where you don’t actually want to update <code>this.state</code> directly but would like instead for data to flow through actions to stores which control the UI state. Using <code>valueLink</code> makes this is quite easy:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> AppActions = <span class="built_in">require</span>(<span class="string">'./AppActions'</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeValueLink</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">value</span>: <span class="keyword">this</span>.state[key],</div><div class="line">    <span class="attr">requestChange</span>: <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</div><div class="line">      AppActions.doSomething(key, newValue);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * This code is written much like you would if you were using the Alt Flux</div><div class="line"> * implementation. The syntax would likely be slightly different with other</div><div class="line"> * libraries.</div><div class="line"> */</div><div class="line">React.createClass(&#123;</div><div class="line"></div><div class="line">  <span class="comment">// Assuming our store (AppStore) has a getState method, we would get the</span></div><div class="line">  <span class="comment">// initial state like so</span></div><div class="line">  getInitialState() &#123;</div><div class="line">    <span class="keyword">return</span> AppStore.getState();</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="comment">// Listen to our store for changes</span></div><div class="line">  componentDidMount() &#123;</div><div class="line">    AppStore.listen(<span class="keyword">this</span>.onChange);</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="comment">// Stop listening if this component is unmounted</span></div><div class="line">  componentWillUnmount() &#123;</div><div class="line">    AppStore.unlisten(<span class="keyword">this</span>.onChange);</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="comment">// Whenever our store emits a change event, update `this.state` to reflect</span></div><div class="line">  <span class="comment">// the state of the store.</span></div><div class="line">  onChange() &#123;</div><div class="line">    <span class="keyword">this</span>.setState(AppStore.getState());</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;input type='checkbox' checkedLink=&#123;makeValueLink('booleanValue')&#125; /&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>Now whenever you check the checkbox <code>AppActions.doSomething</code> will be called with a <code>key</code> of <code>&#39;booleanValue&#39;</code> and a <code>newValue</code> of either <code>true</code> or <code>false</code> depending on whether or not it is checked.</p>
+<p>Then in <code>AppActions</code> you would do whatever you want with the data and most likely dispatch it to all stores so they could update their state accordingly. <code>AppStore</code> would get the dispatch and update it’s internal representation of state</p>
+<p>Hope all this helps as you build forms with React.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/managing-state-and-controlled-form-fields-with-react/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fmanaging-state-and-controlled-form-fields-with-react%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fmanaging-state-and-controlled-form-fields-with-react%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fmanaging-state-and-controlled-form-fields-with-react%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/managing-state-and-controlled-form-fields-with-react/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/use-ssh-forwardagent-for-fun-and-profit/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Use SSH ForwardAgent for fun and profit
+        
+      </div>
+    </a>
+  
+  
+    <a href="/in-search-of-the-ultimate-tooling-workflow/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">In search of the ultimate tooling workflow</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/managing-state-and-controlled-form-fields-with-react/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

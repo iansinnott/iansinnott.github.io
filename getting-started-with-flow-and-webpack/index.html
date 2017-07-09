@@ -1,0 +1,314 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Getting Started with Flow and Webpack | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TL;DR: This post will show you how to get set up with Flow and Webpack as quickly as possible so that you can benefit from some degree of type safety in your JS code!
+What are we talking about?FlowFlo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Getting Started with Flow and Webpack">
+<meta property="og:url" content="https://blog.iansinnott.com/getting-started-with-flow-and-webpack/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="TL;DR: This post will show you how to get set up with Flow and Webpack as quickly as possible so that you can benefit from some degree of type safety in your JS code!
+What are we talking about?FlowFlo">
+<meta property="og:image" content="https://dropsinn.s3.amazonaws.com/Screen_Shot_2016-06-11_at_5_50_55_PM.png">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Getting Started with Flow and Webpack">
+<meta name="twitter:description" content="TL;DR: This post will show you how to get set up with Flow and Webpack as quickly as possible so that you can benefit from some degree of type safety in your JS code!
+What are we talking about?FlowFlo">
+<meta name="twitter:image" content="https://dropsinn.s3.amazonaws.com/Screen_Shot_2016-06-11_at_5_50_55_PM.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-getting-started-with-flow-and-webpack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/getting-started-with-flow-and-webpack/" class="article-date">
+  <time datetime="2016-06-11T07:00:00.000Z" itemprop="datePublished">2016-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Getting Started with Flow and Webpack
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>TL;DR:</strong> This post will show you how to get set up with <a href="http://flowtype.org/" target="_blank" rel="external">Flow</a> and <a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a> as quickly as possible so that you can benefit from some degree of type safety in your JS code!</p>
+<h2 id="What-are-we-talking-about"><a href="#What-are-we-talking-about" class="headerlink" title="What are we talking about?"></a>What are we talking about?</h2><h3 id="Flow"><a href="#Flow" class="headerlink" title="Flow"></a>Flow</h3><p><a href="http://flowtype.org/" target="_blank" rel="external">Flow</a> is like ESLint on steroids. It is a static type checker for JavaScript. It let’s you add types to any existing JS code. <strong>Why would you want to do this?</strong>  The short answer is because JS ❤️ runtime errors, but runtime errors make your users sad. The more helpful answer is that Flow will analyze your codebase and catch bugs that may otherwise go unnoticed until you’re app is already deployed to production. There is an entire site dedicated to explaining Flow, so I will let you check that out for more detailed information: <a href="http://flowtype.org/" target="_blank" rel="external">http://flowtype.org/</a></p>
+<a id="more"></a>
+<p>However, what may not be immediately obvious from the Flow site is the reason why it’s so appealing for existing projects, which is that you can <em>iterate</em> to full Flow coverage with minimal overhead.</p>
+<p>That means you can keep on hitting all your existing dev milestones while adding Flow type coverage to your code in parallel. Flow is also designed to work with <a href="http://babeljs.io/" target="_blank" rel="external">Babel</a>, so if you’re already using Babel in your toolchain you’ll be pleasantly surprised at how easy it is to set Flow up.</p>
+<h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p>If you’re reading this post you probably already know what Webpack is, but just in case here’s a two-sentence explanation: <strong>Webpack is a module bundler that lets you split your JS code into separate files that can <code>import</code> or <code>require</code> each other</strong>, much like Require.js or Browserify. In addition, it also lets you import assets such as CSS files and images directly in your JavaScript files.</p>
+<p>In this post I’m going to show you how you can get set up using Webpack with Flow, which might be a bit daunting at first since Flow doesn’t support all of Webpack’s features (such as CSS importing) out of the box.</p>
+<h2 id="Getting-Set-Up"><a href="#Getting-Set-Up" class="headerlink" title="Getting Set Up"></a>Getting Set Up</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm install -g flow-bin</div></pre></td></tr></table></figure>
+<p>That should be all you need to get the <code>flow</code> binary installed on your CLI.</p>
+<h3 id="Setting-Up-Webpack-and-Babel"><a href="#Setting-Up-Webpack-and-Babel" class="headerlink" title="Setting Up Webpack and Babel"></a>Setting Up Webpack and Babel</h3><p>This one will vary greatly depending on your projects, so I won’t go over it here. What I will mention is that in order for Babel to properly compile Flow-typed code you will need to use the <a href="https://www.npmjs.com/package/babel-plugin-transform-flow-strip-types" target="_blank" rel="external">Babel Flow plugin</a>. If you’re using <code>babel-plugin-react</code> then the Flow plugin should be included automatically.</p>
+<h2 id="Initial-Flow-Configuration"><a href="#Initial-Flow-Configuration" class="headerlink" title="Initial Flow Configuration"></a>Initial Flow Configuration</h2><p>OK, here’s the meat of this post. Once you have Flow installed and are in your projects root directory you will be ready to configure Flow. Let’s do it.</p>
+<p><strong>Create a <code>.flowconfig</code> file</strong></p>
+<p>You can do this by running <code>flow init</code>.</p>
+<p>After running that command you should have a <code>.flowconfig</code> file in the current directory. Open up the file, since we will be editing it. You should see something like this initially:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[ignore]</div><div class="line"></div><div class="line">[include]</div><div class="line"></div><div class="line">[libs]</div><div class="line"></div><div class="line">[options]</div></pre></td></tr></table></figure>
+<p><strong>Test your configuation</strong></p>
+<p>Run <code>flow</code> from the root directory where you just created <code>.flowconfig</code>. It will take a few seconds to run the first time, but every time after should be almost instant.</p>
+<p>You should see one of two things:</p>
+<ol>
+<li><code>No errors!</code></li>
+<li>A bunch of errors</li>
+</ol>
+<p>If you see a bunch of errors after just setting up Flow that is because Flow type-checks <em>everything</em>, even all the code in your <code>node_modules</code>. Although it may be counter intuitive this is actually desired behavior, because Flow can warn you if you try to import anything that doesn’t exist from <code>node_modules</code>.</p>
+<p>However, the downside is that when you first set up Flow you might see something like this:</p>
+<p><img src="https://dropsinn.s3.amazonaws.com/Screen_Shot_2016-06-11_at_5_50_55_PM.png" alt="Flow Errors"></p>
+<p>In this example Flow is detecting type errors in the <code>fbjs</code> module, which is required by React. Getting past this issue is simple enough, simply add a new ignore line to <code>.flowconfig</code>. I have no idea how regex works in OCaml, but luckily there’s no need. The Flow docs provide plenty of examples to show us how to ignore a certain directory. The syntax is <code>.*/path/to/dir/.*</code>. So to ignore everything under <code>node_modules/fbjs</code> you can update your <code>.flowconfig</code> as follows:</p>
+<figure class="highlight ocaml"><table><tr><td class="code"><pre><div class="line">[ignore]</div><div class="line">.*/node_modules/fbjs/.*</div><div class="line"></div><div class="line">[<span class="keyword">include</span>]</div><div class="line"></div><div class="line">[libs]</div><div class="line"></div><div class="line">[options]</div></pre></td></tr></table></figure>
+<p>Since you haven’t yet told Flow to type check any of your own code, every error you see is due to some third-party node module. That means its safe to ignore. Add more lines to the <code>[ignore]</code> section of <code>.flowconfig</code> until you’ve successfully ignored any offending node modules.</p>
+<p>Now you should see <code>No errors!</code> on the command line when you run <code>flow</code>.</p>
+<p>Whew, time to move on to the fun part: Typing your own code!</p>
+<h2 id="Type-checking-our-own-code"><a href="#Type-checking-our-own-code" class="headerlink" title="Type checking our own code"></a>Type checking our own code</h2><p>To type check any of your js/jsx files with Flow simply add <code>/* @flow */</code> to the top of the file. This will make it visible to Flow. I would recommend doing this only one file at a time and fixing any errors that Flow catches in that file <em>before</em> type-checking any new files. This strategy is simply meant to keep the number of errors from seeming overwhelming, since untyped code can often have a ton of errors.</p>
+<p>It is also worth noting that if the errors are so many that they seem daunting you can use <code>/* @flow weak */</code> to turn on a weaker type-checking mode in Flow that will likely produce fewer errors. Once you have all those errors handled you can revert back to <code>/* @flow */</code> and handle the more strict errors. Using Flow in it’s most strict mode is how it was meant to be used, and will ultimately provide you with the most safety.</p>
+<h2 id="Advanced-Configuration-CSS-Modules-Image-files-ES7-etc"><a href="#Advanced-Configuration-CSS-Modules-Image-files-ES7-etc" class="headerlink" title="Advanced Configuration: CSS Modules, Image files, ES7, etc"></a>Advanced Configuration: CSS Modules, Image files, ES7, etc</h2><h3 id="CSS-Modules"><a href="#CSS-Modules" class="headerlink" title="CSS Modules"></a>CSS Modules</h3><p>All right, we made it to the Webpack specific part of this post. Let’s talk about making CSS Modules type-check with Flow. If you’re not using CSS Modules you can safely skip this section, but you may also want to [check them out][CSS Modules] since CSS Modules can be a big win for the maintainability of a codebase.</p>
+<p>Using CSS Modules with Webpack looks something like this:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> s <span class="keyword">from</span> <span class="string">'./App.css'</span>; <span class="comment">// CSS Modules!</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div className=&#123;s.App&#125;&gt;</div><div class="line">        &lt;h1&gt;My App&lt;/h1&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">render(&lt;App /&gt;, document.getElementById('root'));</div></pre></td></tr></table></figure>
+<p>The important part of that code is line 3, where we import <code>s</code> from a CSS file. Further down in the <code>render</code> method of <code>App</code> we see that <code>s</code> is expected to be a JavaScript object. However, Flow doesn’t know this and it will complain as soon as it sees us trying to import a module named <code>App.css</code>. Flow will look for the <code>./App.css</code> JS module and find nothing, so it will throw an error:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">src/components/App.js:3</div><div class="line">  3: import s from &apos;./App.css&apos;;</div><div class="line">                   ^^^^^^^^^^^ ./App.css. Required module not found</div></pre></td></tr></table></figure>
+<p>To solve this issue, we need to tell Flow to that for CSS files it should actually look for type definitions somewhere else. I’ll describe how to do this briefly here, but there is also a good section on the Flow website that describes how to accomplish this: <a href="https://flowtype.org/docs/modules.html#css-modules-with-webpack" target="_blank" rel="external">https://flowtype.org/docs/modules.html#css-modules-with-webpack</a></p>
+<p>Create a new directory named <code>flow</code> and a new file within that directory: <code>flow/CSSModule.js.flow</code>. Now add the following to <code>CSSModule.js.flow</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// @flow</div><div class="line"></div><div class="line">declare export default &#123; [key: string]: string &#125;</div></pre></td></tr></table></figure>
+<p>When Flow reads this file it will see a default export of a plain JavaScript object that maps string keys to string values, which is exactly the case for CSS modules.</p>
+<p>The last step to make this work is to tell Flow which file extensions should use this <code>CSSModule.js.flow</code> file. We do that in the <code>[options]</code> section of our <code>.flowconfig</code>:</p>
+<figure class="highlight ocaml"><table><tr><td class="code"><pre><div class="line">[ignore]</div><div class="line">.*/node_modules/fbjs/.*</div><div class="line"></div><div class="line">[<span class="keyword">include</span>]</div><div class="line"></div><div class="line">[libs]</div><div class="line"></div><div class="line">[options]</div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'css'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/CSSModule.js.flow'</span></div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'styl'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/CSSModule.js.flow'</span></div></pre></td></tr></table></figure>
+<p>The first line under <code>[options]</code> tells Flow that for every file with the <code>.css</code> extension it should read type info from the <code>CSSModule.js.flow</code> file we just created.</p>
+<p><strong>Note</strong> that you can map multiple extensions in the options section. In my case, I use <a href="http://stylus-lang.com/" target="_blank" rel="external">Stylus</a> to author my CSS which means I needed to add the <code>.styl</code> extension as another filetype that should be interpreted as a CSS module. You can add support for Less and Sass in the same way.</p>
+<h3 id="Image-Files"><a href="#Image-Files" class="headerlink" title="Image Files"></a>Image Files</h3><p>Since Webpack also lets you <code>import</code> image files we will want to add support for that as well. The process looks much the same as it did for CSS modules above: We need to create a new type definitions file that will be read for files with certain extensions. The only difference here is that our image files are imported as strings, not JavaScript objects as with CSS modules.</p>
+<p>Create another file: <code>flow/WebpackAsset.js.flow</code>. Now add the following to <code>WebpackAsset.js.flow</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// @flow</div><div class="line"></div><div class="line">declare export default string</div></pre></td></tr></table></figure>
+<p>Then tell Flow about this file in your <code>.flowconfig</code>:</p>
+<figure class="highlight ocaml"><table><tr><td class="code"><pre><div class="line">[ignore]</div><div class="line">.*/node_modules/fbjs/.*</div><div class="line"></div><div class="line">[<span class="keyword">include</span>]</div><div class="line"></div><div class="line">[libs]</div><div class="line"></div><div class="line">[options]</div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'css'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/CSSModule.js.flow'</span></div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'styl'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/CSSModule.js.flow'</span></div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'png'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/WebpackAsset.js.flow'</span></div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'jpg'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/WebpackAsset.js.flow'</span></div></pre></td></tr></table></figure>
+<p>In the above configuration file we tell Flow to use our <code>WebpackAsset.js.flow</code><br>file in place of any file with a <code>.png</code> or <code>.jpg</code> extension.</p>
+<p>Now Flow will happily type code like this:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> s <span class="keyword">from</span> <span class="string">'./App.css'</span>; <span class="comment">// CSS Modules!</span></div><div class="line"><span class="keyword">import</span> logo <span class="keyword">from</span> <span class="string">'./logo.png'</span>; <span class="comment">// Image Files!</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div className=&#123;s.App&#125;&gt;</div><div class="line">        &lt;h1&gt;My App&lt;/h1&gt;</div><div class="line">        &lt;img src=&#123;logo&#125; alt='App Logo' /&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">render(&lt;App /&gt;, document.getElementById('root'));</div></pre></td></tr></table></figure>
+<p>Pretty slick, right? 😎</p>
+<p><strong>NOTE:</strong> You will need to have the proper module loaders set up with Webpack<br>for this to even work in the first place</p>
+<h3 id="ES7-Class-Support"><a href="#ES7-Class-Support" class="headerlink" title="ES7 Class Support"></a>ES7 Class Support</h3><p>If you’re authoring React code you may well be interested in compile ES7-style<br>class syntax with babel. This things like <code>static propTypes = {}</code>,<code>state
+= {}</code>, etc. For example, here’s a <code>Counter</code> component written using ES7 class<br>syntax:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> s <span class="keyword">from</span> <span class="string">'./Counter.css'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> propTypes = &#123;</div><div class="line">    <span class="attr">color</span>: React.PropTypes.string,</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  <span class="keyword">static</span> defaultProps = &#123;</div><div class="line">    <span class="attr">initialCount</span>: <span class="number">0</span>,</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  state = &#123;</div><div class="line">    <span class="attr">count</span>: <span class="keyword">this</span>.props.initialCount,</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  increment = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123; <span class="attr">count</span>: <span class="keyword">this</span>.state.count + <span class="number">1</span> &#125;)</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  decrement = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123; <span class="attr">count</span>: <span class="keyword">this</span>.state.count - <span class="number">1</span> &#125;)</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div className=&#123;s.Counter&#125;&gt;</div><div class="line">        &lt;h1&gt;Count: &#123;this.state.count&#125;&lt;/h1&gt;</div><div class="line">        &lt;div className=&#123;s.controls&#125;&gt;</div><div class="line">          &lt;button onClick=&#123;this.decrement&#125;&gt;-&lt;/button&gt;</div><div class="line">          &lt;button onClick=&#123;this.increment&#125;&gt;+&lt;/button&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>If you’re not familiar with this syntax check out this blog post on the Babel<br>website: <a href="https://babeljs.io/blog/2015/06/07/react-on-es6-plus" target="_blank" rel="external">https://babeljs.io/blog/2015/06/07/react-on-es6-plus</a></p>
+<p><strong>NOTE:</strong> At the time of this writing Flow requires semicolons after property<br>initializers in order to type check effectively, even though Babel does not<br>require this.</p>
+<p>In order to allow code like that above we need to update the <code>[options]</code><br>section of <code>.flowconfig</code> again:</p>
+<figure class="highlight ocaml"><table><tr><td class="code"><pre><div class="line">[ignore]</div><div class="line">.*/node_modules/fbjs/.*</div><div class="line"></div><div class="line">[<span class="keyword">include</span>]</div><div class="line"></div><div class="line">[libs]</div><div class="line"></div><div class="line">[options]</div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'css'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/CSSModule.js.flow'</span></div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'styl'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/CSSModule.js.flow'</span></div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'png'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/WebpackAsset.js.flow'</span></div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'jpg'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/WebpackAsset.js.flow'</span></div><div class="line">esproposal.class_static_fields=enable</div><div class="line">esproposal.class_instance_fields=enable</div></pre></td></tr></table></figure>
+<p>We’ve added two new lines to tell Flow we want to support this new class<br>syntax:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">esproposal.class_static_fields=enable</div><div class="line">esproposal.class_instance_fields=enable</div></pre></td></tr></table></figure>
+<h3 id="Ignore-Single-Lines-in-Flow"><a href="#Ignore-Single-Lines-in-Flow" class="headerlink" title="Ignore Single Lines in Flow"></a>Ignore Single Lines in Flow</h3><p>The last Flow trick I’ll show you today is how to tell Flow to ignore single lines in your code. Just like with ESLint, it can be useful to be able to ignore just one line in a file. There are usually two reasons you would want to do this:</p>
+<ol>
+<li>The code in question needs to be refactored to be properly typed but it<br>would take too much time or effort to do it now</li>
+<li>Flow does not yet support some feature or has a bug</li>
+</ol>
+<p>The first point is pretty obvious, but the second may come as a surprise. Flow is very advanced and very useful <em>today</em> but it is not without its own bugs or missing features, so there may be times when you need to tell Flow to ignore a line for reason number two.</p>
+<p>The way to ignore single lines is by using the <code>supress_comment</code> option within your <code>.flowconfig</code>. Let’s define two ignore patterns so that we can differentiate between the two types of reasons to ignore listed above:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe</div><div class="line">suppress_comment=\\(.\\|\n\\)*\\$FlowIssue</div></pre></td></tr></table></figure>
+<p>Now anywhere in our code where we want Flow to ignore a line we can place a<br>comment on the proceeding line:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// $FlowFixMe: We aren't yet ready to refactor this line...</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">manyUntypedArgs</span>(<span class="params">a, b, x, y</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;</div></pre></td></tr></table></figure>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>That’s it! These are the tricks I’ve found to be most useful in my day to day<br>usage of Flow so far.</p>
+<p>Here’s the full <code>.flowconfig</code> we created throughout this post for your<br>reference:</p>
+<figure class="highlight ocaml"><table><tr><td class="code"><pre><div class="line">[ignore]</div><div class="line">.*/node_modules/fbjs/.*</div><div class="line"></div><div class="line">[<span class="keyword">include</span>]</div><div class="line"></div><div class="line">[libs]</div><div class="line"></div><div class="line">[options]</div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'css'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/CSSModule.js.flow'</span></div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'styl'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/CSSModule.js.flow'</span></div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'png'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/WebpackAsset.js.flow'</span></div><div class="line"><span class="keyword">module</span>.name_mapper.extension=<span class="symbol">'jpg'</span> -&gt; <span class="string">'&lt;PROJECT_ROOT&gt;/flow/WebpackAsset.js.flow'</span></div><div class="line">esproposal.class_static_fields=enable</div><div class="line">esproposal.class_instance_fields=enable</div><div class="line">suppress_comment=\\(.\\|\n\\)*\\$<span class="type">FlowFixMe</span></div><div class="line">suppress_comment=\\(.\\|\n\\)*\\$<span class="type">FlowIssue</span></div></pre></td></tr></table></figure>
+<p>You may have other options you need to make to your <code>.flowconfig</code>, such as<br>defining a directory for your <a href="https://flowtype.org/docs/declarations.html" target="_blank" rel="external">declaration files</a>. But hopefully this<br>configuration helps get you started with Flow and Webpack! Big wins ahead.</p>
+<p>If you have any questions feel free to lave a comment below or <a href="https://twitter.com/ian_sinn" target="_blank" rel="external">hit me up on<br>twitter</a>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/getting-started-with-flow-and-webpack/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fgetting-started-with-flow-and-webpack%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fgetting-started-with-flow-and-webpack%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fgetting-started-with-flow-and-webpack%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/getting-started-with-flow-and-webpack/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flow/">flow</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/migrating-from-jekyll-to-hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Migrating from Jekyll to Hexo
+        
+      </div>
+    </a>
+  
+  
+    <a href="/testing-webpack-plugins/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Testing Webpack Plugins</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/getting-started-with-flow-and-webpack/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>

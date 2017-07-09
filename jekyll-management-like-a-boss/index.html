@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jekyll Management Like a Boss | Ian Sinnott</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Blogging Without FrictionYesterday I wrote a script to help myself blog more often. This is what it looks like in the terminal:
+
+Create a new post: post new [post title]
+List all of my posts: post lis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jekyll Management Like a Boss">
+<meta property="og:url" content="https://blog.iansinnott.com/jekyll-management-like-a-boss/index.html">
+<meta property="og:site_name" content="Ian Sinnott">
+<meta property="og:description" content="Blogging Without FrictionYesterday I wrote a script to help myself blog more often. This is what it looks like in the terminal:
+
+Create a new post: post new [post title]
+List all of my posts: post lis">
+<meta property="og:updated_time" content="2017-07-09T03:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jekyll Management Like a Boss">
+<meta name="twitter:description" content="Blogging Without FrictionYesterday I wrote a script to help myself blog more often. This is what it looks like in the terminal:
+
+Create a new post: post new [post title]
+List all of my posts: post lis">
+  
+    <link rel="alternate" href="/atom.xml" title="Ian Sinnott" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52511246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+<body>
+  <div
+    data-event-handler='touchstart:show'
+    data-target='.hidden-nav'
+    id="container">
+    <div id="wrap">
+      <header id='header' class='outer'>
+  <nav class='left-nav'>
+    <a class='main-nav-link' href='/'>
+      <img src='https://dropsinn.s3.amazonaws.com/face.jpg' alt='Face image' />
+      Ian Sinnott
+    </a>
+  </nav>
+  <div class='nav-menu'>
+    <nav class='hidden-nav'>
+      <button
+        data-event-handler='touchstart:toggle,click:toggle,touchend:preventDefault'
+        data-target='.hidden-nav'
+        class='toggle'>
+        <div class='burger'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <a href='/'>
+        <i class="fa fa-home"></i>
+        Home
+      </a>
+      <a href='/archives'>
+        <i class="fa fa-list-ul"></i>
+        Archive
+      </a>
+      <a href='/tags'>
+        <i class="fa fa-tags"></i>
+        Tags
+      </a>
+
+      <hr />
+
+      <a href="https://www.iansinnott.com/">
+        <i class="fa fa-flag"></i>
+        Site
+      </a>
+      <a href="https://twitter.com/ian_sinn">
+        <i class="fa fa-twitter"></i>
+        Twitter
+      </a>
+      <a href="https://github.com/iansinnott">
+        <i class="fa fa-github"></i>
+        GitHub
+      </a>
+
+      <div class='face'>
+        <img src='https://dropsinn.s3.amazonaws.com/face2.jpg' alt='Hand drawn face' />
+        <h3>Hello</h3>
+      </div>
+    </nav>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-jekyll-management-like-a-boss" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/jekyll-management-like-a-boss/" class="article-date">
+  <time datetime="2014-06-28T07:00:00.000Z" itemprop="datePublished">2014-06-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jekyll Management Like a Boss
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Blogging-Without-Friction"><a href="#Blogging-Without-Friction" class="headerlink" title="Blogging Without Friction"></a>Blogging Without Friction</h2><p>Yesterday I wrote a script to help myself blog more often. This is what it looks like in the terminal:</p>
+<ul>
+<li>Create a new post: <code>post new [post title]</code></li>
+<li>List all of my posts: <code>post list</code></li>
+<li>Search existing posts: <code>post search [post title]</code></li>
+<li>Edit a post: <code>post edit [partial post title]</code></li>
+<li>Publish to this blog: <code>post publish</code></li>
+</ul>
+<p>I really like <a href="http://jekyllrb.com/" target="_blank" rel="external">Jekyll</a>, but having to manually create files with the Jekyll filename format (<code>YYYY-MM-DD-post-title</code>) is a bit of a hassle. Clearly you could just do this by hand, but if you’re like me and want to automate all the minutia in your life, then that’s not going to cut it.</p>
+<a id="more"></a>
+<p>The other reason I decided to write a script for managing Jekyll was <em>friction</em>. Blogging can be fun, but sometimes it’s hard to get myself to actually start writing posts. In the past, that was largely because my post-writing workflow looked something like this:</p>
+<ol>
+<li>Open a new Markdown file</li>
+<li>Write an amazing post</li>
+<li>Open a browser, log in to WordPress</li>
+<li>Use the WordPress UI to create a new post</li>
+<li>Copy my Markdown from my editor into the WordPress WYSIWYG</li>
+<li>Hit publish</li>
+<li>Navigate to the post on the front-end to make sure it looked OK</li>
+</ol>
+<p>Steps 3-7 were really causing a lot of friction when it came to writing blog posts. So much so that I still have some posts sitting on my computer that never got published because interacting with the WordPress UI is just too tedious. Here’s what my new workflow looks like:</p>
+<ol>
+<li>In a terminal: <code>post new Jekyll Management Like a Boss</code></li>
+<li>Write blog post about Jekyll. Save it.</li>
+<li>Back in a terminal: <code>post publish</code></li>
+</ol>
+<p>And done.</p>
+<p>Now I have no excuses. If I don’t write a post, I can only blame my own lassitude since I now have a super efficient workflow. This is a good thing.</p>
+<h2 id="Why-not-Octopress"><a href="#Why-not-Octopress" class="headerlink" title="Why not Octopress"></a>Why not Octopress</h2><p>The only existing option for managing a Jekyll blog that I came across was <a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>. It’s a good project, and I already miss some of its features by not using it, but to me it had one glaring problem: Theming. There is limited documentation on how to theme Octopress, and while there are a bunch of 3rd-part Octopress themes to choose from it’s just not good enough. I have nothing against using premade themes, it’s just that once in a while you will probably want to change some little thing about the site and if you don’t know how it’s a real pain.</p>
+<p>The other reason I decided against Octopress, is fairly minor, but significant in my mind: The CLI syntax. If you don’t know, creating a new post in Octopress looks like this:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">rake new_post[&apos;Post Title&apos;]</div></pre></td></tr></table></figure>
+<p>To me that just doesn’t make sense, when you can just as easily write a script to do the same thing with much less typing:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">post new Post Title</div></pre></td></tr></table></figure>
+<p>Octopress certainly does <em>way</em> more than this little script I wrote, and I’m sure those guys knew exactly what they were doing when they designed the CLI the way they did, but it’s the little things like that that really make the experience for me so I just decided to write my own.</p>
+<p>For anyone interested, you can find my script on GitHub: <a href="https://github.com/iansinnott/jekyll-post" target="_blank" rel="external">https://github.com/iansinnott/jekyll-post</a></p>
+<p><strong>Note:</strong> I haven’t optimized this script for use on other systems, so it may well not work on Linux or especially Windows. It also won’t work on any system without <a href="http://nodejs.org/" target="_blank" rel="external"> Node </a> installed.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/jekyll-management-like-a-boss/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fjekyll-management-like-a-boss%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fjekyll-management-like-a-boss%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fjekyll-management-like-a-boss%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/jekyll-management-like-a-boss/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/setting-up-hydra-config-on-a-mac/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Setting Up Hydra Config on A Mac
+        
+      </div>
+    </a>
+  
+  
+    <a href="/meteor-is-almost-awesome/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Meteor is (Almost) Awesome</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+      </div>
+    </div>
+
+    <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ian Sinnott<br>
+    </div>
+  </div>
+</footer>
+
+
+    
+    
+    <script>
+      var disqus_shortname = 'iansinnott';
+      
+      var disqus_url = 'https://blog.iansinnott.com/jekyll-management-like-a-boss/';
+      
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    
+
+    <script src="/js/main.js"></script>
+  </div>
+</body>
+</html>
