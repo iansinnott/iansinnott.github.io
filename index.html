@@ -126,10 +126,10 @@
       
         <p><strong>Abstract:</strong> Migrating a static site to <a href="https://www.gatsbyjs.org/" target="_blank" rel="external">Gatsby</a> is pretty simple. I’ll walk through how I did it and the pitfalls along the way.</p>
 <p><a href="https://www.gatsbyjs.org/" target="_blank" rel="external">Gatsby 1.0</a> was just recently published and I got excited. I’ve been excited about static sites for <em>a while</em>, especially in combination with React. I’ve <a href="https://www.youtube.com/watch?v=_1k2HEPH6fY" target="_blank" rel="external">spoken publicly about building static sites with React</a> and two of my top repositories on GitHub are just for building static sites with React…</p>
-<p><img src="http://dropsinn.s3.amazonaws.com/blurred-repos.png" alt="Blurred Repos"></p>
+<p><img src="https://dropsinn.s3.amazonaws.com/blurred-repos.png" alt="Blurred Repos"></p>
 <p>So I was pretty pumped to see Gatsby hit 1.0. And so far it has not disappointed.</p>
 <h2 id="Migrating-to-Gatsby-1-0"><a href="#Migrating-to-Gatsby-1-0" class="headerlink" title="Migrating to Gatsby 1.0"></a>Migrating to Gatsby 1.0</h2><p>OK, enough context! Let’s migrate something. I chose to start by migrating <a href="https://www.iansinnott.com" target="_blank" rel="external">my personal site</a> since it’s already built with React and is literally 1 page. Here it is—the entire site:</p>
-<p><img src="http://dropsinn.s3.amazonaws.com/www.iansinnott.com-screenshot-2017-07-09.png" alt="Home page screenshot"></p>
+<p><img src="https://dropsinn.s3.amazonaws.com/www.iansinnott.com-screenshot-2017-07-09.png" alt="Home page screenshot"></p>
 <h3 id="Adding-Gatsby-to-an-exiting-project"><a href="#Adding-Gatsby-to-an-exiting-project" class="headerlink" title="Adding Gatsby to an exiting project"></a>Adding Gatsby to an exiting project</h3><p>Step 1 is to <strong>install Gatsby</strong>. I’m also adding <code>gatsby-link</code> and the react helmet plugin because I knew I would need them:</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">yarn add gatsby gatsby-link gatsby-plugin-react-helmet</div></pre></td></tr></table></figure>
 <p><strong>Create a <code>gatsby-config.js</code> file</strong> in the project root and drop the following into it:</p>
@@ -138,7 +138,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">gatsby develop</div></pre></td></tr></table></figure>
 <p>This will start a local server. Point your browser to whatever local port it gives you and try it out. You should see a Gatsby 404 page. This is because it expects your source code to be in the <code>src/</code> directory. In my project all my source is in my <code>client/</code> directory so Gatsby has nothing to find.</p>
 <p>However, when I loaded up the dev server in the browser I was greeted by this hot error 😐 (note, this may well not happen for you):</p>
-<p><img src="http://dropsinn.s3.amazonaws.com/Screen%20Shot%202017-07-08%20at%2012.07.49%20PM.png" alt="Gatsby dev server build error"></p>
+<p><img src="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202017-07-08%20at%2012.07.49%20PM.png" alt="Gatsby dev server build error"></p>
 <p>If you <em>do</em> see something like that not to worry. It’s an issue with conflicting versions of react-proxy probably resulting from differing versions of react-hot-loader. You can check this with <code>npm ls react-proxy</code>. Anyway, blow away your <code>node_modules</code> folder and install from scratch. Also check your <code>package.json</code> dependencies to make sure you aren’t depending on any hot loading packages. In fact, now would be a good time to remove almost all your devDependencies from package.json. Gatsby is an entire build pipeline that will take care of most things for you, so consider critically every one of your dev dependencies. After manually pruning mine looked like this:</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&quot;devDependencies&quot;: &#123;</div><div class="line">  &quot;babel-eslint&quot;: &quot;^7.2.3&quot;,</div><div class="line">  &quot;eslint&quot;: &quot;^4.1.1&quot;,</div><div class="line">  &quot;eslint-config-zen&quot;: &quot;^3.0.0&quot;,</div><div class="line">  &quot;eslint-plugin-flowtype&quot;: &quot;^2.34.1&quot;,</div><div class="line">  &quot;eslint-plugin-react&quot;: &quot;^7.1.0&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
 <p>Yup, all loaders and plugins are gone. Gatsby isn’t even in this list because it’s a full-blown dependency, not just a devDependency.</p>
@@ -687,6 +687,77 @@
 
 
 
+  <article id="post-the-importance-of-community" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/the-importance-of-community/" class="article-date">
+  <time datetime="2016-04-29T07:00:00.000Z" itemprop="datePublished">2016-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/the-importance-of-community/">The Importance of Community</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Specifically, when making technical decisions.</p>
+<p>Community his hugely important any many areas of life, but lately I’ve found that it’s particularly pertinent in making technical decisions.</p>
+<h2 id="An-example"><a href="#An-example" class="headerlink" title="An example"></a>An example</h2><p>Recently at <a href="https://www.trustar.co/">Trustar</a> we started using a <a href="https://en.wikipedia.org/wiki/Graph_database">graph database</a>. We have a lot of interrelated data so the graph model has made conceptual sense for a long time.  So this year when we decided to implement a graph database in production we had a technical decision to make: Which database do we use?</p>
+<p>We’re a small team (currently ~5 engineers) so we definitely don’t have the bandwidth to build our own implementation. That means we need to choose among the existing solutions. There are currently several graph database providers in the wild, and they all seem to do pretty much the same thing. Technically speaking, the usual points they hit in differentiating themselves are ones of how they handle scalability and replication.</p>
+        
+          <a class="article-more-link" href="/the-importance-of-community/#more">Read More</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <div class='share-menu'>
+        <button class="article-share-link share-toggle">
+          Share
+        </button>
+        <div class='share-box'>
+          <input
+            type='text'
+            class='article-share-input'
+            onfocus='this.setSelectionRange(0, this.value.length);'
+            value='https://blog.iansinnott.com/the-importance-of-community/' />
+          <nav class='share-links'>
+            
+            <a
+              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-community%2F'
+              target='_blank'
+              class="share-link share-twitter"></a>
+            <a
+              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-community%2F'
+              target='_blank'
+              class="share-link share-facebook"></a>
+            <a
+              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-community%2F'
+              target='_blank'
+              class="share-link share-google"></a>
+          </nav>
+        </div>
+      </div>
+      
+        <a href="https://blog.iansinnott.com/the-importance-of-community/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   <article id="post-going-fully-https-fo-free" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/going-fully-https-fo-free/" class="article-date">
@@ -753,77 +824,6 @@
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/security/">security</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  <article id="post-the-importance-of-community" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/the-importance-of-community/" class="article-date">
-  <time datetime="2016-04-29T07:00:00.000Z" itemprop="datePublished">2016-04-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/the-importance-of-community/">The Importance of Community</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Specifically, when making technical decisions.</p>
-<p>Community his hugely important any many areas of life, but lately I’ve found that it’s particularly pertinent in making technical decisions.</p>
-<h2 id="An-example"><a href="#An-example" class="headerlink" title="An example"></a>An example</h2><p>Recently at <a href="https://www.trustar.co/">Trustar</a> we started using a <a href="https://en.wikipedia.org/wiki/Graph_database">graph database</a>. We have a lot of interrelated data so the graph model has made conceptual sense for a long time.  So this year when we decided to implement a graph database in production we had a technical decision to make: Which database do we use?</p>
-<p>We’re a small team (currently ~5 engineers) so we definitely don’t have the bandwidth to build our own implementation. That means we need to choose among the existing solutions. There are currently several graph database providers in the wild, and they all seem to do pretty much the same thing. Technically speaking, the usual points they hit in differentiating themselves are ones of how they handle scalability and replication.</p>
-        
-          <a class="article-more-link" href="/the-importance-of-community/#more">Read More</a>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <div class='share-menu'>
-        <button class="article-share-link share-toggle">
-          Share
-        </button>
-        <div class='share-box'>
-          <input
-            type='text'
-            class='article-share-input'
-            onfocus='this.setSelectionRange(0, this.value.length);'
-            value='https://blog.iansinnott.com/the-importance-of-community/' />
-          <nav class='share-links'>
-            
-            <a
-              href='https://twitter.com/intent/tweet?url=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-community%2F'
-              target='_blank'
-              class="share-link share-twitter"></a>
-            <a
-              href='https://www.facebook.com/sharer.php?u=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-community%2F'
-              target='_blank'
-              class="share-link share-facebook"></a>
-            <a
-              href='https://plus.google.com/share?url=https%3A%2F%2Fblog.iansinnott.com%2Fthe-importance-of-community%2F'
-              target='_blank'
-              class="share-link share-google"></a>
-          </nav>
-        </div>
-      </div>
-      
-        <a href="https://blog.iansinnott.com/the-importance-of-community/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
     </footer>
   </div>
   
