@@ -5,7 +5,9 @@
   "version": "4.0.0",
   "author": "Ian Sinnott <ian@iansinnott.com> (https://www.iansinnott.com)",
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "classnames": "^2.2.5",
+    "core-js": "^2.5.0",
     "gatsby": "^1.6.5",
     "gatsby-link": "^1.6.5",
     "gatsby-plugin-google-analytics": "^1.0.3",
