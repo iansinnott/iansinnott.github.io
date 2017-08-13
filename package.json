@@ -5,9 +5,15 @@
   "version": "4.0.0",
   "author": "Ian Sinnott <ian@iansinnott.com> (https://www.iansinnott.com)",
   "dependencies": {
+    "classnames": "^2.2.5",
     "gatsby": "^1.6.5",
     "gatsby-link": "^1.6.5",
-    "gatsby-plugin-react-helmet": "^1.0.1"
+    "gatsby-plugin-google-analytics": "^1.0.3",
+    "gatsby-plugin-react-helmet": "^1.0.1",
+    "gatsby-plugin-stylus": "^1.1.1",
+    "gatsby-source-filesystem": "^1.4.2",
+    "gatsby-transformer-remark": "^1.7.0",
+    "rupture": "^0.6.2"
   },
   "keywords": [
     "gatsby",
