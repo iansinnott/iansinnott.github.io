@@ -18,6 +18,8 @@ const path = require('path');
  *      }
  *    }
  *  }
+ *
+ * NOTE: I'm still not sure if the order of these plugins is important...
  */
 module.exports = {
   siteMetadata: {
