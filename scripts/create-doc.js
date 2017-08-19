@@ -40,8 +40,8 @@ const createPost = ({ published, args }) => {
   const d = new Date();
   const date = format(d, 'YYYY-MM-DD');
   const datetime = d.toISOString();
-  const title = (published ? `${date}-` : '') + args.join(' ');
-  const filename = formatSlug(title) + '.md';
+  const title = args.join(' ');
+  const filename = (published ? `${date}-` : '') + formatSlug(title) + '.md';
   const filepath = outdir + '/' + filename;
 
   const _frontmatter = {

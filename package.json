@@ -20,6 +20,7 @@
     "gatsby-source-filesystem": "^1.4.2",
     "gatsby-transformer-remark": "^1.7.0",
     "graphql": "^0.10.5",
+    "mdify": "^1.0.7",
     "prop-types": "^15.5.10",
     "ramda": "^0.24.1",
     "rupture": "^0.6.2",
