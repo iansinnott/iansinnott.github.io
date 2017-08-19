@@ -5,7 +5,10 @@ const toJSON = x => JSON.stringify(x, null, 2);
 
 const BlogPostListItem = ({ post }) => (
   <div>
-    <Link to={`/${post.slug}`}>{post.frontmatter.title}</Link>
+    <Link to={`/${post.slug}`}>
+      {post.frontmatter.title}
+      {post.filenameDate}
+    </Link>
   </div>
 );
 
