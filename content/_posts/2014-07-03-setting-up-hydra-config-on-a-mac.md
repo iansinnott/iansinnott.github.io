@@ -1,4 +1,6 @@
 ---
+created: '2014-07-03T07:00:00.000Z'
+published: '2014-07-03T07:00:00.000Z'
 title: Setting Up Hydra Config on A Mac
 ---
 

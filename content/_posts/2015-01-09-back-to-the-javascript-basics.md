@@ -1,4 +1,6 @@
 ---
+created: '2015-01-09T08:00:00.000Z'
+published: '2015-01-09T08:00:00.000Z'
 title: Back to the JavaScript Basics
 tags:
   - javascript

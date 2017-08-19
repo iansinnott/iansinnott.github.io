@@ -1,5 +1,7 @@
 ---
-title: "Vim: It's Awesome"
+created: '2014-03-03T08:00:00.000Z'
+published: '2014-03-03T08:00:00.000Z'
+title: 'Vim: It''s Awesome'
 dsq_thread_id:
   - 2349626206
 tags:

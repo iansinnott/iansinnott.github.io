@@ -1,4 +1,6 @@
 ---
+created: '2015-05-11T07:00:00.000Z'
+published: '2015-05-11T07:00:00.000Z'
 title: Managing state and controlled form fields with React
 tags:
   - javascript

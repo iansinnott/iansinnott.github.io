@@ -1,4 +1,6 @@
 ---
+created: '2013-05-30T07:00:00.000Z'
+published: '2013-05-30T07:00:00.000Z'
 title: WordPress Development Server - Full Set Up Guide
 dsq_thread_id:
   - 1337579457

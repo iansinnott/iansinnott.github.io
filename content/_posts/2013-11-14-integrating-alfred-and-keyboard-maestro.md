@@ -1,4 +1,6 @@
 ---
+created: '2013-11-14T08:00:00.000Z'
+published: '2013-11-14T08:00:00.000Z'
 title: Integrating Alfred With Keyboard Maestro
 dsq_thread_id:
   - 1965006338

@@ -1,4 +1,6 @@
 ---
+created: '2016-06-11T07:00:00.000Z'
+published: '2016-06-11T07:00:00.000Z'
 title: Getting Started with Flow and Webpack
 tags:
   - javascript

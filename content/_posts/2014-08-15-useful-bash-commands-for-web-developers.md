@@ -1,4 +1,6 @@
 ---
+created: '2014-08-15T07:00:00.000Z'
+published: '2014-08-15T07:00:00.000Z'
 title: Useful Bash Commands For Web Developers
 ---
 

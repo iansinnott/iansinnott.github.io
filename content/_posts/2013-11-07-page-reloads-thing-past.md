@@ -1,4 +1,6 @@
 ---
+created: '2013-11-07T08:00:00.000Z'
+published: '2013-11-07T08:00:00.000Z'
 title: Page reloads are a thing of the past
 dsq_thread_id:
   - 1944906311

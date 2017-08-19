@@ -1,4 +1,6 @@
 ---
+created: '2016-05-11T07:00:00.000Z'
+published: '2016-05-11T07:00:00.000Z'
 title: Testing Webpack Plugins
 tags:
   - javascript
@@ -104,4 +106,3 @@ Cheers 🍻
 [circle]:https://github.com/iansinnott/react-static-webpack-plugin/blob/master/circle.yml#L9
 [Circle CI]:https://circleci.com/
 [Ava]:https://github.com/sindresorhus/ava
-

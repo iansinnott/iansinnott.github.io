@@ -1,4 +1,6 @@
 ---
+created: '2015-01-26T08:00:00.000Z'
+published: '2015-01-26T08:00:00.000Z'
 title: Use RedCarpet to Render Markdown
 ---
 

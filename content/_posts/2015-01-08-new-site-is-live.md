@@ -1,4 +1,6 @@
 ---
+created: '2015-01-08T08:00:00.000Z'
+published: '2015-01-08T08:00:00.000Z'
 title: New Site Is Live
 ---
 
@@ -11,5 +13,3 @@ The big reason I'm super excited about this iteration of my home site is that it
 ## Note quite done
 
 All that being said, there is still work to be done. The new site isn't entirely consistent with this blog. It's not a very big deal, but I really like consistency so updating this site to match the new visual style is now on my to-do list. The new site is also thoroughly untested, so if you stumble upon a part of it that seems broken please don't hesitate to [get in touch](http://iansinnott.com/contact) and let me know.
-
-

@@ -1,6 +1,8 @@
 ---
+created: '2017-07-09T07:00:00.000Z'
+published: '2017-07-09T07:00:00.000Z'
 title: Migrating to GatsbyJS Part 1
-date: 2017-07-09 10:44:59
+date: 2017-07-09T10:44:59.000Z
 tags:
   - javascript
   - webpack

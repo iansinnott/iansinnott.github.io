@@ -1,4 +1,6 @@
 ---
+created: '2015-07-20T07:00:00.000Z'
+published: '2015-07-20T07:00:00.000Z'
 title: Use SSH ForwardAgent for fun and profit
 ---
 

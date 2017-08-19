@@ -1,4 +1,6 @@
 ---
+created: '2015-05-03T07:00:00.000Z'
+published: '2015-05-03T07:00:00.000Z'
 title: In search of the ultimate tooling workflow
 tags:
   - javascript

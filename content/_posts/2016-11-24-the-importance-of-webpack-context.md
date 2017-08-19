@@ -1,10 +1,11 @@
 ---
+created: '2016-11-24T08:00:00.000Z'
+published: '2016-11-24T08:00:00.000Z'
 title: The importance of Webpack context
 tags:
   - webpack
-date: 2016-11-24 19:21:05
+date: 2016-11-24T19:21:05.000Z
 ---
-
 
 Today I ran into an issue testing my [react-static-webpack-plugin][] plugin. I've been running webpack builds in subdirectories of the repository and then running test assertions against the output in order to test the project. So far it's worked great, but after updating my dependencies recently I ran into a nasty error:
 

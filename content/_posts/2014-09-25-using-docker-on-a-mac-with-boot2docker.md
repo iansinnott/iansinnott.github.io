@@ -1,4 +1,6 @@
 ---
+created: '2014-09-25T07:00:00.000Z'
+published: '2014-09-25T07:00:00.000Z'
 title: Using Docker on a Mac with Boot2Docker
 tags:
   - ops

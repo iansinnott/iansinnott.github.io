@@ -1,4 +1,6 @@
 ---
+created: '2016-02-27T08:00:00.000Z'
+published: '2016-02-27T08:00:00.000Z'
 title: Teaching a React.js Workshop
 tags:
   - javascript

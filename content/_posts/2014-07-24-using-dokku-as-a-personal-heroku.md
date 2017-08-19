@@ -1,4 +1,6 @@
 ---
+created: '2014-07-24T07:00:00.000Z'
+published: '2014-07-24T07:00:00.000Z'
 title: Using Dokku As A Personal Heroku
 ---
 

@@ -1,5 +1,7 @@
 ---
-title: Dokku, Mongo & Node.js
+created: '2014-08-22T07:00:00.000Z'
+published: '2014-08-22T07:00:00.000Z'
+title: 'Dokku, Mongo & Node.js'
 tags:
   - ops
   - node

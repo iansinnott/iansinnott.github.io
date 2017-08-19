@@ -1,4 +1,6 @@
 ---
+created: '2015-08-01T07:00:00.000Z'
+published: '2015-08-01T07:00:00.000Z'
 title: Switching Away From Mongoose
 tags:
   - javascript

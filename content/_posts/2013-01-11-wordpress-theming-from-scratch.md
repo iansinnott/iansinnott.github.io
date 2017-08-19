@@ -1,4 +1,6 @@
 ---
+created: '2013-01-11T08:00:00.000Z'
+published: '2013-01-11T08:00:00.000Z'
 title: WordPress Theming From Scratch
 dsq_thread_id:
   - 1029462779

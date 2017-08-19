@@ -1,10 +1,11 @@
 ---
+created: '2016-11-16T08:00:00.000Z'
+published: '2016-11-16T08:00:00.000Z'
 title: A refreshing dose of minimalism
 tags:
   - javascript
-date: 2016-11-16 21:00:43
+date: 2016-11-16T21:00:43.000Z
 ---
-
 
 Today I finished rebuilding my blog using Hexo (see last blog post for details). It's a blog, so I knew I wouldn't need too much JS. I started with a blank file and started coding.
 

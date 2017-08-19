@@ -1,4 +1,6 @@
 ---
+created: '2015-02-20T08:00:00.000Z'
+published: '2015-02-20T08:00:00.000Z'
 title: Solving problems is the biggest win
 tags:
   - personal

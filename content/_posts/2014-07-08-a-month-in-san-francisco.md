@@ -1,4 +1,6 @@
 ---
+created: '2014-07-08T07:00:00.000Z'
+published: '2014-07-08T07:00:00.000Z'
 title: A Month In San Francisco
 tags:
   - life

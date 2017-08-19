@@ -1,4 +1,6 @@
 ---
+created: '2013-08-09T07:00:00.000Z'
+published: '2013-08-09T07:00:00.000Z'
 title: Learn Vim & Code Like a Boss
 dsq_thread_id:
   - 1585683628

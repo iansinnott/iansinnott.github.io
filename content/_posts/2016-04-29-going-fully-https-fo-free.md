@@ -1,5 +1,7 @@
 ---
-title: "Going fully HTTPS (SSL) fo' free"
+created: '2016-04-29T07:00:00.000Z'
+published: '2016-04-29T07:00:00.000Z'
+title: Going fully HTTPS (SSL) fo' free
 tags:
   - security
 ---

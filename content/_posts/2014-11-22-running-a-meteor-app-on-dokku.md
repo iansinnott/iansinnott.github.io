@@ -1,4 +1,6 @@
 ---
+created: '2014-11-22T08:00:00.000Z'
+published: '2014-11-22T08:00:00.000Z'
 title: Running a Meteor App on Dokku
 tags:
   - javascript

@@ -1,4 +1,6 @@
 ---
+created: '2014-06-28T07:00:00.000Z'
+published: '2014-06-28T07:00:00.000Z'
 title: Jekyll Management Like a Boss
 ---
 

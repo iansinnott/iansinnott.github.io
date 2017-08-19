@@ -1,4 +1,6 @@
 ---
+created: '2013-06-15T07:00:00.000Z'
+published: '2013-06-15T07:00:00.000Z'
 title: The WP_Post Object
 dsq_thread_id:
   - 1402742612

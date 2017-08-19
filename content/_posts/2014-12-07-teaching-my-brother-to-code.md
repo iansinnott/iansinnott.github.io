@@ -1,4 +1,6 @@
 ---
+created: '2014-12-07T08:00:00.000Z'
+published: '2014-12-07T08:00:00.000Z'
 title: Teaching My Brother To Code
 tags:
   - teaching

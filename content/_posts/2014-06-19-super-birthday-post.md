@@ -1,4 +1,6 @@
 ---
+created: '2014-06-19T07:00:00.000Z'
+published: '2014-06-19T07:00:00.000Z'
 title: Jekyll Theming Like a Boss With Gulp
 ---
 

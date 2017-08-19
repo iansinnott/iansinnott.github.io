@@ -1,5 +1,7 @@
 ---
-title: Programmer, Maker or Both?
+created: '2014-09-24T07:00:00.000Z'
+published: '2014-09-24T07:00:00.000Z'
+title: 'Programmer, Maker or Both?'
 tags:
   - personal
 ---

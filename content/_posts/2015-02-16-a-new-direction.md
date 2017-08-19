@@ -1,4 +1,6 @@
 ---
+created: '2015-02-16T08:00:00.000Z'
+published: '2015-02-16T08:00:00.000Z'
 title: A New Direction
 tags:
   - personal
