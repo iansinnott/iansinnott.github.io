@@ -43,10 +43,6 @@ exports.setFieldsOnGraphQLNodeType = ({
       type: GraphQLString,
       resolve: getSlug,
     },
-    filenameDate: {
-      type: GraphQLString,
-      resolve: getFileDate,
-    },
     filename: {
       type: GraphQLString,
       resolve: getFilename,
