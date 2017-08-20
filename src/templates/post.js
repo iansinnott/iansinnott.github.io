@@ -3,6 +3,10 @@ import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
 import pipe from 'ramda/src/pipe';
 import path from 'ramda/src/path';
+import classnames from 'classnames/bind';
+
+import s from './post.module.styl';
+const cx = classnames.bind(s);
 
 import { format } from '../lib/utils.js'
 import Bio from '../components/Bio.js';
@@ -16,7 +20,7 @@ const getPost = path(['data', 'post']);
 const getContext = path(['pathContext']);
 
 const PostNav = ({ prev, next }) => (
-  <div className='PostNav'>
+  <div className={cx('PostNav')}>
     {prev && <Link to={`/${prev.slug}/`}>Prev</Link>}
     <Link to='/'>All Posts</Link>
     {next && <Link to={`/${next.slug}/`}>Next</Link>}
@@ -41,7 +45,7 @@ class BlogPost extends React.Component {
     const { next, prev } = getContext(this.props); // Not to be confused with react context...
 
     return (
-      <div>
+      <div className={cx('Post')}>
         <Helmet title={`${post.frontmatter.title} | Ian Sinnott`} />
         <h1>
           {post.frontmatter.title}
