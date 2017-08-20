@@ -27,8 +27,6 @@ export default class BlogIndex extends React.Component {
       return DevErrors(this.props);
     }
 
-    console.log(this.props);
-
     return (
       <div>
         <h2>I wrote these</h2>

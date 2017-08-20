@@ -6,6 +6,18 @@ import Bio from '../components/Bio.js';
 
 class BlogPostTemplate extends React.Component {
   render() {
+    if (this.props.errors && this.props.errors.length) {
+      this.props.errors.forEach(({ message }) => {
+        console.error(`Blog render errr: ${message}`);
+      });
+      return (
+        <div>
+          <h2>Errors</h2>
+          <p>See console for details.</p>
+        </div>
+      );
+    }
+
     const { post } = this.props.data;
 
     return (
@@ -30,7 +42,7 @@ export default BlogPostTemplate;
 // NOTE: The $id var is passed in via context in gatsby-node
 export const pageQuery = graphql`
   query PostById($id: String!) {
-  	markdownRemark(id: { eq: $id }) {
+  	post: markdownRemark(id: { eq: $id }) {
       html
       frontmatter {
         created
