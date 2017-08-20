@@ -54,38 +54,32 @@ exports.setFieldsOnGraphQLNodeType = ({
   });
 };
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
+exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
-
-  return new Promise((resolve, reject) => {
-    const postTemplate = path.resolve('./src/templates/post.js');
-    resolve(
-      graphql(`
-        query RenderPostsQuery {
-          posts: allMarkdownRemark(limit: 1000) {
-            edges {
-              node { id slug }
-            }
+  const postTemplate = path.resolve('./src/templates/post.js');
+  const result = await graphql(`
+      query RenderPostsQuery {
+        posts: allMarkdownRemark(limit: 1000) {
+          edges {
+            node { id slug }
           }
         }
-    `)
-      .then(result => {
-        if (result.errors) {
-          console.log(result.errors);
-          return reject(result.errors);
-        }
+      }
+  `);
 
-        // Create blog posts pages.
-        result.data.posts.edges.forEach(({ node }) => {
-          createPage({
-            path: `/${node.slug}/`,
-            component: postTemplate,
-            context: { id: node.id }, // Context will be passed in to the page query as graphql vars
-          });
-        });
+  if (result.errors) {
+    console.log(result.errors);
+    throw new Error('Things broke, see console output above');
+  }
 
-        return resolve();
-      })
-    );
+  // Create blog posts pages.
+  result.data.posts.edges.forEach(({ node }) => {
+    createPage({
+      path: `/${node.slug}/`,
+      component: postTemplate,
+      context: { id: node.id }, // Context will be passed in to the page query as graphql vars
+    });
   });
+
+  // What should I return here??
 };
