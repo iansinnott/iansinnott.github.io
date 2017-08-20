@@ -1,16 +1,8 @@
 import React from 'react';
-import Link from 'gatsby-link';
+
+import Posts from '../components/Posts.js';
 
 const toJSON = x => JSON.stringify(x, null, 2);
-
-const BlogPostListItem = ({ post }) => (
-  <div>
-    <Link to={`/${post.slug}`}>
-      {post.frontmatter.title}
-      {post.filenameDate}
-    </Link>
-  </div>
-);
 
 const DevErrors = props => (
   <div>
@@ -35,37 +27,30 @@ export default class BlogIndex extends React.Component {
       return DevErrors(this.props);
     }
 
-    const { posts } = this.props.data;
-
     return (
       <div>
-        <h1>Dis ma Blög</h1>
-        {posts.edges.map(({ node }) =>
-          <BlogPostListItem post={node} key={node.internal.contentDigest} />
-        )}
+        <h2>I wrote these</h2>
+        <Posts posts={this.props.data.posts} />
       </div>
     );
   }
 }
 
 /**
- * NOTE: I'm sorting by filename since all my filenames were generated according
- * to the jekyll convention, so they were meant to be sorted this way. The
- * filename in fact is the source of truth for the publicaton date. However,
- * although the slug is included in the filename the source of truth for the
- * title is still the front matter since capitalization and punctuation is
- * important in the title and is best represented in the front matter rather
- * than the filename.
- *
  * NOTE: Only "published" posts are included in the query because they have
  * filenames of the form YYYY-MM-DD-title.md. The filtering regex matches
  * against this, so any md files without a date in the filename are not included
  * (they are considered drafts).
+ *
+ * TODO: I added a published field in published posts but it's not getting
+ * picked up by gql. I'll just keep on working sorting by created for now since
+ * I want to get the blog out, but it's something worth looking in to later on.
+ * Maybe after Gatsby v2.
  */
 export const pageQuery = graphql`
   query AllPostsQuery {
     posts: allMarkdownRemark(
-      sort: { fields: [fileAbsolutePath], order: DESC }
+      sort: { fields: [frontmatter___created], order: DESC }
       filter: {
         fileAbsolutePath: {
           regex: "/\\d\\d\\d\\d-\\d\\d-\\d\\d.+\\.md$/"
@@ -75,8 +60,7 @@ export const pageQuery = graphql`
       edges {
         node {
           slug
-          filenameDate
-          frontmatter { title }
+          frontmatter { title created }
           internal { contentDigest }
         }
       }

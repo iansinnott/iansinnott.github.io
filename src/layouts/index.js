@@ -1,14 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import T from 'prop-types';
 import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
+import classnames from 'classnames/bind';
+
+import s from './index.module.styl';
+const cx = classnames.bind(s);
 
 import './index.css';
+import faceImg from '../assets/face.png';
+
+const gradient = 'linear-gradient(to right, #009688, #3F51B5)';
 
 const Header = () => (
   <div
     style={{
-      background: 'rebeccapurple',
+      background: gradient,
       marginBottom: '1.45rem',
     }}>
     <div
@@ -17,14 +24,15 @@ const Header = () => (
         maxWidth: 960,
         padding: '1.45rem 1.0875rem',
       }}>
-      <h1 style={{ margin: 0 }}>
+      <h1 className={cx('mainHeader')} style={{ margin: 0 }}>
         <Link
           to='/'
           style={{
             color: 'white',
             textDecoration: 'none',
           }}>
-          Gatsby
+          <img className={cx('face')} src={faceImg} alt='An image of my face for the website' />
+          Ian Sinnott
         </Link>
       </h1>
     </div>
@@ -54,7 +62,7 @@ const TemplateWrapper = ({ children }) => (
 );
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func,
+  children: T.func,
 };
 
 export default TemplateWrapper;
