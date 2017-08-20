@@ -35,6 +35,7 @@
   "scripts": {
     "draft": "./scripts/create-doc.js draft",
     "post": "./scripts/create-doc.js post",
+    "standardizeFrontmatter": "for post in $(find $PWD/content/_posts -iname '*.md'); do ./scripts/validate-frontmatter.js $post; done",
     "build": "gatsby build",
     "start": "gatsby develop",
     "format": "prettier --trailing-comma es5 --single-quote --write 'src/**/*.js'",
