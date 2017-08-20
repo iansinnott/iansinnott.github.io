@@ -4,6 +4,7 @@ import Link from 'gatsby-link';
 import pipe from 'ramda/src/pipe';
 import path from 'ramda/src/path';
 import classnames from 'classnames/bind';
+import 'prismjs/themes/prism.css';
 
 import s from './post.module.styl';
 const cx = classnames.bind(s);
