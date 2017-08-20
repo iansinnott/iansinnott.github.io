@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
 import pipe from 'ramda/src/pipe';
+import path from 'ramda/src/path';
 
 import { format } from '../lib/utils.js'
 import Bio from '../components/Bio.js';
@@ -11,7 +12,18 @@ const formatDate = pipe(
   format('YYYY-MM-DD'), // What's a pretty format??
 );
 
-class BlogPostTemplate extends React.Component {
+const getPost = path(['data', 'post']);
+const getContext = path(['pathContext']);
+
+const PostNav = ({ prev, next }) => (
+  <div className='PostNav'>
+    {prev && <Link to={`/${prev.slug}/`}>Prev</Link>}
+    <Link to='/'>All Posts</Link>
+    {next && <Link to={`/${next.slug}/`}>Next</Link>}
+  </div>
+);
+
+class BlogPost extends React.Component {
   render() {
     if (this.props.errors && this.props.errors.length) {
       this.props.errors.forEach(({ message }) => {
@@ -25,7 +37,8 @@ class BlogPostTemplate extends React.Component {
       );
     }
 
-    const { post } = this.props.data;
+    const post = getPost(this.props);
+    const { next, prev } = getContext(this.props); // Not to be confused with react context...
 
     return (
       <div>
@@ -39,12 +52,14 @@ class BlogPostTemplate extends React.Component {
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr />
         <Bio />
+        <hr />
+        <PostNav prev={prev} next={next} />
       </div>
     );
   }
 }
 
-export default BlogPostTemplate;
+export default BlogPost;
 
 // NOTE: The $id var is passed in via context in gatsby-node
 export const pageQuery = graphql`

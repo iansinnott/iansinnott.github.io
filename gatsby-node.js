@@ -55,9 +55,23 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
   const postTemplate = path.resolve('./src/templates/post.js');
   const result = await graphql(`
       query RenderPostsQuery {
-        posts: allMarkdownRemark(limit: 1000) {
+        posts: allMarkdownRemark(
+          limit: 1000,
+          sort: { fields: [frontmatter___created], order: DESC }
+          filter: {
+            frontmatter: { created: { ne: null } }
+          }
+        ) {
           edges {
             node { id slug }
+            next {
+              frontmatter { title created }
+              slug
+            }
+            prev: previous {
+              frontmatter { title created }
+              slug
+            }
           }
         }
       }
@@ -69,11 +83,15 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
   }
 
   // Create blog posts pages.
-  result.data.posts.edges.forEach(({ node }) => {
+  result.data.posts.edges.forEach(({ node, next, prev }) => {
     createPage({
       path: `/${node.slug}/`,
       component: postTemplate,
-      context: { id: node.id }, // Context will be passed in to the page query as graphql vars
+      context: { // Context will be passed in to the page query as graphql vars
+        id: node.id,
+        next,
+        prev
+      },
     });
   });
 
