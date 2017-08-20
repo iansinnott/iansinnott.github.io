@@ -1,14 +1,11 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import _format from 'date-fns/format';
 import pipe from 'ramda/src/pipe';
 import classnames from 'classnames/bind';
 
 import s from './Posts.module.styl';
 const cx = classnames.bind(s);
-
-// Flip curry
-const format = (fmt) => (date) => _format(date, fmt);
+import { format } from '../lib/utils.js'
 
 const formatDate = pipe(
   x => new Date(x),

@@ -1,8 +1,15 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
+import pipe from 'ramda/src/pipe';
 
+import { format } from '../lib/utils.js'
 import Bio from '../components/Bio.js';
+
+const formatDate = pipe(
+  x => new Date(x),
+  format('YYYY-MM-DD'), // What's a pretty format??
+);
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -26,8 +33,8 @@ class BlogPostTemplate extends React.Component {
         <h1>
           {post.frontmatter.title}
         </h1>
-        <p>
-          {post.frontmatter.created}
+        <p className={'date'}>
+          {formatDate(post.frontmatter.created)}
         </p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr />
