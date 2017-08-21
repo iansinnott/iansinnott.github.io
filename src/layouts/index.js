@@ -15,6 +15,7 @@ const gradient = 'linear-gradient(to right, #009688, #3F51B5)';
 
 const Header = () => (
   <div
+    className={cx('Header')}
     style={{
       background: gradient,
       marginBottom: '1.45rem',
@@ -25,17 +26,28 @@ const Header = () => (
         maxWidth: 960,
         padding: '1.45rem 1.0875rem',
       }}>
-      <h1 className={cx('mainHeader')} style={{ margin: 0 }}>
-        <Link
-          to='/'
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}>
-          <img className={cx('face')} src={faceImg} alt='An image of my face for the website' />
-          Ian Sinnott
-        </Link>
-      </h1>
+      <div className={cx('mainHeader')}>
+        <h1 style={{ margin: 0 }}>
+          <Link
+            to='/'
+            style={{
+              color: 'white',
+              textDecoration: 'none',
+              fontWeight: 300,
+            }}>
+            <img className={cx('face')} src={faceImg} alt='An image of my face for the website' />
+            Ian Sinnott
+          </Link>
+        </h1>
+        <div className={cx('links')}>
+          <a href='https://twitter.com/ian_sinn'>
+            <i className='fa fa-twitter'></i>
+          </a>
+          <a href='https://github.com/iansinnott'>
+            <i className='fa fa-github'></i>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 );

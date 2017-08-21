@@ -1,8 +1,12 @@
 image-height = 50px
+wider = 600px
 
 body
-  +above(600px)
+  +above(wider)
     font-size 1.2rem
+
+.Header
+  position relative
 
 .mainHeader
   position relative
@@ -17,3 +21,24 @@ body
   top 50%
   left 0
   transform translateY(-50%)
+
+.links
+  position absolute
+  right 20px
+  top 50%
+  transform translateY(-50%)
+  a
+    display block
+    color white
+    transition all 0.2s ease-out
+    transform scale(1)
+    &:hover
+      transform scale(1.4)
+
+  +above(wider)
+    a
+      display inline-block
+      font-size 2rem
+      &:not(:last-child)
+        margin-right 1rem
+
