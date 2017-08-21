@@ -47,7 +47,7 @@ const renderPosts = pipe(
   map(prop('node')),
   nodesByYear,
   map(([ year, posts ]) => (
-    <div className={cx('postsByYear')}>
+    <div key={year} className={cx('postsByYear')}>
       <div className={cx('year')}>{year}</div>
       <div className={cx('innerPosts')}>
         {posts.map(node => (

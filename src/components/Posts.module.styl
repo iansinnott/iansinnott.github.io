@@ -1,8 +1,11 @@
 black = #333
 blue = #3F51B5
+wider = 600px
 
 .BlogPostListItem
   margin-bottom 10px
+  p
+    line-height 1.5
 
   a
     text-decoration none
@@ -25,9 +28,8 @@ blue = #3F51B5
     background #ddd
     left 10px
     position absolute
-    top 0
+    top 10px
     bottom 40px
-
   &:after
     content '•••'
     display block
@@ -36,6 +38,16 @@ blue = #3F51B5
     left 50%
     bottom 0
     transform translateX(-50%)
+
+  +above(wider)
+    padding-left 0
+    &:before
+      top 0
+      left auto
+      right 10px
+    &:after
+      left 0
+      transform none
 
 .year
   position absolute
@@ -54,3 +66,10 @@ blue = #3F51B5
     bottom 0
     background white
     z-index -1
+
+  +above(wider)
+    left auto
+    right 30px
+    transform none
+    &:after
+      display none

@@ -30,7 +30,7 @@ export default class BlogIndex extends React.Component {
 
     return (
       <div>
-        <h2>I wrote these</h2>
+        <h2>Some things I wrote</h2>
         <Posts posts={this.props.data.posts} />
         <hr style={{ margin: '3rem auto' }} />
         <Bio />
