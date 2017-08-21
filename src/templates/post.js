@@ -51,8 +51,9 @@ class BlogPost extends React.Component {
         <h1>
           {post.frontmatter.title}
         </h1>
-        <p className={'date'}>
-          {formatDate(post.frontmatter.created)}
+        <p className={cx('date')}>
+          <i style={{ marginRight: 10 }} className='fa fa-calendar-check-o'></i>
+          Published: <strong>{formatDate(post.frontmatter.created)}</strong>
         </p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr />
