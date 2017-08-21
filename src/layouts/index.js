@@ -3,6 +3,7 @@ import T from 'prop-types';
 import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 import classnames from 'classnames/bind';
+import 'font-awesome/css/font-awesome.css'
 
 import s from './index.module.styl';
 const cx = classnames.bind(s);

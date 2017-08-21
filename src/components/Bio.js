@@ -12,8 +12,14 @@ const Bio = () => (
       programming and building simple systems. If you want to chat you can find me on Twitter and GitHub.
     </p>
     <div className={cx('links')}>
-      <a href='https://twitter.com/ian_sinn'>@ian_sinn</a>
-      <a href='https://github.com/iansinnott'>gitub.com/iansinnott</a>
+      <a href='https://twitter.com/ian_sinn'>
+        <i className='fa fa-twitter'></i>
+        @ian_sinn
+      </a>
+      <a href='https://github.com/iansinnott'>
+        <i className='fa fa-github'></i>
+        iansinnott
+      </a>
     </div>
   </div>
 );

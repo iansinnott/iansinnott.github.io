@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Posts from '../components/Posts.js';
+import Bio from '../components/Bio.js';
 
 const toJSON = x => JSON.stringify(x, null, 2);
 
@@ -31,6 +32,8 @@ export default class BlogIndex extends React.Component {
       <div>
         <h2>I wrote these</h2>
         <Posts posts={this.props.data.posts} />
+        <hr style={{ margin: '3rem auto' }} />
+        <Bio />
       </div>
     );
   }
