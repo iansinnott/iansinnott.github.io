@@ -1,11 +1,14 @@
 # My Blog
 
+## Dev
+
 * Dev: `yarn start`
 * Build: `yarn build`
 * Deploy to live blog: `yarn deploy` (TODO)
 
----
+## Content Creation
 
-TODO:
+* Create a new post: `yarn post <title>`
+* Create a new draft of a post: `yarn draft <title>`
 
-* Need a more automated way to create new posts...
+**NOTE:** Until I add a script to publish existing drafts the `draft` command isn't too convenient.
