@@ -14,7 +14,7 @@ tags:
 
 **NOTE:** This is part 2 of the Gatsby migration series. You can find part 1 here: [Migrating to GatsbyJS Part 1](http://blog.iansinnott.com/migrating-to-gatsbyjs-part-1/).
 
-**Abstract:** Gatsby is a great tool for building a blog. In part 1 did the more simple task of migrating an existing React site to Gatsby. This time I migrated my blog, which was a lot more involved and involved a lot more Gatsby-specific knowledge.
+**Abstract:** Gatsby is a great tool for building a blog. In part 1 I did the more simple task of migrating an existing React site to Gatsby. This time I migrated my blog, which was a lot more involved and involved a lot more Gatsby-specific knowledge.
 
 Here's the gist of what I'm going to cover:
 
@@ -28,7 +28,7 @@ Let's jump in.
 
 ## Preparing your existing blog for migration
 
-**NOTE:** If you don't already have a blog and want to create one from scratch there's a [tutorial for exactly that on Gatsby's website](https://www.gatsbyjs.org/blog/2017-07-19-creating-a-blog-with-gatsby/).
+**NOTE:** If you don't already have a blog or want to create one from scratch there's a [tutorial for exactly that on Gatsby's website](https://www.gatsbyjs.org/blog/2017-07-19-creating-a-blog-with-gatsby/).
 
 Let's move some files around. Gatsby gives you a good amount of flexibility when it comes to file structure, but for consistency with the docs I'm going to use their suggested file structure for migrating my blog. How you handle this step will depend on what you're migrating from. I am migrating form Hexo, which is very similar to Jekyll in how it structures files.
 
@@ -175,14 +175,14 @@ query {
 
 This will list all the files in the directory you specified to the plugin. You can query all sorts of information about the files. Just investigate the fields available to you under `node` in GraphQL.
 
-**Pro tip:** Hit <kbd>ctrl</kbd>+<kbd>space</kbd> to bring up the list of all available fields.
+**Pro tip:** Hit <kbd>ctrl</kbd>+<kbd>space</kbd> to trigger autocomplete and bring up the list of all available fields.
 
 ### Handling Markdown
 
 Being able to query files is a big win, and if you have a directory of HTML files this is all you will need. But if you want to render markdown files as HTML you will need another plugin. Let's add that now:
 
 ```
-yarn add
+yarn add gatsby-transformer-remark
 ```
 
 As before, add it to the `plugins` field in `gatsby-config.js`:
@@ -196,7 +196,7 @@ As before, add it to the `plugins` field in `gatsby-config.js`:
 }
 ```
 
-This particular plugin can also take _its own_ plugins via `plugins` option. I've left it blank for now but included it anyway because you will almost certainly want to add some plugins later.
+This particular plugin can also take _its own_ plugins via the `plugins` option. I've left it empty but this is where you can add things like syntax highlighting or auto-linking of headers. Here's the current list: https://www.npmjs.com/search?q=gatsby-remark
 
 Save and restart your dev server, then go into GraphiQL and try out the new `allMarkdownRemark` field:
 
