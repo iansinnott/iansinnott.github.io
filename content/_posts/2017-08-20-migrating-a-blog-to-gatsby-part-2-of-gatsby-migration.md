@@ -5,7 +5,9 @@ title: Migrating a blog to Gatsby (Part 2 of Gatsby migration)
 tags:
   - javascript
   - react
+  - webpack
   - gatsby
+  - migration
 ---
 
 # Migrating a blog to Gatsby

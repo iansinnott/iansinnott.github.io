@@ -5,6 +5,7 @@ title: Migrating to GatsbyJS Part 1
 date: 2017-07-09T10:44:59.000Z
 tags:
   - javascript
+  - react
   - webpack
   - gatsby
   - migration
