@@ -24,12 +24,23 @@ const getFiledate = pipe(
   (([y, m, d]) => new Date(y, m - 1, d)) // See NOTE
 );
 
+/**
+ * NOTE: For some reason I had been storing the disqus thread id in an array in
+ * the old frontmatter, but it's one single value. This ended up causing errors
+ * in graphql which expected a string but instead found an array.
+ */
 const normalize = ({ frontmatter, filename }) => {
   const filedate = getFiledate(filename);
+
   const result = Object.assign({}, {
     created: filedate.toISOString(),
     published: filedate.toISOString(),
   }, frontmatter);
+
+  // See NOTE
+  if (result.dsq_thread_id && Array.isArray(result.dsq_thread_id)) {
+    result.dsq_thread_id = result.dsq_thread_id[0];
+  }
 
   if (typeof result.draft !== 'undefined') delete result.draft;
 
