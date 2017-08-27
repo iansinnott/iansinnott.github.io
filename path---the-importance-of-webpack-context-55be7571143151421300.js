@@ -1,0 +1,2 @@
+webpackJsonp([0xdecf81cf5b7ba00],{"./node_modules/json-loader/index.js!./.cache/json/the-importance-of-webpack-context.json":function(e,o){e.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2016-11-24-the-importance-of-webpack-context.md absPath of file >>> MarkdownRemark"}}}});
+//# sourceMappingURL=path---the-importance-of-webpack-context-55be7571143151421300.js.map

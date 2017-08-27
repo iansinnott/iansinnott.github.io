@@ -1,0 +1,2 @@
+webpackJsonp([0x53f6412c96bc8000],{"./node_modules/json-loader/index.js!./.cache/json/using-emoji-in-excerpts-on-github-pages.json":function(e,n){e.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2014-07-08-using-emoji-in-excerpts-on-github-pages.md absPath of file >>> MarkdownRemark"}}}});
+//# sourceMappingURL=path---using-emoji-in-excerpts-on-github-pages-e64fa7abc8963c36fd3c.js.map
