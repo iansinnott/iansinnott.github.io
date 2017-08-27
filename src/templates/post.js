@@ -20,6 +20,31 @@ const formatDate = pipe(
 const getPost = path(['data', 'post']);
 const getContext = path(['pathContext']);
 
+const Comments = ({ disqusId, pageURL }) => {
+  const disqus = `
+var disqus_config = function () {
+  ${pageURL ? `this.page.url = "${pageURL}"` : ''}
+  ${disqusId ? `this.page.identifier = "${disqusId}"` : ''}
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://EXAMPLE.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+`.trim();
+  return (
+    <div className={cx('Comments')}>
+      <div id='disqus_thread' />
+      <script dangerouslySetInnerHTML={{ __html: disqus }} />
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  );
+};
+
+
+
 const PostNav = ({ prev, next }) => (
   <div className={cx('PostNav')}>
     {prev && <Link to={`/${prev.slug}/`}>Prev</Link>}
@@ -51,22 +76,23 @@ class BlogPost extends React.Component {
         <h1>
           {post.frontmatter.title}
         </h1>
-        <p className={cx('date')}>
-          <i style={{ marginRight: 10 }} className='fa fa-calendar-check-o'></i>
-          Published: <strong>{formatDate(post.frontmatter.created)}</strong>
-        </p>
+        <div className={cx('meta')}>
+          <p className={cx('date')}>
+            <i style={{ marginRight: 10 }} className='fa fa-calendar-check-o'></i>
+            Published: <strong>{formatDate(post.frontmatter.created)}</strong>
+          </p>
+          <p className={cx('middot')} style={{ margin: '0 1em'}}>•</p>
+          <p className={cx('timeToRead')}>
+            <strong>{post.timeToRead}</strong> min read
+          </p>
+        </div>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr />
         <Bio />
         <hr />
         <PostNav prev={prev} next={next} />
         <hr style={{ marginTop: '2rem' }} />
-        <h2>Comments?</h2>
-        <p>
-          I used to have comments but just haven't taken the time to add them
-          back to the new blog. I'll add them back in at some point, but in the
-          meantime we can connect via the links in "About Me" above.
-        </p>
+        <Comments disqusId={post.frontmatter.disqusId} pageURL={post.canonicalURL} />
       </div>
     );
   }
@@ -78,10 +104,13 @@ export default BlogPost;
 export const pageQuery = graphql`
   query PostById($id: String!) {
   	post: markdownRemark(id: { eq: $id }) {
+      timeToRead
+      canonicalURL
       html
       frontmatter {
         created
         title
+        disqusId: dsq_thread_id
       }
   	}
   }
