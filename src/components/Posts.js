@@ -12,7 +12,7 @@ import classnames from 'classnames/bind';
 
 import s from './Posts.module.styl';
 const cx = classnames.bind(s);
-import { format } from '../lib/utils.js'
+import { format, tapper } from '../lib/utils.js'
 
 const formatDate = pipe(
   x => new Date(x),
@@ -33,13 +33,15 @@ const BlogPostListItem = ({ post }) => (
   </div>
 );
 
-// Operate on date first. Need an aarray of arrays where each array represents
+// Operate on date first. Need an array of arrays where each array represents
 // all the posts for a given year. So I can group by year using date-fns and
 // created.
+// NOTE: Sort then reverse is not the most efficient
 const nodesByYear = pipe(
   groupBy(pipe(path(['frontmatter', 'created']), getYear)), // Group by year published
   toPairs, // Use tuple form
-  sort(prop(0)), // Sort by year, latest first
+  tapper,
+  sort((a, b) => a[0] < b[0] ? 1 : -1), // Sort by string year, latest first
 );
 
 const renderPosts = pipe(
