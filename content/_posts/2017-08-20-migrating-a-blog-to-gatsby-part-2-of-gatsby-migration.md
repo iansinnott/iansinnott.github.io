@@ -175,7 +175,7 @@ query {
 
 This will list all the files in the directory you specified to the plugin. You can query all sorts of information about the files. Just investigate the fields available to you under `node` in GraphQL.
 
-**Pro tip:** Hit <kbd>ctrl</kbd>+<kbd>space</kbd> to trigger autocomplete and bring up the list of all available fields.
+**Pro tip:** Hit <kbd>ctrl</kbd><kbd>space</kbd> to trigger autocomplete and bring up the list of all available fields.
 
 ### Handling Markdown
 
