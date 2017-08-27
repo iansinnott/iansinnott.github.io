@@ -27,7 +27,7 @@ const getYear = pipe(
 
 const BlogPostListItem = ({ post }) => (
   <div className={cx('BlogPostListItem')}>
-    <Link to={`/${post.slug}`}>
+    <Link to={`/${post.slug}/`}>
       {post.frontmatter.title}
     </Link>
   </div>
