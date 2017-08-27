@@ -9,12 +9,12 @@ import 'prismjs/themes/prism.css';
 import s from './post.module.styl';
 const cx = classnames.bind(s);
 
-import { format } from '../lib/utils.js'
+import { format } from '../lib/utils.js';
 import Bio from '../components/Bio.js';
 
 const formatDate = pipe(
   x => new Date(x),
-  format('YYYY-MM-DD'), // What's a pretty format??
+  format('YYYY-MM-DD') // What's a pretty format??
 );
 
 const getPost = path(['data', 'post']);
@@ -38,11 +38,12 @@ const Comments = ({ disqusId, pageURL }) => {
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 `.trim();
   return (
-    <div className={cx('Comments')} dangerouslySetInnerHTML={{ __html: disqus }} />
+    <div
+      className={cx('Comments')}
+      dangerouslySetInnerHTML={{ __html: disqus }}
+    />
   );
 };
-
-
 
 const PostNav = ({ prev, next }) => (
   <div className={cx('PostNav')}>
@@ -72,15 +73,15 @@ class BlogPost extends React.Component {
     return (
       <div className={cx('Post')}>
         <Helmet title={`${post.frontmatter.title} | Ian Sinnott`} />
-        <h1>
-          {post.frontmatter.title}
-        </h1>
+        <h1>{post.frontmatter.title}</h1>
         <div className={cx('meta')}>
           <p className={cx('date')}>
-            <i style={{ marginRight: 10 }} className='fa fa-calendar-check-o'></i>
+            <i style={{ marginRight: 10 }} className='fa fa-calendar-check-o' />
             Published: <strong>{formatDate(post.frontmatter.created)}</strong>
           </p>
-          <p className={cx('middot')} style={{ margin: '0 1em'}}>•</p>
+          <p className={cx('middot')} style={{ margin: '0 1em' }}>
+            •
+          </p>
           <p className={cx('timeToRead')}>
             <strong>{post.timeToRead}</strong> min read
           </p>
@@ -91,7 +92,10 @@ class BlogPost extends React.Component {
         <hr />
         <PostNav prev={prev} next={next} />
         <hr style={{ marginTop: '2rem' }} />
-        <Comments disqusId={post.frontmatter.disqusId} pageURL={post.canonicalURL} />
+        <Comments
+          disqusId={post.frontmatter.disqusId}
+          pageURL={post.canonicalURL}
+        />
       </div>
     );
   }
@@ -102,7 +106,7 @@ export default BlogPost;
 // NOTE: The $id var is passed in via context in gatsby-node
 export const pageQuery = graphql`
   query PostById($id: String!) {
-  	post: markdownRemark(id: { eq: $id }) {
+    post: markdownRemark(id: { eq: $id }) {
       timeToRead
       canonicalURL
       html
@@ -111,6 +115,6 @@ export const pageQuery = graphql`
         title
         disqusId: dsq_thread_id
       }
-  	}
+    }
   }
 `;
