@@ -28,7 +28,6 @@ const Comments = ({ disqusId, pageURL }) => {
     ${pageURL ? `this.page.url = "${pageURL}"` : ''}
     ${disqusId ? `this.page.identifier = "${disqusId}"` : ''}
   };
-  */
   (function() { // DON'T EDIT BELOW THIS LINE
     var d = document, s = d.createElement('script');
     s.src = 'https://EXAMPLE.disqus.com/embed.js';
