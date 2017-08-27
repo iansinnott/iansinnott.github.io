@@ -596,6 +596,3 @@ It's not a perfect project (looking at you global `graphql` object) and it's sti
 If anything was unclear or you have more questions feel free to ask me on [Twitter](https://twitter.com/ian_sinn).
 
 [GraphiQL]: https://github.com/graphql/graphiql
-
-
-
