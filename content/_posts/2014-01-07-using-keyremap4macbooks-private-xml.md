@@ -2,8 +2,7 @@
 created: '2014-01-07T08:00:00.000Z'
 published: '2014-01-07T08:00:00.000Z'
 title: Using Key Remap 4 MacBook's Private.xml
-dsq_thread_id:
-  - 2096904275
+dsq_thread_id: 2096904275
 tags:
   - tech
 ---

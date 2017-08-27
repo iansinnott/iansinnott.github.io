@@ -2,8 +2,7 @@
 created: '2013-11-11T08:00:00.000Z'
 published: '2013-11-11T08:00:00.000Z'
 title: Getting Productive With Fish Shell
-dsq_thread_id:
-  - 1953644511
+dsq_thread_id: 1953644511
 tags:
   - tech
   - web

@@ -3,9 +3,7 @@ created: '2013-04-30T07:00:00.000Z'
 published: false
 title: Life Upgrades & Reasons To Write More
 layout: post
-dsq_thread_id:
-  - 1248210906
-  - 1248210906
+dsq_thread_id: 1248210906
 tags:
   - chinese
   - life

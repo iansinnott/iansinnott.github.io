@@ -2,8 +2,7 @@
 created: '2014-01-27T08:00:00.000Z'
 published: '2014-01-27T08:00:00.000Z'
 title: From Startup Idea to (In)validation in a Week
-dsq_thread_id:
-  - 2180211560
+dsq_thread_id: 2180211560
 tags:
   - development
   - goals

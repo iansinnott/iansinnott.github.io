@@ -2,9 +2,7 @@
 created: '2013-05-14T07:00:00.000Z'
 published: '2013-05-14T07:00:00.000Z'
 title: Portfolio Update + Future Site Update
-dsq_thread_id:
-  - 1287075657
-  - 1287075657
+dsq_thread_id: 1287075657
 tags:
   - site update
   - theme

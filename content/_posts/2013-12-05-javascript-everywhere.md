@@ -2,8 +2,7 @@
 created: '2013-12-05T08:00:00.000Z'
 published: '2013-12-05T08:00:00.000Z'
 title: JavaScript Everywhere
-dsq_thread_id:
-  - 2026793732
+dsq_thread_id: 2026793732
 tags:
   - development
   - tech

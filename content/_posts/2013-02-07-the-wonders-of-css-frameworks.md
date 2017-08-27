@@ -2,9 +2,7 @@
 created: '2013-02-07T08:00:00.000Z'
 published: '2013-02-07T08:00:00.000Z'
 title: The Wonders of CSS Frameworks
-dsq_thread_id:
-  - 1070486878
-  - 1070486878
+dsq_thread_id: 1070486878
 tags:
   - css
 ---
