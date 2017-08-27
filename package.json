@@ -42,8 +42,8 @@
     "standardizeFrontmatter": "for post in $(find $PWD/content/_posts -iname '*.md'); do ./scripts/validate-frontmatter.js $post; done",
     "build": "NODE_ENV=production gatsby build",
     "start": "gatsby develop",
-    "prepublish": "yarn build",
-    "publish": "gh-pages -d public --branch master",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d public --branch master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
