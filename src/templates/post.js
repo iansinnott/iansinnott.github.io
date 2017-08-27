@@ -4,6 +4,7 @@ import Link from 'gatsby-link';
 import pipe from 'ramda/src/pipe';
 import path from 'ramda/src/path';
 import classnames from 'classnames/bind';
+import DisqusThread from 'react-disqus-comments';
 import 'prismjs/themes/prism.css';
 
 import s from './post.module.styl';
@@ -21,28 +22,14 @@ const getPost = path(['data', 'post']);
 const getContext = path(['pathContext']);
 
 const Comments = ({ disqusId, pageURL }) => {
-  const disqus = `
-<div id='disqus_thread'></div>
-<script>
-  var disqus_config = function () {
-    ${pageURL ? `this.page.url = "${pageURL}"` : ''}
-    ${disqusId ? `this.page.identifier = "${disqusId}"` : ''}
+  const props = {
+    shortname: 'iansinnott',
   };
-  (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://iansinnott.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-`.trim();
-  return (
-    <div
-      className={cx('Comments')}
-      dangerouslySetInnerHTML={{ __html: disqus }}
-    />
-  );
+
+  if (disqusId) props.identifier = disqusId;
+  if (pageURL) props.url = pageURL;
+
+  return <DisqusThread {...props} />;
 };
 
 const PostNav = ({ prev, next }) => (
