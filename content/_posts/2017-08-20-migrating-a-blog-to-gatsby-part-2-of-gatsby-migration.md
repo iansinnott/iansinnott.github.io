@@ -1,6 +1,6 @@
 ---
 created: '2017-08-21T06:53:54.533Z'
-published: '2017-08-21T06:53:54.533Z'
+published: '2017-08-26T04:53:54.533Z'
 title: Migrating a blog to Gatsby (Part 2 of Gatsby migration)
 tags:
   - javascript
