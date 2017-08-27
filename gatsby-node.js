@@ -27,6 +27,16 @@ const getFileDate = pipe(
   x => new Date(x).toString()
 );
 
+/**
+ * I currently only use this for passing to disqus, but it's good to have a
+ * clear idea of what my current canonical urls are. In the future if I were
+ * ever to change these urls it will be good to know what I'm migrating from.
+ */
+const getCanonicalURL = pipe(
+  getSlug,
+  slug => `https://blog.iansinnott.com/${slug}/`
+);
+
 exports.setFieldsOnGraphQLNodeType = ({
   type,
   store,
@@ -39,6 +49,10 @@ exports.setFieldsOnGraphQLNodeType = ({
   }
 
   return Promise.resolve({
+    canonicalURL: {
+      type: GraphQLString,
+      resolve: getCanonicalURL,
+    },
     slug: {
       type: GraphQLString,
       resolve: getSlug,
