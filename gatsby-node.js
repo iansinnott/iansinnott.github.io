@@ -83,14 +83,18 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
   }
 
   // Create blog posts pages.
+  //
+  // NOTE: Prev and next are reversed here. To me, "prev" means a post in the past
+  // and "next" means a post in the future. Prev and next are reversed in the data
+  // so I reverse them here to make more sense as I see it.
   result.data.posts.edges.forEach(({ node, next, prev }) => {
     createPage({
       path: `/${node.slug}/`,
       component: postTemplate,
       context: { // Context will be passed in to the page query as graphql vars
         id: node.id,
-        next,
-        prev
+        next: prev, // See NOTE
+        prev: next,
       },
     });
   });

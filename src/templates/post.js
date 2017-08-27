@@ -60,6 +60,13 @@ class BlogPost extends React.Component {
         <Bio />
         <hr />
         <PostNav prev={prev} next={next} />
+        <hr style={{ marginTop: '2rem' }} />
+        <h2>Comments?</h2>
+        <p>
+          I used to have comments but just haven't taken the time to add them
+          back to the new blog. I'll add them back in at some point, but in the
+          meantime we can connect via the links in "About Me" above.
+        </p>
       </div>
     );
   }
