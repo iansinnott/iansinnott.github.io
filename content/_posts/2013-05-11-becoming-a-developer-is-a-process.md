@@ -2,7 +2,7 @@
 created: '2013-05-11T07:00:00.000Z'
 published: '2013-05-11T07:00:00.000Z'
 title: Becoming A Developer Is A Process
-dsq_thread_id: 1279910611
+dsq_thread_id: '1279910611'
 tags:
   - tech
   - web

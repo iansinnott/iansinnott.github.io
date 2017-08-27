@@ -2,7 +2,7 @@
 created: '2012-12-18T08:00:00.000Z'
 published: '2012-12-18T08:00:00.000Z'
 title: 'Custom Post Types: A Great Article'
-dsq_thread_id: 979369744
+dsq_thread_id: '979369744'
 tags:
   - web
   - custom post types

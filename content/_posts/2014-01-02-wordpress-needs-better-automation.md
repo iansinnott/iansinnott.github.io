@@ -2,7 +2,7 @@
 created: '2014-01-02T08:00:00.000Z'
 published: '2014-01-02T08:00:00.000Z'
 title: WordPress Needs Better Automation
-dsq_thread_id: 2086620445
+dsq_thread_id: '2086620445'
 ---
 
 It's occurred to me time and time again that I don't write as much as I should. In fact I think I even wrote up a short post about that some time back. Anyway, another thing that's been on my mind lately is the friction that comes from small tasks that keeps us (or at least me) from completing larger tasks.

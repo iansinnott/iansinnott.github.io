@@ -39,7 +39,13 @@ const normalize = ({ frontmatter, filename }) => {
 
   // See NOTE
   if (result.dsq_thread_id && Array.isArray(result.dsq_thread_id)) {
-    result.dsq_thread_id = result.dsq_thread_id[0];
+    result.dsq_thread_id = JSON.stringify(result.dsq_thread_id[0]); // We want it as a string
+  }
+
+  // The first pass with the thread IDs did not leave me with a string, so this
+  // is to make up for that.
+  if (typeof result.dsq_thread_id === 'number') {
+    result.dsq_thread_id = JSON.stringify(result.dsq_thread_id); // We want it as a string
   }
 
   if (typeof result.draft !== 'undefined') delete result.draft;

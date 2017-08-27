@@ -2,7 +2,7 @@
 created: '2013-02-20T08:00:00.000Z'
 published: '2013-02-20T08:00:00.000Z'
 title: I'm famous on GoBodyLanguage.com!
-dsq_thread_id: 1094012098
+dsq_thread_id: '1094012098'
 tags:
   - awesome
   - body language
