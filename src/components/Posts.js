@@ -12,7 +12,7 @@ import classnames from 'classnames/bind';
 
 import s from './Posts.module.styl';
 const cx = classnames.bind(s);
-import { format, tapper } from '../lib/utils.js'
+import { format } from '../lib/utils.js'
 
 const formatDate = pipe(
   x => new Date(x),
@@ -40,7 +40,6 @@ const BlogPostListItem = ({ post }) => (
 const nodesByYear = pipe(
   groupBy(pipe(path(['frontmatter', 'created']), getYear)), // Group by year published
   toPairs, // Use tuple form
-  tapper,
   sort((a, b) => a[0] < b[0] ? 1 : -1), // Sort by string year, latest first
 );
 
