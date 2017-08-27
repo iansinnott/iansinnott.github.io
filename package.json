@@ -40,12 +40,14 @@
     "draft": "./scripts/create-doc.js draft",
     "post": "./scripts/create-doc.js post",
     "standardizeFrontmatter": "for post in $(find $PWD/content/_posts -iname '*.md'); do ./scripts/validate-frontmatter.js $post; done",
-    "build": "gatsby build",
+    "build": "NODE_ENV=production gatsby build",
     "start": "gatsby develop",
-    "format": "prettier --trailing-comma es5 --single-quote --write 'src/**/*.js'",
+    "prepublish": "yarn build",
+    "publish": "gh-pages -d public --branch master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "gh-pages": "^1.0.0",
     "prettier": "^1.5.2"
   }
 }
