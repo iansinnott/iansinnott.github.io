@@ -1,2 +1,0 @@
-webpackJsonp([0x1f9406b45824ea00],{"./node_modules/json-loader/index.js!./.cache/json/a-new-direction.json":function(n,e){n.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2015-02-16-a-new-direction.md absPath of file >>> MarkdownRemark"}}}});
-//# sourceMappingURL=path---a-new-direction-0b475552b71cd70f95c6.js.map

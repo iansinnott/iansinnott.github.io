@@ -1,2 +1,0 @@
-webpackJsonp([0xc839af4f41ec6000],{"./node_modules/json-loader/index.js!./.cache/json/victory-the-realization-of-a-goal.json":function(o,e){o.exports={}}});
-//# sourceMappingURL=path---victory-the-realization-of-a-goal-e7cc3ad0963c134fc27f.js.map

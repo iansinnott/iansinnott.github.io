@@ -1,2 +1,0 @@
-webpackJsonp([0x6356b2c6090d8400],{"./node_modules/json-loader/index.js!./.cache/json/teaching-my-brother-to-code.json":function(o,e){o.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2014-12-07-teaching-my-brother-to-code.md absPath of file >>> MarkdownRemark"}}}});
-//# sourceMappingURL=path---teaching-my-brother-to-code-edf8a46ecc9798c5320b.js.map

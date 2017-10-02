@@ -1,2 +1,0 @@
-webpackJsonp([0xb81f3ce5fb169000],{"./node_modules/json-loader/index.js!./.cache/json/im-famous-on-gobodylanguage-com.json":function(o,n){o.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2013-02-20-im-famous-on-gobodylanguage-com.md absPath of file >>> MarkdownRemark"}}}});
-//# sourceMappingURL=path---im-famous-on-gobodylanguage-com-8803de3e087b9e642eb8.js.map

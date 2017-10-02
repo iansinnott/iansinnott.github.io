@@ -1,2 +1,0 @@
-webpackJsonp([0xc5bbede108430000],{"./node_modules/json-loader/index.js!./.cache/json/jekyll-management-like-a-boss.json":function(e,n){e.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2014-06-28-jekyll-management-like-a-boss.md absPath of file >>> MarkdownRemark"}}}});
-//# sourceMappingURL=path---jekyll-management-like-a-boss-011252052ad016b2ec07.js.map

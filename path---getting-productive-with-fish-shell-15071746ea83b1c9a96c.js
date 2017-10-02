@@ -1,2 +1,0 @@
-webpackJsonp([0x44d830dfc99df400],{"./node_modules/json-loader/index.js!./.cache/json/getting-productive-with-fish-shell.json":function(e,t){e.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2013-11-11-getting-productive-with-fish-shell.md absPath of file >>> MarkdownRemark"}}}});
-//# sourceMappingURL=path---getting-productive-with-fish-shell-15071746ea83b1c9a96c.js.map

@@ -1,2 +1,0 @@
-webpackJsonp([0x53318f0a19db9c00],{"./node_modules/json-loader/index.js!./.cache/json/express-basics.json":function(s,e){s.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2015-02-02-express-basics.md absPath of file >>> MarkdownRemark"}}}});
-//# sourceMappingURL=path---express-basics-12961351b057ae6eccf7.js.map
