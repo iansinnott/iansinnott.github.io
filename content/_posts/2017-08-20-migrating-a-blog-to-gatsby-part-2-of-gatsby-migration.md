@@ -12,9 +12,11 @@ tags:
 
 # Migrating a blog to Gatsby
 
-**NOTE:** This is part 2 of the Gatsby migration series. You can find part 1 here: [Migrating to GatsbyJS Part 1](http://blog.iansinnott.com/migrating-to-gatsbyjs-part-1/).
+**NOTE:** This is part 2 of my Gatsby migration series. You can find part 1 here: [Migrating to GatsbyJS Part 1](http://blog.iansinnott.com/migrating-to-gatsbyjs-part-1/).
 
-**Abstract:** Gatsby is a great tool for building a blog. In part 1 I did the more simple task of migrating an existing React site to Gatsby. This time I migrated my blog, which was a lot more involved and involved a lot more Gatsby-specific knowledge.
+---
+
+**Abstract:** Gatsby is a great tool for building a blog. In part 1 I did the more simple task of migrating an existing React site to Gatsby. This time I migrated my blog, which was a lot more involved and required a lot more Gatsby-specific knowledge.
 
 Here's the gist of what I'm going to cover:
 
@@ -25,6 +27,8 @@ Here's the gist of what I'm going to cover:
 * Turning all your markdown files into static pages
 
 Let's jump in.
+
+---
 
 ## Preparing your existing blog for migration
 
@@ -59,8 +63,8 @@ You need to copy all the standard Gatsby boilerplate into your directory. There 
 
 To get all the Gatsby files you can use the Gatsby CLI.
 
-```
-npm install -g gatsby-cli    # Install gatsby CLI
+```yaml
+npm install -g gatsby-cli   # Install gatsby CLI
 gatsby new temp-gatsby-files # Initialize gatsby in a temp directory
 cp -R temp-gatsby-files/* ./ # Copy all the files into your root directory
 rm -rf temp-gatsby-files     # Remove the temp directory
@@ -389,7 +393,7 @@ This was exactly my situation. The URL was actually derived from the title of th
 
 ## Adding custom data to the GraphQL schema
 
-If I have a post named "Isn't this a fun" then I want to URL to be "isnt-this-fun". Notice that spaces turn into hyphens and special characters are removed. This is simple enough to do in JavaScript, but it felt wrong to do it on the fly when rendering components. This is _data_ so I wanted to be able to query it through GraphQL.
+If I have a post named "Isn't this a fun title" then I want the URL to be "isnt-this-a-fun-title". Notice that spaces turn into hyphens and special characters are removed. This is simple enough to do in JavaScript, but it felt wrong to do it on the fly when rendering components. This is _data_ so I wanted to be able to query it through GraphQL.
 
 Enter `setFieldsOnGraphQLNodeType`.
 
@@ -398,10 +402,11 @@ Enter `setFieldsOnGraphQLNodeType`.
 In order to extend this particular part of Gatsby you need to create a `gatsby-node.js` file. This file let's you work with all of Gatsby's plugin hooks that are run in node. The GraphQL server is run in node, so this is where we add custom fields. Example:
 
 ```js
+// gatsby-node.js
 const { GraphQLString } = require('graphql');
 
 const getURL = (node) => {
-  /* See source on GitHub for implementation */
+  /* See the source link below for implementation */
 };
 
 exports.setFieldsOnGraphQLNodeType = ({ type }) => {
@@ -418,6 +423,8 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
 };
 ```
 
+> Source code for [gatsby-node.js here](https://github.com/iansinnott/iansinnott.github.io/blob/source/gatsby-node.js).
+
 If you've worked with GraphQL before this should look very familiar. In fact, as you can see the string type is imported directly from GraphQL and not from Gatsby.
 
 Basically you check the type of node and if it's a type your interested in you resolve with some fields. Fields in GraphQL require a `type` and a way to `resolve` the value.
@@ -430,7 +437,7 @@ You can use this technique to add any field you want to your GraphQL schema. Now
 
 This is where it all comes together. If you finished the last section you would have ended up with a bunch of links that point to the correct URL but when you tried visiting the URL there was nothing there 😕. This is because Gatsby hasn't yet generated an additional pages. It's still just rendering whatever is in your `src/pages/` directory.
 
-By default, Gatsby will create a static HTML page for everything under `src/pages/`. At this point we've discussed `src/pages/index.js` extensively. It will the `index.html` page of your site, and thus your landing page.
+By default, Gatsby will create a static HTML page for everything under `src/pages/`. At this point we've discussed `src/pages/index.js` extensively. It will be the `index.html` page of your site, and thus your landing page.
 
 For any stand-alone pages, simply create a corresponding js file in the `pages/` directory and you are good to go. For example, `src/pages/about.js` would generate an `about.html` page. Simple.
 
@@ -453,7 +460,7 @@ exports.createPages = ({ boundActionCreators }) => {
   createPage({
     path: `/my-custom-page/`,
     component: postTemplate,
-    context: {} // Context will be passed in to the page query as graphql vars
+    context: {} // Context will be passed in to the page query as graphql variables
   });
 };
 ```
@@ -461,7 +468,7 @@ exports.createPages = ({ boundActionCreators }) => {
 At the most basic level this method of page creation is quite simple: Grab the `createPage` function from the API and call it with some props.
 
 * `path` is required. This is the path that your page will have as a generated HTML file. It's the URL of your final page.
-* `component` is also required. It's the file contain the react component that will be used to render this particular page
+* `component` is also required. It's the file containing the react component that will be used to render this particular page.
 * `context` is optional but I've included it here because it will be important soon. This lets you pass data down to the react component specified in the `component` option as well as the `pageQuery` (if any).
 
 The API is actually pretty simple: To generate a new page call `createPage` with some props. So in pseudo code:
@@ -482,7 +489,7 @@ markdownFiles.forEach(post => {
 
 I've included the pseudo code to highlight the fact that nothing too magical is going on here. We just need to call create page for every post we want to create. The implementation is a bit more verbose, but that's still all it's doing.
 
-So in order to make this work the other key is we need to be able to query GraphQL just like we do in the page query. Gatsby let's us do exactly that by giving us access to the GraphQL object and letting us return a promise so that we can do async work.
+So in order to make this work we also need to be able to query GraphQL just like we do in the page query. Gatsby let's us do exactly that by giving us access to the `graphql` object and letting us return a promise so that we can do async work.
 
 ```js
 
@@ -563,7 +570,7 @@ export const pageQuery = graphql`
 `;
 ```
 
-If you're not used to GraphQL syntax the pageQuery might be a little intimidating, but it's all standard GraphQL so if you take the time to learn GraphQL on its own you will be able to use that knowledge here. I.e. it is not Gatsby-specific.
+If you're not used to GraphQL syntax the `pageQuery` might be a little intimidating, but it's all standard GraphQL so if you take the time to learn GraphQL on its own you will be able to use that knowledge here. I.e. it is not Gatsby-specific.
 
 The important thing to note here is that `$id` is passed in via `context` in `gatsby-node.js`. That's how the post data and processed HTML string make their way into props. Then it's just a matter of rendering as you would with any other component.
 
@@ -577,19 +584,19 @@ Here are some ideas:
 * Create a remark plugin to add custom block types
 * Aggregate tags from your frontmatter and generate pages for all posts of a specific tag
 
-Some of these–such as pagination–are implemented on this my blog (the one your reading right now). You can find the source code here:
+Some of these—such as pagination—are implemented on my blog (the one your reading right now). You can find the source code here:
 
-[Source code for this blog](https://github.com/iansinnott/iansinnott.github.io/tree/gatsby-migration)
+[Source code for the blog](https://github.com/iansinnott/iansinnott.github.io/tree/gatsby-migration)
 
 ## Closing thoughts
 
 In my opinion Gatsby provides a few killer features:
 
-* Extensible through a powerful plugin API
-* Supports arbitrary data sources that can be easily queried using GraphQL
+* Extensible through a powerful plugin API.
+* Supports arbitrary data sources that can be easily queried using GraphQL.
 * Splits your code automatically so you don't have to worry about bundle size increasing as a function of the number of pages you render.
 
-It's not a perfect project (looking at you global `graphql` object) and it's still under heavy development, so you may run in to bugs, but in my view the pros heavily outweigh the cons. It's a best in class static site generator and well worth the adoption time if you enjoy frequently modifying your blog.
+It's not a perfect project (looking at you global `graphql` object) and it's still under heavy development, so you may run in to bugs, but in my view the pros heavily outweigh the cons. It's a best-in-class static site generator and well worth the adoption time if you want to customize your blog.
 
 ---
 
