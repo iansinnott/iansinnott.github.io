@@ -4,7 +4,7 @@
 
 * Dev: `yarn start`
 * Build: `yarn build`
-* Deploy to live blog: `yarn deploy` (TODO)
+* Deploy to live blog: `yarn deploy`
 
 ## Content Creation
 
