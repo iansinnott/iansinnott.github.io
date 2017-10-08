@@ -1,0 +1,2 @@
+webpackJsonp([0xde24a5989feab000],{"./node_modules/json-loader/index.js!./.cache/json/a-refreshing-dose-of-minimalism.json":function(e,o){e.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2016-11-16-a-refreshing-dose-of-minimalism.md absPath of file >>> MarkdownRemark"}}}});
+//# sourceMappingURL=path---a-refreshing-dose-of-minimalism-2a805c1560c0afe118e2.js.map
