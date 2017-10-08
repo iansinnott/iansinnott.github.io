@@ -8,7 +8,7 @@ const Bio = () => (
   <div className={cx('Bio')}>
     <h3>About me</h3>
     <p>
-      I'm Ian. I'm a software engineer. Here are some things I'm in to:
+      I'm Ian. I'm a software engineer. Here are some things I'm into:
       javascript, functional programming, simplicity, Mandarin. If you want to
       chat you can find me on Twitter and GitHub.
     </p>
