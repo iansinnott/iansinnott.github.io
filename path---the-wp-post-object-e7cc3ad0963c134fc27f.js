@@ -1,2 +1,0 @@
-webpackJsonp([0xb478c397733c4000],{"./node_modules/json-loader/index.js!./.cache/json/the-wp-post-object.json":function(o,e){o.exports={}}});
-//# sourceMappingURL=path---the-wp-post-object-e7cc3ad0963c134fc27f.js.map

@@ -1,2 +1,0 @@
-webpackJsonp([0x44d830dfc99df400],{"./node_modules/json-loader/index.js!./.cache/json/getting-productive-with-fish-shell.json":function(e,o){e.exports={}}});
-//# sourceMappingURL=path---getting-productive-with-fish-shell-e7cc3ad0963c134fc27f.js.map

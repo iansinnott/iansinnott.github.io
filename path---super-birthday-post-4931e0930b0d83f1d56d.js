@@ -1,2 +1,0 @@
-webpackJsonp([0x43c6214e8aa88000],{"./node_modules/json-loader/index.js!./.cache/json/super-birthday-post.json":function(o,s){o.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2014-06-19-super-birthday-post.md absPath of file >>> MarkdownRemark"}}}});
-//# sourceMappingURL=path---super-birthday-post-4931e0930b0d83f1d56d.js.map

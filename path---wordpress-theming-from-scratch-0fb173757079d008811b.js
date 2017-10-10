@@ -1,2 +1,0 @@
-webpackJsonp([0xc721eb4d707fd000],{"./node_modules/json-loader/index.js!./.cache/json/wordpress-theming-from-scratch.json":function(o,s){o.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2013-01-11-wordpress-theming-from-scratch.md absPath of file >>> MarkdownRemark"}}}});
-//# sourceMappingURL=path---wordpress-theming-from-scratch-0fb173757079d008811b.js.map

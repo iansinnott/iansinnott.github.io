@@ -1,2 +1,0 @@
-webpackJsonp([0x664658bc38a06000],{"./node_modules/json-loader/index.js!./.cache/json/new-site-is-live.json":function(e,s){e.exports={pathContext:{id:"/Users/jandrix/dev/sites/blog.iansinnott.com/content/_posts/2015-01-08-new-site-is-live.md absPath of file >>> MarkdownRemark"}}}});
-//# sourceMappingURL=path---new-site-is-live-5441495771cb84f758dd.js.map
