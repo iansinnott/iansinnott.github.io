@@ -5,19 +5,20 @@ import Bio from '../components/Bio.js';
 
 const toJSON = x => JSON.stringify(x, null, 2);
 
-const DevErrors = props => (
+const DevErrors = props =>
   <div>
     <h1>Errors happened</h1>
-    {props.errors.map(err => (
+    {props.errors.map(err =>
       <div key={err.message}>
-        <p>{err.message}</p>
+        <p>
+          {err.message}
+        </p>
         <pre>
           {toJSON(err)}
         </pre>
       </div>
-    ))}
-  </div>
-);
+    )}
+  </div>;
 
 export default class BlogIndex extends React.Component {
   render() {
@@ -49,6 +50,9 @@ export default class BlogIndex extends React.Component {
  * picked up by gql. I'll just keep on working sorting by created for now since
  * I want to get the blog out, but it's something worth looking in to later on.
  * Maybe after Gatsby v2.
+ *
+ * NOTE: Prettier removes escape sequences in the regex string for some reason,
+ * causing a GQL compile error... need to have prettier ignore it.
  */
 export const pageQuery = graphql`
   query AllPostsQuery {
@@ -56,6 +60,7 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___created], order: DESC }
       filter: {
         fileAbsolutePath: {
+          # prettier-ignore
           regex: "/\\d\\d\\d\\d-\\d\\d-\\d\\d.+\\.md$/"
         }
       }
@@ -63,8 +68,13 @@ export const pageQuery = graphql`
       edges {
         node {
           slug
-          frontmatter { title created }
-          internal { contentDigest }
+          frontmatter {
+            title
+            created
+          }
+          internal {
+            contentDigest
+          }
         }
       }
     }
