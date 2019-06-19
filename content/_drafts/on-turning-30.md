@@ -1,7 +1,7 @@
 ---
 title: On turning 30
-created: 2019-06-19T01:01:28.459Z
-published: 2019-06-19T01:01:28.459Z
+created: 2019-06-19T06:40:35.427Z
+draft: true
 ---
 
 # On turning 30
@@ -36,4 +36,4 @@ The classic! I have certainly done this one on many past birthdays and I'm sure 
 
 To be clear, I haven't decided that I'm now too _old_, too _mature_, too _whatever_ for any of the above, I just don't feel the need to do something special as I once did.
 
-In a sense, everything feels to be on track, and that's the best birthday gift I could wish for.
+> In a sense, everything feels to be on track, and that's the best birthday gift I could wish for.
