@@ -1,7 +1,7 @@
 ---
 created: '2013-02-22T08:00:00.000Z'
 published: '2013-02-22T08:00:00.000Z'
-title: Victory! The realization of a goal.
+title: Victory! The realization of a goal
 dsq_thread_id: '1097117115'
 tags:
   - goals
