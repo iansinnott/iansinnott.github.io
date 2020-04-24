@@ -3,22 +3,19 @@ import React from 'react';
 import Posts from '../components/Posts.js';
 import Bio from '../components/Bio.js';
 
-const toJSON = x => JSON.stringify(x, null, 2);
+const toJSON = (x) => JSON.stringify(x, null, 2);
 
-const DevErrors = props =>
+const DevErrors = (props) => (
   <div>
     <h1>Errors happened</h1>
-    {props.errors.map(err =>
+    {props.errors.map((err) => (
       <div key={err.message}>
-        <p>
-          {err.message}
-        </p>
-        <pre>
-          {toJSON(err)}
-        </pre>
+        <p>{err.message}</p>
+        <pre>{toJSON(err)}</pre>
       </div>
-    )}
-  </div>;
+    ))}
+  </div>
+);
 
 export default class BlogIndex extends React.Component {
   render() {
@@ -60,8 +57,8 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___created], order: DESC }
       filter: {
         fileAbsolutePath: {
-          # prettier-ignore
-          regex: "/\\d\\d\\d\\d-\\d\\d-\\d\\d.+\\.md$/"
+          # prettier-disable
+          regex: "/\\d-.+\\.md$/"
         }
       }
     ) {

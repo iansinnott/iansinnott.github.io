@@ -8,14 +8,14 @@ import DisqusThread from 'react-disqus-comments';
 import 'prismjs/themes/prism.css';
 
 import s from './post.module.styl';
-const cx = classnames.bind(s);
-
 import { format } from '../lib/utils.js';
 import Bio from '../components/Bio.js';
 
+const cx = classnames.bind(s);
+
 const formatDate = pipe(
-  x => new Date(x),
-  format('YYYY-MM-DD') // What's a pretty format??
+  (x) => new Date(x),
+  format('YYYY-MM-DD'), // What's a pretty format??
 );
 
 const getPost = path(['data', 'post']);
