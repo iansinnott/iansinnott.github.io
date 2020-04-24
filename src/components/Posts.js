@@ -24,7 +24,7 @@ const getYear = pipe((x) => new Date(x), format("YYYY"));
 
 const BlogPostListItem = ({ post }) => (
   <div className={cx("BlogPostListItem")}>
-    <Link to={`/${post.slug}/`}>{post.frontmatter.title}</Link>
+    <Link to={`/${post.slug}/`}>{post.properties.title}</Link>
   </div>
 );
 
@@ -33,7 +33,7 @@ const BlogPostListItem = ({ post }) => (
 // created.
 // NOTE: Sort then reverse is not the most efficient
 const nodesByYear = pipe(
-  groupBy(pipe(path(["frontmatter", "created"]), getYear)), // Group by year published
+  groupBy(pipe(path(["properties", "created"]), getYear)), // Group by year published
   toPairs, // Use tuple form
   sort((a, b) => (a[0] < b[0] ? 1 : -1)) // Sort by string year, latest first
 );
@@ -47,7 +47,7 @@ const renderPosts = pipe(
       <div className={cx("year")}>{year}</div>
       <div className={cx("innerPosts")}>
         {posts.map((node) => (
-          <BlogPostListItem post={node} key={node.internal.contentDigest} />
+          <BlogPostListItem post={node} key={node.id} />
         ))}
       </div>
     </div>

@@ -1,5 +1,5 @@
-const rupture = require('rupture');
-const path = require('path');
+const rupture = require("rupture");
+const path = require("path");
 
 /**
  * NOTE: options.name in the source filesystem plugin translates to
@@ -23,40 +23,49 @@ const path = require('path');
  */
 module.exports = {
   siteMetadata: {
-    title: 'Ian Sinnott',
+    title: "Ian Sinnott",
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
+    "gatsby-plugin-react-helmet",
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: "gatsby-source-notion-database",
       options: {
-        plugins: ['gatsby-remark-prismjs', 'gatsby-remark-autolink-headers'],
+        timeout: 100,
+        databaseViewUrl:
+          "https://www.notion.so/iansinnott/31bc07fbe2704be095c3c34755011b5e?v=54e9d28603954141bce78b2c719d5fd3",
+        makeSlug: (node) => `node/${node.id}`,
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-transformer-remark",
       options: {
-        name: 'posts', // See NOTE
-        path: path.resolve('./content/_posts'),
+        plugins: ["gatsby-remark-prismjs", "gatsby-remark-autolink-headers"],
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: 'drafts',
-        path: path.resolve('./content/_drafts'),
+        name: "posts", // See NOTE
+        path: path.resolve("./content/_posts"),
       },
     },
     {
-      resolve: 'gatsby-plugin-stylus',
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "drafts",
+        path: path.resolve("./content/_drafts"),
+      },
+    },
+    {
+      resolve: "gatsby-plugin-stylus",
       options: {
         use: [rupture()],
       },
     },
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: 'UA-52511246-1',
+        trackingId: "UA-52511246-1",
       },
     },
   ],

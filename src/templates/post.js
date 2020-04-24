@@ -62,31 +62,32 @@ class BlogPost extends React.Component {
     return (
       <Layout>
         <div className={cx("Post")}>
-          <Helmet title={`${post.frontmatter.title} | Ian Sinnott`} />
-          <h1>{post.frontmatter.title}</h1>
+          <Helmet title={`${post.properties.title} | Ian Sinnott`} />
+          <h1>{post.properties.title}</h1>
           <div className={cx("meta")}>
             <p className={cx("date")}>
               <i
                 style={{ marginRight: 10 }}
                 className="fa fa-calendar-check-o"
               />
-              Published: <strong>{formatDate(post.frontmatter.created)}</strong>
+              Published: <strong>{formatDate(post.properties.created)}</strong>
             </p>
             <p className={cx("middot")} style={{ margin: "0 1em" }}>
               •
             </p>
-            <p className={cx("timeToRead")}>
-              <strong>{post.timeToRead}</strong> min read
-            </p>
+            {/* TODO: Where was this data coming from? The markdown plugin? I could calculate myself once I add a plain text or markdown renderer */}
+            {/* <p className={cx("timeToRead")}> */}
+            {/*   <strong>{post.timeToRead}</strong> min read */}
+            {/* </p> */}
           </div>
-          <div dangerouslySetInnerHTML={{ __html: post.html }} />
+          <div dangerouslySetInnerHTML={{ __html: post.content_html }} />
           <hr />
           <Bio />
           <hr />
           <PostNav prev={prev} next={next} />
           <hr style={{ marginTop: "2rem" }} />
           <Comments
-            disqusId={post.frontmatter.disqusId}
+            disqusId={post.properties.disqusId}
             pageURL={post.canonicalURL}
           />
         </div>
@@ -100,11 +101,11 @@ export default BlogPost;
 // NOTE: The $id var is passed in via context in gatsby-node
 export const query = graphql`
   query PostById($id: String!) {
-    post: markdownRemark(id: { eq: $id }) {
-      timeToRead
+    post: notionDbPosts(id: { eq: $id }) {
       canonicalURL
-      html
-      frontmatter {
+      content_html
+      properties {
+        tags
         created
         title
         disqusId: dsq_thread_id

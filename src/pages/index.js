@@ -31,7 +31,7 @@ export default class BlogIndex extends React.Component {
     return (
       <Layout>
         <h2>Some things I wrote</h2>
-        <Posts posts={this.props.data.posts} />
+        <Posts posts={this.props.data.database} />
         <hr style={{ margin: "3rem auto" }} />
         <Bio />
       </Layout>
@@ -55,18 +55,17 @@ export default class BlogIndex extends React.Component {
  */
 export const query = graphql`
   query AllPostsQuery {
-    posts: allMarkdownRemark(
-      sort: { fields: [frontmatter___created], order: DESC }
+    database: allNotionDbPosts(
+      sort: { fields: properties___created, order: DESC }
+      filter: { properties: { status: { in: ["published", "staged"] } } }
     ) {
       edges {
         node {
+          id
           slug
-          frontmatter {
+          properties {
             title
             created
-          }
-          internal {
-            contentDigest
           }
         }
       }
