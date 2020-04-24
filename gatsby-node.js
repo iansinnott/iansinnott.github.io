@@ -1,5 +1,13 @@
 const path = require("path");
-const { match, head, replace, pipe, path: keyPath } = require("ramda");
+const {
+  match,
+  head,
+  map,
+  filter,
+  replace,
+  pipe,
+  path: keyPath,
+} = require("ramda");
 const {
   GraphQLObjectType,
   GraphQLList,
@@ -8,44 +16,23 @@ const {
   GraphQLEnumType,
 } = require("graphql");
 
-const getFilename = pipe(keyPath(["fileAbsolutePath"]), path.basename);
-
-// What if two blog posts share a slug though...
-const getSlug = pipe(
-  getFilename,
-  replace(/^\d\d\d\d-\d\d-\d\d-/, ""), // Strip leading date
-  replace(/\.md$/, ""), // Strip trailing extension
-  (x) => `p/${x}`
-);
-
-const capitalize = (s) => {
-  if (Array.isArray(s)) return s.map(capitalize);
-  return s.slice(0, 1).toUpperCase() + s.slice(1).toUpperCase();
-};
-
 const getSlugFromNotion = pipe(
   (x) => x.properties.title,
   (x) => x.toLowerCase(),
-  (x) => x.replace(/ /g, "-"), // Spaces to hyphens
-  (x) => x.replace(/[^A-Za-z0-9_-]/g, "") // Remove non-alnum
+  (x) => x.split(" "),
+  map(
+    pipe(
+      (x) => x.replace(/&/g, "and"),
+      (x) => x.replace(/[^A-Za-z0-9_-]/g, ""), // Remove non-alnum
+      (x) => x.trim()
+    )
+  ),
+  filter((x) => Boolean(x)),
+  (xs) => xs.join("-")
 );
 
 const getCanonicalURLFromNotion = pipe(
   getSlugFromNotion,
-  (slug) => `https://blog.iansinnott.com/${slug}/`
-);
-
-const getFileDate = pipe(getFilename, match(/^\d\d\d\d-\d\d-\d\d/), head, (x) =>
-  new Date(x).toString()
-);
-
-/**
- * I currently only use this for passing to disqus, but it's good to have a
- * clear idea of what my current canonical urls are. In the future if I were
- * ever to change these urls it will be good to know what I'm migrating from.
- */
-const getCanonicalURL = pipe(
-  getSlug,
   (slug) => `https://blog.iansinnott.com/${slug}/`
 );
 
@@ -56,23 +43,6 @@ exports.setFieldsOnGraphQLNodeType = ({
   getNode,
   cache,
 }) => {
-  if (type.name === "MarkdownRemark") {
-    return Promise.resolve({
-      canonicalURL: {
-        type: GraphQLString,
-        resolve: getCanonicalURL,
-      },
-      slug: {
-        type: GraphQLString,
-        resolve: getSlug,
-      },
-      filename: {
-        type: GraphQLString,
-        resolve: getFilename,
-      },
-    });
-  }
-
   if (type.name.startsWith("NotionDb")) {
     return Promise.resolve({
       canonicalURL: {
@@ -121,33 +91,6 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-
-      posts: allMarkdownRemark(
-        limit: 1000
-        sort: { fields: [frontmatter___created], order: DESC }
-        filter: { frontmatter: { created: { ne: null } } }
-      ) {
-        edges {
-          node {
-            id
-            slug
-          }
-          next {
-            frontmatter {
-              title
-              created
-            }
-            slug
-          }
-          prev: previous {
-            frontmatter {
-              title
-              created
-            }
-            slug
-          }
-        }
-      }
     }
   `);
 
@@ -174,6 +117,56 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+
+  const redirects = [
+    [
+      "wordpress-development-server-full-set-up-guide",
+      "wordpress-development-server---full-set-up-guide",
+    ],
+    ["vim-awesome", "vim-its-awesome"],
+    [
+      "using-keyremap4macbooks-private-xml",
+      "using-key-remap-4-macbooks-privatexml",
+    ],
+    [
+      "solving-a-problem-is-the-biggest-win",
+      "solving-problems-is-the-biggest-win",
+    ],
+    ["page-reloads-thing-past", "page-reloads-are-a-thing-of-the-past"],
+    [
+      "migrating-a-blog-to-gatsby-part-2-of-gatsby-migration",
+      "migrating-my-blog-to-gatsby-part-2-of-gatsby-migration",
+    ],
+    ["life-upgrades-4-13", "life-upgrades-and-reasons-to-write-more"],
+    ["learn-vim-code-like-a-boss", "learn-vim-and-code-like-a-boss"],
+    ["learn-vim-code-like-a-boss", "learn-vim-and-code-like-a-boss"],
+
+    // Yeah... this was the URL for a very long time as far as I can tell
+    ["super-birthday-post", "jekyll-theming-like-a-boss-with-gulp"],
+
+    [
+      "integrating-alfred-and-keyboard-maestro",
+      "integrating-alfred-with-keyboard-maestro",
+    ],
+    ["going-fully-https-fo-free", "going-fully-https-ssl-fo-free"],
+    ["how-to-nearly-give-up-coffee", "how-i-nearly-gave-up-coffee"],
+    ["im-famous-on-gobodylanguage-com", "im-famous-on-gobodylanguagecom"],
+    [
+      "startup-idea-feedback-week",
+      "from-startup-idea-to-invalidation-in-a-week",
+    ],
+    ["custom-post-types-a-great", "custom-post-types-a-great-article"],
+    ["dokku-mongo-node", "dokku-mongo-and-nodejs"],
+    ["engineer-maker-or-both", "programmer-maker-or-both"],
+  ];
+
+  const ROOT_PATH = "/";
+
+  redirects
+    .map((arr) => arr.map((x) => ROOT_PATH + x)) // Prepend the root slash on all
+    .forEach(([fromPath, toPath]) => {
+      actions.createRedirect({ fromPath, toPath, isPermanent: true });
+    });
 
   // What should I return here??
 };
