@@ -1,7 +1,9 @@
-import React from 'react';
+import React from "react";
+import { graphql } from "gatsby";
 
-import Posts from '../components/Posts.js';
-import Bio from '../components/Bio.js';
+import Posts from "../components/Posts.js";
+import Bio from "../components/Bio.js";
+import Layout from "../layouts";
 
 const toJSON = (x) => JSON.stringify(x, null, 2);
 
@@ -27,12 +29,12 @@ export default class BlogIndex extends React.Component {
     }
 
     return (
-      <div>
+      <Layout>
         <h2>Some things I wrote</h2>
         <Posts posts={this.props.data.posts} />
-        <hr style={{ margin: '3rem auto' }} />
+        <hr style={{ margin: "3rem auto" }} />
         <Bio />
-      </div>
+      </Layout>
     );
   }
 }
@@ -51,16 +53,10 @@ export default class BlogIndex extends React.Component {
  * NOTE: Prettier removes escape sequences in the regex string for some reason,
  * causing a GQL compile error... need to have prettier ignore it.
  */
-export const pageQuery = graphql`
+export const query = graphql`
   query AllPostsQuery {
     posts: allMarkdownRemark(
       sort: { fields: [frontmatter___created], order: DESC }
-      filter: {
-        fileAbsolutePath: {
-          # prettier-disable
-          regex: "/\\d-.+\\.md$/"
-        }
-      }
     ) {
       edges {
         node {

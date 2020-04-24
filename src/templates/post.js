@@ -1,29 +1,31 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import Link from 'gatsby-link';
-import pipe from 'ramda/src/pipe';
-import path from 'ramda/src/path';
-import classnames from 'classnames/bind';
-import DisqusThread from 'react-disqus-comments';
-import 'prismjs/themes/prism.css';
+import React from "react";
+import Helmet from "react-helmet";
+import { graphql } from "gatsby";
+import Link from "gatsby-link";
+import pipe from "ramda/src/pipe";
+import path from "ramda/src/path";
+import classnames from "classnames/bind";
+import DisqusThread from "react-disqus-comments";
+import "prismjs/themes/prism.css";
 
-import s from './post.module.styl';
-import { format } from '../lib/utils.js';
-import Bio from '../components/Bio.js';
+import s from "./post.module.styl";
+import { format } from "../lib/utils.js";
+import Bio from "../components/Bio.js";
+import Layout from "../layouts/index.js";
 
 const cx = classnames.bind(s);
 
 const formatDate = pipe(
   (x) => new Date(x),
-  format('YYYY-MM-DD'), // What's a pretty format??
+  format("YYYY-MM-DD") // What's a pretty format??
 );
 
-const getPost = path(['data', 'post']);
-const getContext = path(['pathContext']);
+const getPost = path(["data", "post"]);
+const getContext = path(["pageContext"]);
 
 const Comments = ({ disqusId, pageURL }) => {
   const props = {
-    shortname: 'iansinnott',
+    shortname: "iansinnott",
   };
 
   if (disqusId) props.identifier = disqusId;
@@ -33,9 +35,9 @@ const Comments = ({ disqusId, pageURL }) => {
 };
 
 const PostNav = ({ prev, next }) => (
-  <div className={cx('PostNav')}>
+  <div className={cx("PostNav")}>
     {prev && <Link to={`/${prev.slug}/`}>Prev</Link>}
-    <Link to='/'>All Posts</Link>
+    <Link to="/">All Posts</Link>
     {next && <Link to={`/${next.slug}/`}>Next</Link>}
   </div>
 );
@@ -58,32 +60,37 @@ class BlogPost extends React.Component {
     const { next, prev } = getContext(this.props); // Not to be confused with react context...
 
     return (
-      <div className={cx('Post')}>
-        <Helmet title={`${post.frontmatter.title} | Ian Sinnott`} />
-        <h1>{post.frontmatter.title}</h1>
-        <div className={cx('meta')}>
-          <p className={cx('date')}>
-            <i style={{ marginRight: 10 }} className='fa fa-calendar-check-o' />
-            Published: <strong>{formatDate(post.frontmatter.created)}</strong>
-          </p>
-          <p className={cx('middot')} style={{ margin: '0 1em' }}>
-            •
-          </p>
-          <p className={cx('timeToRead')}>
-            <strong>{post.timeToRead}</strong> min read
-          </p>
+      <Layout>
+        <div className={cx("Post")}>
+          <Helmet title={`${post.frontmatter.title} | Ian Sinnott`} />
+          <h1>{post.frontmatter.title}</h1>
+          <div className={cx("meta")}>
+            <p className={cx("date")}>
+              <i
+                style={{ marginRight: 10 }}
+                className="fa fa-calendar-check-o"
+              />
+              Published: <strong>{formatDate(post.frontmatter.created)}</strong>
+            </p>
+            <p className={cx("middot")} style={{ margin: "0 1em" }}>
+              •
+            </p>
+            <p className={cx("timeToRead")}>
+              <strong>{post.timeToRead}</strong> min read
+            </p>
+          </div>
+          <div dangerouslySetInnerHTML={{ __html: post.html }} />
+          <hr />
+          <Bio />
+          <hr />
+          <PostNav prev={prev} next={next} />
+          <hr style={{ marginTop: "2rem" }} />
+          <Comments
+            disqusId={post.frontmatter.disqusId}
+            pageURL={post.canonicalURL}
+          />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr />
-        <Bio />
-        <hr />
-        <PostNav prev={prev} next={next} />
-        <hr style={{ marginTop: '2rem' }} />
-        <Comments
-          disqusId={post.frontmatter.disqusId}
-          pageURL={post.canonicalURL}
-        />
-      </div>
+      </Layout>
     );
   }
 }
@@ -91,7 +98,7 @@ class BlogPost extends React.Component {
 export default BlogPost;
 
 // NOTE: The $id var is passed in via context in gatsby-node
-export const pageQuery = graphql`
+export const query = graphql`
   query PostById($id: String!) {
     post: markdownRemark(id: { eq: $id }) {
       timeToRead

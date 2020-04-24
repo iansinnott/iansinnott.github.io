@@ -1,30 +1,24 @@
-const path = require('path');
-const { match, head, replace, pipe, path: keyPath } = require('ramda');
+const path = require("path");
+const { match, head, replace, pipe, path: keyPath } = require("ramda");
 const {
   GraphQLObjectType,
   GraphQLList,
   GraphQLString,
   GraphQLInt,
   GraphQLEnumType,
-} = require('graphql');
+} = require("graphql");
 
-const getFilename = pipe(
-  keyPath(['fileAbsolutePath']),
-  path.basename
-);
+const getFilename = pipe(keyPath(["fileAbsolutePath"]), path.basename);
 
 // What if two blog posts share a slug though...
 const getSlug = pipe(
   getFilename,
-  replace(/^\d\d\d\d-\d\d-\d\d-/, ''), // Strip leading date
-  replace(/\.md$/, '') // Strip trailing extension
+  replace(/^\d\d\d\d-\d\d-\d\d-/, ""), // Strip leading date
+  replace(/\.md$/, "") // Strip trailing extension
 );
 
-const getFileDate = pipe(
-  getFilename,
-  match(/^\d\d\d\d-\d\d-\d\d/),
-  head,
-  x => new Date(x).toString()
+const getFileDate = pipe(getFilename, match(/^\d\d\d\d-\d\d-\d\d/), head, (x) =>
+  new Date(x).toString()
 );
 
 /**
@@ -34,7 +28,7 @@ const getFileDate = pipe(
  */
 const getCanonicalURL = pipe(
   getSlug,
-  slug => `https://blog.iansinnott.com/${slug}/`
+  (slug) => `https://blog.iansinnott.com/${slug}/`
 );
 
 exports.setFieldsOnGraphQLNodeType = ({
@@ -44,7 +38,7 @@ exports.setFieldsOnGraphQLNodeType = ({
   getNode,
   cache,
 }) => {
-  if (type.name !== 'MarkdownRemark') {
+  if (type.name !== "MarkdownRemark") {
     return {};
   }
 
@@ -64,36 +58,43 @@ exports.setFieldsOnGraphQLNodeType = ({
   });
 };
 
-exports.createPages = async ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
-  const postTemplate = path.resolve('./src/templates/post.js');
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+  const postTemplate = path.resolve("./src/templates/post.js");
   const result = await graphql(`
-      query RenderPostsQuery {
-        posts: allMarkdownRemark(
-          limit: 1000,
-          sort: { fields: [frontmatter___created], order: DESC }
-          filter: {
-            frontmatter: { created: { ne: null } }
+    query RenderPostsQuery {
+      posts: allMarkdownRemark(
+        limit: 1000
+        sort: { fields: [frontmatter___created], order: DESC }
+        filter: { frontmatter: { created: { ne: null } } }
+      ) {
+        edges {
+          node {
+            id
+            slug
           }
-        ) {
-          edges {
-            node { id slug }
-            next {
-              frontmatter { title created }
-              slug
+          next {
+            frontmatter {
+              title
+              created
             }
-            prev: previous {
-              frontmatter { title created }
-              slug
+            slug
+          }
+          prev: previous {
+            frontmatter {
+              title
+              created
             }
+            slug
           }
         }
       }
+    }
   `);
 
   if (result.errors) {
     console.log(result.errors);
-    throw new Error('Things broke, see console output above');
+    throw new Error("Things broke, see console output above");
   }
 
   // Create blog posts pages.
@@ -102,10 +103,12 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
   // and "next" means a post in the future. Prev and next are reversed in the data
   // so I reverse them here to make more sense as I see it.
   result.data.posts.edges.forEach(({ node, next, prev }) => {
+    debugger;
     createPage({
       path: `/${node.slug}/`,
       component: postTemplate,
-      context: { // Context will be passed in to the page query as graphql vars
+      context: {
+        // Context will be passed in to the page query as graphql vars
         id: node.id,
         next: prev, // See NOTE
         prev: next,
