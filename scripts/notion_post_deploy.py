@@ -22,8 +22,8 @@ def get_client():
     try:
         token = os.environ['NOTION_TOKEN_V2']
     except Exception as err:
-
-        print('Need a client')
+        print(
+            'Need a TOKEN. Make sure $NOTION_TOKEN_V2 is defined and readable')
         return
 
     return NotionClient(token_v2=token)
