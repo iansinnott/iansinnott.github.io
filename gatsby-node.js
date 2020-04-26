@@ -1,6 +1,7 @@
 const {
   NOTION_NODE_PREFIX,
 } = require('@iansinnott/gatsby-source-notion-collection/lib/helpers');
+const fs = require('fs');
 const path = require('path');
 const {
   match,
@@ -108,7 +109,6 @@ exports.createPages = async ({ graphql, actions }) => {
   // and "next" means a post in the future. Prev and next are reversed in the data
   // so I reverse them here to make more sense as I see it.
   result.data.database.edges.forEach(({ node, next, prev }) => {
-    debugger;
     createPage({
       path: `/${node.slug}/`,
       component: postTemplate,
@@ -170,4 +170,37 @@ exports.createPages = async ({ graphql, actions }) => {
     .forEach(([fromPath, toPath]) => {
       actions.createRedirect({ fromPath, toPath, isPermanent: true });
     });
+
+  // Maybe this should be done in some other post build hook.. but here we are
+  const staged = await graphql(`
+    query QueryStagedPosts {
+      staged: allNotionCollectionPosts(
+        filter: { properties: { status: { eq: "staged" } } }
+      ) {
+        edges {
+          node {
+            id
+            _notionBlockId
+          }
+        }
+      }
+    }
+  `);
+
+  const stagedNodes = staged.data.staged.edges.map(({ node }) => {
+    return node;
+  });
+
+  fs.writeFileSync(
+    `notion-build-log.json`,
+    JSON.stringify(
+      {
+        buildDate: new Date().toISOString(),
+        stagedNodes,
+      },
+      null,
+      2,
+    ),
+    { encoding: 'utf8' },
+  );
 };
