@@ -1,6 +1,6 @@
 const {
   NOTION_NODE_PREFIX,
-} = require("gatsby-source-notion-collection/lib/helpers");
+} = require("@iansinnott/gatsby-source-notion-collection/lib/helpers");
 const path = require("path");
 const {
   match,
