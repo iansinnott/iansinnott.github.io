@@ -28,7 +28,7 @@ module.exports = {
   plugins: [
     "gatsby-plugin-react-helmet",
     {
-      resolve: "gatsby-source-notion-database",
+      resolve: "@iansinnott/gatsby-source-notion-collection",
       options: {
         timeout: 100,
         databaseViewUrl:
