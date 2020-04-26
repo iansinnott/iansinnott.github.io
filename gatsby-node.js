@@ -1,3 +1,6 @@
+const {
+  NOTION_NODE_PREFIX,
+} = require("gatsby-source-notion-collection/lib/helpers");
 const path = require("path");
 const {
   match,
@@ -43,7 +46,7 @@ exports.setFieldsOnGraphQLNodeType = ({
   getNode,
   cache,
 }) => {
-  if (type.name.startsWith("NotionDb")) {
+  if (type.name.startsWith(NOTION_NODE_PREFIX)) {
     return Promise.resolve({
       canonicalURL: {
         type: GraphQLString,
