@@ -58,6 +58,8 @@
     "start": "gatsby develop",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d public --branch master",
+    "postdeploy": "pipenv run python scripts/notion_post_deploy.py",
+    "postdeploy:dryrun": "pipenv run python scripts/notion_post_deploy.py --dry-run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
