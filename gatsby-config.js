@@ -1,5 +1,5 @@
-const rupture = require("rupture");
-const path = require("path");
+const rupture = require('rupture');
+const path = require('path');
 
 /**
  * NOTE: options.name in the source filesystem plugin translates to
@@ -23,48 +23,49 @@ const path = require("path");
  */
 module.exports = {
   siteMetadata: {
-    title: "Ian Sinnott",
+    title: 'Ian Sinnott',
   },
   plugins: [
-    "gatsby-plugin-react-helmet",
+    'gatsby-plugin-react-helmet',
     {
-      resolve: "@iansinnott/gatsby-source-notion-collection",
+      resolve: '@iansinnott/gatsby-source-notion-collection',
       options: {
+        debug: true,
         timeout: 100,
         databaseViewUrl:
-          "https://www.notion.so/iansinnott/31bc07fbe2704be095c3c34755011b5e?v=54e9d28603954141bce78b2c719d5fd3",
+          'https://www.notion.so/iansinnott/31bc07fbe2704be095c3c34755011b5e?v=54e9d28603954141bce78b2c719d5fd3',
       },
     },
     {
-      resolve: "gatsby-transformer-remark",
+      resolve: 'gatsby-transformer-remark',
       options: {
-        plugins: ["gatsby-remark-prismjs", "gatsby-remark-autolink-headers"],
+        plugins: ['gatsby-remark-prismjs', 'gatsby-remark-autolink-headers'],
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "posts", // See NOTE
-        path: path.resolve("./content/_posts"),
+        name: 'posts', // See NOTE
+        path: path.resolve('./content/_posts'),
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "drafts",
-        path: path.resolve("./content/_drafts"),
+        name: 'drafts',
+        path: path.resolve('./content/_drafts'),
       },
     },
     {
-      resolve: "gatsby-plugin-stylus",
+      resolve: 'gatsby-plugin-stylus',
       options: {
         use: [rupture()],
       },
     },
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: "UA-52511246-1",
+        trackingId: 'UA-52511246-1',
       },
     },
     `gatsby-plugin-client-side-redirect`, // keep it last in list

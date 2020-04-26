@@ -1,9 +1,9 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from 'react';
+import { graphql } from 'gatsby';
 
-import Posts from "../components/Posts.js";
-import Bio from "../components/Bio.js";
-import Layout from "../layouts";
+import Posts from '../components/Posts.js';
+import Bio from '../components/Bio.js';
+import Layout from '../layouts';
 
 const toJSON = (x) => JSON.stringify(x, null, 2);
 
@@ -32,7 +32,7 @@ export default class BlogIndex extends React.Component {
       <Layout>
         <h2>Some things I wrote</h2>
         <Posts posts={this.props.data.database} />
-        <hr style={{ margin: "3rem auto" }} />
+        <hr style={{ margin: '3rem auto' }} />
         <Bio />
       </Layout>
     );
@@ -55,7 +55,7 @@ export default class BlogIndex extends React.Component {
  */
 export const query = graphql`
   query AllPostsQuery {
-    database: allNotionDbPosts(
+    database: allNotionCollectionPosts(
       sort: { fields: properties___created, order: DESC }
       filter: { properties: { status: { in: ["published", "staged"] } } }
     ) {

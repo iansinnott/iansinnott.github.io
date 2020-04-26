@@ -1,31 +1,31 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { graphql } from "gatsby";
-import Link from "gatsby-link";
-import pipe from "ramda/src/pipe";
-import path from "ramda/src/path";
-import classnames from "classnames/bind";
-import DisqusThread from "react-disqus-comments";
-import "prismjs/themes/prism.css";
+import React from 'react';
+import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
+import Link from 'gatsby-link';
+import pipe from 'ramda/src/pipe';
+import path from 'ramda/src/path';
+import classnames from 'classnames/bind';
+import DisqusThread from 'react-disqus-comments';
+import 'prismjs/themes/prism.css';
 
-import s from "./post.module.styl";
-import { format } from "../lib/utils.js";
-import Bio from "../components/Bio.js";
-import Layout from "../layouts/index.js";
+import s from './post.module.styl';
+import { format } from '../lib/utils.js';
+import Bio from '../components/Bio.js';
+import Layout from '../layouts/index.js';
 
 const cx = classnames.bind(s);
 
 const formatDate = pipe(
   (x) => new Date(x),
-  format("YYYY-MM-DD") // What's a pretty format??
+  format('YYYY-MM-DD'), // What's a pretty format??
 );
 
-const getPost = path(["data", "post"]);
-const getContext = path(["pageContext"]);
+const getPost = path(['data', 'post']);
+const getContext = path(['pageContext']);
 
 const Comments = ({ disqusId, pageURL }) => {
   const props = {
-    shortname: "iansinnott",
+    shortname: 'iansinnott',
   };
 
   if (disqusId) props.identifier = disqusId;
@@ -35,9 +35,9 @@ const Comments = ({ disqusId, pageURL }) => {
 };
 
 const PostNav = ({ prev, next }) => (
-  <div className={cx("PostNav")}>
+  <div className={cx('PostNav')}>
     {prev && <Link to={`/${prev.slug}/`}>Prev</Link>}
-    <Link to="/">All Posts</Link>
+    <Link to='/'>All Posts</Link>
     {next && <Link to={`/${next.slug}/`}>Next</Link>}
   </div>
 );
@@ -61,18 +61,18 @@ class BlogPost extends React.Component {
 
     return (
       <Layout>
-        <div className={cx("Post")}>
+        <div className={cx('Post')}>
           <Helmet title={`${post.properties.title} | Ian Sinnott`} />
           <h1>{post.properties.title}</h1>
-          <div className={cx("meta")}>
-            <p className={cx("date")}>
+          <div className={cx('meta')}>
+            <p className={cx('date')}>
               <i
                 style={{ marginRight: 10 }}
-                className="fa fa-calendar-check-o"
+                className='fa fa-calendar-check-o'
               />
               Published: <strong>{formatDate(post.properties.created)}</strong>
             </p>
-            <p className={cx("middot")} style={{ margin: "0 1em" }}>
+            <p className={cx('middot')} style={{ margin: '0 1em' }}>
               •
             </p>
             {/* TODO: Where was this data coming from? The markdown plugin? I could calculate myself once I add a plain text or markdown renderer */}
@@ -85,7 +85,7 @@ class BlogPost extends React.Component {
           <Bio />
           <hr />
           <PostNav prev={prev} next={next} />
-          <hr style={{ marginTop: "2rem" }} />
+          <hr style={{ marginTop: '2rem' }} />
           <Comments
             disqusId={post.properties.disqusId}
             pageURL={post.canonicalURL}
@@ -101,7 +101,7 @@ export default BlogPost;
 // NOTE: The $id var is passed in via context in gatsby-node
 export const query = graphql`
   query PostById($id: String!) {
-    post: notionDbPosts(id: { eq: $id }) {
+    post: notionCollectionPosts(id: { eq: $id }) {
       canonicalURL
       content_html
       properties {
