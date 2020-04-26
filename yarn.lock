@@ -921,10 +921,10 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@iansinnott/gatsby-source-notion-collection@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@iansinnott/gatsby-source-notion-collection/-/gatsby-source-notion-collection-0.1.11.tgz#b6e83b184de2628140cdcb951ab7ecb25c349dbb"
-  integrity sha512-afCejM/FY9Sr9XB6BYfP1/b4ObKQVSaoyFn5coVs3pJbfFZBsiR/hEpGpf3sCBXiQcLi467qbNfRacSHpKKQeQ==
+"@iansinnott/gatsby-source-notion-collection@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@iansinnott/gatsby-source-notion-collection/-/gatsby-source-notion-collection-0.1.12.tgz#ebd5df36125ac78d58a6559d169a02f35c85cc09"
+  integrity sha512-sujiRQ0aRmH0yBEbrmA3/1dNKM/diRvldXmqgrf+zm5EZcmKs41CavEiTWdvuRRjeUO5pBwFQPX6ytoCL6TidQ==
   dependencies:
     escape-goat "^3.0.0"
     gatsby "^2.20.21"

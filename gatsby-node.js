@@ -63,7 +63,9 @@ exports.setFieldsOnGraphQLNodeType = ({
   return {};
 };
 
-exports.createPages = async ({ graphql, actions }) => {
+exports.createPages = async (context) => {
+  debugger;
+  const { graphql, actions } = context;
   const { createPage } = actions;
   const postTemplate = path.resolve('./src/templates/post.js');
   const result = await graphql(`
@@ -172,6 +174,7 @@ exports.createPages = async ({ graphql, actions }) => {
     });
 
   // Maybe this should be done in some other post build hook.. but here we are
+  // I'm grabbing the property details to make it easier to update the properties via a separate script.
   const staged = await graphql(`
     query QueryStagedPosts {
       staged: allNotionCollectionPosts(
@@ -181,6 +184,39 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             id
             _notionBlockId
+            _propertyDetails {
+              status {
+                pid
+              }
+              published {
+                pid
+              }
+            }
+          }
+        }
+      }
+
+      meta: allNotionCollectionPostsMeta {
+        nodes {
+          pageId
+          spaceId
+          collection {
+            id
+            name
+          }
+          collectionView {
+            id
+            query2 {
+              sort {
+                direction
+                property
+              }
+            }
+          }
+          schema {
+            name
+            pid
+            type
           }
         }
       }
@@ -190,12 +226,15 @@ exports.createPages = async ({ graphql, actions }) => {
   const stagedNodes = staged.data.staged.edges.map(({ node }) => {
     return node;
   });
+  const meta = staged.data.meta.nodes[0]; // First node
 
   fs.writeFileSync(
     `notion-build-log.json`,
     JSON.stringify(
       {
+        config: require('./config.js'),
         buildDate: new Date().toISOString(),
+        meta,
         stagedNodes,
       },
       null,

@@ -8,7 +8,7 @@
   },
   "author": "Ian Sinnott <ian@iansinnott.com> (https://www.iansinnott.com)",
   "dependencies": {
-    "@iansinnott/gatsby-source-notion-collection": "^0.1.11",
+    "@iansinnott/gatsby-source-notion-collection": "^0.1.12",
     "classnames": "2.2.5",
     "date-fns": "1.28.5",
     "font-awesome": "^4.7.0",
