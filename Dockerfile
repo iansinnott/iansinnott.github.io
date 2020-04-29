@@ -3,5 +3,6 @@ FROM node:lts-alpine
 WORKDIR /opt/build
 COPY . .
 
-CMD yarn install
+RUN yarn install
+
 CMD yarn build
