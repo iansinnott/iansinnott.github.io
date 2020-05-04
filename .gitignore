@@ -7,3 +7,5 @@ public/
 .deploy*/
 .cache
 notion-build-log.json
+hexo.bak
+jekyll.bak
