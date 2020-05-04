@@ -47,9 +47,6 @@
   ],
   "main": "n/a",
   "scripts": {
-    "draft": "./scripts/create-doc.js draft",
-    "post": "./scripts/create-doc.js post",
-    "standardizeFrontmatter": "for post in $(find $PWD/content/_posts -iname '*.md'); do ./scripts/validate-frontmatter.js $post; done",
     "install-build": "yarn && yarn run build",
     "build": "NODE_ENV=production gatsby build",
     "postbuild": "echo 'blog.iansinnott.com' > public/CNAME",
