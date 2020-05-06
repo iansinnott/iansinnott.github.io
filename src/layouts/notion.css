@@ -1,0 +1,78 @@
+.red {
+  color: red;
+}
+.teal {
+  color: teal;
+}
+.blue {
+  color: blue;
+}
+.gray {
+  color: gray;
+}
+.brown {
+  color: brown;
+}
+.orange {
+  color: orange;
+}
+.yellow {
+  color: yellow;
+}
+.purple {
+  color: purple;
+}
+.pink {
+  color: pink;
+}
+.yellow_background {
+  background: yellow;
+}
+.orange_background {
+  background: orange;
+}
+.purple_background {
+  background: purple;
+}
+.red_background {
+  background: red;
+}
+.teal_background {
+  background: teal;
+}
+.blue_background {
+  background: blue;
+}
+.gray_background {
+  background: gray;
+}
+.brown_background {
+  background: brown;
+}
+.pink_background {
+  background: pink;
+}
+
+.toggle:hover {
+  background: #fafafa;
+}
+
+.toggle input[type='checkbox'] {
+  appearance: none;
+  outline: none;
+}
+
+.toggle input[type='checkbox']:before {
+  content: '▶';
+}
+.toggle input[type='checkbox']:checked:before {
+  content: '▼';
+}
+
+.toggle .toggle-body {
+  display: none;
+}
+
+.toggle input:checked ~ .toggle-body {
+  display: block;
+}
