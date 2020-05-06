@@ -53,26 +53,42 @@
   background: pink;
 }
 
+.toggle {
+  margin-bottom: 10px;
+  background: #e9f0ff;
+  padding: 5px;
+  border-radius: 3px;
+}
+
 .toggle:hover {
-  background: #fafafa;
+  background: hsla(221, 100%, 92%, 1);
 }
 
 .toggle input[type='checkbox'] {
+  padding-left: 5px;
   appearance: none;
   outline: none;
+  cursor: pointer;
+}
+
+.toggle .toggle-title {
+  display: inline-block;
+  width: calc(100% - 25px);
+  cursor: pointer;
 }
 
 .toggle input[type='checkbox']:before {
   content: '▶';
+  font-size: 14px;
+  width: 20px;
+  display: block;
 }
 .toggle input[type='checkbox']:checked:before {
   content: '▼';
 }
-
-.toggle .toggle-body {
+.toggle input ~ .toggle-body {
   display: none;
 }
-
 .toggle input:checked ~ .toggle-body {
   display: block;
 }
