@@ -5,7 +5,6 @@ import Link from 'gatsby-link';
 import pipe from 'ramda/src/pipe';
 import path from 'ramda/src/path';
 import classnames from 'classnames/bind';
-import DisqusThread from 'react-disqus-comments';
 import 'prismjs/themes/prism.css';
 
 import s from './post.module.styl';
@@ -23,15 +22,15 @@ const formatDate = pipe(
 const getPost = path(['data', 'post']);
 const getContext = path(['pageContext']);
 
-const Comments = ({ disqusId, pageURL }) => {
-  const props = {
-    shortname: 'iansinnott',
-  };
-
-  if (disqusId) props.identifier = disqusId;
-  if (pageURL) props.url = pageURL;
-
-  return <DisqusThread {...props} />;
+const Comments = () => {
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <em>
+        Thoughts? Let's chat on{' '}
+        <a href='https://twitter.com/ian_sinn'>Twitter</a> or via Email :)
+      </em>
+    </div>
+  );
 };
 
 const PostNav = ({ prev, next }) => (
@@ -86,10 +85,7 @@ class BlogPost extends React.Component {
           <hr />
           <PostNav prev={prev} next={next} />
           <hr style={{ marginTop: '2rem' }} />
-          <Comments
-            disqusId={post.properties.disqusId}
-            pageURL={post.canonicalURL}
-          />
+          <Comments />
         </div>
       </Layout>
     );

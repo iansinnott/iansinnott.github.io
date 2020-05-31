@@ -63,9 +63,9 @@ const TemplateWrapper = ({ children }) => (
       meta={[
         {
           name: 'description',
-          content: 'Zealous about simplicity. Love JavaScript, UX, the web.',
+          content:
+            'I write about life and my mistakes and successes in business.',
         },
-        { name: 'keywords', content: 'javascript, react, learning' },
       ]}
     />
     <Header />
