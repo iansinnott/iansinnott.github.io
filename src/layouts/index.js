@@ -11,13 +11,10 @@ import faceImg from '../assets/face.png';
 import s from './index.module.styl';
 const cx = classnames.bind(s);
 
-const gradient = 'linear-gradient(to right, #009688, #3F51B5)';
-
 const Header = () => (
   <div
     className={cx('Header')}
     style={{
-      background: gradient,
       marginBottom: '1.45rem',
     }}>
     <div
@@ -31,7 +28,6 @@ const Header = () => (
           <Link
             to='/'
             style={{
-              color: 'white',
               textDecoration: 'none',
               fontWeight: 300,
             }}>
@@ -46,9 +42,7 @@ const Header = () => (
         <div className={cx('links')}>
           <a href='https://twitter.com/ian_sinn'>
             <i className='fa fa-twitter'></i>
-          </a>
-          <a href='https://github.com/iansinnott'>
-            <i className='fa fa-github'></i>
+            @ian_sinn
           </a>
         </div>
       </div>

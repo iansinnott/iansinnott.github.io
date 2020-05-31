@@ -1,16 +1,66 @@
 image-height = 50px
 wider = 600px
 
+@keyframes rainbow
+  from
+    color: red
+  15%
+    color: lime
+  30%
+    color: blue
+  45%
+    color: teal
+  60%
+    color: yellow
+  75%
+    color: pink
+  90%
+    color: white
+  to
+    color: red
+  
+
 body
   +above(wider)
     font-size 1.2rem
 
+  a
+    &:hover
+      text-decoration: underline
+      animation rainbow 0.6s step-start infinite
+    span
+      animation none
+      color #3F51B5
+      text-decoration: none
+
 .Header
   position relative
+  background: linear-gradient(to top, rgba(166, 239, 239, 0.54), #fff)
+  &:before
+    content ''
+    height: 1px
+    left 0
+    right 0
+    bottom: 0
+    position absolute
+    background: linear-gradient(to right, #009688, #3F51B5)
+
+  a
+    text-decoration: none
+    &:hover
+      text-decoration: none
 
 .mainHeader
   position relative
   padding-left image-height + 10px // Making room for img
+
+  h1 
+    font-size: 20px
+    a
+      color: #222
+
+    +above(wider)
+      font-size 2rem
 
 .face
   border-radius 50%
@@ -21,6 +71,7 @@ body
   top 50%
   left 0
   transform translateY(-50%)
+  border 1px solid #008080
 
 .links
   position absolute
@@ -28,17 +79,21 @@ body
   top 50%
   transform translateY(-50%)
   a
+    text-decoration none
     display block
-    color white
     transition all 0.2s ease-out
     transform scale(1)
-    &:hover
-      transform scale(1.4)
+    font-family monospace
+    display: flex
+    justify-content: center
+    align-items: center
+    i 
+      margin-right: 10px
 
   +above(wider)
     a
       display inline-block
-      font-size 2rem
+      font-size: 1em
       &:not(:last-child)
         margin-right 1rem
 
