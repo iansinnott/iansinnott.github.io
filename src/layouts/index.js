@@ -7,6 +7,7 @@ import 'font-awesome/css/font-awesome.css';
 
 import './index.css';
 import './notion.css';
+import { ParrotTwitterLink } from '../components/shared';
 import faceImg from '../assets/face.png';
 import s from './index.module.styl';
 const cx = classnames.bind(s);
@@ -83,10 +84,7 @@ const Header = () => {
             </Link>
           </h1>
           <div className={cx('links')}>
-            <a href='https://twitter.com/ian_sinn'>
-              <i className='fa fa-twitter'></i>
-              @ian_sinn
-            </a>
+            <ParrotTwitterLink />
           </div>
         </div>
       </div>

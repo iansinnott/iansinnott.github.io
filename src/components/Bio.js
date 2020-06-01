@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames/bind';
 
 import s from './Bio.module.styl';
+import { ParrotTwitterLink } from './shared';
 const cx = classnames.bind(s);
 
 const Bio = () => (
@@ -13,10 +14,7 @@ const Bio = () => (
       <a href='https://www.pairwise.tech'>Pairwise</a>).
     </p>
     <div className={cx('links')}>
-      <a href='https://twitter.com/ian_sinn'>
-        <i className='fa fa-twitter'></i>
-        @ian_sinn
-      </a>
+      <ParrotTwitterLink />
     </div>
   </div>
 );
