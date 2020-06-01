@@ -20,6 +20,8 @@ wider = 600px
     color: red
   
 
+
+
 body
   +above(wider)
     font-size 1.2rem
@@ -33,17 +35,25 @@ body
       color #3F51B5
       text-decoration: none
 
+@keyframes waves 
+  from 
+    transform: translateY(0%) rotate3d(1,0,0,90deg)
+  to
+    transform: translateY(0%) rotate3d(1,0,0,0deg)
+
 .Header
   position relative
-  background: linear-gradient(to top, rgba(166, 239, 239, 0.54), #fff)
-  &:before
-    content ''
-    height: 1px
-    left 0
+  background: linear-gradient(to top, rgba(166, 239, 239, 0.54), rgba(166, 239, 239, 0.14))
+  perspective 200px
+  
+  svg
+    left 50%
     right 0
-    bottom: 0
+    top: calc(100% + -8px)
     position absolute
-    background: linear-gradient(to right, #009688, #3F51B5)
+    transition all 0.2s ease
+    transform translate(-50%, 50%) scale(1)
+
 
   a
     text-decoration: none
