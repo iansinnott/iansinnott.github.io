@@ -21,6 +21,7 @@ def get_build_log():
 def get_client():
     try:
         token = os.environ['NOTION_TOKEN_V2']
+        print(f'Using token {token[:6]}...')
     except Exception as err:
         print(
             'Need a TOKEN. Make sure $NOTION_TOKEN_V2 is defined and readable')
