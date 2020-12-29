@@ -63,7 +63,7 @@ render (
 );
 });</pre>
 <p>The value of this <code >&lt;input&gt;</code> element will stubbornly refuse to change no matter what the user does. This is generally a terrible user experience, so React will actually warn you that your input cannot be modified:</p>
-<figure><img src="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-05-11%20at%2011.12.36%20PM.png" alt="React warning message"/><figcaption>React warning message</figcaption></figure>
+<figure><img src="https://dropsinn.s3.amazonaws.com/Screen%20Shot%202015-05-11%20at%2011.12.36%20PM.png?table=block&id=" alt="React warning message"/><figcaption>React warning message</figcaption></figure>
 <p>If you&#39;re new-ish to React you might not know why you would want to do this. The answer is <span class="italic">state</span>. React puts a big emphasis on explicitly keeping your components state in the <code >state</code> property. So in order to create a form input that responds to user input you will need to use two-way data binding. Meaning the <code >value</code> of the <code >&lt;input&gt;</code> element will flow from your component into the DOM, but also from the DOM into your component. In other words, they will be kept in sync.</p>
 <h2>Manual Two-way data binding</h2>
 <p>The most common way to accomplish two-way data binding in React is to be explicit. This is by design, and it&#39;s a good practice for smaller forms. Here&#39;s how an example:</p>

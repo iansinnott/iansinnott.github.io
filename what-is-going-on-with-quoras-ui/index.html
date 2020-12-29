@@ -50,7 +50,7 @@
 <p>The site actively tries to discourage you from finding information. </p>
 <p>That&#39;s a harsh statement to make about a company who&#39;s mission is &quot;Sharing and growing the world&#39;s knowledge.&quot;<span >*</span> Just to be clear, I&#39;m not saying Quora is useless—far from it. I am saying Quora does it&#39;s best to reduce it&#39;s own utility to any would-be knowledge seeker.</p>
 <p>Anyway, enough abstract claims. Let&#39;s look at the UI. </p>
-<figure><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F45d3cacb-ec42-4f66-aa97-535fa88bc983%2F2020-09-07_at_11.04_AM.png" alt="From https://www.quora.com/What-does-it-mean-to-fork-a-processa,https://www.quora.com/What-does-it-mean-to-fork-a-process"/><figcaption>From <a href="https://www.quora.com/What-does-it-mean-to-fork-a-process">https://www.quora.com/What-does-it-mean-to-fork-a-process</a></figcaption></figure>
+<figure><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F45d3cacb-ec42-4f66-aa97-535fa88bc983%2F2020-09-07_at_11.04_AM.png?table=block&id=" alt="From https://www.quora.com/What-does-it-mean-to-fork-a-processa,https://www.quora.com/What-does-it-mean-to-fork-a-process"/><figcaption>From <a href="https://www.quora.com/What-does-it-mean-to-fork-a-process">https://www.quora.com/What-does-it-mean-to-fork-a-process</a></figcaption></figure>
 <h2>The Ad</h2>
 <p>Right when you jump in to seek knowledge you&#39;re immediately prompted to go try a completely unrelated product. At best you ignore it. At worst, you actually the link and your attention is derailed. While seeking knowledge Quora successfully distracted you. Hopefully you will gain knowledge next time.</p>
 <p>I&#39;m not knocking Jira (although I&#39;ve been known to do just that in the past), I&#39;m pointing out that it&#39;s not only irrelevant to your knowledge seeking but actively detrimental.</p>
@@ -70,7 +70,7 @@
 <p>It&#39;s small, unassuming, the opposite of a call to action. If this UI was consciously designed (and I suspect it was) the designer either did not consider the information priority to the user or had other incentives driving their design.</p>
 <h2>The &quot;Engagement Box&quot;</h2>
 <p>Two answers down there&#39;s this gem:</p>
-<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F022834eb-ff12-41d5-986e-68d2fe23c3ea%2F2020-09-07_at_12.01_PM.png" />
+<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F022834eb-ff12-41d5-986e-68d2fe23c3ea%2F2020-09-07_at_12.01_PM.png?table=block&id=" />
 <p>Rather than obtaining the knowledge I came here for maybe I&#39;d prefer a distraction? </p>
 <p>I&#39;m not sure if there&#39;s a known design term for this type of UI, but I call it an &quot;engagement box&quot; because it seemingly exists for no reason other than to drive engagement metrics for the site owner. If increased page views or topic subscriptions is a good thing then this box makes perfect sense. If knowledge acquisition is what you&#39;re after, this box actively tries to lead you astray.</p>
 <p>The fact that the title says &quot;more answers below&quot; seems an acknowledgement of the fact that the pair of eyeballs seeing this UI is probably interested in something else.  </p>
@@ -78,17 +78,17 @@
 <p>Needless to say, I don&#39;t like it. However, I&#39;ve never tried operating a site like Quora or Twitter so if anyone thinks I&#39;m being overly cynical I&#39;d love to hear another perspective. </p>
 <h1>JS Unless... You&#39;re Google</h1>
 <p>Now I depart form the specifics of the UI to the broader behavior of the site. Some people use the internet without JavaScript enabled in their browsers. Quora does <span class="bold">not</span> like this.  </p>
-<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fbfccdaa4-2c76-4369-bba2-9317e5a8ae82%2F2020-09-07_at_12.13_PM.png" />
+<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fbfccdaa4-2c76-4369-bba2-9317e5a8ae82%2F2020-09-07_at_12.13_PM.png?table=block&id=" />
 <p>As a developer I can partially empathize—if you&#39;re site is built using JavaScript in a web browser it can be a pain to render it on a server. </p>
 <p>However, some sites have been known to create artificial barriers to their content for people without JS enabled. Why would they do this? I assume because it makes it difficult to track user metrics, but there are probably several reasons. </p>
 <p>The problem is, search engines might not have JavaScript enabled. This was definitely true in the past although I think these days (2020) several search engines will try to render JS. Regardless, unless you&#39;re <span class="italic">sure</span> search engines can index your JS-only pages it is worth while to render your content on the server.</p>
 <p>Looking at the source of the Quora page it appears that they don&#39;t do this—they don&#39;t render their content in such a way that search engines could definitely figure it out.</p>
-<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F08ce885a-c478-4714-87f9-c2cd27a61658%2F2020-09-07_at_12.20_PM.png" />
+<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F08ce885a-c478-4714-87f9-c2cd27a61658%2F2020-09-07_at_12.20_PM.png?table=block&id=" />
 <p>Of course, that&#39;s not the end of the story. Anyone making a request to a browser will send along some metadata telling the server who&#39;s requesting the data. To be technical, I&#39;m talking about the <code >User-Agent</code> HTTP header.</p>
 <p>Curious as I am, I changed my user agent to mimic that of the Google search engine. This is quite easy to do within the Chrome devtools:</p>
-<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F25a1ebdb-d638-487d-8939-fb9dd61a77ac%2F2020-09-07_at_12.24_PM.png" />
+<img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F25a1ebdb-d638-487d-8939-fb9dd61a77ac%2F2020-09-07_at_12.24_PM.png?table=block&id=" />
 <p>Now what did Quora return? Well, visibly it is still just a page requesting that I enable JS. However, the source changed quite a bit.</p>
-<figure><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fe34a4478-e709-49b3-a32a-a2097366343c%2F2020-09-07_at_12.26_PM.png" alt="This is just an excerpt since there's way to much code to put into a screenshot."/><figcaption>This is just an excerpt since there&#39;s way to much code to put into a screenshot.</figcaption></figure>
+<figure><img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fe34a4478-e709-49b3-a32a-a2097366343c%2F2020-09-07_at_12.26_PM.png?table=block&id=" alt="This is just an excerpt since there's way to much code to put into a screenshot."/><figcaption>This is just an excerpt since there&#39;s way to much code to put into a screenshot.</figcaption></figure>
 <p>Now, pretending to be Google, all the content is available to me without JS. Of course it&#39;s not very readable to my human brain, but that&#39;s beside the point. Quora has the existing ability to render content on the server but chooses not to, which leads to some (undoubtedly small) subset of users not being able to seek knowledge through Quora.</p>
 <h1>Getting to the Point</h1>
 <p>This post turned into a bit of a rant so I feel I&#39;ve done a poor job of elucidating the point, which is this:</p>

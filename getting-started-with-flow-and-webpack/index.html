@@ -78,7 +78,7 @@
 <ol><li>A bunch of errors</li></ol>
 <p>If you see a bunch of errors after just setting up Flow that is because Flow type-checks <span class="italic">everything</span>, even all the code in your <code >node_modules</code>. Although it may be counter intuitive this is actually desired behavior, because Flow can warn you if you try to import anything that doesn&#39;t exist from <code >node_modules</code>.</p>
 <p>However, the downside is that when you first set up Flow you might see something like this:</p>
-<figure><img src="https://dropsinn.s3.amazonaws.com/Screen_Shot_2016-06-11_at_5_50_55_PM.png" alt="Flow Errors"/><figcaption>Flow Errors</figcaption></figure>
+<figure><img src="https://dropsinn.s3.amazonaws.com/Screen_Shot_2016-06-11_at_5_50_55_PM.png?table=block&id=" alt="Flow Errors"/><figcaption>Flow Errors</figcaption></figure>
 <p>In this example Flow is detecting type errors in the <code >fbjs</code> module, which is required by React. Getting past this issue is simple enough, simply add a new ignore line to <code >.flowconfig</code>. I have no idea how regex works in OCaml, but luckily there&#39;s no need. The Flow docs provide plenty of examples to show us how to ignore a certain directory. The syntax is <code >.*/path/to/dir/.*</code>. So to ignore everything under <code >node_modules/fbjs</code> you can update your <code >.flowconfig</code> as follows:</p>
 <pre>[ignore]
 .<span class="italic">/node_modules/fbjs/.</span>
