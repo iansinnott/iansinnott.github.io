@@ -1,4 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ian's RSS Feed]]></title><description><![CDATA[The personal blog of Ian Sinnott]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 29 Dec 2020 01:46:44 GMT</lastBuildDate><item><title><![CDATA[What is going on with Quora's UI?]]></title><link>https://blog.iansinnott.com/what-is-going-on-with-quoras-ui/</link><guid isPermaLink="false">https://blog.iansinnott.com/what-is-going-on-with-quoras-ui/</guid><pubDate>Mon, 07 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;bold&quot;&gt;TL;DR&lt;/span&gt;: Quora&amp;#39;s UI actively discourages you from finding answers to your questions. This essay is me wondering aloud: Is it necessary for a content site to play zero-sum games with it&amp;#39;s audience in order to be a viable business?&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ian's RSS Feed]]></title><description><![CDATA[The personal blog of Ian Sinnott]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 29 Dec 2020 02:49:12 GMT</lastBuildDate><item><title><![CDATA[Functional Pipelines in JavaScript Using async/await]]></title><link>https://blog.iansinnott.com/functional-pipelines-in-javascript-using-asyncawait/</link><guid isPermaLink="false">https://blog.iansinnott.com/functional-pipelines-in-javascript-using-asyncawait/</guid><pubDate>Sat, 19 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Did you know that &lt;code &gt;async&lt;/code&gt;/&lt;code &gt;await&lt;/code&gt; syntax is great for &lt;span class=&quot;italic&quot;&gt;synchronous&lt;/span&gt; operations too? Really.&lt;/p&gt;
+&lt;p&gt;Let&amp;#39;s say you want to perform some operations on a string:&lt;/p&gt;
+&lt;pre&gt;let input = &amp;quot; some user input &amp;lt;script&amp;gt;alert(&amp;#39;pwnd!&amp;#39;);&amp;lt;/script&amp;gt;&amp;quot;;
+input = input.trim();
+input = sanitizeHTML(input);
+input = `You submitted &amp;lt;pre&amp;gt;${input}&amp;lt;/pre&amp;gt;`; 
+display(input);&lt;/pre&gt;
+&lt;p&gt;This example is a bit contrived, but bear with me. The point here is that there are a number of self-contained operations we want to perform on our input string &lt;code &gt;input&lt;/code&gt;.&lt;/p&gt;
+&lt;h1&gt;How could we improve this?&lt;/h1&gt;
+&lt;p&gt;There&amp;#39;s nothing wrong with the above example, however, reassigning a variable just doesn&amp;#39;t feel quite right... what we have here is a functional pipeline, so it would be ideal to be able to model our code as a functional pipeline as well.&lt;/p&gt;
+&lt;h3&gt;Manual Functional Composition&lt;/h3&gt;
+&lt;p&gt;One way we could change this code is to add a &lt;code &gt;pipe&lt;/code&gt; function that will let us actually create a functional pipeline.&lt;/p&gt;
+&lt;pre&gt;const pipe = (...fns) =&amp;gt; fns.reduce((f, g) =&amp;gt; (x) =&amp;gt; g(f(x)));
+
+// Build up a functional pipeline
+const fn = pipe(
+  x =&amp;gt; x.trim(),
+	x =&amp;gt; sanitizeHTML(x),
+	x =&amp;gt; `You submitted &amp;lt;pre&amp;gt;${input}&amp;lt;/pre&amp;gt;`,
+  x =&amp;gt; display(x),
+);
+
+let input = &amp;quot; some user input &amp;lt;script&amp;gt;alert(&amp;#39;pwnd!&amp;#39;);&amp;lt;/script&amp;gt;&amp;quot;;
+fn(input); // Run it&lt;/pre&gt;
+&lt;p&gt;This is a valid approach and one I&amp;#39;ve used in the past many times. However, it has some drawbacks:&lt;/p&gt;
+&lt;ol&gt;&lt;li&gt;This type of code is often opaque to new programmers or programmers without any background in functional programming.&lt;/li&gt;&lt;/ol&gt;
+&lt;ol&gt;&lt;li&gt;For synchronous operations it requires building up a function even if you really just want to run a series of functions immediately and use the result.&lt;/li&gt;&lt;/ol&gt;
+&lt;ol&gt;&lt;li&gt;For &lt;span class=&quot;italic&quot;&gt;async&lt;/span&gt; operations we can still use the approach above but may become harder to reason about and it will almost certainly exacerbate the first caveat, becoming less readable to outsiders.&lt;/li&gt;&lt;/ol&gt;
+&lt;h2&gt;Promises can help&lt;/h2&gt;
+&lt;p&gt;Now let&amp;#39;s rewrite this functionality using promises.&lt;/p&gt;
+&lt;pre&gt;const main = async (input) =&amp;gt; {
+  const x = await Promise.resolve(input)
+		.then(x =&amp;gt; x.trim())
+    .then(x =&amp;gt; sanitizeHTML(x))
+		.then(x =&amp;gt; `You submitted &amp;lt;pre&amp;gt;${input}&amp;lt;/pre&amp;gt;`)
+	
+  display(x);
+};
+
+main().then(() =&amp;gt; console.log(&amp;#39;Complete.&amp;#39;));&lt;/pre&gt;
+&lt;p&gt;Look at that, all our operations neatly pipeline without any external libraries. What&amp;#39;s more, we can now handle async operations and sync operations together in the same way.&lt;/p&gt;
+&lt;p&gt;Let&amp;#39;s assume &lt;code &gt;display&lt;/code&gt; is an async operations. In the above example we could simply add an &lt;code &gt;await&lt;/code&gt; in front of it and our function would continue working as normally. Or we could include it in the pipeline:&lt;/p&gt;
+&lt;pre&gt;Promise.resolve(input)
+		.then(x =&amp;gt; x.trim())
+    .then(x =&amp;gt; sanitizeHTML(x))
+		.then(x =&amp;gt; `You submitted &amp;lt;pre&amp;gt;${input}&amp;lt;/pre&amp;gt;`)
+    .then(x =&amp;gt; display(x)) // Even if display is async this will work &lt;/pre&gt;
+&lt;h1&gt;The point&lt;/h1&gt;
+&lt;p&gt;Promises are pretty flexible, and can be used to model both sync and async operations without any external library code.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[What is going on with Quora's UI?]]></title><link>https://blog.iansinnott.com/what-is-going-on-with-quoras-ui/</link><guid isPermaLink="false">https://blog.iansinnott.com/what-is-going-on-with-quoras-ui/</guid><pubDate>Mon, 07 Sep 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class=&quot;bold&quot;&gt;TL;DR&lt;/span&gt;: Quora&amp;#39;s UI actively discourages you from finding answers to your questions. This essay is me wondering aloud: Is it necessary for a content site to play zero-sum games with it&amp;#39;s audience in order to be a viable business?&lt;/p&gt;
 &lt;h1&gt;Have you used Quora lately? &lt;/h1&gt;
 &lt;p&gt;The site actively tries to discourage you from finding information. &lt;/p&gt;
 &lt;p&gt;That&amp;#39;s a harsh statement to make about a company who&amp;#39;s mission is &amp;quot;Sharing and growing the world&amp;#39;s knowledge.&amp;quot;&lt;span &gt;*&lt;/span&gt; Just to be clear, I&amp;#39;m not saying Quora is useless—far from it. I am saying Quora does it&amp;#39;s best to reduce it&amp;#39;s own utility to any would-be knowledge seeker.&lt;/p&gt;
@@ -68,7 +116,9 @@
 &lt;p&gt;When you&amp;#39;re looking through a content listing (blog or news homepage for example) simply scrolling until you find something of interest is a better experience than wading through multiple pages.&lt;/p&gt;
 &lt;div class=&quot;callout&quot;&gt;Pagination is a worse user experience than a single list of posts.&lt;/div&gt;
 &lt;h1&gt;Common Objections&lt;/h1&gt;
-&lt;p&gt;Spoiler: I consider all these fair. I&amp;#39;m no an anti-pagination fundamentalist—do what works for you.&lt;/p&gt;
+&lt;p&gt;Spoiler: I consider all these fair. I&amp;#39;m not an anti-pagination fundamentalist—do what works for you.&lt;/p&gt;
+&lt;h2&gt;Large Collections&lt;/h2&gt;
+&lt;p&gt;Yup. It&amp;#39;s one thing to list &lt;span class=&quot;italic&quot;&gt;dozens&lt;/span&gt; of blog posts without pagination, maybe even hundreds. However, any order of magnitude above triple digits will probably require some form of pagination or windowing.&lt;/p&gt;
 &lt;h2&gt;The content will be too long&lt;/h2&gt;
 &lt;p&gt;This is a fair concern. Lots and lots of content on your homepage will increase load time and potentially scare viewers away when they encounter a text-wall. Thus, if your homepage includes the &lt;span class=&quot;italic&quot;&gt;full content&lt;/span&gt; of each post  &lt;/p&gt;
 &lt;h2&gt;My WordPress theme only does pagination...&lt;/h2&gt;
