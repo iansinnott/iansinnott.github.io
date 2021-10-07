@@ -7,16 +7,36 @@
   body {
     padding: 0;
     margin: 0;
-    @apply font-serif;
+    @apply font-serif dark:bg-gray-900 dark:text-white;
     /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
   }
 
   a {
-    color: inherit;
     text-decoration: none;
+    @apply text-blue-800 dark:text-indigo-200 hover:underline;
+  }
+
+  p {
+    @apply mb-2 last:mb-0;
   }
 
   h1 {
     @apply text-3xl;
+  }
+
+  ul {
+    @apply pl-5;
+  }
+  li {
+    list-style-type: disc;
+  }
+}
+
+@layer components {
+  .contained {
+    @apply w-full max-w-5xl mx-auto p-4 md:p-8 lg:px-12;
+  }
+  .NotionPostListItem:hover time {
+    @apply opacity-100;
   }
 }

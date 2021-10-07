@@ -3,7 +3,7 @@ import { APIResponseError, Client, LogLevel } from "@notionhq/client";
 import Head from "next/head";
 import assert from "assert";
 import { QueryDatabaseParameters } from "@notionhq/client/build/src/api-endpoints";
-import { renderRichPlainText } from "../lib/notion";
+import { notionPropVal, renderRichPlainText } from "../lib/notion";
 import GithubSlugger from "github-slugger";
 import Layout from "../components/Layout";
 
@@ -48,20 +48,32 @@ export const getStaticProps = (context: NextPageContext) => {
   return client.databases.query(dbParams).then((res) => {
     return {
       props: {
-        posts: res.results.map((x) => {
-          // @ts-ignore
-          const title = renderRichPlainText(x.properties.title.title);
-          const slug = makeSlug(title);
-          return {
-            id: x.id,
-            title,
-            slug,
-            created_time: x.created_time,
-            cover: x.cover,
-            icon: x.icon,
-            properties: x.properties,
-          };
-        }),
+        posts: res.results
+          .map((x) => {
+            // @ts-ignore
+            const title = renderRichPlainText(x.properties.title.title);
+            const slug = makeSlug(title);
+            let d = "--";
+            try {
+              d = new Date(notionPropVal(x.properties.created)?.start || x.created_time)
+                .toISOString()
+                .split("T")[0];
+            } catch (err) {
+              console.warn("Un-parsable date for", x.properties);
+            }
+            return {
+              id: x.id,
+              title,
+              slug,
+              displayDate: d,
+              notion_url: x.url,
+              created_time: x.created_time,
+              cover: x.cover,
+              icon: x.icon,
+              properties: x.properties,
+            };
+          })
+          .sort((a, b) => (a.displayDate < b.displayDate ? 1 : -1)), // Sort here b/c of date logic
       },
     };
   });
@@ -71,8 +83,12 @@ type Await<T> = T extends PromiseLike<infer U> ? U : T;
 
 const NotionPostListItem = ({ post }) => {
   return (
-    <div>
-      <a href={`/${post.slug}`}>{post.title}</a>
+    <div className="flex justify-between items-center NotionPostListItem">
+      {/* <a href={`/${post.slug}`}>{post.title}</a> */}
+      <a className="text-lg" href={`${post.notion_url}`}>
+        {post.title}
+      </a>
+      <time className="font-mono text-sm opacity-40">{post.displayDate}</time>
     </div>
   );
 };

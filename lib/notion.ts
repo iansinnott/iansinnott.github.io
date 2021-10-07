@@ -7,3 +7,7 @@ export const renderRichPlainText = (xs: any[]) => {
     .filter(Boolean)
     .join(" ");
 };
+
+export const notionPropVal = (x) => {
+  return x[x.type];
+};

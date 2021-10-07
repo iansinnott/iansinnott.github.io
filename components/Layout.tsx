@@ -1,5 +1,33 @@
 import React from "react";
 import Head from "next/head";
+import cx from "classnames";
+
+import { ParrotTwitterLink } from "./";
+
+const Bio = () => (
+  <div
+    className={cx(
+      "Bio bg-green-100 dark:bg-green-400 dark:border-2 dark:border-green-500 dark:bg-opacity-10 p-4",
+    )}>
+    <h3 className="text-2xl">About me</h3>
+    <p>
+      I write about my mistakes and successes as I learn to build a business. Last attempt was{" "}
+      <a href="https://www.pairwise.tech">Pairwise</a>, currently working on Uncloud (URL TBD).
+    </p>
+    <p>I also sometimes rant about technology companies, especially Apple.</p>
+    <ul>
+      <li>
+        Latest product: <a href="https://wwww.browserparrot.com">BrowserParrot</a>
+      </li>
+      <li className="">
+        <div className="flex items-center">
+          <span className="inline-block mr-2">Message me on Twitter:</span>
+          <ParrotTwitterLink />
+        </div>
+      </li>
+    </ul>
+  </div>
+);
 
 const Layout = (props: { children: React.ReactChild }) => {
   return (
@@ -10,9 +38,33 @@ const Layout = (props: { children: React.ReactChild }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={""}>{props.children}</main>
+      <header className="contained">
+        <h3 className="text-3xl text-left">Ian Sinnott</h3>
+        <p className="text-gray-600 dark:text-white dark:text-opacity-60">
+          <em>Welcome to my blog</em>
+        </p>
+      </header>
 
-      <footer className={""}>&copy; Ian Sinnott {new Date().getFullYear()}</footer>
+      <main className={"w-full"}>
+        <div className="contained ">{props.children}</div>
+      </main>
+
+      <div className="contained">
+        <div className="mt-8">
+          <Bio />
+          <div className={cx("Bio bg-gray-100 dark:bg-white dark:bg-opacity-10 p-4 mt-4")}>
+            <h3 className="text-2xl">About the site</h3>
+            <p>
+              This blog is open source. You can find the source here:{" "}
+              <a href="https://github.com/iansinnott/iansinnott.github.io/tree/source">
+                iansinnott/iansinnott.github.io
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <footer className={"contained"}>&copy; Ian Sinnott {new Date().getFullYear()}</footer>
     </div>
   );
 };
