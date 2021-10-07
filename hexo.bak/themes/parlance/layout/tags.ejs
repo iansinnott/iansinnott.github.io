@@ -1,8 +1,0 @@
-<section class='tag-archive'>
-  <% site.tags.sort('length', 'desc').each((tag) => { %>
-    <a class='tag' href='<%= url_for(tag.path) %>'>
-      <span class='name'><%= tag.name %></span>
-      <span class='count'><%= tag.length %></span>
-    </a>
-  <% }) %>
-</section>
