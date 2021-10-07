@@ -9,8 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "classnames": "~2.3.1",
     "next": "11.1.2",
     "react": "17.0.2",
+    "@tailwindcss/aspect-ratio": "^0.2.1",
+    "@tailwindcss/forms": "^0.3.3",
+    "@tailwindcss/line-clamp": "^0.2.1",
+    "@tailwindcss/typography": "^0.4.1",
+    "tailwindcss": "^2.2.15",
+    "autoprefixer": "^10.3.4",
+    "postcss": "^8.3.6",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
